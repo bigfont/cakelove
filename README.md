@@ -37,7 +37,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 - assigned users can login as admin
 - admin has access to an online dashboard
-- the online dashboard is a list with the following headers
+- the online dashboard is a list with headers
     - username
     - form status (in progress | completed)
  - clicking a applicant name opens his/her form page
