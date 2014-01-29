@@ -50,4 +50,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 # Technical Requirements
 
-Todo
+- Use ASP.NET Entity Framework with code first migrations
+- Use Windows Sql Azure for data storage
+
+
