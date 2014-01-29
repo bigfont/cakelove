@@ -4,12 +4,18 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 # Functional Requirements
 
+## Member Registration
+
 - any user can register with their own user ID and password
 - registered users become members
+
+## Member to Applicant
 
 - members accept a set of guidelines to becoming applicants
 - members are shown guidelines on each login
 - applicants are not shown guidelines on each login but can access them for printing
+
+## Applicant Form
 
 - applicants have access to an application form (form) that accepts
     - keyboard input (written information)
@@ -26,6 +32,8 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - applicants can "send" the form
     - this sends a notification email to the admin
     - afterward applicants can only login to read info   
+    
+## Admin Dashboard
     
 - assigned users can login as admin
 - admin has access to an online dashboard
