@@ -40,8 +40,8 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - the online dashboard is a list with headers
     - username
     - form status (in progress | completed)
- - clicking a applicant name opens his/her form page
- - the applicant form page allows lets admin
+- clicking a applicant name opens his/her form page
+- the applicant form page allows lets admin
     - create, read, update, delete info
     - download the form
     - print the form
