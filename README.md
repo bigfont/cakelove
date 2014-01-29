@@ -41,21 +41,16 @@ A portal/page/site that potential instructors can go to in order to apply as an 
     - username
     - form status (in progress | completed)
 - clicking a applicant name opens his/her form page
-- the applicant form page allows lets admin
+- the applicant form page lets admin
     - create, read, update, delete info
     - download the form
     - print the form
     - download the images
     - download the video
- 
- # Technical Requirements
- 
- - 
- - 
- - 
- - 
- 
 
+# Technical Requirements
 
-
-
+- 
+- 
+- 
+- 
