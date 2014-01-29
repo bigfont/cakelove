@@ -19,7 +19,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 - applicants have access to an application form (form) that accepts
     - keyboard input (written information)
-    - image uploads        
+    - image uploads
     - video uploads
 - the form must pass validation before applicants can sent it
     - required inputs (must haves)
@@ -31,10 +31,10 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - applicants can "save" the form and later login to create, read, update, delete info
 - applicants can "send" the form
     - this sends a notification email to the admin
-    - afterward applicants can only login to read info   
-    
+    - afterward applicants can only login to read info
+
 ## Admin Dashboard
-    
+
 - assigned users can login as admin
 - admin has access to an online dashboard
 - the online dashboard is a list with the following headers
