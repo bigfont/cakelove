@@ -10,7 +10,7 @@ namespace cakelove.Models
 {
     public class MyDbContext : IdentityDbContext<MyIdentityUser>
     {
-
+       
     }
 
 }
