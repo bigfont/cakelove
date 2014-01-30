@@ -26,7 +26,7 @@ myApp.controller('RegisterCtrl_Test', ['$scope', '$http', '$location', function 
 
     $scope.result = {};
 
-    $http({ method: 'POST', url: url, data: { UserName: userName, Password: password, ConfirmPassword: 'password123' } }).
+    $http({ method: 'POST', url: url, data: { UserName: userName, Password: password, ConfirmPassword: confirmPassword } }).
         success(function (data, status, headers, config) {
 
             $scope.result.data = data;

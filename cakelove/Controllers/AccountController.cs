@@ -309,6 +309,14 @@ namespace cakelove.Controllers
             return logins;
         }
 
+        // GET api/Account/Register
+        [AllowAnonymous]
+        [Route("Register")]
+        public RegisterBindingModel GetRegister()
+        {
+            return new RegisterBindingModel();
+        }
+
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
@@ -325,7 +333,7 @@ namespace cakelove.Controllers
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                        
+
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)

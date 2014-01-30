@@ -32,6 +32,13 @@ namespace cakelove.Models
 
     public class RegisterBindingModel
     {
+        public RegisterBindingModel()
+        {
+            UserName = string.Empty;
+            Password = string.Empty;
+            ConfirmPassword = string.Empty;
+        }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
