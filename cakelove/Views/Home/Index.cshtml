@@ -1,12 +1,40 @@
-﻿
-<div class="row">
-    <div class="col-md-4" ng-controller="RegisterCtrl">
-        {{ result }}
-    </div>
-    <div class="col-md-4">
+﻿<p ng-controller="RegisterCtrl_Test">{{ result }}</p>
 
-    </div>
-    <div class="col-md-4">
 
-    </div>
+@* See http://docs.angularjs.org/guide/forms *@
+
+<div ng-controller="RegisterCtrl_Simple">
+    <form novalidate class="simple-form">
+        <fieldset>
+            <legend>Simple with Reset</legend>
+            Name: <input type="text" ng-model="user.name" /><br />
+            E-mail: <input type="email" ng-model="user.email" /><br />
+            Gender: <input type="radio" ng-model="user.gender" value="male" />male
+            <input type="radio" ng-model="user.gender" value="female" />female<br />
+            <button ng-click="reset()">RESET</button>
+            <button ng-click="update(user)">SAVE</button>
+        </fieldset>
+    </form>
 </div>
+
+
+<div ng-controller="RegisterCtrl_Simple">
+    <form novalidate class="css-form">
+        Name:
+        <input type="text" ng-model="user.name" required /><br />
+        E-mail: <input type="email" ng-model="user.email" required /><br />
+        Gender: <input type="radio" ng-model="user.gender" value="male" />male
+        <input type="radio" ng-model="user.gender" value="female" />female<br />
+        <button ng-click="reset()">RESET</button>
+        <button ng-click="update(user)">SAVE</button>
+    </form>
+</div>
+<style type="text/css">
+    .css-form input.ng-invalid.ng-dirty {
+        background-color: lightcoral;
+    }
+
+    .css-form input.ng-valid.ng-dirty {
+        background-color: lightgreen;
+    }
+</style>
