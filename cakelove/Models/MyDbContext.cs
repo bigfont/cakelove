@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace cakelove.Models
 {
-    public class MyDbContext : IdentityDbContext<MyIdentityUser>
+    public class MyDbContext : IdentityDbContext<IdentityUser>
     {
        
     }

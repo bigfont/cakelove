@@ -321,15 +321,13 @@ namespace cakelove.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new MyIdentityUser
+            var user = new IdentityUser
             {
                 UserName = model.UserName
             };
 
-            //IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            IdentityResult result = UserManager.Create(user, model.Password);
-
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                        
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
