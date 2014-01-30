@@ -1,12 +1,17 @@
-﻿<p ng-controller="RegisterCtrl_Test">{{ result }}</p>
+﻿<div ng-controller="RegisterCtrl_Test">
+    <p>data: {{ result.data }}</p>
+    <p>result: {{ result.status }}</p>
+    <p>headers: {{ result.headers }}</p>
+    <p>config: {{ result.config }}</p>    
+</div>
 
 
 @* See http://docs.angularjs.org/guide/forms *@
 
-<div ng-controller="RegisterCtrl_Simple">
+<div ng-controller="SimpleFormCtrl">
     <form novalidate class="simple-form">
         <fieldset>
-            <legend>Simple with Reset</legend>
+            <legend>Simple form</legend>
             Name: <input type="text" ng-model="user.name" /><br />
             E-mail: <input type="email" ng-model="user.email" /><br />
             Gender: <input type="radio" ng-model="user.gender" value="male" />male
@@ -18,18 +23,25 @@
 </div>
 
 
-<div ng-controller="RegisterCtrl_Simple">
+<div ng-controller="SimpleFormCtrl">
     <form novalidate class="css-form">
-        Name:
-        <input type="text" ng-model="user.name" required /><br />
-        E-mail: <input type="email" ng-model="user.email" required /><br />
-        Gender: <input type="radio" ng-model="user.gender" value="male" />male
-        <input type="radio" ng-model="user.gender" value="female" />female<br />
-        <button ng-click="reset()">RESET</button>
-        <button ng-click="update(user)">SAVE</button>
+        <fieldset>
+            <legend>Using CSS classes</legend>
+            Name:
+            <input type="text" ng-model="user.name" required /><br />
+            E-mail: <input type="email" ng-model="user.email" required /><br />
+            Gender: <input type="radio" ng-model="user.gender" value="male" />male
+            <input type="radio" ng-model="user.gender" value="female" />female<br />
+            <button ng-click="reset()">RESET</button>
+            <button ng-click="update(user)">SAVE</button>
+        </fieldset>
     </form>
 </div>
 <style type="text/css">
+    .css-form input.ng-pristine {
+        background-color: silver;
+    }
+
     .css-form input.ng-invalid.ng-dirty {
         background-color: lightcoral;
     }
@@ -38,3 +50,35 @@
         background-color: lightgreen;
     }
 </style>
+
+
+
+
+
+<div ng-controller="FormAndControlStateCtrl">
+    <form name="form" class="css-form" novalidate>
+        Name:
+        <input type="text" ng-model="user.name" name="uName" required /><br />
+        E-mail:
+        <input type="email" ng-model="user.email" name="uEmail" required /><br />
+        <div ng-show="form.uEmail.$dirty && form.uEmail.$invalid">
+            Invalid:
+            <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
+            <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+        </div>
+
+        Gender: <input type="radio" ng-model="user.gender" value="male" />male
+        <input type="radio" ng-model="user.gender" value="female" />female<br />
+
+        <input type="checkbox" ng-model="user.agree" name="userAgree" required />
+        I agree: <input ng-show="user.agree" type="text" ng-model="user.agreeSign"
+                        required /><br />
+        <div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
+
+        <button ng-click="reset()" ng-disabled="isUnchanged(user)">RESET</button>
+        <button ng-click="update(user)"
+                ng-disabled="form.$invalid || isUnchanged(user)">
+            SAVE
+        </button>
+    </form>
+</div>
