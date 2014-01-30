@@ -19,16 +19,16 @@ namespace cakelove.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountApiController : ApiController
     {
         private const string LocalLoginProvider = "Local";
 
-        public AccountController()
+        public AccountApiController()
             : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
         {
         }
 
-        public AccountController(UserManager<IdentityUser> userManager,
+        public AccountApiController(UserManager<IdentityUser> userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             UserManager = userManager;
