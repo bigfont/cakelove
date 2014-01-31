@@ -1,19 +1,24 @@
-﻿<form name="form" novalidate>
+﻿@model string
 
-    @* Dynamic Way of Doing Things *@
-    
-    <div class="form-group" ng-repeat="val in masterModel | toArray | orderBy:'order':false">
+<form name="form" novalidate>
+    <fieldset>
 
-        <label for="{{ val.$key }}">{{ val.$key | addSpace }}</label>
-        <input class="form-control" id="{{ val.$key }}" dynamic-name="val.$key" ng-model="clientModel[val.$key]"
-               ng-required="value.required" servervalidation type="{{ value.type }}" />
+        <legend>@Model</legend>
 
-        <ul class="list-unstyled">
-            <li ng-repeat="error in value.serverErrors">{{ error }}</li>
-        </ul>
+        <div class="form-group" ng-repeat="val in masterModel | toArray | orderBy:'order':false">
 
-    </div>
+            <label for="{{ val.$key }}">{{ val.$key | addSpace }}</label>
+            <input class="form-control" id="{{ val.$key }}" dynamic-name="val.$key" ng-model="clientModel[val.$key]"
+                   ng-required="value.required" servervalidation type="{{ val.type }}" placeholder="{{ val.$key }}" />
 
-    <button class="btn btn-default" ng-click="submit()">submit</button>
+            <ul class="list-unstyled">
+                <li ng-repeat="error in val.serverErrors">{{ error }}</li>
+            </ul>
+
+        </div>
+
+        <button class="btn btn-default" ng-click="submit()">submit</button>
+
+    </fieldset>
 
 </form>

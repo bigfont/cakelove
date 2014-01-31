@@ -111,9 +111,10 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
             "checkbox", "radio", "file", "submit", "image"];
         for (var i = 0; i < htmlTextualInputTypes.length; i++) {
 
-            regex = new RegExp(htmlTextualInputTypes[i]);
+            var t = htmlTextualInputTypes[i];
+            regex = new RegExp(t);
             if (regex.test(key)) {
-                inputType = matches[0];
+                inputType = t;
                 break;
             }
         }

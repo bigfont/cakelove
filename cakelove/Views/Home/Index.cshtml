@@ -1,15 +1,30 @@
 ﻿
+<header>
+    <style type="text/css">
+        .glyphicon-heart-empty {
+
+            color: red;
+            margin: 100px 10px;            
+
+        }
+
+    </style>
+    <h1>
+        <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
+    </h1>
+</header>
+
 <div class="row">
 
     <div class="col-lg-6" ng-controller="RegisterCtrl">
 
-        @Html.Partial("_DynamicAngularForm")
+        @Html.Partial("_DynamicAngularForm", "Register")
 
     </div>
 
     <div class="col-lg-6" ng-controller="TokenCtrl">
 
-        @Html.Partial("_DynamicAngularForm")
+        @Html.Partial("_DynamicAngularForm", "Login")
 
     </div>
 
