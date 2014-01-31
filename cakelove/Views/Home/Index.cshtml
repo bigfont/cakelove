@@ -5,13 +5,16 @@
         <h1>
             <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
         </h1>
-        <div ng-switch="auth.loggedIn">
+        <p ng-switch="auth.loggedIn">
             <span ng-switch-when="false">Hello Guest!</span>
             <span ng-switch-when="true">Welcome back {{ auth.userName }} </span>
-        </div>
+        </p>
     </header>
 
-    <div class="row">
+    @* Auth
+        --------------- *@
+
+    <div class="row" ng-hide="auth.loggedIn">
 
         <div class="col-lg-6" ng-controller="RegisterCtrl">
 
@@ -27,7 +30,10 @@
 
     </div>
 
-    <div class="row">
+    @* Article
+        --------------- *@
+
+    <div class="row" ng-show="auth.loggedIn">
 
         <div class="col-lg-6" ng-controller="AgreementCtrl">
 
