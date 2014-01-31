@@ -4,7 +4,21 @@
 //app
 var myApp = angular.module('CakeLoveApp', []);
 
-myApp.filter("addspace", function () {
+myApp.filter('toArray', function () {
+    'use strict';
+
+    return function(obj) {
+        if (!(obj instanceof Object)) {
+            return obj;
+        }
+
+        return Object.keys(obj).map(function(key) {
+            return Object.defineProperty(obj[key], '$key', { __proto__: null, value: key });
+        });
+    };
+});
+
+myApp.filter("addSpace", function () {
 
     return function (input) {
 
@@ -112,6 +126,7 @@ function InferTheHtmlInputAttributesOfEachKeyValuePair(data) {
 
     var newData = angular.copy(data);
 
+    var i = 0;
     angular.forEach(data, function (value, key) {
 
         var inferredType = InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
@@ -125,6 +140,7 @@ function InferTheHtmlInputAttributesOfEachKeyValuePair(data) {
 
         valueObj.type = inferredType;
         valueObj.required = true;
+        valueObj.order = i++;
 
         newData[key] = valueObj;
 
@@ -209,7 +225,7 @@ myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', functi
     $scope.clientModel = {};
     $scope.masterModel = {};
 
-    var userCredentials = { UserName: '', Password: '' };
+    var userCredentials = { Password: '', UserName: '' };
     $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
 
     $scope.submit = function () {

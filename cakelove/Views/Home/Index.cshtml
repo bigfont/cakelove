@@ -1,12 +1,16 @@
 ﻿
-<div ng-controller="RegisterCtrl">
+<div class="row">
 
-    @Html.Partial("_DynamicAngularForm")
+    <div class="col-lg-6" ng-controller="RegisterCtrl">
 
-</div>
+        @Html.Partial("_DynamicAngularForm")
 
-<div ng-controller="TokenCtrl">
+    </div>
 
-    @Html.Partial("_DynamicAngularForm")
+    <div class="col-lg-6" ng-controller="TokenCtrl">
+
+        @Html.Partial("_DynamicAngularForm")
+
+    </div>
 
 </div>
