@@ -95,8 +95,6 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
 
         inputType = "text"; // this is the default input type
 
-        console.log(key);
-
         if (/[a-zA-Z]/.test(key)) {
             key = key.toLowerCase(); // set to lowercase for comparison
         }
@@ -183,12 +181,55 @@ function AddServerSideValidationMessages(form, masterModel, modelState) {
 
 }
 
-myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+myApp.factory('urlService', ['$location', function ($location) {
+
+    var url = {};
+
+    url.GetApiUrl = function (rightPart) {
+
+        return $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port + rightPart;
+
+    };
+
+    return url;
+
+}]);
+
+myApp.factory('authService', ['$window', function ($window) {
+
+    var auth = {};
+
+    auth.loggedIn = false;
+
+    if ($window.sessionStorage.getItem('token')) {
+        auth.loggedIn = true;
+        auth.userName = $window.sessionStorage.getItem('userName');
+    }
+
+    auth.login = function (userName, password, token) {
+
+        $window.sessionStorage.setItem('token', token);
+        $window.sessionStorage.setItem('userName', userName);
+
+        auth.loggedIn = true;
+        auth.userName = userName;
+
+    };
+
+    auth.logout = function () {
+        auth.loggedIn = false;
+    };
+
+    return auth;
+
+}]);
+
+myApp.controller('RegisterCtrl', ['$scope', '$http', 'authService', 'urlService', function ($scope, $http, authService, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
 
-    var url = GetApiUrl($location, '/api/account/register');
+    var url = urlService.GetApiUrl('/api/account/register');
 
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
@@ -221,7 +262,7 @@ myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($sco
 
 }]);
 
-myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
+myApp.controller('TokenCtrl', ['$scope', '$http', '$window', 'authService', 'urlService', function ($scope, $http, $window, authService, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -231,14 +272,16 @@ myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', functi
 
     $scope.submit = function () {
 
-        var url = GetApiUrl($location, "/Token");
-        var grantRequest = "grant_type=password&username=" + $scope.clientModel.UserName + "&password=" + $scope.clientModel.Password;
-        console.log(grantRequest);
+        var userName = $scope.clientModel.UserName;
+        var password = $scope.clientModel.Password;
+
+        var url = urlService.GetApiUrl('/token');
+        var grantRequest = "grant_type=password&username=" + userName + "&password=" + password;
 
         $http({ method: 'POST', url: url, data: grantRequest }).
             success(function (data, status, headers, config) {
 
-                $window.sessionStorage.setItem("token", data.access_token);
+                authService.login(userName, password, data.access_token);
 
             }).
             error(function (data, status, headers, config) {
@@ -250,4 +293,10 @@ myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', functi
             });
 
     };
+}]);
+
+myApp.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'authService', function ($scope, $http, $location, $window, authService) {
+
+    $scope.auth = authService;
+
 }]);
