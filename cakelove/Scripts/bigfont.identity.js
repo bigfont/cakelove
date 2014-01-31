@@ -6,20 +6,20 @@ var myApp = angular.module('CakeLoveApp', []);
 
 myApp.filter("addspace", function () {
 
-        return function (input) {
+    return function (input) {
 
-            var out = "";
-            for (var i = 0; i < input.length; i++) {
+        var out = "";
+        for (var i = 0; i < input.length; i++) {
 
-                var character = input.charAt(i);
-                if (character === character.toUpperCase()) {
-                    out = out + " ";
-                }
-                out = out + character;
+            var character = input.charAt(i);
+            if (character === character.toUpperCase()) {
+                out = out + " ";
             }
+            out = out + character;
+        }
 
-            return out;
-        };
+        return out;
+    };
 });
 
 
@@ -38,7 +38,49 @@ function testConfirmPassword() {
 
 function getApiUrl($location, rightPart) {
 
-    return $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port + '/api/account/register';
+    return $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port + rightPart;
+
+}
+
+function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
+
+    var inputType = (typeof value).toLowerCase();
+
+    if (inputType === "string") {
+
+        key = key.toLowerCase();
+        var textualInputTypes = [
+            "hidden", "text", "search", "tel", "url", "email",
+            "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color",
+            "checkbox", "radio", "file", "submit", "image"];
+
+        var regex;
+        var matches = [];
+        for (var i = 0; i < textualInputTypes.length; i++) {
+
+            regex = new RegExp(textualInputTypes[i]);
+            matches = key.match(regex);
+            if (matches != null) {
+                inputType = matches[0];
+                break;
+            }
+        }
+    }
+
+    return inputType;
+}
+
+function InferTheHtmlInputTypeOfEachKeyValuePair(data) {
+
+    angular.forEach(data, function (value, key) {
+
+        var inferredType = InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
+        var valueObj = { value: value, type: inferredType };
+        this[key] = valueObj;
+
+    }, data);
+
+    return data;
 
 }
 
@@ -50,7 +92,7 @@ myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($sco
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            $scope.result.data = data;
+            $scope.result.data = InferTheHtmlInputTypeOfEachKeyValuePair(data);;
             $scope.result.status = status;
             $scope.result.headers = headers;
             $scope.result.config = config;
