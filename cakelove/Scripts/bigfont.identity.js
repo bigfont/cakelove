@@ -22,21 +22,7 @@ myApp.filter("addspace", function () {
     };
 });
 
-
-function testUserName() {
-    var date = new Date();
-    return "testUser" + (date.getMilliseconds() * date.getSeconds());
-}
-
-function testPassword() {
-    return null;
-}
-
-function testConfirmPassword() {
-    return null;
-}
-
-function getApiUrl($location, rightPart) {
+function GetApiUrl($location, rightPart) {
 
     return $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port + rightPart;
 
@@ -48,17 +34,20 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
 
     if (inputType === "string") {
 
-        key = key.toLowerCase();
-        var textualInputTypes = [
-            "hidden", "text", "search", "tel", "url", "email",
-            "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color",
-            "checkbox", "radio", "file", "submit", "image"];
+        inputType = ""; // this is the default input type
 
+        key = key.toLowerCase(); // set to lowercase for comparison
+                
+        // iterate all the html input types to look for a match
         var regex;
         var matches = [];
-        for (var i = 0; i < textualInputTypes.length; i++) {
+        var htmlTextualInputTypes = [
+            "hidden", "text", "search", "tel", "url", "email",
+            "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color",
+            "checkbox", "radio", "file", "submit", "image"];        
+        for (var i = 0; i < htmlTextualInputTypes.length; i++) {
 
-            regex = new RegExp(textualInputTypes[i]);
+            regex = new RegExp(htmlTextualInputTypes[i]);
             matches = key.match(regex);
             if (matches != null) {
                 inputType = matches[0];
@@ -72,63 +61,65 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
 
 function InferTheHtmlInputTypeOfEachKeyValuePair(data) {
 
+    var newData = angular.copy(data);
+    
     angular.forEach(data, function (value, key) {
 
         var inferredType = InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
         var valueObj = { value: value, type: inferredType };
-        this[key] = valueObj;
+        newData[key] = valueObj;
 
-    }, data);
+    }, newData);
 
-    return data;
+    return newData;
+
+}
+
+function ShowAjaxResultsForDevelopment(scope, data, status, headers, config) {
+
+    scope.ajaxResult = {};
+    scope.ajaxResult.data = data;
+    scope.ajaxResult.status = status;
+    scope.ajaxResult.headers = headers;
+    scope.ajaxResult.config = config;
 
 }
 
 myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-    $scope.result = {};
+    var user = {};
 
-    var url = getApiUrl($location, '/api/account/register');
+    var url = GetApiUrl($location, '/api/account/register');
+
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            $scope.result.data = InferTheHtmlInputTypeOfEachKeyValuePair(data);;
-            $scope.result.status = status;
-            $scope.result.headers = headers;
-            $scope.result.config = config;
+            $scope.staticUser = data;
+            $scope.dynamicUser = InferTheHtmlInputTypeOfEachKeyValuePair(data);
+
+            ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
         }).
         error(function (data, status, headers, config) {
 
-            $scope.result.data = data;
-            $scope.result.status = status;
-            $scope.result.headers = headers;
-            $scope.result.config = config;
+            ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
         });
 
     $scope.submit = function () {
 
-        var userName = testUserName();
-        var password = testPassword();
-        var confirmPassword = testConfirmPassword();
-        var url = getApiUrl($location, '/api/account/register');
+        var user = $scope.user;
 
-        $http({ method: 'POST', url: url, data: { UserName: userName, Password: password, ConfirmPassword: confirmPassword } }).
+        $http({ method: 'POST', url: url, data: user }).
             success(function (data, status, headers, config) {
 
-                $scope.result.data = data;
-                $scope.result.status = status;
-                $scope.result.headers = headers;
-                $scope.result.config = config;
+                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             }).
             error(function (data, status, headers, config) {
 
-                $scope.result.data = data;
-                $scope.result.status = status;
-                $scope.result.headers = headers;
-                $scope.result.config = config;
+                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+
             });
     };
 

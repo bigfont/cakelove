@@ -2,16 +2,26 @@
 
 <form name="form" ng-controller="RegisterCtrl">
 
-    <div ng-repeat="(key, value) in result.data">
-        <label for="{{ key }}">{{ key | addspace }}</label><input id="{{ key }}" type="{{ value.type }}" name="{{ key }}" value="{{ value.value }}"  />
+    @* Static Way of Doing Things *@
+    <div><label>User Name</label><input name="UserName" ng-model="staticUser.UserName" /></div>
+    <div><label>Password</label><input name="Password" ng-model="staticUser.Password" /></div>
+    <div><label>Confirm Password</label><input name="ConfirmPassword" ng-model="staticUser.ConfirmPassword" /></div>
+    
+    <p>data: {{ ajaxResult.data }}</p>
+    <p>status: {{ ajaxResult.status }}</p>
+    <p>headers: {{ ajaxResult.headers }}</p>
+    <p>config: {{ ajaxResult.config }}</p>
+    <button ng-click="submit()">submit</button>
+
+    @* Dynamic Way of Doing Things *@
+    <div ng-repeat="(key, value) in dynamicUser">
+        <label for="{{ key }}">{{ key | addspace }}</label>
+        <input id="{{ key }}" type="{{ value.type }}" name="{{ key }}" value="{{ value.value }}" ng-model="dynamicUser[key]" />
     </div>
     
+    <p>dynamicUser: {{ dynamicUser }}</p>
 
-    <p>data: {{ result.data }}</p>
-    <p>status: {{ result.status }}</p>
-    <p>headers: {{ result.headers }}</p>
-    <p>config: {{ result.config }}</p>
-    <button ng-click="submit()">submit</button>
+
 
 </form>
 
