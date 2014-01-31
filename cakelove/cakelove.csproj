@@ -532,9 +532,6 @@
     <Content Include="Areas\HelpPage\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\_Register.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Scripts\errors.json" />
   </ItemGroup>
   <ItemGroup>

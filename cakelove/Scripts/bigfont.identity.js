@@ -81,7 +81,12 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
 
         inputType = "text"; // this is the default input type
 
-        key = key.toLowerCase(); // set to lowercase for comparison
+        console.log(key);
+
+        if (/[a-zA-Z]/.test(key)) {
+            key = key.toLowerCase(); // set to lowercase for comparison
+        }
+
 
         // iterate all the html input types to look for a match
         var regex;
@@ -93,8 +98,7 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
         for (var i = 0; i < htmlTextualInputTypes.length; i++) {
 
             regex = new RegExp(htmlTextualInputTypes[i]);
-            matches = key.match(regex);
-            if (matches != null) {
+            if (regex.test(key)) {
                 inputType = matches[0];
                 break;
             }
@@ -113,7 +117,12 @@ function InferTheHtmlInputAttributesOfEachKeyValuePair(data) {
         var inferredType = InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
 
         var valueObj = {};
-        valueObj.value = value;
+        valueObj.superValue = value;
+
+        if (key === 'access_token') {
+            console.log(value);
+        }
+
         valueObj.type = inferredType;
         valueObj.required = true;
 
@@ -138,14 +147,14 @@ function ShowAjaxResultsForDevelopment(scope, data, status, headers, config) {
 function AddServerSideValidationMessages(form, masterModel, modelState) {
 
     var properties = [];
-    angular.forEach(modelState, function(value, key) {
+    angular.forEach(modelState, function (value, key) {
 
         var property = key.replace("model.", "");
         properties.push(property);
 
     });
 
-    angular.forEach(masterModel, function(value, key) {
+    angular.forEach(masterModel, function (value, key) {
 
         var isValid = properties.indexOf(key) < 0;
         form[key].$setValidity("servervalidation", isValid);
@@ -159,15 +168,15 @@ function AddServerSideValidationMessages(form, masterModel, modelState) {
 
 myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-    $scope.clientUser = {};
-    $scope.masterUser = {};
+    $scope.clientModel = {};
+    $scope.masterModel = {};
 
     var url = GetApiUrl($location, '/api/account/register');
 
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            $scope.masterUser = InferTheHtmlInputAttributesOfEachKeyValuePair(data);
+            $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(data);
 
         }).
         error(function (data, status, headers, config) {
@@ -178,55 +187,47 @@ myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($sco
 
     $scope.submit = function () {
 
-        var clientUser = $scope.clientUser;
+        var clientModel = $scope.clientModel;
 
-        $http({ method: 'POST', url: url, data: clientUser }).
+        $http({ method: 'POST', url: url, data: clientModel }).
             success(function (data, status, headers, config) {
 
-                $scope.masterUser = InferTheHtmlInputAttributesOfEachKeyValuePair(clientUser);
+                $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(clientModel);
 
             }).
             error(function (data, status, headers, config) {
 
-                $scope.masterUser = AddServerSideValidationMessages($scope.form, $scope.masterUser, data.ModelState);
+                $scope.masterModel = AddServerSideValidationMessages($scope.form, $scope.masterModel, data.ModelState);
 
             });
     };
 
 }]);
 
-myApp.controller('SimpleFormCtrl', ['$scope', function ($scope) {
-    $scope.master = {};
+myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
 
-    $scope.update = function (user) {
-        $scope.master = angular.copy(user);
+    $scope.clientModel = {};
+    $scope.masterModel = {};
+
+    var userCredentials = { UserName: '', Password: '' };
+    $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
+
+    $scope.submit = function () {
+
+        var url = GetApiUrl($location, "/Token");
+        var grantRequest = "grant_type=password&username=" + $scope.clientModel.UserName + "&password=" + $scope.clientModel.Password;
+        console.log(grantRequest);
+
+        $http({ method: 'POST', url: url, data: grantRequest }).
+            success(function (data, status, headers, config) {
+
+                $window.sessionStorage.setItem("token", data.access_token);
+
+            }).
+            error(function (data, status, headers, config) {
+
+
+            });
+
     };
-
-    $scope.reset = function () {
-        $scope.user = angular.copy($scope.master);
-    };
-
-    $scope.reset();
-
 }]);
-
-myApp.controller('FormAndControlStateCtrl', ['$scope', function ($scope) {
-
-    $scope.master = {};
-
-    $scope.update = function (user) {
-        $scope.master = angular.copy(user);
-    };
-
-    $scope.reset = function () {
-        $scope.user = angular.copy($scope.master);
-    };
-
-    $scope.isUnchanged = function (user) {
-        return angular.equals(user, $scope.master);
-    };
-
-    $scope.reset();
-
-}]);
-

@@ -1,18 +1,20 @@
 ﻿<form name="form" novalidate>
 
     @* Dynamic Way of Doing Things *@
-    <div class="form-group" ng-repeat="(key, value) in masterUser">
+    <div class="form-group" ng-repeat="(key, val) in masterModel">
 
         <label for="{{ key }}">{{ key | addspace }}</label>
-        <input class="form-control" id="{{ key }}" dynamic-name="key" ng-model="clientUser[key]"
-               ng-required="value.required" servervalidation
-               type="{{ value.type }}" value="{{ value.value }}" />
+        <input class="form-control" id="{{ key }}" dynamic-name="key" ng-model="clientModel[key]"
+               ng-required="value.required" servervalidation type="{{ value.type }}" />
 
         <ul class="list-unstyled">
             <li ng-repeat="error in value.serverErrors">{{ error }}</li>
         </ul>
 
-    </div>
+    </div>    
+
+    @*<pre>{{ clientModel | json}}</pre>
+        <pre>{{ masterModel | json}}</pre>*@
 
     <button class="btn btn-default" ng-click="submit()">submit</button>
 
