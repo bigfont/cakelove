@@ -7,12 +7,12 @@ var myApp = angular.module('CakeLoveApp', []);
 myApp.filter('toArray', function () {
     'use strict';
 
-    return function(obj) {
+    return function (obj) {
         if (!(obj instanceof Object)) {
             return obj;
         }
 
-        return Object.keys(obj).map(function(key) {
+        return Object.keys(obj).map(function (key) {
             return Object.defineProperty(obj[key], '$key', { __proto__: null, value: key });
         });
     };
@@ -226,7 +226,7 @@ myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', functi
     $scope.clientModel = {};
     $scope.masterModel = {};
 
-    var userCredentials = { Password: '', UserName: '' };
+    var userCredentials = { UserName: '', Password: '' };
     $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
 
     $scope.submit = function () {
@@ -243,6 +243,9 @@ myApp.controller('TokenCtrl', ['$scope', '$http', '$location', '$window', functi
             }).
             error(function (data, status, headers, config) {
 
+                $scope.masterModel.UserName.serverErrors = [data.error_description];
+                $scope.form.UserName.$setValidity('servervalidation', false);
+                $scope.form.Password.$setValidity('servervalidation', false);
 
             });
 

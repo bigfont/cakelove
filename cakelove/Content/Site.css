@@ -10,3 +10,8 @@ input.ng-invalid-servervalidation {
 input.ng-valid.ng-dirty {
     background-color: lightgreen;
 }
+
+.glyphicon-heart-empty {
+    color: red;
+    margin: 50px 10px 100px 10px;
+}
