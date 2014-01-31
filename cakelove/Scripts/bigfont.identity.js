@@ -224,6 +224,12 @@ myApp.factory('authService', ['$window', function ($window) {
 
 }]);
 
+myApp.controller("MainCtrl", ['$scope', 'authService', function ($scope, authService) {
+
+    $scope.auth = authService;
+
+}]);
+
 myApp.controller('RegisterCtrl', ['$scope', '$http', 'authService', 'urlService', function ($scope, $http, authService, urlService) {
 
     $scope.clientModel = {};

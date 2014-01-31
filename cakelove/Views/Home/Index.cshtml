@@ -1,36 +1,39 @@
 ﻿
-<header>
-    <h1>
-        <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
-    </h1>
-</header>
+<div ng-controller="MainCtrl">
 
-<div class="row">
-
-    <div class="col-lg-6" ng-controller="RegisterCtrl">
-
-        @Html.Partial("_DynamicAngularForm", "Register")
-
-    </div>
-
-    <div class="col-lg-6" ng-controller="TokenCtrl">
-
-        @Html.Partial("_DynamicAngularForm", "Login")
-
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-lg-6" ng-controller="AgreementCtrl">
-        
+    <header>
+        <h1>
+            <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
+        </h1>
         <div ng-switch="auth.loggedIn">
             <span ng-switch-when="false">Hello Guest!</span>
             <span ng-switch-when="true">Welcome back {{ auth.userName }} </span>
         </div>
+    </header>
 
-        @Html.Partial("_Agreement")
+    <div class="row">
+
+        <div class="col-lg-6" ng-controller="RegisterCtrl">
+
+            @Html.Partial("_DynamicAngularForm", "Register")
+
+        </div>
+
+        <div class="col-lg-6" ng-controller="TokenCtrl">
+
+            @Html.Partial("_DynamicAngularForm", "Login")
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6" ng-controller="AgreementCtrl">
+
+            @Html.Partial("_Agreement")
+
+        </div>
 
     </div>
 
