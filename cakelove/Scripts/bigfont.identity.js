@@ -4,6 +4,25 @@
 //app
 var myApp = angular.module('CakeLoveApp', []);
 
+myApp.filter("addspace", function () {
+
+        return function (input) {
+
+            var out = "";
+            for (var i = 0; i < input.length; i++) {
+
+                var character = input.charAt(i);
+                if (character === character.toUpperCase()) {
+                    out = out + " ";
+                }
+                out = out + character;
+            }
+
+            return out;
+        };
+});
+
+
 function testUserName() {
     var date = new Date();
     return "testUser" + (date.getMilliseconds() * date.getSeconds());
@@ -23,28 +42,28 @@ function getApiUrl($location, rightPart) {
 
 }
 
-myApp.controller('RegisterCtrl_Test', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+myApp.controller('RegisterCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     $scope.result = {};
 
     var url = getApiUrl($location, '/api/account/register');
     $http({ method: 'GET', url: url }).
-        success(function(data, status, headers, config) {
-            
+        success(function (data, status, headers, config) {
+
             $scope.result.data = data;
             $scope.result.status = status;
             $scope.result.headers = headers;
             $scope.result.config = config;
 
         }).
-        error(function(data, status, headers, config) {
-        
+        error(function (data, status, headers, config) {
+
             $scope.result.data = data;
             $scope.result.status = status;
             $scope.result.headers = headers;
             $scope.result.config = config;
 
-    });
+        });
 
     $scope.submit = function () {
 

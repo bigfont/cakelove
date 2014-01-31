@@ -1,8 +1,13 @@
 ﻿
 
-<div ng-controller="RegisterCtrl_Test">
+<div ng-controller="RegisterCtrl">
+
+    <div ng-repeat="(key, value) in result.data">
+        <label for="{{ key }}">{{ key | addspace }}</label><input id="{{ key }}" name="{{ key }}" value="{{ value }}" />
+    </div>
+
     <p>data: {{ result.data }}</p>
-    <p>result: {{ result.status }}</p>
+    <p>status: {{ result.status }}</p>
     <p>headers: {{ result.headers }}</p>
     <p>config: {{ result.config }}</p>
     <button ng-click="submit()">submit</button>

@@ -5,17 +5,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    @Styles.Render("~/Content/css")
+    
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/bigfont")
 
 </head>
-<body>
-   
-        @RenderBody()
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+    <body>
+        
+        <article class="container">
 
-    @Scripts.Render("~/bundles/bigfont")
-    @RenderSection("scripts", required: false)
+            @RenderBody()
 
-</body>
+        </article>
+
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/bigfont")
+        @RenderSection("scripts", required: false)
+
+    </body>
 </html>
