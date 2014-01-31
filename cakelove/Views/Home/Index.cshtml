@@ -1,46 +1,53 @@
 ﻿
-<div ng-controller="MainCtrl">
+<article ng-controller="MainCtrl">
+    
+    <aside ng-switch="auth.loggedIn">
+        <span ng-switch-when="false">Hello Guest!</span>
+        <span ng-switch-when="true">Welcome back {{ auth.userName }} </span>
+    </aside>
 
     <header>
-        <h1>
-            <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
-        </h1>
-        <p ng-switch="auth.loggedIn">
-            <span ng-switch-when="false">Hello Guest!</span>
-            <span ng-switch-when="true">Welcome back {{ auth.userName }} </span>
-        </p>
+        <div class="container">
+            <h1>
+                <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
+            </h1>
+
+        </div>
     </header>
 
     @* Auth
         --------------- *@
 
-    <div class="row" ng-hide="auth.loggedIn">
-
-        <div class="col-lg-6" ng-controller="RegisterCtrl">
-
-            @Html.Partial("_DynamicAngularForm", "Register")
-
+    <section>
+        <div class="container">
+            <div class="row" ng-hide="auth.loggedIn">
+                <div class="col-lg-6" ng-controller="RegisterCtrl">
+                    @Html.Partial("_DynamicAngularForm", "Register")
+                </div>
+                <div class="col-lg-6" ng-controller="TokenCtrl">
+                    @Html.Partial("_DynamicAngularForm", "Login")
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="col-lg-6" ng-controller="TokenCtrl">
-
-            @Html.Partial("_DynamicAngularForm", "Login")
-
-        </div>
-
-    </div>
-
-    @* Article
+    @* Agreement
         --------------- *@
 
-    <div class="row" ng-show="auth.loggedIn">
-
-        <div class="col-lg-6" ng-controller="AgreementCtrl">
-
-            @Html.Partial("_Agreement")
-
+    <section>
+        <div class="container">
+            <div class="row" ng-show="auth.loggedIn">
+                <div class="col-lg-6" ng-controller="AgreementCtrl">
+                    @Html.Partial("_Agreement")
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <footer>
+        <div class="container">
+            <p>Copyright 2014 Cake Love.</p>
+        </div>
+    </footer>
 
-</div>
+</article>

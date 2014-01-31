@@ -11,7 +11,18 @@ input.ng-valid.ng-dirty {
     background-color: lightgreen;
 }
 
-.glyphicon-heart-empty {
+.glyphicon-heart-empty:first-child {
     color: red;
-    margin: 50px 10px 100px 10px;
+    margin-right: 20px;
+}
+
+.glyphicon-heart-empty:last-child {
+    color: red;
+    margin-left: 20px;
+}
+
+header, footer {
+
+    margin: 25px 0;
+
 }

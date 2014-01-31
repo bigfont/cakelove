@@ -5,22 +5,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    
+
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/bigfont")
 
 </head>
-    <body>
-        
-        <article class="container">
+<body>
 
-            @RenderBody()
 
-        </article>
+    @RenderBody()
 
-        @Scripts.Render("~/bundles/angular")
-        @Scripts.Render("~/bundles/bigfont")
-        @RenderSection("scripts", required: false)
 
-    </body>
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bigfont")
+    @RenderSection("scripts", required: false)
+
+</body>
 </html>
