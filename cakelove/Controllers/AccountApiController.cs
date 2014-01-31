@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -332,7 +333,7 @@ namespace cakelove.Controllers
                 UserName = model.UserName
             };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);            
 
             IHttpActionResult errorResult = GetErrorResult(result);
 
@@ -411,8 +412,8 @@ namespace cakelove.Controllers
                 if (result.Errors != null)
                 {
                     foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
+                    {                        
+                        ModelState.AddModelError("model.UserName", error);
                     }
                 }
 
