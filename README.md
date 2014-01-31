@@ -6,8 +6,9 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 ## Member Registration
 
-- any user can register with their own user ID and password
+- any user can register with their own user ID and password. **Done.**
 - registered users become members
+- registered users can log in and out for the life of the website. **Done.**
 
 ## Member to Applicant
 
