@@ -7,6 +7,24 @@ var myApp = angular.module('cakeLoveApp', [
     'myControllers' //controllers module
 ]);
 
+
+myApp.config(['$routeProvider',
+  function ($routeProvider) {
+      $routeProvider.
+        when('/register', {
+            templateUrl: 'ng/_register',
+            controller: 'RegisterCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+  }]);
+
+
+
+
+
+
 myApp.filter('toArray', function () {
     'use strict';
 

@@ -10,9 +10,16 @@ namespace cakelove
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Angular", action = "Index", id = UrlParameter.Optional }
+                name: "Angular",
+                url: "ng/{action}",
+                defaults: new { controller = "Angular", action = "Index" }
+                );
+
+            // Default Route:
+            routes.MapRoute(
+               "Default", // Route name
+               "{controller}/{action}/{id}", // URL with parameters
+               new { controller = "Angular", action = "Index", id = string.Empty } // Parameter defaults
             );
         }
     }

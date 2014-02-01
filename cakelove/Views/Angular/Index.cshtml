@@ -21,21 +21,6 @@
         </div>
     </header>
 
-    @* Auth
-        --------------- *@
-
-    <section>
-        <div class="container">
-            <div class="row" ng-hide="auth.loggedIn">
-                <div class="col-lg-6" ng-controller="RegisterCtrl">
-                    @Html.Partial("_DynamicAngularForm", "Register")
-                </div>
-                <div class="col-lg-6" ng-controller="TokenCtrl">
-                    @Html.Partial("_DynamicAngularForm", "Login")
-                </div>
-            </div>
-        </div>
-    </section>
 
     @* Agreement
         --------------- *@
