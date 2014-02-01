@@ -10,17 +10,25 @@ namespace cakelove
             BundleTable.EnableOptimizations = false;
             bundles.UseCdn = true;
 
-            bundles.Add(new ScriptBundle("~/bundles/bigfont").Include(
-                        "~/Scripts/bigfont.identity.js"));
+            // angular
+            const string angularCdn = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/";
+            const string ngMain = "angular.js";
+            const string ngRoute = "angular-route.js";
 
-            const string angularCdn = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js";
-            bundles.Add(new ScriptBundle("~/bundles/angular", angularCdn).Include("~/Scripts/angular.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ng", angularCdn + ngMain).Include("~/Scripts/" + ngMain));
+            bundles.Add(new ScriptBundle("~/bundles/ngRoute", ngRoute).Include("~/Scripts/" + ngRoute));
 
+            // bootstrap
             const string bootstrapCdn = "http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
             bundles.Add(new StyleBundle("~/Content/bootstrap", bootstrapCdn).Include("~/Content/bootstrap.css"));
-            
+
+            // site
             bundles.Add(new StyleBundle("~/Content/bigfont").Include(
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bigfont").Include(
+                "~/Scripts/cakelove.ng.app.js",
+                "~/Scripts/cakelove.ng.controllers.js"));
         }
     }
 }

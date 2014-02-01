@@ -5,10 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cakelove", "cakelove\cakelove.csproj", "{43628159-2018-4D1D-919C-D23A11AB8422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cakelove.Tests", "cakelove.Tests\cakelove.Tests.csproj", "{EBE825C3-89E6-47EE-86F9-CC737B386A25}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{E9DA0A08-567C-4CFA-91E7-FFF8D15DD20C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{43628159-2018-4D1D-919C-D23A11AB8422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43628159-2018-4D1D-919C-D23A11AB8422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43628159-2018-4D1D-919C-D23A11AB8422}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBE825C3-89E6-47EE-86F9-CC737B386A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBE825C3-89E6-47EE-86F9-CC737B386A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBE825C3-89E6-47EE-86F9-CC737B386A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBE825C3-89E6-47EE-86F9-CC737B386A25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9DA0A08-567C-4CFA-91E7-FFF8D15DD20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9DA0A08-567C-4CFA-91E7-FFF8D15DD20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9DA0A08-567C-4CFA-91E7-FFF8D15DD20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9DA0A08-567C-4CFA-91E7-FFF8D15DD20C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
