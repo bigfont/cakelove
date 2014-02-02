@@ -473,7 +473,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\bigfont\" />
     <Folder Include="sensitive\" />
   </ItemGroup>
   <ItemGroup>

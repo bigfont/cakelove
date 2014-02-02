@@ -28,8 +28,7 @@ namespace cakelove
             bundles.Add(new StyleBundle("~/Content/bigfont").Include(
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/polyfills").IncludeDirectory("~/Scripts/polyfills", "*.js"));
-            bundles.Add(new ScriptBundle("~/bundles/bigfont").IncludeDirectory("~/Scripts/bigfont", "*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/polyfills").IncludeDirectory("~/Scripts/polyfills", "*.js"));            
             bundles.Add(new ScriptBundle("~/bundles/cakelove").IncludeDirectory("~/Scripts/cakelove", "*.js"));
 
         }
