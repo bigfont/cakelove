@@ -1,17 +1,27 @@
-﻿var myControllers = angular.module("myControllers", []);
+﻿var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
-myControllers.controller("MainCtrl", ['$scope', 'authService', function ($scope, authService) {
+cakeLoveControllers.controller("MainCtrl", ['$scope', 'authService', function ($scope, authService) {
 
     $scope.auth = authService;
 
 }]);
 
-myControllers.controller('RegisterCtrl', ['$scope', '$http', 'authService', 'urlService', function ($scope, $http, authService, urlService) {
+cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', 'urlService', function ($scope, $http, urlService) {
+    
+    $http.get(urlService.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
+
+        $scope.welcomeText = data;
+
+    });
+
+}]);
+
+cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', 'authService', 'urlService', function ($scope, $http, authService, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
 
-    var url = urlService.GetApiUrl('/api/account/register');
+    var url = urlService.ToAbsoluteUrl('/api/account/register');
 
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
@@ -44,7 +54,7 @@ myControllers.controller('RegisterCtrl', ['$scope', '$http', 'authService', 'url
 
 }]);
 
-myControllers.controller('TokenCtrl', ['$scope', '$http', '$window', 'authService', 'urlService', function ($scope, $http, $window, authService, urlService) {
+cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'authService', 'urlService', function ($scope, $http, $window, $location, authService, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -57,13 +67,15 @@ myControllers.controller('TokenCtrl', ['$scope', '$http', '$window', 'authServic
         var userName = $scope.clientModel.UserName;
         var password = $scope.clientModel.Password;
 
-        var url = urlService.GetApiUrl('/token');
+        var url = urlService.ToAbsoluteUrl('/token');
         var grantRequest = "grant_type=password&username=" + userName + "&password=" + password;
 
         $http({ method: 'POST', url: url, data: grantRequest }).
             success(function (data, status, headers, config) {
 
                 authService.login(userName, password, data.access_token);
+                $location.path("/agreement");
+
 
             }).
             error(function (data, status, headers, config) {
@@ -77,8 +89,17 @@ myControllers.controller('TokenCtrl', ['$scope', '$http', '$window', 'authServic
     };
 }]);
 
-myControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'authService', function ($scope, $http, $location, $window, authService) {
+cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'authService', 'urlService', function ($scope, $http, $location, $window, authService, urlService) {    
 
-    $scope.auth = authService;
+    $http.get(urlService.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
+
+        $scope.agreementText = data;
+
+    });
+
+    $scope.accept = function() {
+
+
+    };
 
 }]);

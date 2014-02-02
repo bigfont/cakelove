@@ -1,44 +1,34 @@
 ﻿
-
-<div ng-view></div>
-
-
-
-
-<article ng-controller="MainCtrl">
+<div ng-app="cakeLoveApp">
     
-    <aside ng-switch="auth.loggedIn">
-        <span ng-switch-when="false">Hello Guest!</span>
-        <span ng-switch-when="true">Welcome back {{ auth.userName }} </span>
-    </aside>
+    <style type="text/css">
+        
+        /*Inline small css*/
+        div[ng-app] {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
 
-    <header>
-        <div class="container">
-            <h1>
-                <span class="glyphicon glyphicon-heart-empty"></span>Cake Love<span class="glyphicon glyphicon-heart-empty"></span>
-            </h1>
+    </style>
+    
+    <article class="container" ng-controller="MainCtrl">
+        
+        <div class="row">
+
+            <aside class="col-lg-6" ng-switch="auth.isLoggedIn">
+                <p ng-switch-when="false">Hello Guest!</p>
+                <p ng-switch-when="true">Welcome back {{ auth.userName }} </p>
+            </aside>
 
         </div>
-    </header>
+        <div class="row">
 
-
-    @* Agreement
-        --------------- *@
-
-    <section>
-        <div class="container">
-            <div class="row" ng-show="auth.loggedIn">
-                <div class="col-lg-6" ng-controller="AgreementCtrl">
-                    @Html.Partial("_Agreement")
-                </div>
+            <div class="col-lg-6">
+                <div ng-view></div>
             </div>
-        </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <p>Copyright 2014 Cake Love.</p>
         </div>
-    </footer>
 
-</article>
+    </article>
+
+</div>

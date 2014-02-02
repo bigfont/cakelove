@@ -1,16 +1,7 @@
-﻿@model string
-
-@* ----------------
-
-    This partial view could exist instead as an Angular directive.
-    See http://docs.angularjs.org/guide/directive
-
-       ---------------- *@
-
-<form name="form" novalidate>
+﻿<form name="form" novalidate>
     <fieldset>
 
-        <legend>@Model</legend>
+        <legend>TODO</legend>
 
         <div class="form-group" ng-repeat="val in masterModel | toArray | orderBy:'order':false">
 

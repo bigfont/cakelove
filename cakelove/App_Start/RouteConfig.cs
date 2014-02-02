@@ -7,13 +7,13 @@ namespace cakelove
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");            
 
-            routes.MapRoute(
-                name: "Angular",
-                url: "ng/{action}",
-                defaults: new { controller = "Angular", action = "Index" }
-                );
+            routes.MapPageRoute(
+                routeName: "Angular",
+                routeUrl: "ng/{folder}/{filename}",
+                physicalFile: "~/AngularAjax/{folder}/{filename}.html",
+                checkPhysicalUrlAccess: true);
 
             // Default Route:
             routes.MapRoute(

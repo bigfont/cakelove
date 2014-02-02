@@ -185,6 +185,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AngularAjax\ajax\agreement-text.html" />
+    <Content Include="AngularAjax\ajax\welcome-text.html" />
+    <Content Include="AngularAjax\partials\agreement.html" />
+    <Content Include="AngularAjax\partials\welcome.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -209,7 +213,8 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\cakelove.ng.controllers.js" />
+    <Content Include="Scripts\cakelove\cakelove.ng.controllers.js" />
+    <Content Include="Scripts\cakelove\cakelove.ng.directives.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\i18n\angular-locale_af.js" />
@@ -455,7 +460,8 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
-    <Content Include="Scripts\cakelove.ng.app.js" />
+    <Content Include="Scripts\cakelove\cakelove.ng.app.js" />
+    <Content Include="Scripts\polyfills\array.indexof.js" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
@@ -467,6 +473,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\bigfont\" />
     <Folder Include="sensitive\" />
   </ItemGroup>
   <ItemGroup>
@@ -508,12 +515,10 @@
     <Content Include="Scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Angular\_DynamicAngularForm.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <Content Include="Views\Angular\_Agreement.cshtml" />
-    <Content Include="Views\Angular\_Register.cshtml" />
+    <Content Include="AngularAjax\partials\web-api-form.html" />
+    <Content Include="Scripts\cakelove\cakelove.ng.factories.js" />
+    <Content Include="Scripts\cakelove\cakelove.ng.filters.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

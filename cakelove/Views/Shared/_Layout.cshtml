@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="cakeLoveApp">
+<html>
 <head>
 
     <meta charset="utf-8" />
@@ -18,7 +18,10 @@
 
     @Scripts.Render("~/bundles/ng")
     @Scripts.Render("~/bundles/ngRoute")
+    @Scripts.Render("~/bundles/ngSanitize")
+    @Scripts.Render("~/bundles/polyfills")
     @Scripts.Render("~/bundles/bigfont")
+    @Scripts.Render("~/bundles/cakelove")
     @RenderSection("scripts", required: false)
 
 </body>
