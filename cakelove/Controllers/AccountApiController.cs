@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Management.Instrumentation;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -25,17 +26,18 @@ namespace cakelove.Controllers
         private const string LocalLoginProvider = "Local";
 
         public AccountApiController()
-            : this(Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
+            : this(Startup.UserManagerFactory(), Startup.RoleManagerFactory(), Startup.OAuthOptions.AccessTokenFormat)
         {
         }
 
-        public AccountApiController(UserManager<IdentityUser> userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountApiController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             UserManager = userManager;
+            RoleManager = roleManager;
             AccessTokenFormat = accessTokenFormat;
         }
 
+        public RoleManager<IdentityRole> RoleManager { get; private set; }
         public UserManager<IdentityUser> UserManager { get; private set; }
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
@@ -73,7 +75,7 @@ namespace cakelove.Controllers
                 return null;
             }
 
-            List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
+            var logins = new List<UserLoginInfoViewModel>();
 
             foreach (IdentityUserLogin linkedAccount in user.Logins)
             {
@@ -256,7 +258,7 @@ namespace cakelove.Controllers
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await UserManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Roles);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -318,6 +320,18 @@ namespace cakelove.Controllers
             return new RegisterBindingModel();
         }
 
+        // TODO Make this async
+        private IdentityResult CreateRoleIfNotExists(IEnumerable<string> roleNames)
+        {
+            IdentityResult result = IdentityResult.Failed();
+            foreach (var roleName in roleNames)
+            {
+                result = !RoleManager.RoleExists(roleName) ? RoleManager.Create(new IdentityRole(roleName)) : IdentityResult.Success;
+            }
+            return result;
+
+        }
+
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
@@ -333,8 +347,13 @@ namespace cakelove.Controllers
                 UserName = model.UserName
             };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);            
-
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            result = CreateRoleIfNotExists(new string[] { "admin", "member", "applicant" });
+            if (result.Succeeded)
+            {
+                result = await UserManager.AddToRoleAsync(user.Id, "member");
+            }
+          
             IHttpActionResult errorResult = GetErrorResult(result);
 
             if (errorResult != null)
@@ -412,7 +431,7 @@ namespace cakelove.Controllers
                 if (result.Errors != null)
                 {
                     foreach (string error in result.Errors)
-                    {                        
+                    {
                         ModelState.AddModelError("model.UserName", error);
                     }
                 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -7,6 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using WebGrease.Css.Extensions;
 
 namespace cakelove.Providers
 {
@@ -47,7 +49,7 @@ namespace cakelove.Providers
                     context.Options.AuthenticationType);
                 ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = CreateProperties(user.UserName);
+                AuthenticationProperties properties = CreateProperties(user.UserName, user.Roles);
                 AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
                 context.Validated(ticket);
                 context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -90,12 +92,23 @@ namespace cakelove.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, ICollection<IdentityUserRole> userRoles)
         {
-            IDictionary<string, string> data = new Dictionary<string, string>
+            IDictionary<string, string> data = new Dictionary<string, string>();
+
+            data.Add("userName", userName);
+
+            if (userRoles.Count != 0)
             {
-                { "userName", userName }
-            };
+                string roles = "";
+                foreach (var r in userRoles)
+                {
+                    roles += r.Role.Name + ",";
+                }
+                roles = roles.Substring(0, roles.LastIndexOf(","));
+                data.Add("userRoles", roles);
+            }
+
             return new AuthenticationProperties(data);
         }
     }

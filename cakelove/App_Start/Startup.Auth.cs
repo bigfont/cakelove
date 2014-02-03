@@ -17,6 +17,8 @@ namespace cakelove
 
             UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>());
 
+            RoleManagerFactory = () => new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
+
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
@@ -30,6 +32,8 @@ namespace cakelove
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         public static Func<UserManager<IdentityUser>> UserManagerFactory { get; set; }
+
+        public static Func<RoleManager<IdentityRole>> RoleManagerFactory { get; set; }
 
         public static string PublicClientId { get; private set; }
 
