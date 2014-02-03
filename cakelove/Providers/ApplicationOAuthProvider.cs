@@ -100,12 +100,9 @@ namespace cakelove.Providers
 
             if (userRoles.Count != 0)
             {
-                string roles = "";
-                foreach (var r in userRoles)
-                {
-                    roles += r.Role.Name + ",";
-                }
-                roles = roles.Substring(0, roles.LastIndexOf(","));
+                // todo learn how the Aggregate function does
+                var roles = userRoles.Aggregate("", (current, r) => current + (r.Role.Name + ","));
+                roles = roles.Substring(0, roles.LastIndexOf(",", StringComparison.Ordinal));
                 data.Add("userRoles", roles);
             }
 
