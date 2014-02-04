@@ -26,11 +26,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse">
 
-                @*<aside ng-switch="userSvc.isLoggedIn">
-                        <p ng-switch-when="true" class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{ userSvc.userName }}</a></p>
-                        <p ng-switch-when="false" class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Guest</a></p>
-                    </aside>*@
-
                 <aside ng-switch="userSvc.isLoggedIn">
                     <ul ng-switch-when="true" class="nav navbar-nav navbar-right">
                         <li><a href="#agreement">Agreement</a></li>
@@ -40,6 +35,9 @@
                                 <li><a ng-click="userSvc.logout()">Logout</a></li>
                             </ul>
                         </li>
+                    </ul>
+                    <ul ng-switch-when="false">
+                        <li>Guest</li>
                     </ul>
                 </aside>
 
