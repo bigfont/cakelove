@@ -23,7 +23,7 @@ namespace cakelove
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
                 var cdnPath = angularCdn + pair.Value; 
-                var virtualPath = "~/Scripts/" + pair.Value;
+                var virtualPath = "~/Scripts/angular/" + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
 

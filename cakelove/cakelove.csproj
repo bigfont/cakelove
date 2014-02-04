@@ -194,6 +194,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\angular-sanitize.js" />
     <Content Include="Scripts\cakelove\cakelove.ng.controllers.js" />
     <Content Include="Scripts\cakelove\cakelove.ng.directives.js" />
     <Content Include="Scripts\not-in-use\i18n\angular-locale_af-na.js" />
@@ -452,19 +453,18 @@
     <Content Include="Scripts\not-in-use\angular-mocks.js" />
     <Content Include="Scripts\not-in-use\angular-resource.js" />
     <Content Include="Scripts\not-in-use\angular-resource.min.js" />
-    <Content Include="Scripts\not-in-use\angular-route.js" />
-    <Content Include="Scripts\not-in-use\angular-route.min.js" />
-    <Content Include="Scripts\not-in-use\angular-sanitize.js" />
-    <Content Include="Scripts\not-in-use\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular\angular-route.js" />
+    <Content Include="Scripts\angular\angular-route.min.js" />
+    <Content Include="Scripts\angular\angular-sanitize.min.js" />
     <Content Include="Scripts\not-in-use\angular-scenario.js" />
     <Content Include="Scripts\not-in-use\angular-touch.js" />
     <Content Include="Scripts\not-in-use\angular-touch.min.js" />
-    <Content Include="Scripts\not-in-use\angular.js" />
-    <Content Include="Scripts\not-in-use\angular.min.js" />
-    <Content Include="Scripts\not-in-use\ui-bootstrap-0.10.0.js" />
-    <Content Include="Scripts\not-in-use\ui-bootstrap-0.10.0.min.js" />
-    <Content Include="Scripts\not-in-use\ui-bootstrap-tpls-0.10.0.js" />
-    <Content Include="Scripts\not-in-use\ui-bootstrap-tpls-0.10.0.min.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\angular.ui.bootstrap\ui-bootstrap-0.10.0.js" />
+    <Content Include="Scripts\angular.ui.bootstrap\ui-bootstrap-0.10.0.min.js" />
+    <Content Include="Scripts\angular.ui.bootstrap\ui-bootstrap-tpls-0.10.0.js" />
+    <Content Include="Scripts\angular.ui.bootstrap\ui-bootstrap-tpls-0.10.0.min.js" />
     <Content Include="Scripts\polyfills\array.indexof.js" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
@@ -477,8 +477,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\angular.ui.bootstrap\" />
-    <Folder Include="Scripts\angular\" />
     <Folder Include="sensitive\" />
   </ItemGroup>
   <ItemGroup>
@@ -501,10 +499,10 @@
     <Content Include="Scripts\not-in-use\angular-cookies.min.js.map" />
     <Content Include="Scripts\not-in-use\angular-loader.min.js.map" />
     <Content Include="Scripts\not-in-use\angular-resource.min.js.map" />
-    <Content Include="Scripts\not-in-use\angular-route.min.js.map" />
-    <Content Include="Scripts\not-in-use\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular\angular-route.min.js.map" />
+    <Content Include="Scripts\angular\angular-sanitize.min.js.map" />
     <Content Include="Scripts\not-in-use\angular-touch.min.js.map" />
-    <Content Include="Scripts\not-in-use\angular.min.js.map" />
+    <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="Scripts\not-in-use\errors.json" />
   </ItemGroup>
   <PropertyGroup>
