@@ -6,6 +6,10 @@ cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', function ($scop
 
 }]);
 
+cakeLoveControllers.controller("MainNavbarCtrl", ["$scope", function ($scope) {
+    $scope.isCollapsed = false;
+}]);
+
 cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', 'urlService', 'userSvc',
     function ($scope, $http, $location, urlService, userSvc) {
 
@@ -142,9 +146,22 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
     }]);
 
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {        
+
+        $scope.tabs = [
+            { title: "Dynamic Title 1", content: "Dynamic content 1" },
+            { title: "Dynamic Title 2", content: "Dynamic content 2", disabled: true }
+        ];
+
+        $scope.navType = 'pills';
+
+    }]);
+
+cakeLoveControllers.controller('ContactInfoCtrl', [
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
     function ($scope, $http, $location, $window, userSvc, urlService) {
 
-        $scope.formName = 'Application';
+        $scope.formName = 'Contact Info';
 
         $scope.clientModel = {};
         $scope.masterModel = {};
@@ -152,4 +169,59 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
         var contactInfo = { Name: '', Address: '', PhoneDay: '', PhoneCell: '', Email: '', BusinessName: '', Website: '' };
         $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
 
-    }]);
+    }
+]);
+
+cakeLoveControllers.controller('TeachingExperienceCtrl', [
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {
+
+        $scope.formName = 'Teaching Experience';
+
+        $scope.clientModel = {};
+        $scope.masterModel = {};
+
+        var contactInfo = {
+            TODO: ''                
+        };
+
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+
+    }
+]);
+
+cakeLoveControllers.controller('BiographyCtrl', [
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {
+
+        $scope.formName = 'Biography';
+
+        $scope.clientModel = {};
+        $scope.masterModel = {};
+
+        var contactInfo = {
+            TODO: ''
+        };
+
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+
+    }
+]);
+
+cakeLoveControllers.controller('ClassesCtrl', [
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {
+
+        $scope.formName = 'Classes';
+
+        $scope.clientModel = {};
+        $scope.masterModel = {};
+
+        var contactInfo = {
+            TODO: ''
+        };
+
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+
+    }
+]);

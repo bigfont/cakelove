@@ -13,3 +13,10 @@ cakeLoveDirectives.directive('dynamicName', function ($compile, $parse) {
         }
     };
 });
+
+cakeLoveDirectives.directive('webApiForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/web-api-form'
+    };
+});

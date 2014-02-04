@@ -1,0 +1,19 @@
+﻿<div ng-controller="ApplicationFormCtrl">
+
+    <tabset>
+        <!-- NiceToHave Use ng-repeat instead of copy and paste -->
+        <tab ng-controller="ContactInfoCtrl" heading="{{ formName }}">
+            <div web-api-form></div>
+        </tab>
+        <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
+            <div web-api-form></div>
+        </tab>
+        <tab ng-controller="BiographyCtrl" heading="{{ formName }}">
+            <div web-api-form></div>
+        </tab>
+        <tab ng-controller="ClassesCtrl" heading="{{ formName }}">
+            <div web-api-form></div>
+        </tab>
+    </tabset>
+
+</div>

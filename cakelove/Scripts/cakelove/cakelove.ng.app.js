@@ -7,7 +7,6 @@ var myApp = angular.module('cakeLoveApp', [
     'ngSanitize',
     'ui.bootstrap',
     'cakeLoveControllers', //controllers module    
-    'cakeLoveControllersUiBootstrap',
     'cakeLoveFilters',
     'cakeLoveDirectives',
     'cakeLoveFactories'
@@ -36,7 +35,7 @@ function ($routeProvider) {
         allowTheseRoles: ["member"]
     }).
     when('/application-form', {
-        templateUrl: 'ng/partials/web-api-form',
+        templateUrl: 'ng/partials/application-form',
         controller: 'ApplicationFormCtrl',
         isSecure: true,
         allowTheseRoles: ["applicant"]
