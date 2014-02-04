@@ -12,9 +12,10 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 ## Member to Applicant
 
-- members accept a set of guidelines to become applicants.
+- members accept a set of guidelines to become applicants. **Done**
 - members are shown guidelines on each login.  **Done.**
-- applicants are not shown guidelines on each login but can access them for printing
+- applicants are not shown guidelines on each login. **Done**
+- but applicants *can* access them for printing
 
 ## Applicant Form
 
