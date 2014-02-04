@@ -15,7 +15,7 @@
         
         <div class="row">
 
-            <aside class="col-lg-6" ng-switch="auth.isLoggedIn">
+            <aside class="col-lg-6" ng-switch="userSvc.isLoggedIn">
                 <p ng-switch-when="false">Hello Guest!</p>
                 <p ng-switch-when="true">Welcome back {{ auth.userName }} </p>
             </aside>

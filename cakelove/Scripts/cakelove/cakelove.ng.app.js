@@ -44,7 +44,7 @@ function ($routeProvider) {
     });
 }]);
 
-myApp.run(function ($rootScope, $location, userService) {
+myApp.run(function ($rootScope, $location, userSvc) {
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
@@ -58,10 +58,36 @@ myApp.run(function ($rootScope, $location, userService) {
         }
 
         if (isSecureView(next.isSecure)) {
-            if (!userService.isLoggedIn) {
+
+            /* secure views */
+
+            if (!userSvc.isLoggedIn) {
+
+                /* user is not logged */
+
                 $location.path("/login");
-            } else if (isRequiringRoles(next.allowTheseRoles) && !userService.isUserInOneOfTheAllowedRoles(next.allowTheseRoles, userService.userRolesCsv.split(","))) {
-                console.log('user does not have required role');
+
+            } else if (isRequiringRoles(next.allowTheseRoles) && !userSvc.isUserInOneOfTheseRoles(next.allowTheseRoles)) {
+
+                /* user is logged but not in the appropriate role */
+
+                throw "The user shouldn't be here, because he/she lacks the appropriate role.";
+            }
+        } else {
+
+            /* non-secure views */
+
+            if (userSvc.isLoggedIn) {
+
+                /* user is logged in */
+
+                if (userSvc.isUserInRole('admin')) {
+                    $location.path("/admin-dashboard");
+                } else if (userSvc.isUserInRole('applicant')) {
+                    $location.path("/application-form");
+                } else if (userSvc.isUserInRole('member')) {
+                    $location.path("/agreement");
+                }
             }
         }
     });

@@ -18,37 +18,46 @@ var cakeLoveFactories = angular.module("cakeLoveFactories", []);
 
 
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-myApp.factory('userService', ['$window', '$http', function ($window, $http) {
+myApp.factory('userSvc', ['$window', '$http', function ($window, $http) {
 
-    var auth = {};    
+    var userSvc = {};
+    var storage = $window.localStorage;
 
     function setPropertiesFromSessionStorage() {
 
-        auth.userToken = $window.sessionStorage.getItem('userToken');
-        auth.userId = $window.sessionStorage.getItem('userId');
-        auth.userName = $window.sessionStorage.getItem('userName');
-        auth.userRolesCsv = $window.sessionStorage.getItem('userRolesCsv');
+        userSvc.userToken = storage.getItem('userToken');
+        userSvc.userId = storage.getItem('userId');
+        userSvc.userName = storage.getItem('userName');
+        userSvc.userRolesCsv = storage.getItem('userRolesCsv');
 
-        if (typeof auth.userToken !== "undefined" && auth.userToken !== null && auth.userToken.length > 0) {
+        if (typeof userSvc.userToken !== "undefined" && userSvc.userToken !== null && userSvc.userToken.length > 0) {
 
-            auth.isLoggedIn = true;
-            $http.defaults.headers.common.Authorization = "Bearer " + auth.userToken;
+            userSvc.isLoggedIn = true;
+            $http.defaults.headers.common.Authorization = "Bearer " + userSvc.userToken;
 
         } else {
-            auth.isLoggedIn = false;
+            userSvc.isLoggedIn = false;
         }
     };
 
-    setPropertiesFromSessionStorage();
+    setPropertiesFromSessionStorage();    
 
-    auth.isUserInOneOfTheAllowedRoles = function(allowedRolesArray, usersRolesArray) {
-        var match;
+    userSvc.isUserInRole = function (roleToCheck) {
+
+        return userSvc.isUserInOneOfTheseRoles([roleToCheck]);
+
+    };
+
+    userSvc.isUserInOneOfTheseRoles = function (rolesToCheckArray) {
+        var match, userRolesArray;
         match = false;
 
-        for (var i = 0; i < usersRolesArray.length; i++) {
+        userRolesArray = this.userRolesCsv.split(',');
+
+        for (var i = 0; i < userRolesArray.length; i++) {
             var index, role;
-            role = usersRolesArray[i];
-            index = allowedRolesArray.indexOf(role);
+            role = userRolesArray[i];
+            index = rolesToCheckArray.indexOf(role);
             if (index >= 0) {
                 match = true;
                 break;
@@ -57,21 +66,19 @@ myApp.factory('userService', ['$window', '$http', function ($window, $http) {
         return match;
     };
 
-    // on login
-    auth.login = function (userName, userId, userRolesCsv, userToken) {
-
-        $window.sessionStorage.setItem('userToken', userToken);
-        $window.sessionStorage.setItem('userId', userId);
-        $window.sessionStorage.setItem('userName', userName);
-        $window.sessionStorage.setItem('userRolesCsv', userRolesCsv);
+    userSvc.login = function (userName, userId, userRolesCsv, userToken) {
+      
+        storage.setItem('userToken', userToken);
+        storage.setItem('userId', userId);
+        storage.setItem('userName', userName);
+        storage.setItem('userRolesCsv', userRolesCsv);
 
         setPropertiesFromSessionStorage();
     };
 
-    // on logout
-    auth.logout = function () {
+    userSvc.logout = function () {
 
-        auth.isLoggedIn = false;
+        userSvc.isLoggedIn = false;
 
         $window.sessionStorage.removeItem('userToken');
         $window.sessionStorage.setItem('userId');
@@ -80,6 +87,6 @@ myApp.factory('userService', ['$window', '$http', function ($window, $http) {
 
     };
 
-    return auth;
+    return userSvc;
 
 }]);

@@ -1,22 +1,23 @@
 ﻿var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
-cakeLoveControllers.controller("MainCtrl", ['$scope', 'userService', function ($scope, userService) {
+cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', function ($scope, userSvc) {
 
-    $scope.auth = userService;
-
-}]);
-
-cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', 'urlService', function ($scope, $http, urlService) {
-
-    $http.get(urlService.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
-
-        $scope.welcomeText = data;
-
-    });
+    $scope.userSvc = userSvc;
 
 }]);
 
-cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', 'userService', 'urlService', function ($scope, $http, userService, urlService) {
+cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', 'urlService', 'userSvc',
+    function ($scope, $http, $location, urlService, userSvc) {        
+
+        $http.get(urlService.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
+
+            $scope.welcomeText = data;
+
+        });
+
+    }]);
+
+cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', 'userSvc', 'urlService', function ($scope, $http, userSvc, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -54,7 +55,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', 'userService'
 
 }]);
 
-cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userService', 'urlService', function ($scope, $http, $window, $location, userService, urlService) {
+cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlService', function ($scope, $http, $window, $location, userSvc, urlService) {
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -73,24 +74,29 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         $http({ method: 'POST', url: url, data: grantRequest }).
             success(function (data, status, headers, config) {
 
-                userService.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
-                $location.path("/agreement");
+                // log the user in
+                userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
 
-
+                // redirect the user
+                if (userSvc.isUserInRole('applicant')) {
+                    $location.path("/application-form");
+                } else {
+                    $location.path("/agreement");
+                }
             }).
             error(function (data, status, headers, config) {
 
+                // display errors to user
                 $scope.masterModel.UserName.serverErrors = [data.error_description];
                 $scope.form.UserName.$setValidity('servervalidation', false);
                 $scope.form.Password.$setValidity('servervalidation', false);
 
             });
-
     };
 }]);
 
-cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userService', 'urlService',
-    function ($scope, $http, $location, $window, userService, urlService) {
+cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {
 
         $http.get(urlService.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
 
@@ -102,7 +108,7 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 
             var url = urlService.ToAbsoluteUrl("/api/Account/AddUserToRole");
             var userRole = {
-                userId: userService.userId,
+                userId: userSvc.userId,
                 roleName: "applicant"
             };
 
@@ -117,8 +123,8 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 
     }]);
 
-cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userService', 'urlService',
-    function ($scope, $http, $location, $window, userService, urlService) {
+cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
+    function ($scope, $http, $location, $window, userSvc, urlService) {
 
 
     }]);
