@@ -144,7 +144,7 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
     function ($scope, $http, $location, $window, userSvc, urlService) {
 
-        $scope.formName = 'Login';
+        $scope.formName = 'Application';
 
         $scope.clientModel = {};
         $scope.masterModel = {};
