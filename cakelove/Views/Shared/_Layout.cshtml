@@ -15,16 +15,12 @@
 
     @RenderBody()
 
-    @*TODO Use angularJS bootstrap instead of the bootstrap.js,
-        because it will just work better, and
-        because we can avoid the jquery altogether.*@
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
-
     @Scripts.Render("~/bundles/ng")
     @Scripts.Render("~/bundles/ngRoute")
     @Scripts.Render("~/bundles/ngSanitize")
+    @Scripts.Render("~/bundles/ngUiBootstrap")
+    @Scripts.Render("~/bundles/ngUiBootstrapTpls")
+
     @Scripts.Render("~/bundles/polyfills")
     @Scripts.Render("~/bundles/cakelove")
     @RenderSection("scripts", required: false)

@@ -22,10 +22,26 @@ namespace cakelove
             foreach (var pair in angular)
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
-                var cdnPath = angularCdn + pair.Value; 
-                var virtualPath = "~/Scripts/angular/" + pair.Value;
+                var cdnPath = angularCdn + pair.Value;  // todo use minified cdn
+                var virtualPath = "~/Scripts/cnd-fallbacks/" + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
+
+            // angular.ui.bootstrap
+            const string angularUiBootstrapCdn = "http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/";
+            var angularUiBootstrap = new Dictionary<string, string>()
+            {
+                {"ngUiBootstrap", "ui-bootstrap-tpls.js"},
+                {"ngUiBootstrapTpls", "ui-bootstrap.js"}
+            };
+            foreach (var pair in angularUiBootstrap)
+            {
+                var bundleRoute = "~/bundles/" + pair.Key;
+                var cdnPath = angularUiBootstrapCdn + pair.Value;  // todo use minified cdn
+                var virtualPath = "~/Scripts/cnd-fallbacks/" + pair.Value;
+                bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
+            }
+
 
             // bootstrap
             const string bootstrapCdn = "http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
