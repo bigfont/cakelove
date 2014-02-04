@@ -1,5 +1,5 @@
 ﻿
-<div ng-app="cakeLoveApp">
+<div ng-app="cakeLoveApp" ng-controller="MainCtrl">
 
     <style type="text/css">
         /*Inline small css*/
@@ -9,19 +9,48 @@
         }
     </style>
 
-    <article class="container" ng-controller="MainCtrl">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
 
-        <div class="row">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Cake Love</a>
+            </div>
 
-            <aside class="col-lg-6" ng-switch="userSvc.isLoggedIn">
-                <p ng-switch-when="false">Hello Guest.</p>
-                <ul ng-switch-when="true" class="list-unstyled">
-                    <li>Hello {{ userSvc.userName }}!</li>
-                    <li><a ng-click="userSvc.logout()">Logout</a></li>
-                </ul>
-            </aside>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-        </div>
+                @*<aside ng-switch="userSvc.isLoggedIn">
+                        <p ng-switch-when="true" class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{ userSvc.userName }}</a></p>
+                        <p ng-switch-when="false" class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Guest</a></p>
+                    </aside>*@
+
+                <aside ng-switch="userSvc.isLoggedIn">
+                    <ul ng-switch-when="true" class="nav navbar-nav navbar-right">
+                        <li><a href="#agreement">Agreement</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">Signed in as {{ userSvc.userName }}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="userSvc.logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+
+                @*userSvc.logout()*@
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <article class="container">
+
         <div class="row">
 
             <div class="col-lg-6">
