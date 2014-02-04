@@ -27,3 +27,15 @@ cakeLoveDirectives.directive('classInfoForm', function () {
         templateUrl: 'ng/partials/class-info-form'
     };
 });
+
+cakeLoveDirectives.directive('bsFormGroup', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/bs-form-group',
+        scope: {
+            labelText: '@',
+            inputId: '@',
+            inputType: '@',
+        },
+    };
+});

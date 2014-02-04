@@ -189,6 +189,7 @@
     <Content Include="AngularAjax\ajax\welcome-text.html" />
     <Content Include="AngularAjax\partials\agreement.html" />
     <Content Include="AngularAjax\partials\application-form.html" />
+    <Content Include="AngularAjax\partials\bs-form-group.html" />
     <Content Include="AngularAjax\partials\class-info-form.html" />
     <Content Include="AngularAjax\partials\welcome.html" />
     <Content Include="Content\bootstrap.css" />

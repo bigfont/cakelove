@@ -81,46 +81,46 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
 cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlSvc', 'siteMapSvc',
     function ($scope, $http, $window, $location, userSvc, urlSvc, siteMapSvc) {
 
-    siteMapSvc.currentPage = 'Login';
-    $scope.formName = '';
+        siteMapSvc.currentPage = 'Login';
+        $scope.formName = '';
 
-    $scope.clientModel = {};
-    $scope.masterModel = {};
+        $scope.clientModel = {};
+        $scope.masterModel = {};
 
-    var userCredentials = { UserName: '', Password: '' };
-    $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
+        var userCredentials = { UserName: '', Password: '' };
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
 
-    $scope.submit = function () {
+        $scope.submit = function () {
 
-        var userName = $scope.clientModel.UserName;
-        var password = $scope.clientModel.Password;
+            var userName = $scope.clientModel.UserName;
+            var password = $scope.clientModel.Password;
 
-        var url = urlSvc.ToAbsoluteUrl('/token');
-        var grantRequest = userSvc.createAspNetIdentityGrantRequest(userName, password);
+            var url = urlSvc.ToAbsoluteUrl('/token');
+            var grantRequest = userSvc.createAspNetIdentityGrantRequest(userName, password);
 
-        $http({ method: 'POST', url: url, data: grantRequest }).
-            success(function (data, status, headers, config) {
+            $http({ method: 'POST', url: url, data: grantRequest }).
+                success(function (data, status, headers, config) {
 
-                // log the user in
-                userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                    // log the user in
+                    userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
 
-                // redirect the user
-                if (userSvc.isUserInRole('applicant')) {
-                    $location.path("/application-form");
-                } else {
-                    $location.path("/agreement");
-                }
-            }).
-            error(function (data, status, headers, config) {
+                    // redirect the user
+                    if (userSvc.isUserInRole('applicant')) {
+                        $location.path("/application-form");
+                    } else {
+                        $location.path("/agreement");
+                    }
+                }).
+                error(function (data, status, headers, config) {
 
-                // display errors to user
-                $scope.masterModel.UserName.serverErrors = [data.error_description];
-                $scope.form.UserName.$setValidity('servervalidation', false);
-                $scope.form.Password.$setValidity('servervalidation', false);
+                    // display errors to user
+                    $scope.masterModel.UserName.serverErrors = [data.error_description];
+                    $scope.form.UserName.$setValidity('servervalidation', false);
+                    $scope.form.Password.$setValidity('servervalidation', false);
 
-            });
-    };
-}]);
+                });
+        };
+    }]);
 
 cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
     function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
@@ -195,7 +195,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
             HowLongHaveYouBeenTeaching: '',
             HaveYouEverTaughtAtACakeDecoratingConferenceBefore: '',
             IfYesWhichOne: '',
-            OnAverageHowManyPeopleDoYouTeachAtOnce:''
+            OnAverageHowManyPeopleDoYouTeachAtOnce: ''
         };
 
         $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
@@ -230,15 +230,12 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var jsonModel = {};
-        jsonModel.classes = [];
+        $scope.masterModel.classes = [
+        {
+            className: '', classDescription: '', isHandsOn: '', hasDemo: ''
+        }
+        ];
 
-        var oneClass = {
-            className: ''
-        };
-
-        jsonModel.classes.push(oneClass);
-
-        $scope.masterModel = jsonModel;
+        $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
     }
 ]);
