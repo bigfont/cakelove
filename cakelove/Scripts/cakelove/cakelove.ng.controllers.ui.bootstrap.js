@@ -1,5 +1,5 @@
 ﻿var cakeLoveControllersUiBootstrap = angular.module("cakeLoveControllersUiBootstrap", []);
 
-cakeLoveControllersUiBootstrap.controller("CollapseDemoCtrl", ["$scope", function ($scope) {
+cakeLoveControllersUiBootstrap.controller("MainNavbarCtrl", ["$scope", function ($scope) {
     $scope.isCollapsed = false;
 }]);
