@@ -3,8 +3,12 @@
 
     <style type="text/css">
         /*Inline small css*/
-        div[ng-app] {
-            margin-bottom: 20px;
+        html {
+            background: black;
+            padding:0 20px;
+        }
+        body {
+            padding: 20px;
         }
     </style>
 
@@ -27,13 +31,10 @@
 
                 <aside ng-switch="userSvc.isLoggedIn">
                     <ul ng-switch-when="true" class="nav navbar-nav navbar-right">
+                        <li><a href="#application-form">Application</a></li>
                         <li><a href="#agreement">Agreement</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">Signed in as {{ userSvc.userName }}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a ng-click="userSvc.logout()">Logout</a></li>
-                            </ul>
-                        </li>
+                        <li><a>Signed in as {{ userSvc.userName }}</a></li>
+                        <li><a ng-click="userSvc.logout()">Logout</a></li>
                     </ul>
                 </aside>
 
