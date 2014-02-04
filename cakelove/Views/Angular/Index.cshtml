@@ -1,23 +1,24 @@
 ﻿
 <div ng-app="cakeLoveApp">
-    
+
     <style type="text/css">
-        
         /*Inline small css*/
         div[ng-app] {
             margin-top: 20px;
             margin-bottom: 20px;
         }
-
     </style>
-    
+
     <article class="container" ng-controller="MainCtrl">
-        
+
         <div class="row">
 
             <aside class="col-lg-6" ng-switch="userSvc.isLoggedIn">
-                <p ng-switch-when="false">Hello Guest!</p>
-                <p ng-switch-when="true">Welcome back {{ auth.userName }} </p>
+                <p ng-switch-when="false">Hello Guest.</p>
+                <ul ng-switch-when="true" class="list-unstyled">
+                    <li>Hello {{ userSvc.userName }}!</li>
+                    <li><a ng-click="userSvc.logout()">Logout</a></li>
+                </ul>
             </aside>
 
         </div>

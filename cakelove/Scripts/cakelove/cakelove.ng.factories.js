@@ -18,7 +18,7 @@ var cakeLoveFactories = angular.module("cakeLoveFactories", []);
 
 
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-myApp.factory('userSvc', ['$window', '$http', function ($window, $http) {
+myApp.factory('userSvc', ['$window', '$location', '$http', function ($window, $location, $http) {
 
     var userSvc = {};
     var storage = $window.localStorage;
@@ -40,7 +40,11 @@ myApp.factory('userSvc', ['$window', '$http', function ($window, $http) {
         }
     };
 
-    setPropertiesFromSessionStorage();    
+    setPropertiesFromSessionStorage();
+
+    userSvc.createAspNetIdentityGrantRequest = function(userName, password) {
+        return "grant_type=password&username=" + userName + "&password=" + password;;
+    };
 
     userSvc.isUserInRole = function (roleToCheck) {
 
@@ -67,7 +71,7 @@ myApp.factory('userSvc', ['$window', '$http', function ($window, $http) {
     };
 
     userSvc.login = function (userName, userId, userRolesCsv, userToken) {
-      
+
         storage.setItem('userToken', userToken);
         storage.setItem('userId', userId);
         storage.setItem('userName', userName);
@@ -80,10 +84,12 @@ myApp.factory('userSvc', ['$window', '$http', function ($window, $http) {
 
         userSvc.isLoggedIn = false;
 
-        $window.sessionStorage.removeItem('userToken');
-        $window.sessionStorage.setItem('userId');
-        $window.sessionStorage.removeItem('userName');
-        $window.sessionStorage.removeItem('userRolesCsv');
+        storage.removeItem('userToken');
+        storage.removeItem('userId');
+        storage.removeItem('userName');
+        storage.removeItem('userRolesCsv');
+
+        $location.path("/");
 
     };
 

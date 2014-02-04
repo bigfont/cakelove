@@ -7,7 +7,7 @@ cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', function ($scop
 }]);
 
 cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', 'urlService', 'userSvc',
-    function ($scope, $http, $location, urlService, userSvc) {        
+    function ($scope, $http, $location, urlService, userSvc) {
 
         $http.get(urlService.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
 
@@ -17,45 +17,63 @@ cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', '
 
     }]);
 
-cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', 'userSvc', 'urlService', function ($scope, $http, userSvc, urlService) {
+cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 'userSvc', 'urlService',
+    function ($scope, $http, $location, userSvc, urlService) {
 
-    $scope.clientModel = {};
-    $scope.masterModel = {};
+        $scope.formName = 'Register';
 
-    var url = urlService.ToAbsoluteUrl('/api/account/register');
+        $scope.clientModel = {};
+        $scope.masterModel = {};
 
-    $http({ method: 'GET', url: url }).
-        success(function (data, status, headers, config) {
+        var url = urlService.ToAbsoluteUrl('/api/account/register');
 
-            $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(data);
-
-        }).
-        error(function (data, status, headers, config) {
-
-            ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
-
-        });
-
-    $scope.submit = function () {
-
-        var clientModel = $scope.clientModel;
-
-        $http({ method: 'POST', url: url, data: clientModel }).
+        $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
-                $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(clientModel);
+                $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(data);
 
             }).
             error(function (data, status, headers, config) {
 
-                $scope.masterModel = AddServerSideValidationMessages($scope.form, $scope.masterModel, data.ModelState);
+                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             });
-    };
 
-}]);
+        $scope.submit = function () {
+
+            var clientModel = $scope.clientModel;
+
+            $http({ method: 'POST', url: url, data: clientModel }).
+                success(function (data, status, headers, config) {
+
+                    url = urlService.ToAbsoluteUrl('/token');
+                    var grantRequest = userSvc.createAspNetIdentityGrantRequest(clientModel.UserName, clientModel.Password);
+
+                    // yikes... nested $http gets... is this okay?
+                    $http({ method: 'POST', url: url, data: grantRequest }).
+                        success(function (data, status, headers, config) {
+
+                            userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                            $location.path("/agreement");
+
+                        }).
+                        error(function (data, status, headers, config) {
+                            throw 'Yikes something bad happened during registration login.';
+                        });
+
+                }).
+                error(function (data, status, headers, config) {
+
+                    $scope.masterModel = AddServerSideValidationMessages($scope.form, $scope.masterModel, data.ModelState);
+
+                });
+        };
+
+    }]);
 
 cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlService', function ($scope, $http, $window, $location, userSvc, urlService) {
+
+    $scope.formName = 'Login';
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -69,7 +87,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         var password = $scope.clientModel.Password;
 
         var url = urlService.ToAbsoluteUrl('/token');
-        var grantRequest = "grant_type=password&username=" + userName + "&password=" + password;
+        var grantRequest = userSvc.createAspNetIdentityGrantRequest(userName, password);
 
         $http({ method: 'POST', url: url, data: grantRequest }).
             success(function (data, status, headers, config) {
@@ -126,10 +144,12 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
     function ($scope, $http, $location, $window, userSvc, urlService) {
 
+        $scope.formName = 'Login';
+
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var contactInfo = { Name: '', Address: '', PhoneDay:'', PhoneCell: '', Email:'', BusinessName:'', Website:'' };
+        var contactInfo = { Name: '', Address: '', PhoneDay: '', PhoneCell: '', Email: '', BusinessName: '', Website: '' };
         $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
 
     }]);

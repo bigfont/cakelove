@@ -355,15 +355,12 @@ namespace cakelove.Controllers
             };
 
             // create user
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            // create roles
-            // todo create all roles on application start
-            result = CreateRoleIfNotExists(new string[] { "admin", "member", "applicant" });
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);            
 
             // add user to role
             if (result.Succeeded)
             {
+                user = await UserManager.FindByNameAsync(user.UserName);
                 result = await UserManager.AddToRoleAsync(user.Id, "member");
             }
           
@@ -528,17 +525,6 @@ namespace cakelove.Controllers
                 _random.GetBytes(data);
                 return HttpServerUtility.UrlTokenEncode(data);
             }
-        }
-
-        // TODO Make this async
-        private IdentityResult CreateRoleIfNotExists(IEnumerable<string> roleNames)
-        {
-            IdentityResult result = IdentityResult.Failed();
-            foreach (var roleName in roleNames)
-            {
-                result = !RoleManager.RoleExists(roleName) ? RoleManager.Create(new IdentityRole(roleName)) : IdentityResult.Success;
-            }
-            return result;
         }
 
         #endregion

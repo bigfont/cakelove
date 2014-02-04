@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
@@ -18,6 +19,8 @@ namespace cakelove
             UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>());
 
             RoleManagerFactory = () => new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
+
+            CreateRolesIfNotExists(new string[] { "admin", "member", "applicant" });        
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
@@ -62,6 +65,17 @@ namespace cakelove
             //    appSecret: "");
 
             //app.UseGoogleAuthentication();
+        }
+
+        private static IdentityResult CreateRolesIfNotExists(IEnumerable<string> roleNames)
+        {
+            IdentityResult result = IdentityResult.Failed();
+            foreach (var roleName in roleNames)
+            {
+                RoleManager<IdentityRole> roleManager = RoleManagerFactory();
+                result = !roleManager.RoleExists(roleName) ? roleManager.Create(new IdentityRole(roleName)) : IdentityResult.Success;
+            }
+            return result;
         }
     }
 }
