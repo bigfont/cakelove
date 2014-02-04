@@ -1,18 +1,6 @@
 ﻿
 <div ng-app="cakeLoveApp" ng-controller="MainCtrl">
 
-    <style type="text/css">
-        /*Inline small css*/
-        html {
-            background: black;
-            padding: 0 20px;
-        }
-
-        body {
-            padding: 20px;
-        }
-    </style>
-
     <nav class="navbar navbar-default" role="navigation" ng-controller="MainNavbarCtrl">
         <div class="container-fluid">
 
@@ -31,17 +19,27 @@
             <div class="collapse navbar-collapse" collapse="isCollapsed">
 
                 <aside ng-switch="userSvc.isLoggedIn">
-                    <ul ng-switch-when="true" class="nav navbar-nav navbar-right">
-                        <li><a href="#application-form">Application</a></li>
-                        <li><a href="#agreement">Agreement</a></li>
-                        <li><a>Signed in as {{ userSvc.userName }}</a></li>
-                        <li><a ng-click="userSvc.logout()">Logout</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-switch-when="true"><a href="#application-form">Application</a></li>
+                        <li ng-switch-when="true"><a href="#agreement">Agreement</a></li>
+                        <li ng-switch-when="true"><a>Signed in as {{ userSvc.userName }}</a></li>
+                        <li ng-switch-when="true"><a ng-click="userSvc.logout()">Logout</a></li>
+                        <li ng-switch-when="false"><a href="#login">Login</a></li>
+                        <li ng-switch-when="false"><a href="#register">Register</a></li>
                     </ul>
                 </aside>
 
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+
+    <header>
+        <div class="container">
+            <div class="page-header">
+                <h1>{{ siteMapSvc.currentPage }}</h1>
+            </div>
+        </div>
+    </header>
 
     <article class="container">
 

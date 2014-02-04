@@ -1,4 +1,16 @@
-﻿myApp.factory('urlService', ['$location', function ($location) {
+﻿var cakeLoveFactories = angular.module("cakeLoveFactories", []);
+
+cakeLoveFactories.factory('siteMapSvc', [function() {
+
+    var siteMap = {};
+
+    siteMap.currentPage = null;
+
+    return siteMap;
+
+}]);
+
+cakeLoveFactories.factory('urlSvc', ['$location', function ($location) {
 
     var url = {};
 
@@ -14,11 +26,8 @@
 
 }]);
 
-var cakeLoveFactories = angular.module("cakeLoveFactories", []);
-
-
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-myApp.factory('userSvc', ['$window', '$location', '$http', function ($window, $location, $http) {
+cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function ($window, $location, $http) {
 
     var userSvc = {};
     var storage = $window.localStorage;

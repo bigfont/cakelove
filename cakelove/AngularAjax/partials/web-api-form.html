@@ -3,7 +3,7 @@
 <form name="form" novalidate>
     <fieldset>
 
-        <legend>{{ formName }}</legend>
+        <legend ng-show="{{ formName.length > 0  }}">{{ formName }}</legend>
 
         <div class="form-group" ng-repeat="val in masterModel | toArray | orderBy:'order':false">
 

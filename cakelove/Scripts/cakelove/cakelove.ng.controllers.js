@@ -1,8 +1,9 @@
 ﻿var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
-cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', function ($scope, userSvc) {
+cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', function ($scope, userSvc, siteMapSvc) {
 
     $scope.userSvc = userSvc;
+    $scope.siteMapSvc = siteMapSvc;
 
 }]);
 
@@ -10,10 +11,11 @@ cakeLoveControllers.controller("MainNavbarCtrl", ["$scope", function ($scope) {
     $scope.isCollapsed = false;
 }]);
 
-cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', 'urlService', 'userSvc',
-    function ($scope, $http, $location, urlService, userSvc) {
+cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', 'urlSvc', 'userSvc', 'siteMapSvc',
+    function ($scope, $http, $location, urlSvc, userSvc, siteMapSvc) {
 
-        $http.get(urlService.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
+        siteMapSvc.currentPage = "Welcome";
+        $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/welcome-text')).success(function (data) {
 
             $scope.welcomeText = data;
 
@@ -21,15 +23,16 @@ cakeLoveControllers.controller("WelcomeCtrl", ['$scope', '$http', '$location', '
 
     }]);
 
-cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 'userSvc', 'urlService',
-    function ($scope, $http, $location, userSvc, urlService) {
+cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 'userSvc', 'urlSvc', 'siteMapSvc',
+    function ($scope, $http, $location, userSvc, urlSvc, siteMapSvc) {
 
-        $scope.formName = 'Register';
+        siteMapSvc.currentPage = "Register";
+        $scope.formName = "";
 
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var url = urlService.ToAbsoluteUrl('/api/account/register');
+        var url = urlSvc.ToAbsoluteUrl('/api/account/register');
 
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
@@ -50,7 +53,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
             $http({ method: 'POST', url: url, data: clientModel }).
                 success(function (data, status, headers, config) {
 
-                    url = urlService.ToAbsoluteUrl('/token');
+                    url = urlSvc.ToAbsoluteUrl('/token');
                     var grantRequest = userSvc.createAspNetIdentityGrantRequest(clientModel.UserName, clientModel.Password);
 
                     // yikes... nested $http gets... is this okay?
@@ -75,9 +78,11 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
 
     }]);
 
-cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlService', function ($scope, $http, $window, $location, userSvc, urlService) {
+cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlSvc', 'siteMapSvc',
+    function ($scope, $http, $window, $location, userSvc, urlSvc, siteMapSvc) {
 
-    $scope.formName = 'Login';
+    siteMapSvc.currentPage = 'Login';
+    $scope.formName = '';
 
     $scope.clientModel = {};
     $scope.masterModel = {};
@@ -90,7 +95,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         var userName = $scope.clientModel.UserName;
         var password = $scope.clientModel.Password;
 
-        var url = urlService.ToAbsoluteUrl('/token');
+        var url = urlSvc.ToAbsoluteUrl('/token');
         var grantRequest = userSvc.createAspNetIdentityGrantRequest(userName, password);
 
         $http({ method: 'POST', url: url, data: grantRequest }).
@@ -117,10 +122,12 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
     };
 }]);
 
-cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {
+cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
 
-        $http.get(urlService.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
+        siteMapSvc.currentPage = "Agreement";
+
+        $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
 
             $scope.agreementText = data;
 
@@ -128,7 +135,7 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 
         $scope.accept = function () {
 
-            var url = urlService.ToAbsoluteUrl("/api/Account/AddUserToRole");
+            var url = urlSvc.ToAbsoluteUrl("/api/Account/AddUserToRole");
             var userRole = {
                 userId: userSvc.userId,
                 roleName: "applicant"
@@ -145,8 +152,10 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 
     }]);
 
-cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {        
+cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
+
+        siteMapSvc.currentPage = "Application";
 
         $scope.tabs = [
             { title: "Dynamic Title 1", content: "Dynamic content 1" },
@@ -158,8 +167,8 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
     }]);
 
 cakeLoveControllers.controller('ContactInfoCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc) {
 
         $scope.formName = 'Contact Info';
 
@@ -173,8 +182,8 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
 ]);
 
 cakeLoveControllers.controller('TeachingExperienceCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc) {
 
         $scope.formName = 'Teaching Experience';
 
@@ -191,8 +200,8 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 ]);
 
 cakeLoveControllers.controller('BiographyCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc) {
 
         $scope.formName = 'Biography';
 
@@ -209,8 +218,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
 ]);
 
 cakeLoveControllers.controller('ClassesCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
-    function ($scope, $http, $location, $window, userSvc, urlService) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc) {
 
         $scope.formName = 'Classes';
 
