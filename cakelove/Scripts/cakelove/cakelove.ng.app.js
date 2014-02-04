@@ -5,7 +5,9 @@
 var myApp = angular.module('cakeLoveApp', [
     'ngRoute', //routing module
     'ngSanitize',
+    'ui.bootstrap',
     'cakeLoveControllers', //controllers module    
+    'cakeLoveControllersUiBootstrap',
     'cakeLoveFilters',
     'cakeLoveDirectives',
     'cakeLoveFactories'
