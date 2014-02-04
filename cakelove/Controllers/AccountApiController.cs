@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Management.Instrumentation;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -258,7 +257,7 @@ namespace cakelove.Controllers
                     OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await UserManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Roles);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Roles, user.Id);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -310,6 +309,26 @@ namespace cakelove.Controllers
             }
 
             return logins;
+        }
+
+        // POST api/Account/AddUserToRole
+        [Route("AddUserToRole")]
+        public async Task<IHttpActionResult> AddUserToRole(AddUserToRoleViewModel addUserToRole)
+        {
+            if (addUserToRole.UserId == null || addUserToRole.RoleName == null)
+            {
+                BadRequest("Username and rolename must both have a value");
+            }
+
+            IdentityResult result = await UserManager.AddToRoleAsync(addUserToRole.UserId, addUserToRole.RoleName);            
+
+            IHttpActionResult errorResult = GetErrorResult(result);
+            if (errorResult != null && !result.Errors.Contains("User already in role."))
+            {                
+                return errorResult;
+            }
+
+            return Ok();
         }
 
         // GET api/Account/Register

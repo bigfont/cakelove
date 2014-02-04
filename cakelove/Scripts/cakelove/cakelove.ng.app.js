@@ -30,34 +30,67 @@ function ($routeProvider) {
     when('/agreement', {
         templateUrl: 'ng/partials/agreement',
         controller: 'AgreementCtrl',
-        authRequires: 'view-agreement'
+        isSecure: true,
+        allowTheseRoles: ["member"]
+    }).
+    when('/application-form', {
+        templateUrl: 'ng/partials/application-form',
+        controller: 'ApplicationFormCtrl',
+        isSecure: true,
+        allowTheseRoles: ["applicant"]
     }).
     otherwise({
         redirectTo: '/welcome'
     });
 }]);
 
-myApp.run(function ($rootScope, $location, authService) {
+myApp.run(function ($rootScope, $location, userService) {
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
-        if (!authService.isLoggedIn && next.authRequires) {
-            $location.path("/login");
+        function isSecureView(isSecure) {
+            return typeof next.isSecure !== "undefined" && next.isSecure === true;
         }
 
+        function isRequiringRoles(allowTheseRoles) {
+            return next.allowTheseRoles !== 'undefined' && next.allowTheseRoles !== "*";
+        }
+
+        function userIsInOneOfTheAllowedRoles(allowedRoles, userRolesCsv) {
+            var match, userRolesArray;
+            match = false;
+            userRolesArray = userRolesCsv.split(",");
+
+            for (var i = 0; i < userRolesArray.length; i++) {
+                var index, role;
+                role = userRolesArray[i];
+                index = allowedRoles.indexOf(role);
+                if (index >= 0) {
+                    match = true;
+                    break;
+                }
+            }
+            return match;
+        }
+
+        if (isSecureView(next.isSecure)) {
+            if (!userService.isLoggedIn) {
+                $location.path("/login");
+            } else if (isRequiringRoles(next.allowTheseRoles) && !userIsInOneOfTheAllowedRoles(next.allowTheseRoles, userService.userRolesCsv)) {
+                console.log('user does not have required role');
+            }
+        }
     });
+
 });
 
 
 
+/* Form Helpers
+--------------------------*/
 
 
-////function ToAbsoluteUrl($location, rightPart) {
-
-////    return $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port + rightPart;
-
-////}
 
 function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
 

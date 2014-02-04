@@ -24,6 +24,12 @@ namespace cakelove.Models
         public IEnumerable<ExternalLoginViewModel> ExternalLoginProviders { get; set; }
     }
 
+    public class AddUserToRoleViewModel
+    {
+        public string UserId { get; set; }
+        public string RoleName { get; set; }
+    }
+
     public class UserInfoViewModel
     {
         public string UserName { get; set; }

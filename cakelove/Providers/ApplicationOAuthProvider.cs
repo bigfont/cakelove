@@ -49,7 +49,7 @@ namespace cakelove.Providers
                     context.Options.AuthenticationType);
                 ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                AuthenticationProperties properties = CreateProperties(user.UserName, user.Roles);
+                AuthenticationProperties properties = CreateProperties(user.UserName, user.Roles, user.Id);
                 AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
                 context.Validated(ticket);
                 context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -92,18 +92,19 @@ namespace cakelove.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName, ICollection<IdentityUserRole> userRoles)
+        public static AuthenticationProperties CreateProperties(string userName, ICollection<IdentityUserRole> userRoles, string userId)
         {
             IDictionary<string, string> data = new Dictionary<string, string>();
 
             data.Add("userName", userName);
+            data.Add("userId", userId);
 
             if (userRoles.Count != 0)
             {
-                // todo learn how the Aggregate function does
-                var roles = userRoles.Aggregate("", (current, r) => current + (r.Role.Name + ","));
+                // todo learn how the Aggregate function works                
+                var roles = userRoles.Aggregate("", (current, role) => current + (role.Role.Name + ","));
                 roles = roles.Substring(0, roles.LastIndexOf(",", StringComparison.Ordinal));
-                data.Add("userRoles", roles);
+                data.Add("userRolesCsv", roles);
             }
 
             return new AuthenticationProperties(data);

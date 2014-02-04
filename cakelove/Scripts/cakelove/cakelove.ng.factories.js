@@ -18,30 +18,50 @@ var cakeLoveFactories = angular.module("cakeLoveFactories", []);
 
 
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-myApp.factory('authService', ['$window', function ($window) {
+myApp.factory('userService', ['$window', '$http', function ($window, $http) {
 
-    var auth = {};
+    var auth = {};    
 
-    auth.isLoggedIn = false;
-    auth.userName = "";
+    function setPropertiesFromSessionStorage() {
 
-    if ($window.sessionStorage.getItem('token')) {
-        auth.isLoggedIn = true;
+        auth.userToken = $window.sessionStorage.getItem('userToken');
+        auth.userId = $window.sessionStorage.getItem('userId');
         auth.userName = $window.sessionStorage.getItem('userName');
-    }
+        auth.userRolesCsv = $window.sessionStorage.getItem('userRolesCsv');
 
-    auth.login = function (userName, password, token) {
+        if (typeof auth.userToken !== "undefined" && auth.userToken !== null && auth.userToken.length > 0) {
 
-        $window.sessionStorage.setItem('token', token);
-        $window.sessionStorage.setItem('userName', userName);
+            auth.isLoggedIn = true;
+            $http.defaults.headers.common.Authorization = "Bearer " + auth.userToken;
 
-        auth.isLoggedIn = true;
-        auth.userName = userName;
-
+        } else {
+            auth.isLoggedIn = false;
+        }
     };
 
+    setPropertiesFromSessionStorage();
+
+    // on login
+    auth.login = function (userName, userId, userRolesCsv, userToken) {
+
+        $window.sessionStorage.setItem('userToken', userToken);
+        $window.sessionStorage.setItem('userId', userId);
+        $window.sessionStorage.setItem('userName', userName);
+        $window.sessionStorage.setItem('userRolesCsv', userRolesCsv);
+
+        setPropertiesFromSessionStorage();
+    };
+
+    // on logout
     auth.logout = function () {
+
         auth.isLoggedIn = false;
+
+        $window.sessionStorage.removeItem('userToken');
+        $window.sessionStorage.setItem('userId');
+        $window.sessionStorage.removeItem('userName');
+        $window.sessionStorage.removeItem('userRolesCsv');
+
     };
 
     return auth;
