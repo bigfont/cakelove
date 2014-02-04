@@ -57,27 +57,10 @@ myApp.run(function ($rootScope, $location, userService) {
             return next.allowTheseRoles !== 'undefined' && next.allowTheseRoles !== "*";
         }
 
-        function userIsInOneOfTheAllowedRoles(allowedRoles, userRolesCsv) {
-            var match, userRolesArray;
-            match = false;
-            userRolesArray = userRolesCsv.split(",");
-
-            for (var i = 0; i < userRolesArray.length; i++) {
-                var index, role;
-                role = userRolesArray[i];
-                index = allowedRoles.indexOf(role);
-                if (index >= 0) {
-                    match = true;
-                    break;
-                }
-            }
-            return match;
-        }
-
         if (isSecureView(next.isSecure)) {
             if (!userService.isLoggedIn) {
                 $location.path("/login");
-            } else if (isRequiringRoles(next.allowTheseRoles) && !userIsInOneOfTheAllowedRoles(next.allowTheseRoles, userService.userRolesCsv)) {
+            } else if (isRequiringRoles(next.allowTheseRoles) && !userService.isUserInOneOfTheAllowedRoles(next.allowTheseRoles, userService.userRolesCsv.split(","))) {
                 console.log('user does not have required role');
             }
         }

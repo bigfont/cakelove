@@ -41,6 +41,22 @@ myApp.factory('userService', ['$window', '$http', function ($window, $http) {
 
     setPropertiesFromSessionStorage();
 
+    auth.isUserInOneOfTheAllowedRoles = function(allowedRolesArray, usersRolesArray) {
+        var match;
+        match = false;
+
+        for (var i = 0; i < usersRolesArray.length; i++) {
+            var index, role;
+            role = usersRolesArray[i];
+            index = allowedRolesArray.indexOf(role);
+            if (index >= 0) {
+                match = true;
+                break;
+            }
+        }
+        return match;
+    };
+
     // on login
     auth.login = function (userName, userId, userRolesCsv, userToken) {
 
