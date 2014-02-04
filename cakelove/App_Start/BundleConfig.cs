@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using System.Collections.Generic;
+using System.Web.Optimization;
 
 namespace cakelove
 {
@@ -12,13 +13,19 @@ namespace cakelove
 
             // angular
             const string angularCdn = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/";
-            const string ngMain = "angular.js";
-            const string ngRoute = "angular-route.js";
-            const string ngSanitize = "angular-sanitize.js";
-
-            bundles.Add(new ScriptBundle("~/bundles/ng", angularCdn + ngMain).Include("~/Scripts/" + ngMain));
-            bundles.Add(new ScriptBundle("~/bundles/ngRoute", angularCdn + ngRoute).Include("~/Scripts/" + ngRoute));
-            bundles.Add(new ScriptBundle("~/bundles/ngSanitize", angularCdn + ngSanitize).Include("~/Scripts/" + ngSanitize));
+            var angular = new Dictionary<string, string>()
+            {
+                { "ng","angular.js"},
+                { "ngRoute","angular-route.js"},
+                { "ngSanitize","angular-sanitize.js"},
+            };
+            foreach (var pair in angular)
+            {
+                var bundleRoute = "~/bundles/" + pair.Key;
+                var cdnPath = angularCdn + pair.Value; 
+                var virtualPath = "~/Scripts/" + pair.Value;
+                bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
+            }
 
             // bootstrap
             const string bootstrapCdn = "http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
@@ -28,7 +35,7 @@ namespace cakelove
             bundles.Add(new StyleBundle("~/Content/bigfont").Include(
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/polyfills").IncludeDirectory("~/Scripts/polyfills", "*.js"));            
+            bundles.Add(new ScriptBundle("~/bundles/polyfills").IncludeDirectory("~/Scripts/polyfills", "*.js"));
             bundles.Add(new ScriptBundle("~/bundles/cakelove").IncludeDirectory("~/Scripts/cakelove", "*.js"));
 
         }
