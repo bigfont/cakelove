@@ -21,11 +21,11 @@ function ($routeProvider) {
         controller: 'WelcomeCtrl'
     }).
     when('/register', {
-        templateUrl: 'ng/partials/web-api-form',
+        templateUrl: 'ng/partials/simple-model-form',
         controller: 'RegisterCtrl'
     }).
     when('/login', {
-        templateUrl: 'ng/partials/web-api-form',
+        templateUrl: 'ng/partials/simple-model-form',
         controller: 'TokenCtrl'
     }).
     when('/agreement', {
@@ -114,10 +114,8 @@ function InferTheHtmlInputTypeOfTheKeyValuePair(key, value) {
             key = key.toLowerCase(); // set to lowercase for comparison
         }
 
-
         // iterate all the html input types to look for a match
         var regex;
-        var matches = [];
         var htmlTextualInputTypes = [
             "hidden", "text", "search", "tel", "url", "email",
             "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color",
@@ -147,11 +145,6 @@ function InferTheHtmlInputAttributesOfEachKeyValuePair(data) {
 
         var valueObj = {};
         valueObj.superValue = value;
-
-        if (key === 'access_token') {
-            console.log(value);
-        }
-
         valueObj.type = inferredType;
         valueObj.required = true;
         valueObj.order = i++;

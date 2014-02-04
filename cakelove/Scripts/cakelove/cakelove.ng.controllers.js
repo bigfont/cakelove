@@ -175,8 +175,8 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var contactInfo = { Name: '', Address: '', PhoneDay: '', PhoneCell: '', Email: '', BusinessName: '', Website: '' };
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+        var jsonModel = { Name: '', Address: '', PhoneDay: '', PhoneCell: '', Email: '', BusinessName: '', Website: '' };
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
 
     }
 ]);
@@ -190,11 +190,15 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var contactInfo = {
-            TODO: ''                
+        var jsonModel = {
+            HowLongHaveYouBeenDecoratingCakes: '',
+            HowLongHaveYouBeenTeaching: '',
+            HaveYouEverTaughtAtACakeDecoratingConferenceBefore: '',
+            IfYesWhichOne: '',
+            OnAverageHowManyPeopleDoYouTeachAtOnce:''
         };
 
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
 
     }
 ]);
@@ -208,11 +212,11 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var contactInfo = {
+        var jsonModel = {
             TODO: ''
         };
 
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
 
     }
 ]);
@@ -226,11 +230,15 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var contactInfo = {
-            TODO: ''
+        var jsonModel = {};
+        jsonModel.classes = [];
+
+        var oneClass = {
+            className: ''
         };
 
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
+        jsonModel.classes.push(oneClass);
 
+        $scope.masterModel = jsonModel;
     }
 ]);

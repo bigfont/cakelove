@@ -14,9 +14,16 @@ cakeLoveDirectives.directive('dynamicName', function ($compile, $parse) {
     };
 });
 
-cakeLoveDirectives.directive('webApiForm', function () {
+cakeLoveDirectives.directive('simpleModelForm', function () {
     return {
         restrict: 'AE',
-        templateUrl: 'ng/partials/web-api-form'
+        templateUrl: 'ng/partials/simple-model-form'
+    };
+});
+
+cakeLoveDirectives.directive('classInfoForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/class-info-form'
     };
 });
