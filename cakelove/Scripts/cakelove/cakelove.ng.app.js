@@ -34,7 +34,7 @@ function ($routeProvider) {
         allowTheseRoles: ["member"]
     }).
     when('/application-form', {
-        templateUrl: 'ng/partials/application-form',
+        templateUrl: 'ng/partials/web-api-form',
         controller: 'ApplicationFormCtrl',
         isSecure: true,
         allowTheseRoles: ["applicant"]

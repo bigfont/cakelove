@@ -126,5 +126,10 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlService',
     function ($scope, $http, $location, $window, userSvc, urlService) {
 
+        $scope.clientModel = {};
+        $scope.masterModel = {};
+
+        var contactInfo = { Name: '', Address: '', PhoneDay:'', PhoneCell: '', Email:'', BusinessName:'', Website:'' };
+        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(contactInfo);
 
     }]);
