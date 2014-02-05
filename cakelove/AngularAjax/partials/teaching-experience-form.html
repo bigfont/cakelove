@@ -1,0 +1,5 @@
+﻿<bs-form-group label-text="How long have you been decorating cakes?" input-type="number" the-model="experience.yearsDecorating"></bs-form-group>
+<bs-form-group label-text="How long have you been teaching?" input-type="number" the-model="experience.yearsTeaching"></bs-form-group>
+<bs-form-checkbox label-text="I have taught at a cake decorating conference before." the-model="experience.hasTaught"></bs-form-checkbox>
+<bs-form-textarea ng-show="experience.hasTaught" label-text="Which ones?" input-rows="5" the-model="experience.pastConferences"></bs-form-textarea>
+<bs-form-group label-text="On average, how many people do you teach at a time?" input-type="number" the-model="experience.aveNumStudentsPerClass"></bs-form-group>

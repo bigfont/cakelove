@@ -3,13 +3,15 @@
     <tabset>
         <!-- NiceToHave Use ng-repeat instead of copy and paste -->
         <tab ng-controller="ContactInfoCtrl" heading="{{ formName }}">
-            <div class="well" simple-model-form></div>
+            <div class="well" contact-info-form>
+                <button class="btn btn-default">Save</button>
+            </div>
         </tab>
         <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
-            <p>Todo</p>
+            <div class="well" teaching-experience-form></div>
         </tab>
         <tab ng-controller="BiographyCtrl" heading="{{ formName }}">
-            <p>Todo</p>
+            <div class="well" biography-form></div>
         </tab>
         <tab ng-controller="ClassesCtrl" heading="{{ formName }}">
             <div class="well" class-info-form></div>

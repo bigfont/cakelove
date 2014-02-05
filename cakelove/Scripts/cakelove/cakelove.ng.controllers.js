@@ -174,9 +174,8 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
 
         $scope.clientModel = {};
         $scope.masterModel = {};
-
-        var jsonModel = { Name: '', Address: '', PhoneDay: '', PhoneCell: '', Email: '', BusinessName: '', Website: '' };
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
+        
+        $scope.masterModel.contactInfo = {};
 
     }
 ]);
@@ -198,7 +197,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
             OnAverageHowManyPeopleDoYouTeachAtOnce: ''
         };
 
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
+        $scope.masterModel.experience = {};
 
     }
 ]);
@@ -212,11 +211,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var jsonModel = {
-            TODO: ''
-        };
-
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(jsonModel);
+        $scope.masterModel.bio = {};
 
     }
 ]);
@@ -230,34 +225,6 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        $scope.masterModel.classes = [
-        {
-        //    className: '',
-        //    classDescription: '',
-        //    isHandsOn: '',
-        //    hasDemo: '',
-        //    feePerStudent: '',
-        //    classSize: {
-        //        min: '',
-        //        max: ''
-        //    },
-        //    skillLevel: '',
-        //    totalTime: '',
-        //    preferredTiming: {
-        //        main: '',
-        //        alternate: ''
-        //    },
-        //    extraTime: {
-        //        requires: '',
-        //        amount: ''
-        //    },
-        //    supplies: {
-        //        requires: '',
-        //        provides: '',
-        //        sells:''
-        //    }
-        }];
-
-        $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
+        $scope.masterModel.classes = [{}];        
     }
 ]);

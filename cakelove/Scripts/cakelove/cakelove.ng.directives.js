@@ -28,6 +28,27 @@ cakeLoveDirectives.directive('classInfoForm', function () {
     };
 });
 
+cakeLoveDirectives.directive('contactInfoForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/contact-info-form'
+    };
+});
+
+cakeLoveDirectives.directive('biographyForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/biography-form'
+    };
+});
+
+cakeLoveDirectives.directive('teachingExperienceForm', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/teaching-experience-form'
+    };
+});
+
 cakeLoveDirectives.directive('bsFormGroup', function () {
     return {
         restrict: 'AE',

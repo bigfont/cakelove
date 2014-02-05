@@ -189,11 +189,14 @@
     <Content Include="AngularAjax\ajax\welcome-text.html" />
     <Content Include="AngularAjax\partials\agreement.html" />
     <Content Include="AngularAjax\partials\application-form.html" />
+    <Content Include="AngularAjax\partials\biography-form.html" />
     <Content Include="AngularAjax\partials\bs-form-checkbox.html" />
     <Content Include="AngularAjax\partials\bs-form-group.html" />
     <Content Include="AngularAjax\partials\bs-form-radio.html" />
     <Content Include="AngularAjax\partials\bs-form-textarea.html" />
     <Content Include="AngularAjax\partials\class-info-form.html" />
+    <Content Include="AngularAjax\partials\contact-info-form.html" />
+    <Content Include="AngularAjax\partials\teaching-experience-form.html" />
     <Content Include="AngularAjax\partials\welcome.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
