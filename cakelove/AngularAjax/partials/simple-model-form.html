@@ -9,7 +9,7 @@
 
             <label for="{{ val.$key }}">{{ val.$key | addSpace }}</label>
             <input class="form-control" id="{{ val.$key }}" dynamic-name="val.$key" ng-model="clientModel[val.$key]"
-                   ng-required="value.required" servervalidation type="{{ val.type }}" placeholder="{{ val.$key }}" />
+                   ng-required="value.required" servervalidation type="{{ val.type }}" placeholder="{{ {{ val.$key | addSpace }} }}" />
 
             <ul class="list-unstyled">
                 <li ng-repeat="error in val.serverErrors">{{ error }}</li>
