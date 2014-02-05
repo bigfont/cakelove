@@ -1,4 +1,9 @@
 ﻿<div class="form-group">
     <label for="{{ inputId }}">{{ labelText }}</label>
-    <input type="{{ inputType }}" class="form-control" id="{{ inputId }}" placeholder="{{ labelText }}" ng-model="theModel">
+    <div class="input-group">
+        <span ng-show="addOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
+        <input type="{{ inputType }}" class="form-control" id="{{ inputId }}" placeholder="{{ placeholderText }}" ng-model="theModel">
+        <span ng-show="addOnRight" class="input-group-addon">{{ addOnRight }}</span>
+    </div>
+    <span class="help-block">{{ helpBlock }}</span>
 </div>

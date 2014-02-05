@@ -36,6 +36,9 @@ cakeLoveDirectives.directive('bsFormGroup', function () {
             labelText: '@',
             inputId: '@',
             inputType: '@',
+            helpBlock: '@',
+            addOnRight: '@',
+            addOnLeft:'@',
             theModel: '='
         },
     };
@@ -71,7 +74,8 @@ cakeLoveDirectives.directive('bsFormTextarea', function () {
         scope: {
             labelText: '@',
             inputId: '@',
-            inputRows:'@',
+            inputRows: '@',
+            helpBlock: '@',
             theModel: '='
         },
     };
