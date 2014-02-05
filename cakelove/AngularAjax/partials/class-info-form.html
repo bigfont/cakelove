@@ -3,10 +3,12 @@
     <bs-form-group label-text="Class Name" input-id="className" input-type="text" the-model="c.className"></bs-form-group>
     <bs-form-textarea label-text="Class Description" input-rows="10" the-model="c.classDescription"></bs-form-textarea>
     <!--Nice-to-Have: make a check box list directive-->
-    <bs-form-checkbox label-text="Hands-On Class" the-model="c.isHandsOn"></bs-form-checkbox>
-    <bs-form-checkbox label-text="Demo" the-model="c.hasDemo"></bs-form-checkbox>
+    <fieldset>        
+        <bs-form-radio label-text="Hands-On Class" input-value="handsOn" the-model="c.isHandsOn"></bs-form-radio>
+        <bs-form-radio label-text="Demo" input-value="demo" the-model="c.hasDemo"></bs-form-radio>
+    </fieldset>
     <bs-form-group label-text="Fee per student" input-id="feePerStudent" input-type="number" the-model="c.feePerStudent"></bs-form-group>
-    
+
     <fieldset>
         <legend>Class Size</legend>
         <bs-form-group label-text="Minimum Number of Students" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
@@ -72,7 +74,7 @@
                        input-type="text"
                        the-model="c.supplies.willSell"></bs-form-group>
     </fieldset>
-    
+
     <p>Please list any special equipment you require for the class:</p>
     <bs-form-group label-text="" input-id="" input-type="text" the-model="c."></bs-form-group>
 
