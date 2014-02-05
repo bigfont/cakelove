@@ -29,7 +29,7 @@
     <div class="row">
         <div class="col-lg-6">
             <fieldset>
-                <legend>Main Preference</legend>
+                <legend>Time Preference</legend>
                 <bs-form-radio label-text="Fri - am" input-value="fri-am" the-model="c.preferredTime.main"></bs-form-radio>
                 <bs-form-radio label-text="Fri - pm" input-value="fri-pm" the-model="c.preferredTime.main"></bs-form-radio>
                 <bs-form-radio label-text="Sat - am" input-value="sat-am" the-model="c.preferredTime.main"></bs-form-radio>
@@ -40,7 +40,7 @@
         </div>
         <div class="col-lg-6">
             <fieldset>
-                <legend>Alternate Preference</legend>
+                <legend>Second Day Preference</legend>
                 <bs-form-radio label-text="Fri - am" input-value="fri-am" the-model="c.preferredTime.alternate"></bs-form-radio>
                 <bs-form-radio label-text="Fri - pm" input-value="fri-pm" the-model="c.preferredTime.alternate"></bs-form-radio>
                 <bs-form-radio label-text="Sat - am" input-value="sat-am" the-model="c.preferredTime.alternate"></bs-form-radio>
@@ -63,7 +63,7 @@
 
     <bs-form-textarea label-text="Supplies required" input-rows="3" the-model="c.supplies.willRequire"></bs-form-textarea>
 
-    <bs-form-group label-text="" input-id="" input-type="text" the-model="c.supplies.willProvide"></bs-form-group>
+    <bs-form-group label-text="Supplies provided" input-id="" input-type="text" the-model="c.supplies.willProvide"></bs-form-group>
     <fieldset>
         <p>Will you be offering any of required supplies for sale?</p>
         <bs-form-radio label-text="Yes" input-value="yes" the-model="c.supplies.willSell"></bs-form-radio>
