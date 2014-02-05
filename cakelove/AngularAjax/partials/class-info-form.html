@@ -1,21 +1,28 @@
 ﻿
 <form ng-repeat="c in masterModel.classes">
-    <bs-form-group label-text="Class Name" input-id="className" input-type="text" the-model="c.className"></bs-form-group>
-    <bs-form-textarea label-text="Class Description" input-rows="10" the-model="c.classDescription"></bs-form-textarea>
-    <!--Nice-to-Have: make a check box list directive-->
-    <fieldset>
-        <bs-form-radio label-text="Hands-On Class" input-value="handsOn" the-model="c.classType"></bs-form-radio>
-        <bs-form-radio label-text="Demo" input-value="demo" the-model="c.classType"></bs-form-radio>
-    </fieldset>
-    <bs-form-group label-text="Fee per student" input-id="feePerStudent" input-type="number" the-model="c.feePerStudent"></bs-form-group>
 
     <fieldset>
+        <legend>Class Overview</legend>
+
+        <bs-form-group label-text="Class Name" input-id="className" input-type="text" the-model="c.className"></bs-form-group>
+
+        <bs-form-textarea label-text="Class Description" input-rows="10" the-model="c.classDescription"></bs-form-textarea>
+        <!--Nice-to-Have: make a check box list directive-->
+        <fieldset>
+            <bs-form-radio label-text="Hands-On Class" input-value="handsOn" the-model="c.classType"></bs-form-radio>
+            <bs-form-radio label-text="Demo" input-value="demo" the-model="c.classType"></bs-form-radio>
+        </fieldset>
+        <bs-form-group label-text="Fee per student" input-id="feePerStudent" input-type="number" the-model="c.feePerStudent"></bs-form-group>
+
+    </fieldset>
+    <fieldset>
+
         <legend>Class Size</legend>
         <bs-form-group label-text="Minimum Number of Students" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
         <bs-form-group label-text="Maximum Number of Students" input-id="classSizeMax" input-type="number" the-model="c.classSize.max"></bs-form-group>
-    </fieldset>
-    <!--Nice-to-Have: make a radio button list directive-->
-    <fieldset>
+
+        <!--Nice-to-Have: make a radio button list directive-->
+
         <legend>Skill Level (select one only):</legend>
         <bs-form-radio label-text="Beginner" input-value="beginner" the-model="c.skillLevel"></bs-form-radio>
         <bs-form-radio label-text="Intermediate" input-value="intermediate" the-model="c.skillLevel"></bs-form-radio>
@@ -91,7 +98,7 @@
 
         <p>Will you be offering any of the required supplies for sale?</p>
         <bs-form-radio label-text="Yes" input-value="yes" the-model="willSell.show"></bs-form-radio>
-        <bs-form-radio label-text="Nope" input-value="no" the-model="willSell.show"></bs-form-radio>
+        <bs-form-radio label-text="No" input-value="no" the-model="willSell.show"></bs-form-radio>
         <bs-form-group ng-show="willSell.show"
                        label-text="If so, please list:"
                        input-id="saleSupplies"
