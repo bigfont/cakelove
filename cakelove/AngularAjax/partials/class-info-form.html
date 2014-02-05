@@ -1,13 +1,17 @@
 ﻿
 <form ng-repeat="c in masterModel.classes">
     <bs-form-group label-text="Class Name" input-id="className" input-type="text" the-model="c.className"></bs-form-group>
-    <bs-form-group label-text="Class Description" input-id="classDescription" input-type="text" the-model="c.classDescription"></bs-form-group>
+    <bs-form-textarea label-text="Class Description" input-rows="10" the-model="c.classDescription"></bs-form-textarea>
     <!--Nice-to-Have: make a check box list directive-->
     <bs-form-checkbox label-text="Hands-On Class" the-model="c.isHandsOn"></bs-form-checkbox>
     <bs-form-checkbox label-text="Demo" the-model="c.hasDemo"></bs-form-checkbox>
     <bs-form-group label-text="Fee per student" input-id="feePerStudent" input-type="number" the-model="c.feePerStudent"></bs-form-group>
-    <bs-form-group label-text="Min" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
-    <bs-form-group label-text="Max" input-id="classSizeMax" input-type="number" the-model="c.classSize.max"></bs-form-group>
+    
+    <fieldset>
+        <legend>Class Size</legend>
+        <bs-form-group label-text="Min" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
+        <bs-form-group label-text="Max" input-id="classSizeMax" input-type="number" the-model="c.classSize.max"></bs-form-group>
+    </fieldset>
     <!--Nice-to-Have: make a radio button list directive-->
     <fieldset>
         <legend>Skill Level (select one only):</legend>
