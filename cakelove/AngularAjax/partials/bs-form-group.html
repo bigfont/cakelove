@@ -1,13 +1,12 @@
 ﻿<div class="form-group">
     <label for="{{ inputId }}">{{ labelText }}</label>
-    <div ng-switch="(addOnLeft.length + addOnRight.length) > 0">
-        <!-- Switch between input-group and normal input -->
-        <div class="input-group" ng-switch-when="true">
-            <span ng-show="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
+    <div>
+        <div class="input-group" ng-show="(addOnLeft.length + addOnRight.length) > 0">
+            <span ng-if="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
             <input type="{{ inputType }}" class="form-control" id="{{ inputId }}" placeholder="{{ placeholderText }}" ng-model="theModel">
-            <span ng-show="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
+            <span ng-if="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
         </div>
-        <input ng-switch-when="false" type="{{ inputType }}" class="form-control" id="{{ inputId }}" placeholder="{{ placeholderText }}" ng-model="theModel">
+        <input class="form-control" id="{{ inputId }}" ng-model="theModel" ng-show="addOnLeft.length == null && addOnRight == null" placeholder="{{ placeholderText }}" type="{{ inputType }}">
     </div>
     <span class="help-block">{{ helpBlock }}</span>
 </div>
