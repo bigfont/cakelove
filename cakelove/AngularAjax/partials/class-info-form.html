@@ -1,8 +1,79 @@
 ﻿
 <form ng-repeat="c in masterModel.classes">
-    <bs-form-group label-text="Class Name" input-id="className" input-type="text"></bs-form-group>
-    <bs-form-group label-text="Class Description" input-id="classDescription" input-type="text"></bs-form-group>
+    <bs-form-group label-text="Class Name" input-id="className" input-type="text" the-model="c.className"></bs-form-group>
+    <bs-form-group label-text="Class Description" input-id="classDescription" input-type="text" the-model="c.classDescription"></bs-form-group>
+    <!--Nice-to-Have: make a check box list directive-->
+    <bs-form-checkbox label-text="Hands-On Class" the-model="c.isHandsOn"></bs-form-checkbox>
+    <bs-form-checkbox label-text="Demo" the-model="c.hasDemo"></bs-form-checkbox>
+    <bs-form-group label-text="Fee per student" input-id="feePerStudent" input-type="number" the-model="c.feePerStudent"></bs-form-group>
+    <bs-form-group label-text="Min" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
+    <bs-form-group label-text="Max" input-id="classSizeMax" input-type="number" the-model="c.classSize.max"></bs-form-group>
+    <!--Nice-to-Have: make a radio button list directive-->
+    <fieldset>
+        <legend>Skill Level (select one only):</legend>
+        <bs-form-radio label-text="Beginner" input-value="beginner" the-model="c.skillLevel"></bs-form-radio>
+        <bs-form-radio label-text="Intermediate" input-value="intermediate" the-model="c.skillLevel"></bs-form-radio>
+        <bs-form-radio label-text="Advanced" input-value="advanced" the-model="c.skillLevel"></bs-form-radio>
+    </fieldset>
+    <bs-form-group label-text="Total time required for class (do not include set up or clean up) (provide # of hours)"
+                   input-id="totalTime"
+                   input-type="number"
+                   the-model="c.totalTime"></bs-form-group>
+    <p>If your class requires time on more than 1 day, please select “a” and “b” time slots for the first and second session and indicate how many hours needed on each day.  If you don’t have a time slot preference, please indicate “n/a” and we will fit your class into the schedule.  Due to scheduling conflicts, we cannot guarantee you the time slot requested.</p>
+    <div class="row">
+        <div class="col-lg-6">
+            <fieldset>
+                <legend>Main Preference</legend>
+                <bs-form-radio label-text="Fri - am" input-value="fri-am" the-model="c.preferredTime.main"></bs-form-radio>
+                <bs-form-radio label-text="Fri - pm" input-value="fri-pm" the-model="c.preferredTime.main"></bs-form-radio>
+                <bs-form-radio label-text="Sat - am" input-value="sat-am" the-model="c.preferredTime.main"></bs-form-radio>
+                <bs-form-radio label-text="Sat - pm" input-value="sat-pm" the-model="c.preferredTime.main"></bs-form-radio>
+                <bs-form-radio label-text="Sun - am" input-value="sun-am" the-model="c.preferredTime.main"></bs-form-radio>
+                <bs-form-radio label-text="Sun - pm" input-value="sun-pm" the-model="c.preferredTime.main"></bs-form-radio>
+            </fieldset>
+        </div>
+        <div class="col-lg-6">
+            <fieldset>
+                <legend>Alternate Preference</legend>
+                <bs-form-radio label-text="Fri - am" input-value="fri-am" the-model="c.preferredTime.alternate"></bs-form-radio>
+                <bs-form-radio label-text="Fri - pm" input-value="fri-pm" the-model="c.preferredTime.alternate"></bs-form-radio>
+                <bs-form-radio label-text="Sat - am" input-value="sat-am" the-model="c.preferredTime.alternate"></bs-form-radio>
+                <bs-form-radio label-text="Sat - pm" input-value="sat-pm" the-model="c.preferredTime.alternate"></bs-form-radio>
+                <bs-form-radio label-text="Sun - am" input-value="sun-am" the-model="c.preferredTime.alternate"></bs-form-radio>
+                <bs-form-radio label-text="Sun - pm" input-value="sun-pm" the-model="c.preferredTime.alternate"></bs-form-radio>
+            </fieldset>
+        </div>
+    </div>
+    <fieldset>
+        <p>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</p>
+        <bs-form-radio label-text="Yes" input-value="yes" the-model="c.extraTime.requires"></bs-form-radio>
+        <bs-form-radio label-text="Nope" input-value="no" the-model="c.extraTime.requires"></bs-form-radio>
+        <bs-form-group ng-show="c.extraTime.requires"
+                       label-text="How much additional time do you need? Please indicate if you require additional set up or clean up time."
+                       input-id="extraTimeAmt"
+                       input-type="number"
+                       the-model="ctx.extraTime.amount"></bs-form-group>
+    </fieldset>
+
+    <bs-form-textarea label-text="Supplies required" input-rows="3" the-model="c.supplies.willRequire"></bs-form-textarea>
+
+    <bs-form-group label-text="" input-id="" input-type="text" the-model="c.supplies.willProvide"></bs-form-group>
+    <fieldset>
+        <p>Will you be offering any of required supplies for sale?</p>
+        <bs-form-radio label-text="Yes" input-value="yes" the-model="c.supplies.willSell"></bs-form-radio>
+        <bs-form-radio label-text="Nope" input-value="no" the-model="c.supplies.willSell"></bs-form-radio>
+        <bs-form-group ng-show="c.supplies.willSell"
+                       label-text="If so, please list."
+                       input-id="saleSupplies"
+                       input-type="text"
+                       the-model="c.supplies.willSell"></bs-form-group>
+    </fieldset>
+    
+    <p>Please list any special equipment you require for the class:</p>
+    <bs-form-group label-text="" input-id="" input-type="text" the-model="c."></bs-form-group>
+
 </form>
 
+<pre>{{ masterModel | json }}</pre>
 
 

@@ -36,6 +36,43 @@ cakeLoveDirectives.directive('bsFormGroup', function () {
             labelText: '@',
             inputId: '@',
             inputType: '@',
+            theModel: '='
+        },
+    };
+});
+
+cakeLoveDirectives.directive('bsFormCheckbox', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/bs-form-checkbox',
+        scope: {
+            labelText: '@',
+            theModel: '='
+        },
+    };
+});
+
+cakeLoveDirectives.directive('bsFormRadio', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/bs-form-radio',
+        scope: {
+            labelText: '@',
+            inputValue: '@',
+            theModel: '='
+        },
+    };
+});
+
+cakeLoveDirectives.directive('bsFormTextarea', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/bs-form-textarea',
+        scope: {
+            labelText: '@',
+            inputId: '@',
+            inputRows:'@',
+            theModel: '='
         },
     };
 });

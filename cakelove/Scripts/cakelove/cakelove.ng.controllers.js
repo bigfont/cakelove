@@ -232,9 +232,31 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
         $scope.masterModel.classes = [
         {
-            className: '', classDescription: '', isHandsOn: '', hasDemo: ''
-        }
-        ];
+            className: '',
+            classDescription: '',
+            isHandsOn: '',
+            hasDemo: '',
+            feePerStudent: '',
+            classSize: {
+                min: '',
+                max: ''
+            },
+            skillLevel: '',
+            totalTime: '',
+            preferredTiming: {
+                main: '',
+                alternate: ''
+            },
+            extraTime: {
+                requires: '',
+                amount: ''
+            },
+            supplies: {
+                requires: '',
+                provides: '',
+                sells:''
+            }
+        }];
 
         $scope.naomi = { name: 'Naomi', address: '1600 Amphitheatre' };
     }
