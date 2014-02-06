@@ -1,3 +1,3 @@
 ﻿
 
-<input class="form-control" id="{{ inputId }}" name="bar" ng-required="{{ notRequired == null }}" ng-model="theModel" placeholder="{{ placeholderText }}" type="{{ inputType }}">
+<input class="form-control" id="{{ inputId }}" name="innerFormInput" ng-class="{submitted: theOuterForm.submitted}" ng-model="theModel" ng-required="{{ notRequired == null }}" placeholder="{{ placeholderText }}" type="{{ inputType }}">

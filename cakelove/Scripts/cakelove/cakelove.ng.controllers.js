@@ -175,12 +175,46 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
         // create a master model
         $scope.masterModel = {};
 
-        // update master from the user input model
-        $scope.update = function (contactInfo) {
-            $scope.masterModel = angular.copy(contactInfo);
+        // get
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
 
-            if ($scope.contactInfoForm.$valid) {
-                $window.alert('Valid! Submit to database.');
+                $scope.masterModel = data;
+                $scope.reset();
+
+            }).
+            error(function (data, status, headers, config) {
+
+
+            }).
+            then(function (data, status, headers, config) {
+                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+
+            }
+        );
+
+        // update master from the user input model
+
+        $scope.update = function (formModel, outerForm) {
+
+            outerForm.submitted = true;            
+
+            $scope.masterModel = angular.copy(formModel);
+
+            $http({ method: "POST", url: url, data: formModel }).
+                success().
+                error(function (data, status, headers, config) {
+                    ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                }).
+                then(function (data, status, headers, config) {
+                    ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                });
+
+            if ($scope.outerForm.$valid) {
+
+                // do something more if valid
+
             }
 
         };
@@ -189,8 +223,6 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
         $scope.reset = function () {
             $scope.contactInfo = angular.copy($scope.masterModel);
         };
-
-        $scope.reset();               
 
     }
 ]);
@@ -240,6 +272,6 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.clientModel = {};
         $scope.masterModel = {};
 
-        $scope.masterModel.classes = [{}];        
+        $scope.masterModel.classes = [{}];
     }
 ]);

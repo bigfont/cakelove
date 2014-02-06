@@ -1,18 +1,21 @@
 ﻿input.ng-pristine {
-    
 }
 
 input[required] {
     border-style: dashed;
 }
 
-input.ng-invalid.ng-dirty,
-input.ng-invalid-servervalidation {
-    background-color: lightcoral;
+input.ng-pristine {
+    background-color: #fcffaf;
 }
 
+input.ng-invalid.submitted,
+input.ng-invalid.ng-dirty {
+    background-color: #f2bbbb;
+}
+input.ng-valid.submitted,
 input.ng-valid.ng-dirty {
-    background-color: lightgreen;
+    background-color: #7ed15b;
 }
 
 html {

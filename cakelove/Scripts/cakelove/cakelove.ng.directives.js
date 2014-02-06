@@ -68,8 +68,9 @@ cakeLoveDirectives.directive('bsInput', function() {
             maxlength: '@',
             min: '@',
             max: '@',
-            // model
-            theModel: '='
+            // two way bindings
+            theModel: '=',
+            theOuterForm: '='
         }
 
     };
@@ -95,7 +96,8 @@ cakeLoveDirectives.directive('bsFormGroup', function () {
             min: '@', 
             max: '@',
             // model
-            theModel: '='
+            theModel: '=',
+            theOuterForm: '='
         },
     };
 });

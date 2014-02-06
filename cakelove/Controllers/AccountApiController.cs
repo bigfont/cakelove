@@ -313,7 +313,7 @@ namespace cakelove.Controllers
 
         // POST api/Account/AddUserToRole
         [Route("AddUserToRole")]
-        public async Task<IHttpActionResult> AddUserToRole(AddUserToRoleViewModel addUserToRole)
+        public async Task<IHttpActionResult> AddUserToRole(AddUserToRoleBindingModel addUserToRole)
         {
             if (addUserToRole.UserId == null || addUserToRole.RoleName == null)
             {
@@ -334,9 +334,9 @@ namespace cakelove.Controllers
         // GET api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public RegisterBindingModel GetRegister()
+        public RegisterViewModel GetRegister()
         {
-            return new RegisterBindingModel();
+            return new RegisterViewModel();
         }
 
         // POST api/Account/Register

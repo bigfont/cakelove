@@ -3,11 +3,41 @@
 
 
 <div class="form-group">
+    
+    <!--<aside>
+        <strong>Outer Form</strong>
+        {{ theOuterForm | json }}
+        <ul>
+            <li>$pristine = {{ theOuterForm.$pristine }}</li>
+            <li>$dirty = {{ theOuterForm.$dirty }}</li>
+            <li>$valid = {{ theOuterForm.$valid }}</li>
+            <li>$invalid = {{ theOuterForm.$invalid }}</li>
+            <li>$error = {{ theOuterForm.$error | json }}</li>
+        </ul>
+        <strong>Inner Form</strong>
+        {{ innerForm | json }}
+        <ul>
+            <li>$pristine = {{ innerForm.$pristine }}</li>
+            <li>$dirty = {{ innerForm.$dirty }}</li>
+            <li>$valid = {{ innerForm.$valid }}</li>
+            <li>$invalid = {{ innerForm.$invalid }}</li>
+            <li>$error = {{ innerForm.$error | json }}</li>
+        </ul>
+        <strong>Inner Form Input</strong>
+        {{ innerForm.innerFormInput | json }}
+        <ul>
+            <li>$pristine = {{ innerForm.innerFormInput.$pristine }}</li>
+            <li>$dirty = {{ innerForm.innerFormInput.$dirty }}</li>
+            <li>$valid = {{ innerForm.innerFormInput.$valid }}</li>
+            <li>$invalid = {{ innerForm.innerFormInput.$invalid }}</li>
+            <li>$error = {{ innerForm.innerFormInput.$error | json }}</li>
+        </ul>
+    </aside>-->
 
-    <ng-form name="foo">
+    <ng-form name="innerForm">
 
         <!--Use a hidden input not a switch,
-        because a switch has it's own scope.-->
+            because a switch has it's own scope.-->
         <input type="hidden" ng-model="doInputGroup" value="{{ (addOnLeft.length + addOnRight.length) > 0 }}">
 
         <label for="{{ inputId }}">{{ labelText }}</label>
@@ -21,17 +51,17 @@
 
         <!-- Bootstrap Input -->
         <div ng-show="!doInputGroup">
-            <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel"></bs-input>
-        </div>
-
-        <!--Validation and Help-->
-        <span class="help-block">{{ helpBlock }}</span>
-        <div ng-show="foo.bar.$dirty && foo.bar.$invalid">
-            Invalid:
-            <span ng-show="foo.bar.$error.required">Tell us your {{ labelText.toLowerCase() }}.</span>
-            <span ng-show="foo.bar.$error.email">Tell us your {{ labelText.toLowerCase() }}.</span>
-
+            <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel" the-outer-form="theOuterForm"></bs-input>
         </div>
 
     </ng-form>
+    
+    <!--Validation and Help-->
+    <span class="help-block">{{ helpBlock }}</span>
+    <div ng-show="(innerForm.$dirty || theOuterForm.submitted) && innerForm.$invalid">
+        Invalid:
+        <span ng-show="innerForm.innerFormInput.$error.required">Tell us your {{ labelText.toLowerCase() }}.</span>
+        <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>
+    </div>
+
 </div>

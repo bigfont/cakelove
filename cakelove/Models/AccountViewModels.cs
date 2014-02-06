@@ -4,6 +4,13 @@ namespace cakelove.Models
 {
     // Models returned by AccountController actions.
 
+    public class RegisterViewModel
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+    }
+
     public class ExternalLoginViewModel
     {
         public string Name { get; set; }
@@ -22,12 +29,6 @@ namespace cakelove.Models
         public IEnumerable<UserLoginInfoViewModel> Logins { get; set; }
 
         public IEnumerable<ExternalLoginViewModel> ExternalLoginProviders { get; set; }
-    }
-
-    public class AddUserToRoleViewModel
-    {
-        public string UserId { get; set; }
-        public string RoleName { get; set; }
     }
 
     public class UserInfoViewModel
