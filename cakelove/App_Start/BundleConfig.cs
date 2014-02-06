@@ -23,7 +23,7 @@ namespace cakelove
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
                 var cdnPath = angularCdn + pair.Value;  // todo use minified cdn
-                var virtualPath = "~/Scripts/cnd-fallbacks/" + pair.Value;
+                var virtualPath = "~/Scripts/angular/" + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
 
@@ -38,7 +38,7 @@ namespace cakelove
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
                 var cdnPath = angularUiBootstrapCdn + pair.Value;  // todo use minified cdn
-                var virtualPath = "~/Scripts/cnd-fallbacks/" + pair.Value;
+                var virtualPath = "~/Scripts/angular/" + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
 
