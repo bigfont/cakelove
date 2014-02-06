@@ -52,14 +52,23 @@ cakeLoveDirectives.directive('teachingExperienceForm', function () {
 cakeLoveDirectives.directive('bsFormGroup', function () {
     return {
         restrict: 'AE',
-        templateUrl: 'ng/partials/bs-form-group',
-        scope: {
-            labelText: '@',
+        templateUrl: 'ng/partials/bs-form-group',        
+        scope: {            
             inputId: '@',
-            inputType: '@',
+            labelText: '@',
+            // text, number, url, email, radio, checkbox
+            inputType: '@', 
             helpBlock: '@',
             addOnRight: '@',
-            addOnLeft:'@',
+            addOnLeft: '@',
+            // html5 validation
+            required: '@', 
+            pattern: '@', 
+            minlength: '@', 
+            maxlength: '@', 
+            min: '@', 
+            max: '@',
+            // model
             theModel: '='
         },
     };

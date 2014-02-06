@@ -172,10 +172,20 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
 
         $scope.formName = 'Contact Info';
 
-        $scope.clientModel = {};
+        // create a master model
         $scope.masterModel = {};
-        
-        $scope.masterModel.contactInfo = {};
+
+        // update master from the user input model
+        $scope.update = function (contactInfo) {
+            $scope.masterModel = angular.copy(contactInfo);
+        };
+
+        // reset the user input model
+        $scope.reset = function () {
+            $scope.contactInfo = angular.copy($scope.masterModel);
+        };
+
+        $scope.reset();               
 
     }
 ]);
