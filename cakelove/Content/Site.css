@@ -2,6 +2,10 @@
     
 }
 
+input[required] {
+    border-style: dashed;
+}
+
 input.ng-invalid.ng-dirty,
 input.ng-invalid-servervalidation {
     background-color: lightcoral;

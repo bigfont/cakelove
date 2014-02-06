@@ -49,6 +49,17 @@ cakeLoveDirectives.directive('teachingExperienceForm', function () {
     };
 });
 
+cakeLoveDirectives.directive('bsInput', function() {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/bs-input',
+        scope: {
+            theModel:"="
+        }
+
+    };
+});
+
 cakeLoveDirectives.directive('bsFormGroup', function () {
     return {
         restrict: 'AE',
@@ -62,7 +73,7 @@ cakeLoveDirectives.directive('bsFormGroup', function () {
             addOnRight: '@',
             addOnLeft: '@',
             // html5 validation
-            required: '@', 
+            notRequired: '@', 
             pattern: '@', 
             minlength: '@', 
             maxlength: '@', 
