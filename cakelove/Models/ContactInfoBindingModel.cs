@@ -36,7 +36,7 @@ namespace cakelove.Models
         public int Id { get; set; }
         public ContactInfoBindingModel()
         {
-            Address = new AddressViewModel();
+            Address = new AddressBindingModel();
         }
 
         [Required]

@@ -27,6 +27,10 @@ namespace cakelove.Controllers
                 return BadRequest(ModelState);
             }
 
+            var context = new MyDbContext();
+            context.ContactInfo.Add(model);
+            var result = context.SaveChanges();            
+
             return Ok();
         }
     }
