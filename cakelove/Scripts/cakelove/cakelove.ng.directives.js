@@ -52,7 +52,8 @@ cakeLoveDirectives.directive('teachingExperienceForm', function () {
 cakeLoveDirectives.directive('bsInput', function() {
     return {
         restrict: 'AE',
-        templateUrl: 'ng/partials/bs-input',
+        //templateUrl: 'ng/partials/bs-input',
+        template:'<input ng-model="theModel" />',
         scope: {
             theModel:"="
         }

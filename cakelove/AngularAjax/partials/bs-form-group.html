@@ -6,25 +6,27 @@
 
     <ng-form name="foo">
 
-
+        <!--Use a hidden input not a switch,
+        because a switch has it's own scope.-->
+        <input type="hidden" ng-model="doInputGroup" value="{{ (addOnLeft.length + addOnRight.length) > 0 }}">
 
         <label for="{{ inputId }}">{{ labelText }}</label>
 
-        <div ng-switch="{{ (addOnLeft.length + addOnRight.length) > 0 }}">
+        <!-- Bootstrap Input Group -->
+        <div class="input-group" ng-show="doInputGroup">
+            <span ng-if="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
 
-            <!-- Bootstrap Input Group -->
-            <div class="input-group" ng-switch-when="true">
-                <span ng-if="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
-                <bs-input the-model="theModel"></bs-input>
-                <span ng-if="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
-            </div>
-
-            <!-- Bootstrap Input -->
-            <div ng-switch-when="false">
-                <bs-input the-model="theModel"></bs-input>
-            </div>
-
+            <!--<bs-input the-model="theModel"></bs-input>-->
+            <span ng-if="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
         </div>
+
+        <!-- Bootstrap Input -->
+        <div ng-show="!doInputGroup">
+            3<bs-input the-model="theModel"></bs-input>
+            <!--<bs-input the-model="theModel"></bs-input>-->
+        </div>
+
+        4<bs-input the-model="theModel"></bs-input>
 
         <!--Validation and Help-->
         <span class="help-block">{{ helpBlock }}</span>
