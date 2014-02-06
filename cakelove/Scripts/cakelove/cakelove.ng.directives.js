@@ -55,7 +55,21 @@ cakeLoveDirectives.directive('bsInput', function() {
         templateUrl: 'ng/partials/bs-input',
         //template:'<input ng-model="theModel" />',
         scope: {
-            theModel:"="
+            inputId: '@',
+            // text, number, url, email, radio, checkbox
+            inputType: '@',
+            helpBlock: '@',
+            addOnRight: '@',
+            addOnLeft: '@',
+            // html5 validation
+            notRequired: '@',
+            pattern: '@',
+            minlength: '@',
+            maxlength: '@',
+            min: '@',
+            max: '@',
+            // model
+            theModel: '='
         }
 
     };

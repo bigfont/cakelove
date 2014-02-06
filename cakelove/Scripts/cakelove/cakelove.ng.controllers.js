@@ -178,6 +178,11 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
         // update master from the user input model
         $scope.update = function (contactInfo) {
             $scope.masterModel = angular.copy(contactInfo);
+
+            if ($scope.contactInfoForm.$valid) {
+                $window.alert('Valid! Submit to database.');
+            }
+
         };
 
         // reset the user input model

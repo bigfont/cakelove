@@ -1,13 +1,17 @@
 ﻿
 
-<form name="form">
+<form novalidate name="contactInfoForm">
     <bs-form-group input-id="name" input-type="text" label-text="Name" the-model="contactInfo.name"></bs-form-group>
-    <bs-form-group input-id="address" input-type="text" label-text="Address" the-model="contactInfo.address"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Street" the-model="contactInfo.address.street"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="City" the-model="contactInfo.address.city"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Province" the-model="contactInfo.address.province"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Postal Code" the-model="contactInfo.address.postalCode"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Country" the-model="contactInfo.address.country"></bs-form-group>
     <bs-form-group input-id="phoneDay" input-type="text" label-text="Daytime Phone" the-model="contactInfo.phoneDay"></bs-form-group>
     <bs-form-group input-id="phoneCell" input-type="text" label-text="Cell Phoe" the-model="contactInfo.phoneCell"></bs-form-group>
-    <bs-form-group input-id="email" input-type="text" label-text="Email" the-model="contactInfo.email"></bs-form-group>
+    <bs-form-group input-id="email" input-type="email" label-text="Email" the-model="contactInfo.email"></bs-form-group>
     <bs-form-group input-id="businessName" input-type="text" label-text="Business Name" the-model="contactInfo.businessName"></bs-form-group>
-    <bs-form-group input-id="website" input-type="text" label-text="Website" not-required the-model="contactInfo.website"></bs-form-group>
+    <bs-form-group input-id="website" input-type="url" label-text="Website" not-required the-model="contactInfo.website"></bs-form-group>
     <button class="btn btn-default" ng-click="update(contactInfo)">Save</button>
 </form>
 <aside>

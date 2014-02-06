@@ -15,13 +15,13 @@
         <!-- Bootstrap Input Group -->
         <div class="input-group" ng-show="doInputGroup">
             <span ng-if="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
-            <bs-input the-model="theModel"></bs-input>
+            <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel"></bs-input>
             <span ng-if="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
         </div>
 
         <!-- Bootstrap Input -->
         <div ng-show="!doInputGroup">
-            <bs-input the-model="theModel"></bs-input>
+            <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel"></bs-input>
         </div>
 
         <!--Validation and Help-->
@@ -29,6 +29,7 @@
         <div ng-show="foo.bar.$dirty && foo.bar.$invalid">
             Invalid:
             <span ng-show="foo.bar.$error.required">Tell us your {{ labelText.toLowerCase() }}.</span>
+            <span ng-show="foo.bar.$error.email">Tell us your {{ labelText.toLowerCase() }}.</span>
 
         </div>
 
