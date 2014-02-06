@@ -5,6 +5,7 @@ namespace cakelove.Models
 {
     public class MyDbContext : IdentityDbContext<IdentityUser>
     {
-        public DbSet<ContactInfoViewModel> ContactInfo { get; set; }
+        public DbSet<ContactInfoBindingModel> ContactInfo { get; set; }
+        public DbSet<AddressBindingModel> Address { get; set; }
     }
 }

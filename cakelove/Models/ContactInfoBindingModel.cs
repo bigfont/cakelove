@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
@@ -8,8 +9,10 @@ using System.ComponentModel.DataAnnotations;
 namespace cakelove.Models
 {
 
+    [Table("Address")]
     public class AddressBindingModel
     {
+        public int Id { get; set; }
 
         [JsonProperty("street")]
         public string Street { get; set; }
@@ -27,8 +30,10 @@ namespace cakelove.Models
         public string Country { get; set; }
     }
 
+    [Table("ContactInfo")]
     public class ContactInfoBindingModel
     {
+        public int Id { get; set; }
         public ContactInfoBindingModel()
         {
             Address = new AddressViewModel();
@@ -40,7 +45,7 @@ namespace cakelove.Models
         [Required]
 
         [JsonProperty("address")]
-        public AddressViewModel Address { get; set; }
+        public AddressBindingModel Address { get; set; }
         [Required]
 
         [JsonProperty("phoneDay")]

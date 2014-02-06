@@ -5,8 +5,11 @@ input[required] {
     border-style: dashed;
 }
 
+/*Validation
+-----------------*/
+
 input.ng-pristine {
-    background-color: #fcffaf;
+    background-color: #f8fad3;
 }
 
 input.ng-invalid.submitted,
@@ -15,8 +18,23 @@ input.ng-invalid.ng-dirty {
 }
 input.ng-valid.submitted,
 input.ng-valid.ng-dirty {
-    background-color: #7ed15b;
+    background-color: #b4e5a0;
 }
+
+textarea.ng-pristine {
+    background-color: #f8fad3;}
+
+textarea.ng-invalid.submitted,
+textarea.ng-invalid.ng-dirty {
+    background-color: #f2bbbb;
+}
+textarea.ng-valid.submitted,
+textarea.ng-valid.ng-dirty {
+     background-color: #b4e5a0;
+}
+
+/*End Validation
+-----------------*/
 
 html {
     background: black;
