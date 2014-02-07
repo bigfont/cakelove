@@ -41,8 +41,7 @@ html {
 }
 
 body {
-    background-color: #3a92c8;
-    background: -webkit-radial-gradient(circle,#94d2f8,#3a92c8);
+    background-color: white;    
 }
 
 header {

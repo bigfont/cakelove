@@ -81,13 +81,19 @@
         <legend>Class Supplies</legend>
 
         <bs-form-textarea help-block="Please provide a detailed list of what will be required.  Please be mindful of the long distances many students will have to travel.  For example, if a student will require a 12&quot; piece of aluminum foil, you may wish to provide a communal role instead of asking every student to bring some." input-id="supplied-required" input-rows="10" label-text="Supplies required:" the-model="c.supplies.willRequireThese"></bs-form-textarea>
-        
+
         <bs-form-textarea input-id="supplies-provided" input-rows="10" label-text="Supplies provided by instructor:" the-model="c.supplies.willProvideThese"></bs-form-textarea>
 
         <bs-form-checkbox label-text="I will be offering some of the required supplies for sale!" the-model="isSelling"></bs-form-checkbox>
         <bs-form-textarea input-id="supplies-sale" input-rows="10" label-text="If so, please list:" ng-show="isSelling" the-model="c.supplies.willSellThese"></bs-form-textarea>
 
-        <bs-form-textarea help-block="Please list any special equipment you require for the class." input-id="supplies-special" input-rows="10" label-text="Special Equipment:" the-model="c.willNeedThisSpecialEquip"></bs-form-textarea>
+        <bs-form-checkbox label-text="I would like a vendor table..." the-model="doVendorTable"></bs-form-checkbox>
+        <div ng-show="doVendorTable">
+            <bs-form-radio label-text="I would like a vendor table in the classroom ($40)." input-value="classRoom" the-model="c.vendorTable"></bs-form-radio>
+            <bs-form-radio label-text="I would like a vendor table in the vendor room (must complete online vendor form)." input-value="vendorRoom" the-model="c.vendorTable"></bs-form-radio>
+        </div>
+
+        <bs-form-textarea input-id="supplies-special" input-rows="10" label-text="Special equipment required for class:" the-model="c.willNeedThisSpecialEquip"></bs-form-textarea>
 
 
     </fieldset>
