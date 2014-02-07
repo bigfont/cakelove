@@ -1,8 +1,6 @@
 ﻿
 
 <form novalidate name="outerForm">
-    
-    <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
 
     <bs-form-group input-id="name" input-type="text" label-text="Name" the-model="contactInfo.name" the-outer-form="outerForm"></bs-form-group>
     <bs-form-group input-id="address" input-type="text" label-text="Street" the-model="contactInfo.address.street" the-outer-form="outerForm"></bs-form-group>
@@ -15,8 +13,11 @@
     <bs-form-group input-id="email" input-type="email" label-text="Email" the-model="contactInfo.email" the-outer-form="outerForm"></bs-form-group>
     <bs-form-group input-id="businessName" input-type="text" label-text="Business Name" the-model="contactInfo.businessName" the-outer-form="outerForm"></bs-form-group>
     <bs-form-group input-id="website" input-type="url" label-text="Website" not-required the-model="contactInfo.website" the-outer-form="outerForm"></bs-form-group>
+
+    <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
+
 </form>
-<aside>
+<!--<aside>
     <br />
     <strong>Form</strong>
     <pre>{{ contactInfo | json }}</pre>
@@ -24,4 +25,4 @@
     <pre>{{ masterModel | json }}</pre>
     <strong>Ajax Result</strong>
     <pre>{{ ajaxResult | json }}</pre>
-</aside>
+</aside>-->
