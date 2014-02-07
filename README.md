@@ -15,22 +15,23 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - members accept a set of guidelines to become applicants. **Done**
 - members are shown guidelines on each login.  **Done.**
 - applicants are not shown guidelines on each login. **Done**
-- but applicants *can* access them for printing
+- but applicants *can* access the guidelines for printing. **Done**
 
 ## Applicant Form
 
 - applicants have access to an application form (form) that accepts
-    - keyboard input (written information)
+    - keyboard input (written information) **Done**
     - image uploads
     - video uploads
 - the form must pass validation before applicants can sent it
     - required inputs (must haves)
-    - standard textutual validation (e.g. email, phone, website, text length, range, numerical)
+    - standard textual validation (e.g. email, phone, website, text length, range, numerical)
     - image file size (i.e. 1 MB unzipped, 10 MB zipped)
     - image resolution
     - image aspect-ratio (i.e. 1:1 for profile pictures)
     - image file type (i.e. JPG, JPEG, PNG)
-- applicants can "save" the form and later login to create, read, update, delete info
+- applicants can "save" the form. **Partly**
+- applicants can later login to create, read, update, delete info
 - applicants can "send" the form
     - this sends a notification email to the admin
     - afterward applicants can only login to read info
