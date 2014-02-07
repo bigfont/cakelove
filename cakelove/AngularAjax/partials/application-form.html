@@ -1,21 +1,26 @@
-﻿<div ng-controller="ApplicationFormCtrl">
+﻿<biography-form ng-controller="ApplicationFormCtrl">
 
     <tabset>
         <!-- NiceToHave Use ng-repeat instead of copy and paste -->
         <tab ng-controller="ContactInfoCtrl" heading="{{ formName }}">
-            <div class="well">
+            <div>
                 <contact-info-form></contact-info-form>
             </div>
         </tab>
         <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
-            <div class="well" teaching-experience-form></div>
+            <div>
+                <teaching-experience-form><teaching-experience-form />
+            </div>
         </tab>
         <tab ng-controller="BiographyCtrl" heading="{{ formName }}">
-            <div class="well" biography-form></div>
+            <div>
+                <biography-form></biography-form>
+            </div>
         </tab>
         <tab ng-controller="ClassesCtrl" heading="{{ formName }}">
-            <div class="well" class-info-form></div>
+            <div>
+                <class-info-form></class-info-form>
+            </div>
         </tab>
     </tabset>
 
-</div>
