@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Binders\HasAnIdentityUserFkModelBinder.cs" />
     <Compile Include="Controllers\AccountApiController.cs" />
     <Compile Include="Controllers\AngularController.cs" />
     <Compile Include="Controllers\TeacherApplicationFormController.cs" />

@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Security.Cryptography;
+using System.Web.Http;
+using System.Web.Http.Controllers;
 using cakelove.Controllers;
 using cakelove.Models;
 using Microsoft.Owin.Security.OAuth;
@@ -23,7 +26,20 @@ namespace cakelove
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.ParameterBindingRules.Insert(0, (p => new TeacherApplicationFormController.CustomModelBinder(p, Startup.UserManagerFactory())));
+            //config.ParameterBindingRules.Insert(0, (desc => new Binders.HasAnIdentityUserFkModelBinder(desc, Startup.UserManagerFactory())));
+
+            config.ParameterBindingRules.Insert(0, (desc =>
+            {
+                if (desc.ParameterType.BaseType != null && desc.ParameterType.BaseType == typeof(HasAnIdentityUserFk))
+                {
+                    return new Binders.HasAnIdentityUserFkModelBinder(desc, Startup.UserManagerFactory());
+                }
+                else
+                {
+                    return null;
+                }
+            }));
+
         }
     }
 }

@@ -50,49 +50,6 @@ namespace cakelove.Controllers
             return new ContactInfoViewModel();
         }
 
-        public class CustomModelBinder : HttpParameterBinding
-        {
-            readonly HttpParameterBinding _defaultFormatterBinding;
-            private readonly UserManager<IdentityUser> _userManager;
-
-            public CustomModelBinder(HttpParameterDescriptor desc, UserManager<IdentityUser> userManager)
-                : base(desc)
-            {
-                _defaultFormatterBinding = new FromBodyAttribute().GetBinding(desc);
-                _userManager = userManager;
-            }
-
-            public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider,
-                HttpActionContext actionContext, CancellationToken cancellationToken)
-            {
-                // do default model binding
-                Task task = _defaultFormatterBinding.ExecuteBindingAsync(metadataProvider, actionContext,
-                    cancellationToken);
-
-                // get httpContext
-                object httpContext;
-                actionContext.Request.Properties.TryGetValue("MS_HttpContext", out httpContext);
-
-                // get user
-                var context = httpContext as HttpContextWrapper;
-                if (context != null && context.User != null)
-                {
-                    var userId = context.User.Identity.GetUserId();
-
-                    // set user
-                    var model = actionContext.ActionArguments.FirstOrDefault().Value as HasAnIdentityUserFk;
-                    if (model != null) model.IdentityUserId = userId;
-                }
-
-
-
-                // remove from model state
-                actionContext.ModelState.Remove("model.IdentityUserId");
-
-                return task;
-            }
-        }
-
         [System.Web.Http.Route("ContactInfo")]
         public async Task<IHttpActionResult> ContactInfo(ContactInfoBindingModel model)
         {
