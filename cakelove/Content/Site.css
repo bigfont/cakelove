@@ -37,11 +37,12 @@ textarea.ng-valid.ng-dirty {
 -----------------*/
 
 html {
-    margin: 20px;
+    
 }
 
 body {
-    background-color: white;    
+    background-color: white;
+    padding: 20px;
 }
 
 header {
