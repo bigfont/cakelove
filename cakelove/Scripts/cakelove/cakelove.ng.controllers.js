@@ -27,8 +27,6 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
     function ($scope, $http, $location, userSvc, urlSvc, siteMapSvc) {
 
         siteMapSvc.currentPage = "Register";
-        $scope.formName = "";
-        $scope.submit
 
         $scope.clientModel = {};
         $scope.masterModel = {};
@@ -83,7 +81,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
     function ($scope, $http, $window, $location, userSvc, urlSvc, siteMapSvc) {
 
         siteMapSvc.currentPage = 'Login';
-        $scope.formName = '';
+        $scope.loginRegister = "Login";
 
         $scope.clientModel = {};
         $scope.masterModel = {};
