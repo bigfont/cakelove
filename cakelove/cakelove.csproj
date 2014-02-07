@@ -180,6 +180,14 @@
     <Compile Include="Migrations\201402062305455_contactInfo.Designer.cs">
       <DependentUpon>201402062305455_contactInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402070006348_contactInfoUser.cs" />
+    <Compile Include="Migrations\201402070006348_contactInfoUser.Designer.cs">
+      <DependentUpon>201402070006348_contactInfoUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402070008152_contactInfoUserNotNull.cs" />
+    <Compile Include="Migrations\201402070008152_contactInfoUserNotNull.Designer.cs">
+      <DependentUpon>201402070008152_contactInfoUserNotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -508,6 +516,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402062305455_contactInfo.resx">
       <DependentUpon>201402062305455_contactInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402070006348_contactInfoUser.resx">
+      <DependentUpon>201402070006348_contactInfoUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402070008152_contactInfoUserNotNull.resx">
+      <DependentUpon>201402070008152_contactInfoUserNotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 
 namespace cakelove.Models
 {
-
     [Table("Address")]
     public class AddressBindingModel
     {
@@ -33,37 +29,41 @@ namespace cakelove.Models
     [Table("ContactInfo")]
     public class ContactInfoBindingModel
     {
-        public int Id { get; set; }
         public ContactInfoBindingModel()
         {
             Address = new AddressBindingModel();
         }
 
+        public int Id { get; set; }
+
         [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
-        [Required]
 
+        [Required]
         [JsonProperty("address")]
         public AddressBindingModel Address { get; set; }
-        [Required]
 
+        [Required]
+        public IdentityUser IdentityUser { get; set; }
+
+        [Required]
         [JsonProperty("phoneDay")]
         public string PhoneDay { get; set; }
-        [Required]
 
+        [Required]
         [JsonProperty("phoneCell")]
         public string PhoneCell { get; set; }
-        [Required]
 
+        [Required]
         [JsonProperty("businessName")]
         public string BusinessName { get; set; }
-        [Required]
 
+        [Required]
         [JsonProperty("email")]
         public string Email { get; set; }
-        [Required]
 
+        [Required]
         [JsonProperty("website")]
         public string Website { get; set; }
     }
