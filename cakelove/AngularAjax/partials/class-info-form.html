@@ -16,7 +16,13 @@
     </fieldset>
     <fieldset>
         <legend>Student Overview</legend>
-        <bs-form-group add-on-left="Canadian $" add-on-right=".00" input-id="feePerStudent" input-type="number" label-text="Fee per student" the-model="c.feePerStudent"></bs-form-group>
+        <bs-form-group add-on-left="{{c.currency}}" add-on-right=".00" input-id="feePerStudent" input-type="number" label-text="Fee per student" the-model="c.feePerStudent"></bs-form-group>
+        <!--Make this a drop down list add-on.-->
+        <bs-form-radio label-text="Canadian" input-value="Canadian" the-model="c.currency"></bs-form-radio>
+        <bs-form-radio label-text="US" input-value="US" the-model="c.currency"></bs-form-radio>
+        <bs-form-radio label-text="Euros" input-value="Euro" the-model="c.currency"></bs-form-radio>
+        
+
         <bs-form-group add-on-left="Min Students" label-text="Minimum Number of Students" input-id="classSizeMin" input-type="number" the-model="c.classSize.min"></bs-form-group>
         <bs-form-group add-on-left="Max Students" label-text="Maximum Number of Students" input-id="classSizeMax" input-type="number" the-model="c.classSize.max"></bs-form-group>
         <label>Skill Level:</label>

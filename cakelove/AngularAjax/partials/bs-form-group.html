@@ -2,55 +2,21 @@
 
 
 
-<div class="form-group">
-    
-    <!--<aside>
-        <strong>Outer Form</strong>
-        {{ theOuterForm | json }}
-        <ul>
-            <li>$pristine = {{ theOuterForm.$pristine }}</li>
-            <li>$dirty = {{ theOuterForm.$dirty }}</li>
-            <li>$valid = {{ theOuterForm.$valid }}</li>
-            <li>$invalid = {{ theOuterForm.$invalid }}</li>
-            <li>$error = {{ theOuterForm.$error | json }}</li>
-        </ul>
-        <strong>Inner Form</strong>
-        {{ innerForm | json }}
-        <ul>
-            <li>$pristine = {{ innerForm.$pristine }}</li>
-            <li>$dirty = {{ innerForm.$dirty }}</li>
-            <li>$valid = {{ innerForm.$valid }}</li>
-            <li>$invalid = {{ innerForm.$invalid }}</li>
-            <li>$error = {{ innerForm.$error | json }}</li>
-        </ul>
-        <strong>Inner Form Input</strong>
-        {{ innerForm.innerFormInput | json }}
-        <ul>
-            <li>$pristine = {{ innerForm.innerFormInput.$pristine }}</li>
-            <li>$dirty = {{ innerForm.innerFormInput.$dirty }}</li>
-            <li>$valid = {{ innerForm.innerFormInput.$valid }}</li>
-            <li>$invalid = {{ innerForm.innerFormInput.$invalid }}</li>
-            <li>$error = {{ innerForm.innerFormInput.$error | json }}</li>
-        </ul>
-    </aside>-->
+<div class="form-group">   
 
     <ng-form name="innerForm">
-
-        <!--Use a hidden input not a switch,
-            because a switch has it's own scope.-->
-        <input type="hidden" ng-model="doInputGroup" value="{{ (addOnLeft.length + addOnRight.length) > 0 }}">
-
+       
         <label for="{{ inputId }}">{{ labelText }}</label>
 
         <!-- Bootstrap Input Group -->
-        <div class="input-group" ng-show="doInputGroup">
+        <div class="input-group" ng-show="{{ addOnRight != null || addOnLeft != null }}">
             <span ng-if="addOnLeft.length > 0" class="input-group-addon">{{ addOnLeft }}</span>
             <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel"></bs-input>
             <span ng-if="addOnRight.length > 0" class="input-group-addon">{{ addOnRight }}</span>
         </div>
 
         <!-- Bootstrap Input -->
-        <div ng-show="!doInputGroup">
+        <div ng-show="{{ addOnRight == null && addOnLeft == null }}">
             <bs-input input-id="{{ inputId }}" input-type="{{ inputType }}" the-model="theModel" the-outer-form="theOuterForm"></bs-input>
         </div>
 
