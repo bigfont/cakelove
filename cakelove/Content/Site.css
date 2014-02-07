@@ -2,39 +2,27 @@
     border-style: dashed;
 }
 
-/*Validation
------------------*/
-
-input.ng-pristine {
-    background-color: #fafbe6;
-}
-
-input.ng-invalid.submitted,
-input.ng-invalid.ng-dirty {
-    background-color: #f2bbbb;
-}
-
-input.ng-valid.submitted,
-input.ng-valid.ng-dirty {
-    background-color: #b4e5a0;
-}
-
+/*pristine*/
+input.ng-pristine,
 textarea.ng-pristine {
     background-color: #fafbe6;
 }
 
+/*invalid*/
+input.ng-invalid.submitted,
+input.ng-invalid.ng-dirty,
 textarea.ng-invalid.submitted,
 textarea.ng-invalid.ng-dirty {
     background-color: #f2bbbb;
 }
 
+/*valid*/
+input.ng-valid.submitted,
+input.ng-valid.ng-dirty,
 textarea.ng-valid.submitted,
 textarea.ng-valid.ng-dirty {
     background-color: #b4e5a0;
 }
-
-/*End Validation
------------------*/
 
 html {
     
