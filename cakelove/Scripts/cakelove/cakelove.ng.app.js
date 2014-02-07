@@ -21,11 +21,11 @@ function ($routeProvider) {
         controller: 'WelcomeCtrl'
     }).
     when('/register', {
-        templateUrl: 'ng/partials/simple-model-form',
+        templateUrl: 'ng/partials/login-register-form',
         controller: 'RegisterCtrl'
     }).
     when('/login', {
-        templateUrl: 'ng/partials/simple-model-form',
+        templateUrl: 'ng/partials/login-register-form',
         controller: 'TokenCtrl'
     }).
     when('/agreement', {

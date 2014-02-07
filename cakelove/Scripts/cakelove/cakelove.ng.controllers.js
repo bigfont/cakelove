@@ -28,6 +28,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
 
         siteMapSvc.currentPage = "Register";
         $scope.formName = "";
+        $scope.submit
 
         $scope.clientModel = {};
         $scope.masterModel = {};

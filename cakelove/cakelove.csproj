@@ -528,7 +528,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <Content Include="AngularAjax\partials\simple-model-form.html" />
+    <Content Include="AngularAjax\partials\login-register-form.html" />
     <Content Include="Scripts\cakelove\cakelove.ng.factories.js" />
     <Content Include="Scripts\cakelove\cakelove.ng.filters.js" />
     <Content Include="Scripts\notused\angular-animate.min.js.map" />

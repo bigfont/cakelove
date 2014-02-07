@@ -14,10 +14,10 @@ cakeLoveDirectives.directive('dynamicName', function ($compile, $parse) {
     };
 });
 
-cakeLoveDirectives.directive('simpleModelForm', function () {
+cakeLoveDirectives.directive('loginRegisterForm', function () {
     return {
         restrict: 'AE',
-        templateUrl: 'ng/partials/simple-model-form'
+        templateUrl: 'ng/partials/login-register-form'
     };
 });
 
