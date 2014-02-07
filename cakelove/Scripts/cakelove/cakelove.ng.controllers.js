@@ -37,12 +37,12 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
-                $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(data);
+                $scope.masterModel = miscFunctions.InferTheHtmlInputAttributesOfEachKeyValuePair(data);
 
             }).
             error(function (data, status, headers, config) {
 
-                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             });
 
@@ -71,7 +71,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
                 }).
                 error(function (data, status, headers, config) {
 
-                    $scope.masterModel = AddServerSideValidationMessages($scope.form, $scope.masterModel, data.ModelState);
+                    $scope.masterModel = miscFunctions.AddServerSideValidationMessages($scope.form, $scope.masterModel, data.ModelState);
 
                 });
         };
@@ -88,7 +88,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         $scope.masterModel = {};
 
         var userCredentials = { UserName: '', Password: '' };
-        $scope.masterModel = InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
+        $scope.masterModel = miscFunctions.InferTheHtmlInputAttributesOfEachKeyValuePair(userCredentials);
 
         $scope.submit = function () {
 
@@ -189,7 +189,7 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
 
             }).
             then(function (data, status, headers, config) {
-                ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             }
         );
@@ -205,10 +205,10 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
             $http({ method: "POST", url: url, data: formModel }).
                 success().
                 error(function (data, status, headers, config) {
-                    ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                    miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
                 }).
                 then(function (data, status, headers, config) {
-                    ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+                    miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
                 });
 
             if ($scope.outerForm.$valid) {
