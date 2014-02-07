@@ -14,16 +14,16 @@
             </ul>
 
         </div>
-        
+                    
         <div ng-switch="siteMapSvc.currentPage.toLowerCase()">
             
             <div ng-switch-when="login">
-                <a type="button" class="btn btn-default" ng-click="submit()">Login</a>
+                <button type="button" class="btn btn-default" ng-click="submit()">Login</button>
                 <a type="button" class="btn btn-link" href="#register">Register</a>
             </div>
             
             <div ng-switch-when="register">
-                <a type="button" class="btn btn-default" ng-click="submit()">Register</a>
+                <button type="button" class="btn btn-default" ng-click="submit()">Register</button>
                 <a type="button" class="btn btn-link" href="#login">Login</a>
             </div>
 

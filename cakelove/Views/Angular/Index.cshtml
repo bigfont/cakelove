@@ -23,7 +23,7 @@
                         <li ng-switch-when="true"><a href="#application-form">Application</a></li>
                         <li ng-switch-when="true"><a href="#agreement">Agreement</a></li>
                         <li ng-switch-when="true"><a>Signed in as {{ userSvc.userName }}</a></li>
-                        <li ng-switch-when="true"><a href="#" ng-click="userSvc.logout()">Logout</a></li>
+                        <li ng-switch-when="true"><a href="#login" ng-click="userSvc.logout()">Logout</a></li>
                         <li ng-switch-when="false"><a href="#login">Login</a></li>
                         <li ng-switch-when="false"><a href="#register">Register</a></li>
                     </ul>
@@ -52,5 +52,9 @@
         </div>
 
     </article>
+
+    <footer>        
+
+    </footer>
 
 </div>
