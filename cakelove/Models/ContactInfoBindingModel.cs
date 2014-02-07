@@ -5,6 +5,16 @@ using Newtonsoft.Json;
 
 namespace cakelove.Models
 {
+    public class HasAnIdentityUserFk
+    {
+        [Required]
+        [ForeignKey("IdentityUser")]
+        [Column("IdentityUser_Id")]
+        public string IdentityUserId { get; set; }
+
+        public virtual IdentityUser IdentityUser { get; set; }
+    }
+
     [Table("Address")]
     public class AddressBindingModel
     {
@@ -27,7 +37,7 @@ namespace cakelove.Models
     }
 
     [Table("ContactInfo")]
-    public class ContactInfoBindingModel
+    public class ContactInfoBindingModel : HasAnIdentityUserFk
     {
         public ContactInfoBindingModel()
         {
@@ -43,9 +53,6 @@ namespace cakelove.Models
         [Required]
         [JsonProperty("address")]
         public AddressBindingModel Address { get; set; }
-
-        [Required]
-        public IdentityUser IdentityUser { get; set; }
 
         [Required]
         [JsonProperty("phoneDay")]

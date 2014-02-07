@@ -3,7 +3,7 @@ namespace cakelove.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class contactInfoUser : DbMigration
+    public partial class identityUserRelationships : DbMigration
     {
         public override void Up()
         {

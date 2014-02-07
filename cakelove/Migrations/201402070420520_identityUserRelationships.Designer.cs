@@ -7,13 +7,13 @@ namespace cakelove.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class contactInfoUser : IMigrationMetadata
+    public sealed partial class identityUserRelationships : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(contactInfoUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(identityUserRelationships));
         
         string IMigrationMetadata.Id
         {
-            get { return "201402070006348_contactInfoUser"; }
+            get { return "201402070420520_identityUserRelationships"; }
         }
         
         string IMigrationMetadata.Source

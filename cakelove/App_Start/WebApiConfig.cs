@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using cakelove.Controllers;
+using cakelove.Models;
 using Microsoft.Owin.Security.OAuth;
 
 namespace cakelove
@@ -20,6 +22,8 @@ namespace cakelove
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.ParameterBindingRules.Insert(0, (p => new TeacherApplicationFormController.CustomModelBinder(p, Startup.UserManagerFactory())));
         }
     }
 }
