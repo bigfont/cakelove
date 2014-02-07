@@ -36,6 +36,9 @@
 
         <bs-form-checkbox label-text="My class will run more than one day." the-model="isMultiDay"></bs-form-checkbox>
         <bs-form-checkbox label-text="I have a class scheduling preference." the-model="hasTimePreference"></bs-form-checkbox>
+        
+        <strong>Todo: Enable 1/2 hour increments on class time.</strong>
+        <strong>Todo: Make the maximum class time 8 hours.</strong>
 
         <bs-form-group add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." input-id="totalTimeDayOne" input-type="number" label-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="c.totalTime.dayOne"></bs-form-group>
 
