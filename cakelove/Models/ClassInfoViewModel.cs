@@ -9,59 +9,6 @@ using Newtonsoft.Json.Linq;
 namespace cakelove.Models
 {
 
-    public class ClassSize
-    {
-
-        [JsonProperty("min")]
-        public int Min { get; set; }
-
-        [JsonProperty("max")]
-        public int Max { get; set; }
-    }
-
-    public class TotalTime
-    {
-
-        [JsonProperty("dayOne")]
-        public int DayOne { get; set; }
-
-        [JsonProperty("dayTwo")]
-        public int DayTwo { get; set; }
-    }
-
-    public class PreferredTime
-    {
-
-        [JsonProperty("dayOne")]
-        public string DayOne { get; set; }
-
-        [JsonProperty("dayTwo")]
-        public string DayTwo { get; set; }
-    }
-
-    public class ExtraTime
-    {
-
-        [JsonProperty("setup")]
-        public int Setup { get; set; }
-
-        [JsonProperty("cleanup")]
-        public int Cleanup { get; set; }
-    }
-
-    public class Supplies
-    {
-
-        [JsonProperty("willRequireThese")]
-        public string WillRequireThese { get; set; }
-
-        [JsonProperty("willProvideThese")]
-        public string WillProvideThese { get; set; }
-
-        [JsonProperty("willSellThese")]
-        public string WillSellThese { get; set; }
-    }
-
     public class ClassInfoViewModel
     {
 
@@ -80,29 +27,47 @@ namespace cakelove.Models
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        [JsonProperty("classSize")]
-        public ClassSize ClassSize { get; set; }
+        [JsonProperty("classSizeMin")]
+        public int ClassSizeMin { get; set; }
+
+        [JsonProperty("classSizeMax")]
+        public int ClassSizeMax { get; set; }
 
         [JsonProperty("skillLevel")]
         public string SkillLevel { get; set; }
 
-        [JsonProperty("totalTime")]
-        public TotalTime TotalTime { get; set; }
+        [JsonProperty("totalTimeDayOne")]
+        public int TotalTimeDayOne { get; set; }
 
-        [JsonProperty("preferredTime")]
-        public PreferredTime PreferredTime { get; set; }
+        [JsonProperty("totalTimeDayTwo")]
+        public int TotalTimeDayTwo { get; set; }
 
-        [JsonProperty("extraTime")]
-        public ExtraTime ExtraTime { get; set; }
+        [JsonProperty("preferredTimeDayOne")]
+        public string PreferredTimeDayOne { get; set; }
 
-        [JsonProperty("supplies")]
-        public Supplies Supplies { get; set; }
+        [JsonProperty("preferredTimeDayTwo")]
+        public string PreferredTimeDayTwo { get; set; }
 
-        [JsonProperty("vendorTable")]
-        public string VendorTable { get; set; }
+        [JsonProperty("extraTimeSetup")]
+        public int ExtraTimeSetup { get; set; }
+
+        [JsonProperty("extraTimeCleanup")]
+        public int ExtraTimeCleanup { get; set; }
+
+        [JsonProperty("suppliesWillRequireThese")]
+        public string SuppliesWillRequireThese { get; set; }
+
+        [JsonProperty("suppliesWillProvideThese")]
+        public string SuppliesWillProvideThese { get; set; }
+
+        [JsonProperty("suppliesWillSellThese")]
+        public string SuppliesWillSellThese { get; set; }
 
         [JsonProperty("willNeedThisSpecialEquip")]
         public string WillNeedThisSpecialEquip { get; set; }
+
+        [JsonProperty("vendorTable")]
+        public string VendorTable { get; set; }
     }
 
 }
