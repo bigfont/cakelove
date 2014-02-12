@@ -16,7 +16,10 @@ bsElements.directive('bseInput', function() {
             width: '@',
             name: '@',
             rows: '@',
+            value:'@',
             helpBlock: '@',
+            addOnRight: '@',
+            addOnLeft: '@',
             // html5 validation
             notRequired: '@',
             //pattern: '@',
@@ -33,11 +36,14 @@ bsElements.directive('bseInput', function() {
             tElement.removeAttr("type");
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {                    
-                    scope.isString = ['email', 'password', 'text', 'url', 'hidden'].indexOf(iAttrs.type) >= 0;
+                    scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
                     scope.isTextarea = 'textarea' == iAttrs.type;
                     scope.isRequired = typeof iAttrs.notRequired === 'undefined';
+                    scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
+                    scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
+                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
 
