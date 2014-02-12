@@ -1,14 +1,13 @@
 ﻿<div class="form-group">
 
     <ng-form name="innerForm">
-
         <div ng-class="width">
             <!--shared label-->
             <label ng-show="['email', 'password', 'text', 'url' 'file' ].indexOf(type) >= 0" for="{{ id }}">
                 {{ lblText }}
             </label>
-            <!--email, password-->
-            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="{{ notRequired == null }}" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
+            <!--email, password, text, url-->
+            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="notRequired != false" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
             <input ng-show="'file' == type" type="file" id="{{ id }}">
             <!--checkbox, radio-->

@@ -15,6 +15,14 @@ bsElements.directive('bseInput', function() {
             type: '@',
             width: '@',
             name: '@',
+            // html5 validation
+            notRequired: '@',
+            pattern: '@',
+            minlength: '@',
+            maxlength: '@',
+            min: '@',
+            max: '@',
+            // two way bindings
             theModel: '=',
             outerForm: '='
         },
