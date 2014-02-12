@@ -7,7 +7,7 @@ var INTEGER_REGEXP = /^\-?\d+$/;
 /*
  * Handles most input types
 */
-bsElements.directive('bseInput', function() {
+bsElements.directive('bseInput', function () {
     return {
         templateUrl: "/Scripts/bse/bse-inputs.html",
         scope:
@@ -19,7 +19,7 @@ bsElements.directive('bseInput', function() {
             width: '@',
             name: '@',
             rows: '@',
-            value:'@',
+            value: '@',
             helpBlock: '@',
             addOnRight: '@',
             addOnLeft: '@',
@@ -40,27 +40,30 @@ bsElements.directive('bseInput', function() {
             tElement.removeAttr("id");
             tElement.removeAttr("type");
 
-            var inputs = tElement.find('input');
-            var jInput;
+            if (typeof tAttrs.integer !== "undefined") {
+                var inputs = tElement.find('input');
+                var jInput;
 
-            jInput = angular.element(inputs[0]);
-            jInput.attr('integer', 'integer');
+                jInput = angular.element(inputs[0]);
+                jInput.attr('integer', 'integer');
 
-            jInput = angular.element(inputs[1]);
-            jInput.attr('integer', 'integer');
+                //jInput = angular.element(inputs[1]);
+                //jInput.attr('integer', 'integer');
 
-            jInput = angular.element(inputs[2]);
-            jInput.attr('integer', 'integer');
+                //jInput = angular.element(inputs[2]);
+                //jInput.attr('integer', 'integer');
 
-            jInput = angular.element(inputs[3]);
-            jInput.attr('integer', 'integer');
+                //jInput = angular.element(inputs[3]);
+                //jInput.attr('integer', 'integer');
+            }
+
 
             return {
-                pre: function preLink(scope, iElement, iAttrs, controller) {                    
+                pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
-                    scope.isTextarea = 'textarea' == iAttrs.type;                    
+                    scope.isTextarea = 'textarea' == iAttrs.type;
                     scope.isRequired = typeof iAttrs.notRequired === 'undefined';
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
@@ -77,6 +80,6 @@ bsElements.directive('bseInput', function() {
                 }
             };
 
-        } 
+        }
     };
 });
