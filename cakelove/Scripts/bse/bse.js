@@ -25,12 +25,21 @@ bsElements.directive('bseInput', function() {
             max: '@',
             // two way bindings
             theModel: '=',
-            outerForm: '='
+            outerForm: '=',
         },
-        compile: function (el) {
-            el.removeAttr("id");
-            el.removeAttr("type");
-        }
+        compile: function compile(tElement, tAttrs, transclude) {
+            tElement.removeAttr("id");
+            tElement.removeAttr("type");
+            return {
+                pre: function preLink(scope, iElement, iAttrs, controller) {
+                    scope.isStringType = ['email', 'password', 'text', 'url'].indexOf(iAttrs.type) >= 0;
+                    scope.isRequired = typeof iAttrs.notRequired === 'undefined';
+                },
+                post: function postLink(scope, iElement, iAttrs, controller) {
+                    // todo
+                }
+            };
 
+        } 
     };
 });

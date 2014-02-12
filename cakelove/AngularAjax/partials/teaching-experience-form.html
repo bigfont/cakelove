@@ -1,18 +1,23 @@
-﻿<div bse-input lbl-text="How long have you been decorating cakes?" the-model="experience.yearsDecorating" type="text"></div>
-<div bse-input lbl-text="I have taught cake decorating before." the-model="hasTaught" type="checkbox"></div>
-<div ng-show="hasTaught">
-    <div bse-input lbl-text="How long have you been teaching?" the-model="experience.yearsTeaching" type="text"></div>
-    <div bse-input lbl-text="Briefly describe your experience." rows="5" the-model="experience.pastConferences" type="textarea"></div>
-    <div bse-input lbl-text="On average, how many people do you teach at a time?" the-model="experience.aveNumStudentsPerClass" type="text"></div>
+﻿
+<form novalidate name="outerForm">
+    <div bse-input lbl-text="How long have you been decorating cakes?" the-model="experience.yearsDecorating" type="text"></div>
+    <div bse-input lbl-text="I have taught cake decorating before." the-model="hasTaught" type="checkbox"></div>
+    {{ hasTaught }}
+    <div ng-show="hasTaught">
+        Shown
+        <!--<div bse-input lbl-text="How long have you been teaching?" the-model="experience.yearsTeaching" type="text"></div>
+        <div bse-input lbl-text="Briefly describe your experience." rows="5" the-model="experience.pastConferences" type="textarea"></div>
+        <div bse-input lbl-text="On average, how many people do you teach at a time?" the-model="experience.aveNumStudentsPerClass" type="text"></div>-->
+    </div>
     <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
-</div>
+</form>
 
 <aside class="developer">
-    <br />
+    <!----><br />
     <strong>Form</strong>
-    <pre>{{ experience | json }}</pre>
+    <pre>{{ contactInfo | json }}</pre>
     <strong>Master</strong>
     <pre>{{ masterModel | json }}</pre>
-    <!--<strong>Ajax Result</strong>
-    <pre>{{ ajaxResult | json }}</pre>-->
+    <strong>Ajax Result</strong>
+    <pre>{{ ajaxResult | json }}</pre>
 </aside>
