@@ -31,8 +31,8 @@ bsElements.directive('bseInput', function() {
             tElement.removeAttr("id");
             tElement.removeAttr("type");
             return {
-                pre: function preLink(scope, iElement, iAttrs, controller) {
-                    scope.isString = ['email', 'password', 'text', 'url'].indexOf(iAttrs.type) >= 0;
+                pre: function preLink(scope, iElement, iAttrs, controller) {                    
+                    scope.isString = ['email', 'password', 'text', 'url', 'hidden'].indexOf(iAttrs.type) >= 0;
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
                     scope.isTextarea = 'textarea' == iAttrs.type;

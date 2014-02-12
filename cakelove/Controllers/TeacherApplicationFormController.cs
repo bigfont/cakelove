@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -47,7 +48,13 @@ namespace cakelove.Controllers
         [System.Web.Http.Route("ContactInfo")]
         public ContactInfoViewModel GetContactInfo()
         {
-            return new ContactInfoViewModel();
+            var dbContext = new MyDbContext();
+
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+
+            var bindingModel = dbContext.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
+            var viewModel = new ContactInfoViewModel(bindingModel);
+            return viewModel;
         }
 
         [System.Web.Http.Route("ContactInfo")]
@@ -61,7 +68,13 @@ namespace cakelove.Controllers
             try
             {
                 var dbContext = new MyDbContext();
-                dbContext.ContactInfo.Add(model);
+
+                dbContext.ContactInfo.Attach(model);
+                dbContext.Entry(model).State = EntityState.Modified;
+
+                dbContext.Address.Attach(model.Address);
+                dbContext.Entry(model.Address).State = EntityState.Modified;
+
                 var result = await dbContext.SaveChangesAsync();
             }
             catch (DbEntityValidationException e)

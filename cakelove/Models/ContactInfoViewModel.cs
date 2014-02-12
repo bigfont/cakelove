@@ -12,6 +12,23 @@ namespace cakelove.Models
 
     public class AddressViewModel
     {
+        public AddressViewModel()
+        {
+            
+        }
+
+        public AddressViewModel(AddressBindingModel bindingModel)
+        {
+            this.Id = bindingModel.Id;
+            this.City = bindingModel.City;
+            this.Street = bindingModel.Street;
+            this.Province = bindingModel.Province;
+            this.PostalCode = bindingModel.PostalCode;
+            this.Country = bindingModel.Country;
+        }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty("street")]
         public string Street { get; set; }
@@ -34,7 +51,22 @@ namespace cakelove.Models
         public ContactInfoViewModel()
         {
             Address = new AddressViewModel();
-        }        
+        }
+
+        public ContactInfoViewModel(ContactInfoBindingModel bindingModel)
+        {
+            this.Id = bindingModel.Id;
+            this.Name = bindingModel.Name;
+            this.Address = new AddressViewModel(bindingModel.Address);
+            this.PhoneDay = bindingModel.PhoneDay;
+            this.PhoneCell = bindingModel.PhoneCell;
+            this.BusinessName = bindingModel.BusinessName;
+            this.Email = bindingModel.Email;
+            this.Website = bindingModel.Website;
+        }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
