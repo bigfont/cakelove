@@ -2,17 +2,30 @@
 
 <form novalidate name="outerForm">
     
-    <div bse-input id="name" type="text" lbl-text="Name" the-model="contactInfo.name" the-outer-form="outerForm"></div>
-    <div bse-input id="address" type="text" lbl-text="Street" the-model="contactInfo.address.street" the-outer-form="outerForm"></div>
-    <div bse-input id="address" type="text" lbl-text="City" the-model="contactInfo.address.city" the-outer-form="outerForm"></div>
-    <div bse-input id="address" type="text" lbl-text="Province" the-model="contactInfo.address.province" the-outer-form="outerForm"></div>
-    <div bse-input id="address" type="text" lbl-text="Postal Code" the-model="contactInfo.address.postalCode" the-outer-form="outerForm"></div>
-    <div bse-input id="address" type="text" lbl-text="Country" the-model="contactInfo.address.country" the-outer-form="outerForm"></div>
-    <div bse-input id="phoneDay" type="text" lbl-text="Daytime Phone" the-model="contactInfo.phoneDay" the-outer-form="outerForm"></div>
-    <div bse-input id="phoneCell" type="text" lbl-text="Cell Phoe" the-model="contactInfo.phoneCell" the-outer-form="outerForm"></div>
-    <div bse-input id="email" type="email" lbl-text="Email" the-model="contactInfo.email" the-outer-form="outerForm"></div>
-    <div bse-input id="businessName" type="text" lbl-text="Business Name" the-model="contactInfo.businessName" the-outer-form="outerForm"></div>
-    <div bse-input id="website" type="url" lbl-text="Website" not-required the-model="contactInfo.website" the-outer-form="outerForm"></div>
+    <!--<div bse-input id="name" type="text" lbl-text="Name" the-model="contactInfo.name" the-outer-form="outerForm"></div>
+        <div bse-input id="address" type="text" lbl-text="Street" the-model="contactInfo.address.street" the-outer-form="outerForm"></div>
+        <div bse-input id="address" type="text" lbl-text="City" the-model="contactInfo.address.city" the-outer-form="outerForm"></div>
+        <div bse-input id="address" type="text" lbl-text="Province" the-model="contactInfo.address.province" the-outer-form="outerForm"></div>
+        <div bse-input id="address" type="text" lbl-text="Postal Code" the-model="contactInfo.address.postalCode" the-outer-form="outerForm"></div>
+        <div bse-input id="address" type="text" lbl-text="Country" the-model="contactInfo.address.country" the-outer-form="outerForm"></div>
+        <div bse-input id="phoneDay" type="text" lbl-text="Daytime Phone" the-model="contactInfo.phoneDay" the-outer-form="outerForm"></div>
+        <div bse-input id="phoneCell" type="text" lbl-text="Cell Phoe" the-model="contactInfo.phoneCell" the-outer-form="outerForm"></div>
+        <div bse-input id="email" type="email" lbl-text="Email" the-model="contactInfo.email" the-outer-form="outerForm"></div>
+        <div bse-input id="businessName" type="text" lbl-text="Business Name" the-model="contactInfo.businessName" the-outer-form="outerForm"></div>-->
+        <div bse-input id="website" type="url" lbl-text="Website" not-required the-model="contactInfo.website" outer-form="outerForm"></div>
+        
+    <bs-form-group input-id="name" input-type="text" label-text="Name" the-model="contactInfo.name" the-outer-form="outerForm"></bs-form-group>
+    <!--<bs-form-group input-id="address" input-type="text" label-text="Street" the-model="contactInfo.address.street" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="City" the-model="contactInfo.address.city" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Province" the-model="contactInfo.address.province" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Postal Code" the-model="contactInfo.address.postalCode" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="address" input-type="text" label-text="Country" the-model="contactInfo.address.country" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="phoneDay" input-type="text" label-text="Daytime Phone" the-model="contactInfo.phoneDay" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="phoneCell" input-type="text" label-text="Cell Phoe" the-model="contactInfo.phoneCell" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="email" input-type="email" label-text="Email" the-model="contactInfo.email" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="businessName" input-type="text" label-text="Business Name" the-model="contactInfo.businessName" the-outer-form="outerForm"></bs-form-group>
+    <bs-form-group input-id="website" input-type="url" label-text="Website" not-required the-model="contactInfo.website" the-outer-form="outerForm"></bs-form-group>-->
+
 
     <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
 

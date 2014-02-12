@@ -16,7 +16,7 @@ bsElements.directive('bseInput', function() {
             width: '@',
             name: '@',
             theModel: '=',
-            theOuterForm: '='
+            outerForm: '='
         },
         compile: function (el) {
             el.removeAttr("id");

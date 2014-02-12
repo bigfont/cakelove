@@ -4,11 +4,11 @@
 
         <div ng-class="width">
             <!--shared label-->
-            <label ng-show="['email', 'password', 'text', 'file' ].indexOf(type) >= 0" for="{{ id }}">
+            <label ng-show="['email', 'password', 'text', 'url' 'file' ].indexOf(type) >= 0" for="{{ id }}">
                 {{ lblText }}
             </label>
             <!--email, password-->
-            <input ng-show="['email', 'password', 'text' ].indexOf(type) >= 0" type="{{ type }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}" name="innerFormInput" ng-model="theModel" ng-required="{{ notRequired == null }}">
+            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="{{ notRequired == null }}" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
             <input ng-show="'file' == type" type="file" id="{{ id }}">
             <!--checkbox, radio-->
@@ -24,7 +24,7 @@
     
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || theOuterForm.submitted) && innerForm.$invalid">
+    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
         Invalid:
         <span ng-show="innerForm.innerFormInput.$error.required">Tell us your {{ lblText.toLowerCase() }}.</span>
         <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>
