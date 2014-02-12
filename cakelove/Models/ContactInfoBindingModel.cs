@@ -52,7 +52,6 @@ namespace cakelove.Models
         [JsonProperty("phoneCell")]
         public string PhoneCell { get; set; }
 
-        [Required]
         [JsonProperty("businessName")]
         public string BusinessName { get; set; }
 
@@ -60,7 +59,6 @@ namespace cakelove.Models
         [JsonProperty("email")]
         public string Email { get; set; }
 
-        [Required]
         [JsonProperty("website")]
         public string Website { get; set; }
     }

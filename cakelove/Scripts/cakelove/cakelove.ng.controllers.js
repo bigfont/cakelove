@@ -277,7 +277,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.masterModel = {};
 
         // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
