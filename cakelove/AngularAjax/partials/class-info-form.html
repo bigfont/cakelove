@@ -1,6 +1,11 @@
 ﻿
 
-<div ng-repeat="classInfo in masterModel">    
+<div ng-repeat="classInfo in classes">
+
+    <div class="row">
+        <!--todo style this nicely-->
+
+    </div>
 
     <div class="row">
 
@@ -124,13 +129,14 @@
         <div class="col-lg-6">
             <aside class="developer">
                 <strong>Form</strong>
-                <pre>{{ classInfo | json }}</pre>
+                <pre>{{ classes | json }}</pre>
                 <strong>Master</strong>
                 <pre>{{ masterModel | json }}</pre>
                 <strong>Ajax Result</strong>
                 <pre>{{ ajaxResult | json }}</pre>
             </aside>
         </div>
+
     </div>
 
 </div>

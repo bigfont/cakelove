@@ -288,7 +288,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
         // reset the user input model
         $scope.reset = function () {
-            $scope.experience = angular.copy($scope.masterModel);
+            $scope.classes = angular.copy($scope.masterModel);
         };
     }
 ]);
