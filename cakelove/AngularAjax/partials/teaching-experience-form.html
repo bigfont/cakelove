@@ -1,5 +1,18 @@
-﻿<bs-form-group label-text="How long have you been decorating cakes?" input-type="number" the-model="experience.yearsDecorating"></bs-form-group>
-<bs-form-group label-text="How long have you been teaching?" input-type="number" the-model="experience.yearsTeaching"></bs-form-group>
-<bs-form-checkbox label-text="I have taught cake decorating before." the-model="experience.hasTaught"></bs-form-checkbox>
-<bs-form-textarea ng-show="experience.hasTaught" label-text="Briefly describe your experience." input-rows="5" the-model="experience.pastConferences"></bs-form-textarea>
-<bs-form-group label-text="On average, how many people do you teach at a time?" input-type="number" the-model="experience.aveNumStudentsPerClass"></bs-form-group>
+﻿<div bse-input lbl-text="How long have you been decorating cakes?" the-model="experience.yearsDecorating" type="text"></div>
+<div bse-input lbl-text="I have taught cake decorating before." the-model="hasTaught" type="checkbox"></div>
+<div ng-show="hasTaught">
+    <div bse-input lbl-text="How long have you been teaching?" the-model="experience.yearsTeaching" type="text"></div>
+    <div bse-input lbl-text="Briefly describe your experience." rows="5" the-model="experience.pastConferences" type="textarea"></div>
+    <div bse-input lbl-text="On average, how many people do you teach at a time?" the-model="experience.aveNumStudentsPerClass" type="text"></div>
+    <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
+</div>
+
+<aside class="developer">
+    <br />
+    <strong>Form</strong>
+    <pre>{{ experience | json }}</pre>
+    <strong>Master</strong>
+    <pre>{{ masterModel | json }}</pre>
+    <!--<strong>Ajax Result</strong>
+    <pre>{{ ajaxResult | json }}</pre>-->
+</aside>

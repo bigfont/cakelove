@@ -1,11 +1,11 @@
-﻿input[required] {
+﻿*[required] {
     border-style: dashed;
 }
 
 /*pristine*/
 input.ng-pristine,
 textarea.ng-pristine {
-    background-color: #fafbe6;
+    background-color: #ffffff;
 }
 
 /*invalid*/
@@ -47,4 +47,10 @@ footer {
     border:1px solid rgb(221, 221, 221);
     border-top-width:0;    
     padding:20px;
+}
+
+*.developer {
+
+    border: 1px solid red;
+
 }

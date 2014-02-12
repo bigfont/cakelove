@@ -15,9 +15,10 @@ bsElements.directive('bseInput', function() {
             type: '@',
             width: '@',
             name: '@',
+            rows:'@',
             // html5 validation
             notRequired: '@',
-            pattern: '@',
+            //pattern: '@',
             minlength: '@',
             maxlength: '@',
             min: '@',

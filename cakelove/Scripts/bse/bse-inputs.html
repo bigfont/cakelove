@@ -1,31 +1,34 @@
 ﻿<div class="form-group">
 
     <ng-form name="innerForm">
+        
         <div ng-class="width">
             <!--shared label-->
-            <label ng-show="['email', 'password', 'text', 'url' 'file' ].indexOf(type) >= 0" for="{{ id }}">
+            <label ng-show="['email', 'password', 'text', 'url', 'file', 'textarea' ].indexOf(type) >= 0" for="{{ id }}">
                 {{ lblText }}
             </label>
             <!--email, password, text, url-->
-            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-pattern="pattern" ng-required="notRequired != false" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
+            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="notRequired != false" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
-            <input ng-show="'file' == type" type="file" id="{{ id }}">
+            <input ng-if="'file' == type" type="file" id="{{ id }}">
             <!--checkbox, radio-->
-            <div ng-show="['radio', 'checkbox' ].indexOf(type) >= 0" class="{{ type }}">
+            <div ng-if="['radio', 'checkbox' ].indexOf(type) >= 0" class="{{ type }}">
                 <label>
-                    <input type="{{ type }}" value="" name="{{ name }}">
+                    <input type="{{ type }}" value="" name="{{ name }}" ng-model="theModel">
                     {{ lblText }}
                 </label>
             </div>
+            <!-- textarea -->
+            <textarea class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="notRequired != false" ng-if="'textarea' == type" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
         </div>
 
-    </ng-form>
-    
+    </ng-form>   
+
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
     <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
         Invalid:
-        <span ng-show="innerForm.innerFormInput.$error.required">Tell us your {{ lblText.toLowerCase() }}.</span>
+        <span ng-show="innerForm.innerFormInput.$error.required">This input is required.</span>
         <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>
     </div>
 
