@@ -48,3 +48,56 @@ cakeLoveDirectives.directive('teachingExperienceFormInputs', function () {
         templateUrl: 'ng/partials/teaching-experience-form'
     };
 });
+
+// validation
+var INTEGER_REGEXP = /^\-?\d+$/;
+cakeLoveDirectives.directive('integer', function () {
+    return {
+        require: 'ngModel',
+        compile: function (elm, attrs) {
+            return {
+                pre: function(scope, elm, attrs, ctrl) {
+                     
+                },
+                post: function (scope, elm, attrs, ctrl) {
+
+                    function validate(value) {
+                        
+                        if (INTEGER_REGEXP.test(value)) {
+                            // it is valid
+                            ctrl.$setValidity('integer', true);
+                            return value;
+                        } else {
+                            // it is invalid, return undefined (no model update)
+                            ctrl.$setValidity('integer', false);
+                            return undefined;
+                        }
+                    };
+
+                    ctrl.$parsers.unshift(validate);
+                    ctrl.$formatters.unshift(validate);
+
+                }
+            };
+
+        }
+    };
+});
+
+var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
+cakeLoveDirectives.directive('smartFloat', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$parsers.unshift(function (viewValue) {
+                if (FLOAT_REGEXP.test(viewValue)) {
+                    ctrl.$setValidity('float', true);
+                    return parseFloat(viewValue.replace(',', '.'));
+                } else {
+                    ctrl.$setValidity('float', false);
+                    return undefined;
+                }
+            });
+        }
+    };
+});
