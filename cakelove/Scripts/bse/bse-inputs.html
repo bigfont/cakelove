@@ -16,7 +16,7 @@
                 <!--with input group-->
                 <div class="input-group" ng-show="{{ hasAddOn }}">
                     <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
-                    <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" placeholder="{{ placeholder }}" type="{{ type }}">
+                    <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" placeholder="{{ placeholder }}" type="{{ type }}">
                     <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
                 </div>
 
@@ -40,14 +40,20 @@
 
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
+    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">        
         <div ng-show="isTextarea">
             <span ng-show="innerForm.innerTextarea.$error.required">This input is required.</span>
             <span ng-show="innerForm.innerTextarea.$error.email">That is not an email.</span>
         </div>
         <div ng-show="isString">
-            <span ng-show="innerForm.innerString.$error.required">This input is required.</span>
-            <span ng-show="innerForm.innerString.$error.email">That is not an email.</span>
+            <div ng-show="!hasAddOn">
+                <span ng-show="innerForm.innerString.$error.required">This input is required.</span>
+                <span ng-show="innerForm.innerString.$error.email">That is not an email.</span>
+            </div>
+            <div ng-show="hasAddOn">
+                <span ng-show="innerForm.innerStringAddOn.$error.required">This input is required.</span>
+                <span ng-show="innerForm.innerStringAddOn.$error.email">That is not an email.</span>
+            </div>
         </div>
 
     </div>
