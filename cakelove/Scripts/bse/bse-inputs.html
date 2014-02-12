@@ -7,7 +7,7 @@
                 {{ lblText }}
             </label>
             <!--email, password, text, url-->
-            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="notRequired != false" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
+            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-pattern="pattern" ng-required="notRequired != false" ng-show="['email', 'password', 'text', 'url' ].indexOf(type) >= 0" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
             <input ng-show="'file' == type" type="file" id="{{ id }}">
             <!--checkbox, radio-->
