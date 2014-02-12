@@ -48,3 +48,7 @@ footer {
     border-top-width:0;    
     padding:20px;
 }
+a:hover
+{
+    cursor:pointer;    
+}
