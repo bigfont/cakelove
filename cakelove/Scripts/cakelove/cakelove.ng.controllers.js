@@ -238,28 +238,62 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 ]);
 
 cakeLoveControllers.controller('BiographyCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
         $scope.formName = 'Biography';
 
-        $scope.clientModel = {};
         $scope.masterModel = {};
 
-        $scope.masterModel.bio = {};
+        // get
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
+
+                $scope.masterModel = data;
+                $scope.reset();
+
+            });
+
+        // update master from the user input model
+        $scope.update = function (formModel, outerForm) {
+            formSvc.update($scope, formModel, outerForm, url);
+        };
+
+        // reset the user input model
+        $scope.reset = function () {
+            $scope.experience = angular.copy($scope.masterModel);
+        };
 
     }
 ]);
 
 cakeLoveControllers.controller('ClassesCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
         $scope.formName = 'Classes';
 
-        $scope.clientModel = {};
         $scope.masterModel = {};
 
-        $scope.masterModel.classes = [{}];
+        // get
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
+
+                $scope.masterModel = data;
+                $scope.reset();
+
+            });
+
+        // update master from the user input model
+        $scope.update = function (formModel, outerForm) {
+            formSvc.update($scope, formModel, outerForm, url);
+        };
+
+        // reset the user input model
+        $scope.reset = function () {
+            $scope.experience = angular.copy($scope.masterModel);
+        };
     }
 ]);

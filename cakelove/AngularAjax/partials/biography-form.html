@@ -2,6 +2,16 @@
 
 <div bse-input help-block="Please provide us with a short biography for use on our website in promoting your classes.  Kindly type your bio in the space below.  This is what people will read about you, please make sure that your grammar and spelling are correct." rows="10" lbl-text="Biography" type="textarea" the-model="bio.text"></div>
 
-<div bse-input type="file" lbl-text="Your picture" help-block="The image must be _____ dpi and measure _____ inches by _____ inches."></div>
+<div bse-input the-model="bio.image" type="file" lbl-text="Your picture" help-block="The image must be _____ dpi and measure _____ inches by _____ inches."></div>
 
 <button class="btn btn-default" ng-click="update(experience, outerForm)">Save</button>
+
+<aside class="developer">
+    <br />
+    <strong>Form</strong>
+    <pre>{{ bio | json }}</pre>
+    <strong>Master</strong>
+    <pre>{{ masterModel | json }}</pre>
+    <strong>Ajax Result</strong>
+    <pre>{{ ajaxResult | json }}</pre>
+</aside>

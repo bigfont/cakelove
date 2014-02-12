@@ -12,6 +12,8 @@
             <div bse-input type="radio" lbl-text="Hands-On Class" value="handsOn" the-model="c.classType"></div>
             <div bse-input type="radio" lbl-text="Demo" value="demo" the-model="c.classType"></div>
         </fieldset>
+        
+        <div bse-input type="file" lbl-text="Class image" help-block="Please upload project image here." ></div>
 
     </fieldset>
     <fieldset>
@@ -30,7 +32,6 @@
         <div bse-input type="radio" lbl-text="Intermediate" value="intermediate" the-model="c.skillLevel"></div>
         <div bse-input type="radio" lbl-text="Advanced" value="advanced" the-model="c.skillLevel"></div>
     </fieldset>
-
     <fieldset>
         <legend>Class Schedule</legend>
 
@@ -108,5 +109,6 @@
 
     </fieldset>
 
+    <button class="btn btn-default" ng-click="update(experience, outerForm)">Save</button>
 
 </form>
