@@ -9,9 +9,9 @@
             <!--email, password, text, url-->
             <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="isStringType" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
-            <input ng-show="'file' == type" type="file" id="{{ id }}">
+            <input ng-show="isFile" type="file" id="{{ id }}">
             <!--checkbox, radio-->
-            <div ng-show="['radio', 'checkbox' ].indexOf(type) >= 0" class="{{ type }}">
+            <div ng-show="isRadioCheck" class="{{ type }}">
                 <label>
                     <input type="{{ type }}" value="" name="{{ name }}" ng-model="theModel">
                     {{ lblText }}

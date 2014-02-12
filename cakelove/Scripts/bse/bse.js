@@ -33,6 +33,8 @@ bsElements.directive('bseInput', function() {
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isStringType = ['email', 'password', 'text', 'url'].indexOf(iAttrs.type) >= 0;
+                    scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
+                    scope.isFile = 'file' == iAttrs.type;
                     scope.isRequired = typeof iAttrs.notRequired === 'undefined';
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
