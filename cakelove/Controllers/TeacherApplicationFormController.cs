@@ -19,6 +19,7 @@ using System.Web.Http.Metadata;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ValueProviders;
 using System.Web.UI.WebControls;
+using AutoMapper;
 using cakelove.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
@@ -53,7 +54,12 @@ namespace cakelove.Controllers
             var userId = HttpContext.Current.User.Identity.GetUserId();
 
             var bindingModel = dbContext.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
-            var viewModel = new ContactInfoViewModel(bindingModel);
+
+            Mapper.CreateMap<ContactInfoBindingModel, ContactInfoViewModel>();
+            Mapper.CreateMap<AddressBindingModel, AddressViewModel>();
+            var viewModel = Mapper.Map<ContactInfoBindingModel, ContactInfoViewModel>(bindingModel);
+
+            //var viewModel = new ContactInfoViewModel(bindingModel);
             return viewModel;
         }
 
