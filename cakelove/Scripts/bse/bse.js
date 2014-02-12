@@ -41,11 +41,15 @@ bsElements.directive('bseInput', function () {
             tElement.removeAttr("type");
 
             var inputs = tElement.find('input');
-            var jInput;
+            var jqLiteInput;
             for (var i = 0; i < inputs.length; i++) {
                 if (typeof tAttrs.integer !== "undefined") {
-                    jInput = angular.element(inputs[i]);
-                    jInput.attr('integer', 'integer');
+                    jqLiteInput = angular.element(inputs[i]);
+                    jqLiteInput.attr('integer', 'integer');
+                }
+                if (typeof tAttrs.smartFloat !== "undefined") {
+                    jqLiteInput = angular.element(inputs[i]);
+                    jqLiteInput.attr('smart-float', 'smart-float');
                 }
             }
 
