@@ -3,11 +3,11 @@
     <ng-form name="innerForm">            
         <div ng-class="width">
             <!--shared label-->
-            <label ng-show="isStringType" for="{{ id }}">
+            <label ng-show="isString" for="{{ id }}">
                 {{ lblText }}
             </label>
             <!--email, password, text, url-->
-            <input class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="isStringType" placeholder="{{ placeholder }}" type="{{ type }}">
+            <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="isString" placeholder="{{ placeholder }}" type="{{ type }}">
             <!--file-->
             <input ng-show="isFile" type="file" id="{{ id }}">
             <!--checkbox, radio-->
@@ -17,18 +17,22 @@
                     {{ lblText }}
                 </label>
             </div>
-            <!-- textarea -->
-            <textarea class="form-control" id="{{ id }}" name="innerFormInput" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="'textarea' == type" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
+            <!-- textarea-->
+            <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired && isTextarea" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea> 
         </div>
-
     </ng-form>
 
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
-        Invalid:
-        <span ng-show="innerForm.innerFormInput.$error.required">This input is required.</span>
-        <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>
-    </div>
+    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">        
+        <div ng-show="isTextarea">
+            <span ng-show="innerForm.innerTextarea.$error.required">This input is required.</span>
+            <span ng-show="innerForm.innerTextarea.$error.email">That is not an email.</span>
+        </div>
+        <div ng-show="isString">
+            <span ng-show="innerForm.innerString.$error.required">This input is required.</span>
+            <span ng-show="innerForm.innerString.$error.email">That is not an email.</span>
+        </div>
 
+    </div>       
 </div>
