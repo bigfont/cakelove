@@ -120,6 +120,7 @@ namespace cakelove.Controllers
             return Ok();
         }
 
+        [System.Web.Http.Route("ClassInfo")]
         public IEnumerable<ClassInfoViewModel> GetClassInfo()
         {
             var db = new MyDbContext();
@@ -134,6 +135,38 @@ namespace cakelove.Controllers
 
             var viewModel = Mapper.Map<List<ClassInfoBindingModel>, List<ClassInfoViewModel>>(bindingModel);
             return viewModel;
+        }
+
+        [System.Web.Http.Route("ClassInfo")]
+        public async Task<IHttpActionResult> ClassInfo(ClassInfoBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var dbContext = new MyDbContext();
+
+                dbContext.ClassInfo.Attach(model);
+                dbContext.Entry(model).State = GetBindingModelState(model);
+
+                var result = await dbContext.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    var m = error.Entry;
+                }
+            }
+            catch (Exception e)
+            {
+                var message = e.Message;
+            }
+
+            return Ok();
         }
 
         // todo Put this method into the IBindingModel or similar spot... model.SetState().

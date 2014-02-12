@@ -1,10 +1,12 @@
-﻿<form ng-repeat="classInfo in masterModel">
+﻿
+
+<div ng-repeat="classInfo in masterModel">    
 
     <div class="row">
 
         <div class="col-lg-6">
 
-            <div bse-input class="" id="id" type="text" the-model="classInfo.id" outer-form="outerForm"></div>
+            <div bse-input class="hidden" id="id" type="hidden" the-model="classInfo.id" outer-form="outerForm"></div>
 
             <fieldset>
                 <legend>Class Overview</legend>
@@ -120,11 +122,7 @@
         </div>
 
         <div class="col-lg-6">
-
             <aside class="developer">
-                <br />
-                {{ $index }}
-
                 <strong>Form</strong>
                 <pre>{{ classInfo | json }}</pre>
                 <strong>Master</strong>
@@ -132,11 +130,10 @@
                 <strong>Ajax Result</strong>
                 <pre>{{ ajaxResult | json }}</pre>
             </aside>
-
         </div>
     </div>
 
-</form>
+</div>
 
 
 
