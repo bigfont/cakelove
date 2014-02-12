@@ -1,30 +1,14 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Data.Entity;
-using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Security.Principal;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Metadata;
-using System.Web.Http.ModelBinding;
-using System.Web.Http.ValueProviders;
-using System.Web.UI.WebControls;
 using AutoMapper;
 using cakelove.Models;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using WebGrease.Css.Extensions;
 
 namespace cakelove.Controllers
 {
@@ -51,9 +35,8 @@ namespace cakelove.Controllers
         {
             var db = new MyDbContext();
             var userId = HttpContext.Current.User.Identity.GetUserId();
-            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
+            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new ContactInfoBindingModel();
             var viewModel = Mapper.Map<ContactInfoBindingModel, ContactInfoViewModel>(bindingModel);
-
             return viewModel;
         }
 
@@ -97,7 +80,7 @@ namespace cakelove.Controllers
         {
             var db = new MyDbContext();
             var userId = HttpContext.Current.User.Identity.GetUserId();
-            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId);
+            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new TeachingExperienceBindingModel();
             var viewModel = Mapper.Map<TeachingExperienceBindingModel, TeachingExperienceViewModel>(bindingModel);
 
             return viewModel;
