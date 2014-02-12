@@ -3,80 +3,80 @@
     <fieldset>
         <legend>Class Overview</legend>
 
-        <div bse-input lbl-text="Class Name" id="className" type="text" the-model="c.className"></div>
+        <div bse-input outer-form="outerForm"  lbl-text="Class Name" id="className" type="text" the-model="c.className"></div>
 
-        <div bse-input lbl-text="Class Description" rows="10" type="textarea" the-model="c.classDescription"></div>
+        <div bse-input outer-form="outerForm"  lbl-text="Class Description" rows="10" type="textarea" the-model="c.classDescription"></div>
         <!--Nice-to-Have: make a check box list directive-->
         <fieldset>
             <label>Class Type:</label>
-            <div bse-input type="radio" lbl-text="Hands-On Class" value="handsOn" the-model="c.classType"></div>
-            <div bse-input type="radio" lbl-text="Demo" value="demo" the-model="c.classType"></div>
+            <div bse-input outer-form="outerForm"  type="radio" lbl-text="Hands-On Class" value="handsOn" the-model="c.classType"></div>
+            <div bse-input outer-form="outerForm"  type="radio" lbl-text="Demo" value="demo" the-model="c.classType"></div>
         </fieldset>
         
-        <div bse-input type="file" lbl-text="Class image" help-block="Please upload project image here." ></div>
+        <div bse-input outer-form="outerForm"  type="file" lbl-text="Class image" help-block="Please upload project image here." ></div>
 
     </fieldset>
     <fieldset>
         <legend>Student Overview</legend>
-        <div bse-input add-on-left="{{c.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" the-model="c.feePerStudent"></div>
+        <div bse-input outer-form="outerForm"  add-on-left="{{c.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" the-model="c.feePerStudent"></div>
         <!--Make this a drop down list add-on.-->
-        <div bse-input type="radio" lbl-text="Canadian" value="Canadian" the-model="c.currency"></div>
-        <div bse-input type="radio" lbl-text="US" value="US" the-model="c.currency"></div>
-        <div bse-input type="radio" lbl-text="Euros" value="Euro" the-model="c.currency"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="Canadian" value="Canadian" the-model="c.currency"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="US" value="US" the-model="c.currency"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="Euros" value="Euro" the-model="c.currency"></div>
 
 
-        <div bse-input add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" the-model="c.classSize.min"></div>
-        <div bse-input add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" the-model="c.classSize.max"></div>
+        <div bse-input outer-form="outerForm"  add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" the-model="c.classSize.min"></div>
+        <div bse-input outer-form="outerForm"  add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" the-model="c.classSize.max"></div>
         <label>Skill Level:</label>
-        <div bse-input type="radio" lbl-text="Beginner" value="beginner" the-model="c.skillLevel"></div>
-        <div bse-input type="radio" lbl-text="Intermediate" value="intermediate" the-model="c.skillLevel"></div>
-        <div bse-input type="radio" lbl-text="Advanced" value="advanced" the-model="c.skillLevel"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="Beginner" value="beginner" the-model="c.skillLevel"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="Intermediate" value="intermediate" the-model="c.skillLevel"></div>
+        <div bse-input outer-form="outerForm"  type="radio" lbl-text="Advanced" value="advanced" the-model="c.skillLevel"></div>
     </fieldset>
     <fieldset>
         <legend>Class Schedule</legend>
 
-        <div bse-input type="checkbox" lbl-text="My class will run more than one day." the-model="isMultiDay"></div>
-        <div bse-input type="checkbox" lbl-text="I have a class scheduling preference." the-model="hasTimePreference"></div>
+        <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="My class will run more than one day." the-model="isMultiDay"></div>
+        <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="I have a class scheduling preference." the-model="hasTimePreference"></div>
 
         <strong>Todo: Enable 1/2 hour increments on class time.</strong>
         <strong>Todo: Make the maximum class time 8 hours.</strong>
 
-        <div bse-input add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="c.totalTime.dayOne"></div>
+        <div bse-input outer-form="outerForm"  add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="c.totalTime.dayOne"></div>
 
-        <div bse-input add-on-left="Hours" help-block="Total time required for day two's class." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="isMultiDay" the-model="c.totalTime.dayTwo"></div>
+        <div bse-input outer-form="outerForm"  add-on-left="Hours" help-block="Total time required for day two's class." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="isMultiDay" the-model="c.totalTime.dayTwo"></div>
 
         <div ng-show="hasTimePreference" class="row">
             <div class="col-sm-6">
                 <label>Preferred {{ isMultiDay ? 'day one' : '' }} timing:</label>
-                <div bse-input type="radio" lbl-text="Fri - am" value="fri-am" the-model="c.preferredTime.dayOne"></div>
-                <div bse-input type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="c.preferredTime.dayOne"></div>
-                <div bse-input type="radio" lbl-text="Sat - am" value="sat-am" the-model="c.preferredTime.dayOne"></div>
-                <div bse-input type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="c.preferredTime.dayOne"></div>
-                <div bse-input type="radio" lbl-text="Sun - am" value="sun-am" the-model="c.preferredTime.dayOne"></div>
-                <div bse-input type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Fri - am" value="fri-am" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sat - am" value="sat-am" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sun - am" value="sun-am" the-model="c.preferredTime.dayOne"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="c.preferredTime.dayOne"></div>
             </div>
             <div ng-show="isMultiDay" class="col-sm-6">
                 <label>Preferred day two timing:</label>
-                <div bse-input type="radio" lbl-text="Fri - am" value="fri-am" the-model="c.preferredTime.dayTwo"></div>
-                <div bse-input type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="c.preferredTime.dayTwo"></div>
-                <div bse-input type="radio" lbl-text="Sat - am" value="sat-am" the-model="c.preferredTime.dayTwo"></div>
-                <div bse-input type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="c.preferredTime.dayTwo"></div>
-                <div bse-input type="radio" lbl-text="Sun - am" value="sun-am" the-model="c.preferredTime.dayTwo"></div>
-                <div bse-input type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Fri - am" value="fri-am" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sat - am" value="sat-am" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sun - am" value="sun-am" the-model="c.preferredTime.dayTwo"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="c.preferredTime.dayTwo"></div>
             </div>
         </div>
 
         <p>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</p>
-        <div bse-input type="checkbox" lbl-text="I require more than 15-mins for setup." the-model="needsExtraSetup"></div>
-        <div bse-input ng-show="needsExtraSetup"
+        <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="I require more than 15-mins for setup." the-model="needsExtraSetup"></div>
+        <div bse-input outer-form="outerForm"  ng-show="needsExtraSetup"
              lbl-text="Extra setup time:"
              help-block="How much additional time do you need?"
              id="extraTime.setup"
              type="number"
              add-on-right="mins"
              the-model="c.extraTime.setup"></div>
-        <div bse-input type="checkbox" lbl-text="I require more than 15-mins for clean-up." the-model="needsExtraCleanup"></div>
-        <div bse-input ng-show="needsExtraCleanup"
+        <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="I require more than 15-mins for clean-up." the-model="needsExtraCleanup"></div>
+        <div bse-input outer-form="outerForm"  ng-show="needsExtraCleanup"
              lbl-text="Extra cleanup time:"
              help-block="How much additional time do you need?"
              id="extraTime.cleanup"
@@ -90,21 +90,21 @@
 
         <legend>Class Supplies</legend>
 
-        <div bse-input help-block="Please provide a detailed list of what will be required.  Please be mindful of the long distances many students will have to travel.  For example, if a student will require a 12&quot; piece of aluminum foil, you may wish to provide a communal role instead of asking every student to bring some." id="supplied-required" rows="10" type="textarea" lbl-text="Supplies required:" the-model="c.supplies.willRequireThese">
+        <div bse-input outer-form="outerForm"  help-block="Please provide a detailed list of what will be required.  Please be mindful of the long distances many students will have to travel.  For example, if a student will require a 12&quot; piece of aluminum foil, you may wish to provide a communal role instead of asking every student to bring some." id="supplied-required" rows="10" type="textarea" lbl-text="Supplies required:" the-model="c.supplies.willRequireThese">
             </div>
 
-            <div bse-input id="supplies-provided" rows="10" type="textarea" lbl-text="Supplies provided by instructor:" the-model="c.supplies.willProvideThese"></div>
+            <div bse-input outer-form="outerForm"  id="supplies-provided" rows="10" type="textarea" lbl-text="Supplies provided by instructor:" the-model="c.supplies.willProvideThese"></div>
 
-            <div bse-input type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" the-model="isSelling"></div>
-            <div bse-input id="supplies-sale" rows="10" type="textarea" lbl-text="If so, please list:" ng-show="isSelling" the-model="c.supplies.willSellThese"></div>
+            <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" the-model="isSelling"></div>
+            <div bse-input outer-form="outerForm"  id="supplies-sale" rows="10" type="textarea" lbl-text="If so, please list:" ng-show="isSelling" the-model="c.supplies.willSellThese"></div>
 
-            <div bse-input type="checkbox" lbl-text="I would like a vendor table..." the-model="doVendorTable"></div>
+            <div bse-input outer-form="outerForm"  type="checkbox" lbl-text="I would like a vendor table..." the-model="doVendorTable"></div>
             <div ng-show="doVendorTable">
-                <div bse-input type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" the-model="c.vendorTable"></div>
-                <div bse-input type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" the-model="c.vendorTable"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" the-model="c.vendorTable"></div>
+                <div bse-input outer-form="outerForm"  type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" the-model="c.vendorTable"></div>
             </div>
 
-            <div bse-input id="supplies-special" rows="10" type="textarea" lbl-text="Special equipment required for class:" the-model="c.willNeedThisSpecialEquip"></div>
+            <div bse-input outer-form="outerForm"  id="supplies-special" rows="10" type="textarea" lbl-text="Special equipment required for class:" the-model="c.willNeedThisSpecialEquip"></div>
 
 
     </fieldset>
