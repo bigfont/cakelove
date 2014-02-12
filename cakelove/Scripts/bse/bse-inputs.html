@@ -3,7 +3,7 @@
     <ng-form name="innerForm">            
         <div ng-class="width">
             <!--shared label-->
-            <label ng-show="isString" for="{{ id }}">
+            <label ng-show="isString || isTextarea" for="{{ id }}">
                 {{ lblText }}
             </label>
             <!--email, password, text, url-->

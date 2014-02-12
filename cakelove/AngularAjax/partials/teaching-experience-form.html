@@ -1,14 +1,15 @@
 ﻿
-<form novalidate name="outerForm">
-    <div bse-input id="yearsDec" lbl-text="How long have you been decorating cakes?" outer-form="outerForm" the-model="experience.yearsDecorating" type="text"></div>    
-    <div bse-input lbl-text="I have taught cake decorating before." the-model="experience.hasTaught" type="checkbox"></div>    
-    <div ng-show="experience.hasTaught">
-        <div bse-input lbl-text="How long have you been teaching?" the-model="experience.yearsTeaching" type="text"></div>
-        <div bse-input lbl-text="Briefly describe your experience." rows="5" the-model="experience.pastConferences" type="textarea"></div>
-        <div bse-input lbl-text="On average, how many people do you teach at a time?" the-model="experience.aveNumStudentsPerClass" type="text"></div>
-    </div>
-    <button class="btn btn-default" ng-click="update(experience, outerForm)">Save</button>
-</form>
+
+<div bse-input id="yearsDec" lbl-text="How long have you been decorating cakes?" outer-form="outerForm" the-model="experience.yearsDecorating" type="text"></div>
+<div bse-input lbl-text="I have taught cake decorating before." the-model="experience.hasTaught" type="checkbox"></div>
+<div ng-show="experience.hasTaught">
+    <div bse-input lbl-text="How long have you been teaching?" the-model="experience.yearsTeaching" type="text"></div>
+    <div bse-input lbl-text="Briefly describe your experience." rows="5" the-model="experience.pastConferences" type="textarea"></div>
+    <div bse-input lbl-text="On average, how many people do you teach at a time?" the-model="experience.aveNumStudentsPerClass" type="text"></div>
+</div>
+<button class="btn btn-default" ng-click="update(experience, outerForm)">Save</button>
+
+
 <!--<aside class="developer">
     <br />
     <strong>Form</strong>

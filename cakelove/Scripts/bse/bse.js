@@ -15,7 +15,8 @@ bsElements.directive('bseInput', function() {
             type: '@',
             width: '@',
             name: '@',
-            rows:'@',
+            rows: '@',
+            helpBlock: '@',
             // html5 validation
             notRequired: '@',
             //pattern: '@',

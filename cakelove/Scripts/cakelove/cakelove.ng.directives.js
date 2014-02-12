@@ -21,33 +21,35 @@ cakeLoveDirectives.directive('loginRegisterForm', function () {
     };
 });
 
-cakeLoveDirectives.directive('classInfoForm', function () {
+cakeLoveDirectives.directive('classInfoFormInputs', function () {
     return {
         restrict: 'AE',
         templateUrl: 'ng/partials/class-info-form'
     };
 });
 
-cakeLoveDirectives.directive('contactInfoForm', function () {
+cakeLoveDirectives.directive('contactInfoFormInputs', function () {
     return {
         restrict: 'AE',
         templateUrl: 'ng/partials/contact-info-form'
     };
 });
 
-cakeLoveDirectives.directive('biographyForm', function () {
+cakeLoveDirectives.directive('biographyFormInputs', function () {
     return {
         restrict: 'AE',
         templateUrl: 'ng/partials/biography-form'
     };
 });
 
-cakeLoveDirectives.directive('teachingExperienceForm', function () {
+cakeLoveDirectives.directive('teachingExperienceFormInputs', function () {
     return {
         restrict: 'AE',
         templateUrl: 'ng/partials/teaching-experience-form'
     };
 });
+
+//deprecated
 
 cakeLoveDirectives.directive('bsInput', function() {
     return {
