@@ -2,26 +2,8 @@
     border-style: dashed;
 }
 
-/*pristine*/
-input.ng-pristine,
-textarea.ng-pristine {
-    background-color: #ffffff;
-}
-
-/*invalid*/
-input.ng-invalid.submitted,
-input.ng-invalid.ng-dirty,
-textarea.ng-invalid.submitted,
-textarea.ng-invalid.ng-dirty {
-    background-color: #f2bbbb;
-}
-
-/*valid*/
-input.ng-valid.submitted,
-input.ng-valid.ng-dirty,
-textarea.ng-valid.submitted,
-textarea.ng-valid.ng-dirty {
-    background-color: #b4e5a0;
+div.validation-messages {
+    color: #b94a48;
 }
 
 html {

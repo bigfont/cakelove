@@ -1,8 +1,10 @@
-﻿<div class="form-group" ng-class="{'has-error':true}">
+﻿
+
+<div ng-class="{'has-error':(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.submitted) && !innerForm.$invalid  }"
+     class="form-group">
 
     <ng-form name="innerForm">
         <div ng-class="width">
-
             <!--shared label-->
             <label class="control-label" ng-show="isString || isTextarea || isFile" for="{{ id }}">
                 {{ lblText }}
@@ -40,7 +42,7 @@
 
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
+    <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
         <div ng-show="isTextarea">
             <span ng-show="innerForm.innerTextarea.$error.required">This input is required.</span>
         </div>
@@ -52,7 +54,7 @@
                 <span ng-show="innerForm.innerString.$error.float">Please use a proper number.</span>
 
             </div>
-            <div ng-show="hasAddOn">
+            <div class="warning" ng-show="hasAddOn">
                 <span ng-show="innerForm.innerStringAddOn.$error.required">This input is required.</span>
                 <span ng-show="innerForm.innerStringAddOn.$error.email">That is not an email.</span>
                 <span ng-show="innerForm.innerStringAddOn.$error.integer">Please use a number without decimals.</span>

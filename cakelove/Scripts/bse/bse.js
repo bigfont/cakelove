@@ -10,6 +10,7 @@ var INTEGER_REGEXP = /^\-?\d+$/;
 bsElements.directive('bseInput', function () {
     return {
         templateUrl: "/Scripts/bse/bse-inputs.html",
+        require: "^form",
         scope:
         {
             id: '@',
@@ -61,13 +62,13 @@ bsElements.directive('bseInput', function () {
                     scope.isRequired = typeof iAttrs.notRequired === 'undefined';
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
-                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
+                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;                    
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
-                    // todo as needed
+
+
                 }
             };
-
         }
     };
 });
