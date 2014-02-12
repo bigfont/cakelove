@@ -40,22 +40,16 @@ bsElements.directive('bseInput', function () {
             tElement.removeAttr("id");
             tElement.removeAttr("type");
 
-            if (typeof tAttrs.integer !== "undefined") {
-                var inputs = tElement.find('input');
-                var jInput;
-
-                jInput = angular.element(inputs[0]);
-                jInput.attr('integer', 'integer');
-
-                //jInput = angular.element(inputs[1]);
-                //jInput.attr('integer', 'integer');
-
-                //jInput = angular.element(inputs[2]);
-                //jInput.attr('integer', 'integer');
-
-                //jInput = angular.element(inputs[3]);
-                //jInput.attr('integer', 'integer');
+            var inputs = tElement.find('input');
+            var jInput;
+            for (var i = 0; i < inputs.length; i++) {
+                if (typeof tAttrs.integer !== "undefined") {
+                    jInput = angular.element(inputs[i]);
+                    jInput.attr('integer', 'integer');
+                }
             }
+
+
 
 
             return {
