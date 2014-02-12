@@ -9,7 +9,6 @@ using Newtonsoft.Json.Linq;
 
 namespace cakelove.Models
 {
-
     public class AddressViewModel
     {
         [JsonProperty("id")]

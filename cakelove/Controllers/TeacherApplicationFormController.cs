@@ -70,10 +70,10 @@ namespace cakelove.Controllers
                 var dbContext = new MyDbContext();
 
                 dbContext.ContactInfo.Attach(model);
-                dbContext.Entry(model).State = EntityState.Modified;
+                dbContext.Entry(model).State = GetBindingModelState(model);
 
                 dbContext.Address.Attach(model.Address);
-                dbContext.Entry(model.Address).State = EntityState.Modified;
+                dbContext.Entry(model.Address).State = GetBindingModelState(model);
 
                 var result = await dbContext.SaveChangesAsync();
             }
@@ -90,6 +90,56 @@ namespace cakelove.Controllers
             }
 
             return Ok();
+        }
+
+        [System.Web.Http.Route("TeachingExperience")]
+        public TeachingExperienceViewModel GetTeachingExperience()
+        {
+            var db = new MyDbContext();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId);
+            var viewModel = Mapper.Map<TeachingExperienceBindingModel, TeachingExperienceViewModel>(bindingModel);
+
+            return viewModel;
+        }
+
+        [System.Web.Http.Route("TeachingExperience")]
+        public async Task<IHttpActionResult> TeachingExperience(TeachingExperienceBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var dbContext = new MyDbContext();
+
+                dbContext.TeachingExperience.Attach(model);
+                dbContext.Entry(model).State = GetBindingModelState(model);
+
+
+                var result = await dbContext.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    var m = error.Entry;
+                }
+            }
+            catch (Exception e)
+            {
+                var message = e.Message;
+            }
+
+            return Ok();
+        }
+
+        // todo Put this method into the IBindingModel or similar spot... model.SetState().
+        private EntityState GetBindingModelState(IBindingModel model)
+        {
+            return model.Id == default(int) ? EntityState.Added : EntityState.Modified;
         }
     }
 }

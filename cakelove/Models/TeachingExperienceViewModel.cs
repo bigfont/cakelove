@@ -11,6 +11,9 @@ namespace cakelove.Models
 
     public class TeachingExperienceViewModel
     {
+        public int Id { get; set; }
+
+        public bool HasTaught { get; set; }
 
         [JsonProperty("yearsDecorating")]
         public string YearsDecorating { get; set; }

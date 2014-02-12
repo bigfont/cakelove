@@ -3,25 +3,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace cakelove.Models
 {
 
-    public class TeachingExperienceBindingModel
+    [Table("TeachingExperience")]
+    public class TeachingExperienceBindingModel : HasAnIdentityUserFk, IBindingModel
     {
+        public int Id { get; set; }
 
-        [JsonProperty("yearsDecorating")]
+        public bool HasTaught { get; set; }
+
         public string YearsDecorating { get; set; }
 
-        [JsonProperty("yearsTeaching")]
         public string YearsTeaching { get; set; }
 
-        [JsonProperty("pastConferences")]
         public string PastConferences { get; set; }
 
-        [JsonProperty("aveNumStudentsPerClass")]
         public string AveNumStudentsPerClass { get; set; }
     }
 

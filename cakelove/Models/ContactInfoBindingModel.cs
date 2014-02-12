@@ -5,18 +5,8 @@ using Newtonsoft.Json;
 
 namespace cakelove.Models
 {
-    public class HasAnIdentityUserFk
-    {
-        [Required]
-        [ForeignKey("IdentityUser")]
-        [Column("IdentityUser_Id")]
-        public string IdentityUserId { get; set; }
-
-        public virtual IdentityUser IdentityUser { get; set; }
-    }
-
     [Table("Address")]
-    public class AddressBindingModel
+    public class AddressBindingModel : IBindingModel
     {
         public int Id { get; set; }
 
@@ -37,7 +27,7 @@ namespace cakelove.Models
     }
 
     [Table("ContactInfo")]
-    public class ContactInfoBindingModel : HasAnIdentityUserFk
+    public class ContactInfoBindingModel : HasAnIdentityUserFk, IBindingModel
     {
         public ContactInfoBindingModel()
         {

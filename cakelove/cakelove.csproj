@@ -196,11 +196,21 @@
     <Compile Include="Migrations\201402070424130_identityUserRelationshipsNotNull.Designer.cs">
       <DependentUpon>201402070424130_identityUserRelationshipsNotNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402120707102_teachingExp.cs" />
+    <Compile Include="Migrations\201402120707102_teachingExp.Designer.cs">
+      <DependentUpon>201402120707102_teachingExp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402120744491_hasTaught.cs" />
+    <Compile Include="Migrations\201402120744491_hasTaught.Designer.cs">
+      <DependentUpon>201402120744491_hasTaught.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactInfoBindingModel.cs" />
     <Compile Include="Models\ContactInfoViewModel.cs" />
+    <Compile Include="Models\HasAnIdentityUserFk.cs" />
+    <Compile Include="Models\IBindingModel.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\TeachingExperienceBindingModel.cs" />
     <Compile Include="Models\TeachingExperienceViewModel.cs" />
@@ -540,6 +550,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402070424130_identityUserRelationshipsNotNull.resx">
       <DependentUpon>201402070424130_identityUserRelationshipsNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402120707102_teachingExp.resx">
+      <DependentUpon>201402120707102_teachingExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402120744491_hasTaught.resx">
+      <DependentUpon>201402120744491_hasTaught.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
