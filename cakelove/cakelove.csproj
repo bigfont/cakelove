@@ -208,9 +208,14 @@
     <Compile Include="Migrations\201402120907125_contactInfoNotReq.Designer.cs">
       <DependentUpon>201402120907125_contactInfoNotReq.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402122025422_classInfo.cs" />
+    <Compile Include="Migrations\201402122025422_classInfo.Designer.cs">
+      <DependentUpon>201402122025422_classInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClassInfoBindingModel.cs" />
     <Compile Include="Models\ClassInfoViewModel.cs" />
     <Compile Include="Models\ContactInfoBindingModel.cs" />
     <Compile Include="Models\ContactInfoViewModel.cs" />
@@ -558,6 +563,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402120907125_contactInfoNotReq.resx">
       <DependentUpon>201402120907125_contactInfoNotReq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402122025422_classInfo.resx">
+      <DependentUpon>201402122025422_classInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

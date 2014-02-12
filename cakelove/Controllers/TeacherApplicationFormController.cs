@@ -119,6 +119,13 @@ namespace cakelove.Controllers
             return Ok();
         }
 
+        public ClassInfoViewModel GetClassInfo()
+        { 
+            var bindingModel = null ?? new ClassInfoBindingModel();
+            var viewModel = Mapper.Map<ClassInfoBindingModel, ClassInfoViewModel>(bindingModel);
+            return viewModel;
+        }
+
         // todo Put this method into the IBindingModel or similar spot... model.SetState().
         private EntityState GetBindingModelState(IBindingModel model)
         {

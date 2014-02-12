@@ -8,5 +8,6 @@ namespace cakelove.Models
         public DbSet<ContactInfoBindingModel> ContactInfo { get; set; }
         public DbSet<AddressBindingModel> Address { get; set; }
         public DbSet<TeachingExperienceBindingModel> TeachingExperience { get; set; }
+        public DbSet<ClassInfoBindingModel> ClassInfo { get; set; }
     }
 }
