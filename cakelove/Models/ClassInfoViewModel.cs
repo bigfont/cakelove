@@ -11,6 +11,8 @@ namespace cakelove.Models
 
     public class ClassInfoViewModel
     {
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty("className")]
         public string ClassName { get; set; }

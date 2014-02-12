@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace cakelove.Models
 {
     [Table("ClassInfo")]
-    public class ClassInfoBindingModel : IBindingModel
+    public class ClassInfoBindingModel : HasAnIdentityUserFk, IBindingModel
     {
         public int Id { get; set; }
         public string ClassName { get; set; }
