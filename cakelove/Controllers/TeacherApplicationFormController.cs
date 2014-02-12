@@ -49,17 +49,11 @@ namespace cakelove.Controllers
         [System.Web.Http.Route("ContactInfo")]
         public ContactInfoViewModel GetContactInfo()
         {
-            var dbContext = new MyDbContext();
-
+            var db = new MyDbContext();
             var userId = HttpContext.Current.User.Identity.GetUserId();
-
-            var bindingModel = dbContext.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
-
-            Mapper.CreateMap<ContactInfoBindingModel, ContactInfoViewModel>();
-            Mapper.CreateMap<AddressBindingModel, AddressViewModel>();
+            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
             var viewModel = Mapper.Map<ContactInfoBindingModel, ContactInfoViewModel>(bindingModel);
 
-            //var viewModel = new ContactInfoViewModel(bindingModel);
             return viewModel;
         }
 
