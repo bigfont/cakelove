@@ -105,3 +105,19 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
     return userSvc;
 
 }]);
+
+cakeLoveFactories.factory('formSvc', ['$http', function ($http) {
+
+    var formSvc = {};
+
+    formSvc.update = function($scope, formModel, outerForm, url) {
+
+        outerForm.submitted = true;
+        $scope.masterModel = angular.copy(formModel);
+        $http({ method: "POST", url: url, data: formModel }); // todo success, error, then
+
+    };
+
+    return formSvc;
+
+}]);

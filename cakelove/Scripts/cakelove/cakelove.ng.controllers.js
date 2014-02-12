@@ -166,8 +166,8 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
     }]);
 
 cakeLoveControllers.controller('ContactInfoCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
+function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
         $scope.formName = 'Contact Info';
 
@@ -191,31 +191,11 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
                 miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             }
-        );
+        );        
 
         // update master from the user input model
-
         $scope.update = function (formModel, outerForm) {
-
-            outerForm.submitted = true;            
-
-            $scope.masterModel = angular.copy(formModel);
-
-            $http({ method: "POST", url: url, data: formModel }).
-                success().
-                error(function (data, status, headers, config) {
-                    miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
-                }).
-                then(function (data, status, headers, config) {
-                    miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
-                });
-
-            if ($scope.outerForm.$valid) {
-
-                // do something more if valid
-
-            }
-
+            formSvc.update($scope, formModel, outerForm, url);
         };
 
         // reset the user input model
@@ -227,23 +207,32 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
 ]);
 
 cakeLoveControllers.controller('TeachingExperienceCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
         $scope.formName = 'Teaching Experience';
 
-        $scope.clientModel = {};
         $scope.masterModel = {};
 
-        var jsonModel = {
-            HowLongHaveYouBeenDecoratingCakes: '',
-            HowLongHaveYouBeenTeaching: '',
-            HaveYouEverTaughtAtACakeDecoratingConferenceBefore: '',
-            IfYesWhichOne: '',
-            OnAverageHowManyPeopleDoYouTeachAtOnce: ''
+        // get
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/teachingExperience');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
+
+                $scope.masterModel = data;
+                $scope.reset();
+
+            });
+
+        // update master from the user input model
+        $scope.update = function (formModel, outerForm) {
+            formSvc.update($scope, formModel, outerForm, url);
         };
 
-        $scope.masterModel.experience = {};
+        // reset the user input model
+        $scope.reset = function () {
+            $scope.contactInfo = angular.copy($scope.masterModel);
+        };
 
     }
 ]);

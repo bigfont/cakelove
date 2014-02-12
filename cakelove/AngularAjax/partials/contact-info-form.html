@@ -3,7 +3,7 @@
 <form novalidate name="outerForm">
     
     <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.id" outer-form="outerForm"></div>
-    <div bse-input id="name" type="text" lbl-text="Name" the-model="contactInfo.name" outer-form="outerForm"></div>
+    <div bse-input id="name" lbl-text="Name" outer-form="outerForm" the-model="contactInfo.name" type="text"></div>
     <fieldset>
         <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.address.id" outer-form="outerForm"></div>
         <div bse-input id="street" type="text" lbl-text="Street" the-model="contactInfo.address.street" outer-form="outerForm"></div>        
