@@ -6,15 +6,17 @@
 bsElements.directive('bseInput', function() {
     return {
 
-        templateUrl: "/Scripts/templates/bse-input.html",
+        templateUrl: "/Scripts/bse/bse-inputs.html",
         scope:
         {
             id: '@',
             lblText: '@',
             placeholder: '@',
-            theType: '@',
+            type: '@',
             width: '@',
-            name:'@'
+            name: '@',
+            theModel: '=',
+            theOuterForm: '='
         },
         compile: function (el) {
             el.removeAttr("id");

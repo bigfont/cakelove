@@ -9,7 +9,8 @@ var myApp = angular.module('cakeLoveApp', [
     'cakeLoveControllers', //controllers module    
     'cakeLoveFilters',
     'cakeLoveDirectives',
-    'cakeLoveFactories'
+    'cakeLoveFactories',
+    'bsElements'
 ]);
 
 

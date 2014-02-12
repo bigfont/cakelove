@@ -222,6 +222,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular\angular-sanitize.js" />
+    <Content Include="Scripts\bse\bse.js" />
+    <Content Include="Scripts\bse\bse-inputs.html" />
     <Content Include="Scripts\cakelove\cakelove.ng.controllers.js" />
     <Content Include="Scripts\cakelove\cakelove.ng.directives.js" />
     <Content Include="Scripts\cakelove\misc-functions.js" />

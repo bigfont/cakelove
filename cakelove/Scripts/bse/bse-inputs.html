@@ -1,0 +1,33 @@
+﻿<div class="form-group">
+
+    <ng-form name="innerForm">
+
+        <div ng-class="width">
+            <!--shared label-->
+            <label ng-show="['email', 'password', 'text', 'file' ].indexOf(type) >= 0" for="{{ id }}">
+                {{ lblText }}
+            </label>
+            <!--email, password-->
+            <input ng-show="['email', 'password', 'text' ].indexOf(type) >= 0" type="{{ type }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}" name="innerFormInput" ng-model="theModel" ng-required="{{ notRequired == null }}">
+            <!--file-->
+            <input ng-show="'file' == type" type="file" id="{{ id }}">
+            <!--checkbox, radio-->
+            <div ng-show="['radio', 'checkbox' ].indexOf(type) >= 0" class="{{ type }}">
+                <label>
+                    <input type="{{ type }}" value="" name="{{ name }}">
+                    {{ lblText }}
+                </label>
+            </div>
+        </div>
+
+    </ng-form>
+    
+    <!--Validation and Help-->
+    <span class="help-block">{{ helpBlock }}</span>
+    <div ng-show="(innerForm.$dirty || theOuterForm.submitted) && innerForm.$invalid">
+        Invalid:
+        <span ng-show="innerForm.innerFormInput.$error.required">Tell us your {{ lblText.toLowerCase() }}.</span>
+        <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>
+    </div>
+
+</div>
