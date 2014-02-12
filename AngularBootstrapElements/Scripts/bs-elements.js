@@ -12,27 +12,13 @@ bsElements.directive('bseInput', function() {
             id: '@',
             lblText: '@',
             placeholder: '@',
-            type:'@'
+            theType: '@',
+            width: '@',
+            name:'@'
         },
         compile: function (el) {
             el.removeAttr("id");
             el.removeAttr("type");
-        }
-
-    };
-});
-
-bsElements.directive('bseFileupload', function () {
-    return {
-
-        templateUrl: "/Scripts/templates/bse-fileupload.html",
-        scope:
-        {
-            id: '@',
-            lblText: '@'
-        },
-        compile: function (el) {
-            el.removeAttr("id");            
         }
 
     };

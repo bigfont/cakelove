@@ -1,4 +1,19 @@
 ﻿<div class="form-group">
-    <label for="{{ id }}">{{ lblText }}</label>
-    <input type="{{ type }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}">
+    <div ng-class="width">
+        <!--shared label-->
+        <label ng-show="['email', 'password', 'file' ].indexOf(theType) >= 0" for="{{ id }}">
+            {{ lblText }}
+        </label>
+        <!--email, password-->
+        <input ng-show="['email', 'password' ].indexOf(theType) >= 0" type="{{ theType }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}">
+        <!--file-->
+        <input ng-show="'file' == theType" type="file" id="{{ id }}">
+        <!--checkbox, radio-->
+        <div ng-show="['radio', 'checkbox' ].indexOf(theType) >= 0" class="{{ theType }}">
+            <label>
+                <input type="{{ theType }}" value="" name="{{ name }}">
+                {{ lblText }}
+            </label>
+        </div>
+    </div>
 </div>
