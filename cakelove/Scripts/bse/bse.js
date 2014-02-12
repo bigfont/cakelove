@@ -52,10 +52,6 @@ bsElements.directive('bseInput', function () {
                     jqLiteInput.attr('smart-float', 'smart-float');
                 }
             }
-
-
-
-
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
@@ -66,15 +62,9 @@ bsElements.directive('bseInput', function () {
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
-
-
-
-
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
-
-
-
+                    // todo as needed
                 }
             };
 

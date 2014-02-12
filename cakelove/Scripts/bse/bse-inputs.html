@@ -1,16 +1,16 @@
-﻿<div class="form-group">
+﻿<div class="form-group" ng-class="{'has-error':true}">
 
     <ng-form name="innerForm">
         <div ng-class="width">
 
             <!--shared label-->
-            <label ng-show="isString || isTextarea || isFile" for="{{ id }}">
+            <label class="control-label" ng-show="isString || isTextarea || isFile" for="{{ id }}">
                 {{ lblText }}
             </label>
 
             <!--email, password, text, url-->
             <div ng-show="isString">
-            
+
                 <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}">
 
                 <!--with input group-->
@@ -40,7 +40,7 @@
 
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">        
+    <div ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
         <div ng-show="isTextarea">
             <span ng-show="innerForm.innerTextarea.$error.required">This input is required.</span>
         </div>
