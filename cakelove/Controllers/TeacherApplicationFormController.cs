@@ -9,6 +9,7 @@ using AutoMapper;
 using cakelove.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace cakelove.Controllers
 {
@@ -119,12 +120,19 @@ namespace cakelove.Controllers
             return Ok();
         }
 
-        public ClassInfoViewModel GetClassInfo()
-        { 
+        public IEnumerable<ClassInfoViewModel> GetClassInfo()
+        {
             var db = new MyDbContext();
             var userId = GetCurrentUserId();
-            var bindingModel = db.ClassInfo.Where(ci => ci.IdentityUserId == userId).FirstOrDefault() ?? new ClassInfoBindingModel();
-            var viewModel = Mapper.Map<ClassInfoBindingModel, ClassInfoViewModel>(bindingModel);
+
+            var bindingModel = db.ClassInfo.Where(ci => ci.IdentityUserId == userId).ToList();
+
+            if(bindingModel.Count == 0)
+            { 
+                bindingModel.Add(new ClassInfoBindingModel());
+            }
+
+            var viewModel = Mapper.Map<List<ClassInfoBindingModel>, List<ClassInfoViewModel>>(bindingModel);
             return viewModel;
         }
 

@@ -156,11 +156,6 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
 
         siteMapSvc.currentPage = "Application";
 
-        $scope.tabs = [
-            { title: "Dynamic Title 1", content: "Dynamic content 1" },
-            { title: "Dynamic Title 2", content: "Dynamic content 2", disabled: true }
-        ];
-
         $scope.navType = 'pills';
 
     }]);
@@ -277,7 +272,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.masterModel = {};
 
         // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
