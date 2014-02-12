@@ -34,7 +34,8 @@ namespace cakelove.Controllers
         public ContactInfoViewModel GetContactInfo()
         {
             var db = new MyDbContext();
-            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == GetCurrentUserId()) ?? new ContactInfoBindingModel();
+            var userId = GetCurrentUserId();
+            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new ContactInfoBindingModel();
             var viewModel = Mapper.Map<ContactInfoBindingModel, ContactInfoViewModel>(bindingModel);
             return viewModel;
         }
@@ -78,7 +79,8 @@ namespace cakelove.Controllers
         public TeachingExperienceViewModel GetTeachingExperience()
         {
             var db = new MyDbContext();
-            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == GetCurrentUserId()) ?? new TeachingExperienceBindingModel();
+            var userId = GetCurrentUserId();
+            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new TeachingExperienceBindingModel();
             var viewModel = Mapper.Map<TeachingExperienceBindingModel, TeachingExperienceViewModel>(bindingModel);
 
             return viewModel;
@@ -120,7 +122,8 @@ namespace cakelove.Controllers
         public ClassInfoViewModel GetClassInfo()
         { 
             var db = new MyDbContext();
-            var bindingModel = db.ClassInfo.Where(ci => ci.IdentityUserId == GetCurrentUserId()).FirstOrDefault() ?? new ClassInfoBindingModel();
+            var userId = GetCurrentUserId();
+            var bindingModel = db.ClassInfo.Where(ci => ci.IdentityUserId == userId).FirstOrDefault() ?? new ClassInfoBindingModel();
             var viewModel = Mapper.Map<ClassInfoBindingModel, ClassInfoViewModel>(bindingModel);
             return viewModel;
         }
