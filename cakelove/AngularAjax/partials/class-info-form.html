@@ -3,7 +3,7 @@
 <div>
     <div class="row">
         <!--todo style this nicely-->
-        <div class="col-lg-6">
+        <div class="col-lg-8">
 
             <div tabset class="class-info-tabs">
                 <!--heading="{{ classInfo.className == null ? 'New Class' : classInfo.className }}"-->
@@ -126,10 +126,10 @@
             </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-4">
 
             <ul class="nav nav-pills nav-stacked">
-                <li ng-click="create()"><a>Add New Class</a></li>
+                <li ng-click="create()"><a>Add New Class <span class="glyphicon glyphicon-plus"></span></a></li>
                 <li ng-class="{active:classInfo.active }" ng-repeat="classInfo in classes" ng-click="classInfo.active = true"><a>{{ classInfo.className }}</a></li>
             </ul>
 

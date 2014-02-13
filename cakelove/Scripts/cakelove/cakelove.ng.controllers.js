@@ -290,7 +290,9 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.create = function () {
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
             newClassInfo.active = true;
+            // set defaults
             newClassInfo.className = "New Class";
+            newClassInfo.id = 0;            
             $scope.classes.push(newClassInfo);
         }
 

@@ -43,7 +43,7 @@ div.class-info-tabs > div.tab-content > div.tab-pane {
 
 div.class-info-tabs > ul.nav.nav-tabs {
 
-    display:none;
-    visibility:hidden;
+    display:none !important;
+    visibility:hidden !important;
 
 }
