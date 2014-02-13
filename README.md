@@ -14,6 +14,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - add a "save all" button for the classes
 - [add a "save all" button for the entire form]
 - [complement "save all" with auto-save every 30 seconds or so]
+- notify the user on save (e.g. like Google Docs / tick beside tab)
 - inform the user which classes he/she has saved (e.g. "saved" beside class name in navigation)
 - validate only the type not the requirements for save
 - validate both the type and the requirements for submit
