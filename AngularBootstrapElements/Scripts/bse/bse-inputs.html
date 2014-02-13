@@ -8,7 +8,7 @@
                 {{ lblText }}
             </label>
             <!--email, password-->
-            <input ng-show="['email', 'password', 'text' ].indexOf(type) >= 0" type="{{ type }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}" name="innerFormInput" ng-model="theModel" ng-required="{{ notRequired == null }}">
+            <input ng-show="['email', 'password', 'text' ].indexOf(type) >= 0" type="{{ type }}" class="form-control" id="{{ id }}" placeholder="{{ placeholder }}" name="innerFormInput" ng-model="theModel">
             <!--file-->
             <input ng-show="'file' == type" type="file" id="{{ id }}">
             <!--checkbox, radio-->
