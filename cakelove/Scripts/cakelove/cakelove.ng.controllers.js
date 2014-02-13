@@ -264,8 +264,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
 ]);
 
 cakeLoveControllers.controller('ClassesCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc, objSvc) {
 
         $scope.formName = 'Classes';
 
@@ -280,6 +280,12 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 $scope.reset();
 
             });
+
+        // add a new classinfo
+        $scope.create = function () {
+            var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
+            $scope.classes.push(newClassInfo);
+        }
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {

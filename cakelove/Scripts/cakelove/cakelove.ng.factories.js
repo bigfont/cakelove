@@ -121,3 +121,24 @@ cakeLoveFactories.factory('formSvc', ['$http', function ($http) {
     return formSvc;
 
 }]);
+
+cakeLoveFactories.factory('objSvc', [function () {
+
+    var objSvc = {};
+
+    objSvc.copyWithoutValues = function(obj) {
+        var newObj = angular.copy(obj);
+        for (prop in newObj) {
+            if (newObj.hasOwnProperty(prop)) {
+                newObj[prop] = null;
+            }
+        };
+        return newObj;
+    }
+
+    return objSvc;
+
+}]);
+
+
+
