@@ -10,6 +10,10 @@ using cakelove.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.Web.Http.Results;
+using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
+using System.Text;
 
 namespace cakelove.Controllers
 {
@@ -44,36 +48,36 @@ namespace cakelove.Controllers
         [System.Web.Http.Route("ContactInfo")]
         public async Task<IHttpActionResult> ContactInfo(ContactInfoBindingModel model)
         {
+            IHttpActionResult httpActionResult = Ok();
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                httpActionResult = BadRequest(ModelState);
             }
-
-            try
+            else
             {
-                var dbContext = new MyDbContext();
-
-                dbContext.ContactInfo.Attach(model);
-                dbContext.Entry(model).State = GetBindingModelState(model);
-
-                dbContext.Address.Attach(model.Address);
-                dbContext.Entry(model.Address).State = GetBindingModelState(model);
-
-                var result = await dbContext.SaveChangesAsync();
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var error in e.EntityValidationErrors)
+                try
                 {
-                    var m = error.Entry;
+                    var dbContext = new MyDbContext();
+
+                    dbContext.Database.Log = s => Debug.WriteLine(s);
+
+                    //contactinfo
+                    dbContext.ContactInfo.Attach(model);
+                    dbContext.Entry(model).State = GetBindingModelState(model);
+                    //address
+                    dbContext.Address.Attach(model.Address);
+                    dbContext.Entry(model.Address).State = GetBindingModelState(model);
+                    //save
+                    var result = await dbContext.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    CreateHttpActionResultFromException(e);
                 }
             }
-            catch (Exception e)
-            {
-                var message = e.Message;
-            }
 
-            return Ok();
+            return httpActionResult;
         }
 
         [System.Web.Http.Route("TeachingExperience")]
@@ -128,8 +132,8 @@ namespace cakelove.Controllers
 
             var bindingModel = db.ClassInfo.Where(ci => ci.IdentityUserId == userId).ToList();
 
-            if(bindingModel.Count == 0)
-            { 
+            if (bindingModel.Count == 0)
+            {
                 bindingModel.Add(new ClassInfoBindingModel());
             }
 
@@ -178,6 +182,33 @@ namespace cakelove.Controllers
         private string GetCurrentUserId()
         {
             return HttpContext.Current.User.Identity.GetUserId();
+        }
+
+        // todo improve this error handling
+        private IHttpActionResult CreateHttpActionResultFromException(Exception exception)
+        {
+            Type exceptionType = exception.GetType();
+            StringBuilder message = new StringBuilder();
+            if (exceptionType == typeof(DbEntityValidationException))
+            {
+                DbEntityValidationException e = exception as DbEntityValidationException;
+                foreach (var error in e.EntityValidationErrors)
+                {
+                    message.AppendLine("DbEntityValidationException");
+                }
+            }
+            else if (exceptionType == typeof(DbUpdateException))
+            {
+                DbEntityValidationException e = exception as DbEntityValidationException;
+                message.AppendLine("DbUpdateException");
+            }
+            else
+            {
+                message.AppendLine("OtherException");
+            }
+
+            BadRequestErrorMessageResult httpActionResult = new BadRequestErrorMessageResult(message.ToString(), this);
+            return httpActionResult;
         }
     }
 }

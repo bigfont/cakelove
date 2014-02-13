@@ -10,19 +10,14 @@ namespace cakelove.Models
     {
         public int Id { get; set; }
 
-        [JsonProperty("street")]
         public string Street { get; set; }
 
-        [JsonProperty("city")]
         public string City { get; set; }
 
-        [JsonProperty("province")]
         public string Province { get; set; }
 
-        [JsonProperty("postalCode")]
         public string PostalCode { get; set; }
 
-        [JsonProperty("country")]
         public string Country { get; set; }
     }
 
@@ -36,30 +31,22 @@ namespace cakelove.Models
 
         public int Id { get; set; }
 
-        [Required]
-        [JsonProperty("name")]
         public string Name { get; set; }
 
-        [Required]
-        [JsonProperty("address")]
-        public AddressBindingModel Address { get; set; }
+        [ForeignKey("Address")]
+        [Column("Address_Id")]
+        public int AddressId { get; set; }
 
-        [Required]
-        [JsonProperty("phoneDay")]
+        public virtual AddressBindingModel Address { get; set; }
+
         public string PhoneDay { get; set; }
 
-        [Required]
-        [JsonProperty("phoneCell")]
         public string PhoneCell { get; set; }
 
-        [JsonProperty("businessName")]
         public string BusinessName { get; set; }
 
-        [Required]
-        [JsonProperty("email")]
         public string Email { get; set; }
 
-        [JsonProperty("website")]
         public string Website { get; set; }
     }
 }

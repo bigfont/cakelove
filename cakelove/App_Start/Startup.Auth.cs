@@ -15,7 +15,7 @@ namespace cakelove
         static Startup()
         {
             PublicClientId = "self";
-
+            
             UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>());
 
             RoleManagerFactory = () => new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());

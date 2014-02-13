@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cakelove", "cakelove\cakelo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularBootstrapElements", "AngularBootstrapElements\AngularBootstrapElements.csproj", "{DCF8FEA7-2711-4846-BD82-51266F668320}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cakeloveTests", "cakeloveTests\cakeloveTests.csproj", "{E73A75AF-3CE3-4C0A-A45B-DA1081B5FCDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DCF8FEA7-2711-4846-BD82-51266F668320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF8FEA7-2711-4846-BD82-51266F668320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCF8FEA7-2711-4846-BD82-51266F668320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73A75AF-3CE3-4C0A-A45B-DA1081B5FCDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73A75AF-3CE3-4C0A-A45B-DA1081B5FCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73A75AF-3CE3-4C0A-A45B-DA1081B5FCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73A75AF-3CE3-4C0A-A45B-DA1081B5FCDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

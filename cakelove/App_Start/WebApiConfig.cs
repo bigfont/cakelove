@@ -26,13 +26,12 @@ namespace cakelove
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //config.ParameterBindingRules.Insert(0, (desc => new Binders.HasAnIdentityUserFkModelBinder(desc, Startup.UserManagerFactory())));
-
             config.ParameterBindingRules.Insert(0, (desc =>
             {
-                if (desc.ParameterType.BaseType != null && desc.ParameterType.BaseType == typeof(HasAnIdentityUserFk))
+                if (desc.ParameterType.BaseType != null 
+                    && desc.ParameterType.BaseType == typeof(HasAnIdentityUserFk))
                 {
-                    return new Binders.HasAnIdentityUserFkModelBinder(desc, Startup.UserManagerFactory());
+                    return new Binders.SetModelUserId(desc, Startup.UserManagerFactory());
                 }
                 else
                 {
