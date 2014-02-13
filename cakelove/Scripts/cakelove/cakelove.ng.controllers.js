@@ -164,41 +164,41 @@ cakeLoveControllers.controller('ContactInfoCtrl', [
     '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
 function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
-        $scope.formName = 'Contact Info';
+    $scope.formName = 'Contact Info';
 
-        // create a master model
-        $scope.masterModel = {};
+    // create a master model
+    $scope.masterModel = {};
 
-        // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
-        $http({ method: 'GET', url: url }).
-            success(function (data, status, headers, config) {
+    // get
+    var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
+    $http({ method: 'GET', url: url }).
+        success(function (data, status, headers, config) {
 
-                $scope.masterModel = data;
-                $scope.reset();
+            $scope.masterModel = data;
+            $scope.reset();
 
-            }).
-            error(function (data, status, headers, config) {
+        }).
+        error(function (data, status, headers, config) {
 
 
-            }).
-            then(function (data, status, headers, config) {
-                miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
+        }).
+        then(function (data, status, headers, config) {
+            miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
-            }
-        );        
+        }
+    );
 
-        // update master from the user input model
-        $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url);
-        };
+    // update master from the user input model
+    $scope.update = function (formModel, outerForm) {
+        formSvc.update($scope, formModel, outerForm, url);
+    };
 
-        // reset the user input model
-        $scope.reset = function () {
-            $scope.contactInfo = angular.copy($scope.masterModel);
-        };
+    // reset the user input model
+    $scope.reset = function () {
+        $scope.contactInfo = angular.copy($scope.masterModel);
+    };
 
-    }
+}
 ]);
 
 cakeLoveControllers.controller('TeachingExperienceCtrl', [
@@ -281,9 +281,16 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
             });
 
+        $scope.doSelect = function (index) {
+            $scope.selectedIndex = index;
+            $window.alert(index);
+        }
+
         // add a new classinfo
         $scope.create = function () {
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
+            newClassInfo.active = true;
+            newClassInfo.className = "New Class";
             $scope.classes.push(newClassInfo);
         }
 
@@ -295,6 +302,8 @@ cakeLoveControllers.controller('ClassesCtrl', [
         // reset the user input model
         $scope.reset = function () {
             $scope.classes = angular.copy($scope.masterModel);
+            $scope.classes[0].active = true;
+
         };
     }
 ]);
