@@ -34,3 +34,16 @@ a:hover
 {
     cursor:pointer;    
 }
+
+div.class-info-tabs > div.tab-content > div.tab-pane {
+
+    border:none;
+
+}
+
+div.class-info-tabs > ul.nav.nav-tabs {
+
+    display:none;
+    visibility:hidden;
+
+}
