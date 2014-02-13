@@ -24,11 +24,6 @@ namespace cakelove.Models
     [Table("ContactInfo")]
     public class ContactInfoBindingModel : HasAnIdentityUserFk, IBindingModel
     {
-        public ContactInfoBindingModel()
-        {
-            Address = new AddressBindingModel();
-        }
-
         public int Id { get; set; }
 
         public string Name { get; set; }

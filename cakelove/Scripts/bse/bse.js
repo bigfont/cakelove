@@ -59,7 +59,7 @@ bsElements.directive('bseInput', function () {
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
                     scope.isTextarea = 'textarea' == iAttrs.type;
-                    scope.isRequired = typeof iAttrs.notRequired === 'undefined';
+                    ////scope.isRequired = typeof iAttrs.notRequired === 'undefined'; todo Remove notRequired attr from view
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;                    

@@ -73,7 +73,7 @@ namespace cakelove.Controllers
                 }
                 catch (Exception e)
                 {
-                    CreateHttpActionResultFromException(e);
+                    httpActionResult = CreateHttpActionResultFromException(e);
                 }
             }
 
@@ -192,6 +192,7 @@ namespace cakelove.Controllers
             if (exceptionType == typeof(DbEntityValidationException))
             {
                 DbEntityValidationException e = exception as DbEntityValidationException;
+                message.AppendLine(e.Message);
                 foreach (var error in e.EntityValidationErrors)
                 {
                     message.AppendLine("DbEntityValidationException");
@@ -200,11 +201,16 @@ namespace cakelove.Controllers
             else if (exceptionType == typeof(DbUpdateException))
             {
                 DbEntityValidationException e = exception as DbEntityValidationException;
-                message.AppendLine("DbUpdateException");
+                message.AppendLine(e.Message);
+            }
+            else if (exceptionType == typeof(DbUpdateConcurrencyException))
+            {
+                DbUpdateConcurrencyException e = exception as DbUpdateConcurrencyException;
+                message.AppendLine(e.Message);
             }
             else
             {
-                message.AppendLine("OtherException");
+                message.AppendLine(exception.Message);
             }
 
             BadRequestErrorMessageResult httpActionResult = new BadRequestErrorMessageResult(message.ToString(), this);
