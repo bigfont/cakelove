@@ -271,12 +271,30 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
         $scope.masterModel = {};
 
+        function setClassInfoDefaults(classInfo)
+        {
+            if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length == 0)
+            {
+                classInfo.className = "New Class";
+            }
+            if (objSvc.isUndefinedOrNull(classInfo.id) || classInfo.id < 0)
+            {
+                classInfo.id = 0;
+            }                        
+        }
+
         // get
         var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
                 $scope.masterModel = data;
+
+                for (var obj in data)
+                {
+                    setClassInfoDefaults(obj);
+                }
+
                 $scope.reset();
 
             });
@@ -290,9 +308,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.create = function () {
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
             newClassInfo.active = true;
-            // set defaults
-            newClassInfo.className = "New Class";
-            newClassInfo.id = 0;            
+            setClassInfoDefaults(newClassInfo);          
             $scope.classes.push(newClassInfo);
         }
 

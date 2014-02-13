@@ -136,6 +136,11 @@ cakeLoveFactories.factory('objSvc', [function () {
         return newObj;
     }
 
+    objSvc.isUndefinedOrNull = function(obj)
+    {
+        return (typeof obj === 'undefined' || obj === null);
+    }
+
     return objSvc;
 
 }]);
