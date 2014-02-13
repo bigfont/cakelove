@@ -20,6 +20,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 - validate both the type and the requirements for submit
 - requirements include specified inputs
 - requirements also include the total class hours summing to 20
+- unrequire the cell phone
 
 # Functional Requirements
 
