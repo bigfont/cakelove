@@ -2,6 +2,26 @@
 
 A portal/page/site that potential instructors can go to in order to apply as an instructor at Cake Love.
 
+# Client Steering, 12 Feb 2014
+
+- must have
+- [nice to have]
+- upload image for biography
+- upload image for class info
+- instruct users to make the images 2.5 inches, 75 dpi, 187 px, 1:1 aspect ratio
+- [validate image dimensions before upload]
+- warn users if they are about to lose data (e.g. closing browser, navigating to diff website, logging off)
+- add a "save all" button for the classes
+- [add a "save all" button for the entire form]
+- [complement "save all" with auto-save every 30 seconds or so]
+- notify the user on save (e.g. like Google Docs / tick beside tab)
+- inform the user which classes he/she has saved (e.g. "saved" beside class name in navigation)
+- validate only the type not the requirements for save
+- validate both the type and the requirements for submit
+- requirements include specified inputs
+- requirements also include the total class hours summing to 20
+- unrequire the cell phone
+
 # Functional Requirements
 
 ## Member Registration
@@ -23,15 +43,15 @@ A portal/page/site that potential instructors can go to in order to apply as an 
     - keyboard input (written information) **Done**
     - image uploads
     - video uploads
-- the form must pass validation before applicants can sent it
+- the form must pass validation before applicants can submit it
     - required inputs (must haves)
     - standard textual validation (e.g. email, phone, website, text length, range, numerical)
     - image file size (i.e. 1 MB unzipped, 10 MB zipped)
     - image resolution
     - image aspect-ratio (i.e. 1:1 for profile pictures)
     - image file type (i.e. JPG, JPEG, PNG)
-- applicants can "save" the form. **Partly**
-- applicants can later login to create, read, update, delete info
+- applicants can "save" the form. **Done.**
+- applicants can later login to create, read, update, delete info. **Done.**
 - applicants can "send" the form
     - this sends a notification email to the admin
     - afterward applicants can only login to read info
