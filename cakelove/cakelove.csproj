@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201402141529143_nullableInt.Designer.cs">
       <DependentUpon>201402141529143_nullableInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402141743416_hasClassImage.cs" />
+    <Compile Include="Migrations\201402141743416_hasClassImage.Designer.cs">
+      <DependentUpon>201402141743416_hasClassImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -623,6 +627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402141529143_nullableInt.resx">
       <DependentUpon>201402141529143_nullableInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402141743416_hasClassImage.resx">
+      <DependentUpon>201402141743416_hasClassImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

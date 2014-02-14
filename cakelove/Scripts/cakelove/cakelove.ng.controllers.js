@@ -269,10 +269,6 @@ cakeLoveControllers.controller('BiographyCtrl', [
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
             formSvc.update($scope, formModel, outerForm, jsonUrl);
-
-            var item = $scope.uploader.queue[0];
-            item.upload();
-
         };
 
         // reset the user input model
@@ -285,6 +281,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
             $scope.bio.hasBioImage = true;
+            item.upload();
+
         });
 
     }
@@ -372,12 +370,10 @@ cakeLoveControllers.controller('ClassesCtrl', [
             uploader.bind('afteraddingfile', function (event, item) {
 
                 var activeClass = ActiveClass();
-                activeClass.hasClassImage = true;
                 item.removeAfterUpload = true;
                 item.formData = [{ imageId: activeClass.id }];
                 item.upload();
-
-                //$scope.classes[$scope.ActiveClassTabIndex()].hasClassImage = true;
+                activeClass.hasClassImage = true;
             });
         }
     }

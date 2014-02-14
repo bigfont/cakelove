@@ -50,6 +50,9 @@ namespace cakelove.Models
         public string WillNeedThisSpecialEquip { get; set; }
 
         public string VendorTable { get; set; }
+
+        [JsonProperty("hasClassImage")]
+        public string HasClassImage { get; set; }
     }
 
 }

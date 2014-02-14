@@ -282,6 +282,11 @@ namespace cakelove.Controllers
                 {
                     var newFileName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
                     newFileName = Path.Combine(root, newFileName);
+
+                    if (File.Exists(newFileName))
+                    {
+                        File.Delete(newFileName);
+                    }
                     File.Move(file.LocalFileName, newFileName);
                 }
             }

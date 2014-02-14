@@ -1,6 +1,6 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
-
+    {{ imgIdentifier }}
     <label>{{ lblText }}</label><br />
     <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/{{userId}}_{{ imgIdentifier }}.jpg" />
     <div ng-show="!theModel" class="image-upload">
