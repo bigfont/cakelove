@@ -271,16 +271,13 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
         $scope.masterModel = {};
 
-        function setClassInfoDefaults(classInfo)
-        {
-            if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length == 0)
-            {
+        function setClassInfoDefaults(classInfo) {
+            if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length == 0) {
                 classInfo.className = "New Class";
             }
-            if (objSvc.isUndefinedOrNull(classInfo.id) || classInfo.id < 0)
-            {
+            if (objSvc.isUndefinedOrNull(classInfo.id) || classInfo.id < 0) {
                 classInfo.id = 0;
-            }                        
+            }
         }
 
         // get
@@ -290,8 +287,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
                 $scope.masterModel = data;
 
-                for (var obj in data)
-                {
+                for (var obj in data) {
                     setClassInfoDefaults(obj);
                 }
 
@@ -308,7 +304,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.create = function () {
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
             newClassInfo.active = true;
-            setClassInfoDefaults(newClassInfo);          
+            setClassInfoDefaults(newClassInfo);
             $scope.classes.push(newClassInfo);
         }
 
@@ -321,6 +317,20 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.reset = function () {
             $scope.classes = angular.copy($scope.masterModel);
             $scope.classes[0].active = true;
+
+        };
+    }
+]);
+
+cakeLoveControllers.controller('SubmitCtrl', [
+    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
+    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc, objSvc) {
+
+        // reset the user input model
+        $scope.submit = function () {
+
+            $scope.outerForm.submitted = true;
+            $scope.state = "submitted";
 
         };
     }

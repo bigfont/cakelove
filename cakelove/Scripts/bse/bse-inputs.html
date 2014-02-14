@@ -13,7 +13,8 @@
             <!--email, password, text, url-->
             <div ng-show="isString">
 
-                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}">
+                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" 
+                       ng-model="theModel" ng-required="isRequired" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}">
 
                 <!--with input group-->
                 <div class="input-group" ng-show="{{ hasAddOn }}">

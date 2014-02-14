@@ -56,13 +56,13 @@ cakeLoveDirectives.directive('integer', function () {
         require: 'ngModel',
         compile: function (elm, attrs) {
             return {
-                pre: function(scope, elm, attrs, ctrl) {
-                     
+                pre: function (scope, elm, attrs, ctrl) {
+
                 },
                 post: function (scope, elm, attrs, ctrl) {
 
                     function validate(value) {
-                        
+
                         if (INTEGER_REGEXP.test(value)) {
                             // it is valid
                             ctrl.$setValidity('integer', true);
@@ -86,6 +86,26 @@ cakeLoveDirectives.directive('integer', function () {
 
 var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
 cakeLoveDirectives.directive('smartFloat', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            function validate(value) {
+                if (FLOAT_REGEXP.test(viewValue)) {
+                    ctrl.$setValidity('float', true);
+                    return parseFloat(viewValue.replace(',', '.'));
+                } else {
+                    ctrl.$setValidity('float', false);
+                    return undefined;
+                }
+            };
+
+            ctrl.$parsers.unshift(validate);
+            ctrl.$formatters.unshift(validate);
+        }
+    };
+});
+
+cakeLoveDirectives.directive('submitRequired', function () {
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
