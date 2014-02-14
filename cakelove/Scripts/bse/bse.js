@@ -64,6 +64,7 @@ bsElements.directive('bseInput', function () {
                 addAttribute(jqLiteInput, tAttrs, 'smartFloat');
                 addAttribute(jqLiteInput, tAttrs, 'submitRequired');
             }
+
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
@@ -72,7 +73,8 @@ bsElements.directive('bseInput', function () {
                     scope.isTextarea = 'textarea' == iAttrs.type;
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
-                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;                    
+                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
+                    scope.submitRequiredMsg = 'This input is required before you can submit.';
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
 
