@@ -113,15 +113,15 @@ cakeLoveDirectives.directive('submitRequired', function () {
         link: function (scope, elm, attrs, ctrl) {
 
             scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
-                validate();
+                validate(elm.val());
             })
 
-            function validate() {
-                if (!scope.outerForm.userSubmitting) {
-                    ctrl.$setValidity('submit', true);
+            function validate(value) {
+                if (value === null || value.length === 0) {
+                    ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
-                    ctrl.$setValidity('submit', false);
+                    ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 }
             };

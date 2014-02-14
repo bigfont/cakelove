@@ -157,14 +157,10 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
         siteMapSvc.currentPage = "Application";
 
         $scope.navType = 'pills';
-
-
-        // reset the user input model
+        
         $scope.submit = function () {
 
             $scope.outerForm.userSaving = true;
-            $scope.outerForm.userSubmitting = true;
-            $scope.state = "userSubmitting";
             $scope.$broadcast('userSubmitting');
 
         };
