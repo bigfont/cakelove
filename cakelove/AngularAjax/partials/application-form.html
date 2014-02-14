@@ -1,5 +1,9 @@
 ﻿<div ng-controller="ApplicationFormCtrl">
 
+    <div id="user-success-message" ng-show="formSvc.showSavedMessage" class="alert alert-success">
+        <span>Save complete.</span><button type="button" class="close" ng-click="formSvc.showSavedMessage = false" aria-hidden="true">&times;</button>
+    </div>
+
     <ng-form name="outerForm">
         <tabset>
             <!-- NiceToHave Use ng-repeat instead of copy and paste -->
@@ -7,6 +11,7 @@
                 <div contact-info-form-inputs></div>
             </tab>
             <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
+                <!--  -->
                 <div teaching-experience-form-inputs></div>
             </tab>
             <tab ng-controller="BiographyCtrl" heading="{{ formName }}">

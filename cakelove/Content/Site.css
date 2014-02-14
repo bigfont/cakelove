@@ -7,7 +7,6 @@ div.validation-messages {
 }
 
 html {
-    
 }
 
 body {
@@ -24,26 +23,33 @@ article {
 footer {
 }
 
-.tab-pane
-{    
-    border:1px solid rgb(221, 221, 221);
-    border-top-width:0;    
-    padding:20px;
+.tab-pane {
+    border: 1px solid rgb(221, 221, 221);
+    border-top-width: 0;
+    padding: 20px;
 }
-a:hover
-{
-    cursor:pointer;    
+
+a:hover {
+    cursor: pointer;
 }
 
 div.class-info-tabs > div.tab-content > div.tab-pane {
-
-    border:none;
-
+    border: none;
 }
 
 div.class-info-tabs > ul.nav.nav-tabs {
+    display: none !important;
+    visibility: hidden !important;
+}
 
-    display:none !important;
-    visibility:hidden !important;
-
+div#user-success-message {
+    position: fixed;
+    top: 25px;
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 1000;
+    text-align:center;
 }

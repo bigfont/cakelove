@@ -151,29 +151,30 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 
     }]);
 
-cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
+cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc', 'formSvc',
+function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSvc) {
 
-        siteMapSvc.currentPage = "Application";
+    siteMapSvc.currentPage = "Application";
 
-        $scope.navType = 'pills';
-        
-        $scope.submit = function () {
+    $scope.formSvc = formSvc;
 
-            $scope.outerForm.userSubmitting = true;
-            $scope.$broadcast('userSubmitting');
+    $scope.navType = 'pills';
 
-            var requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
-            if (requiredErrorsLength > 0)
-            {
-                $scope.requiredErrorCount = requiredErrorsLength;
-            }
+    $scope.submit = function () {
 
-            var i = 0;
+        $scope.outerForm.userSubmitting = true;
+        $scope.$broadcast('userSubmitting');
 
-        };
+        var requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
+        if (requiredErrorsLength > 0) {
+            $scope.requiredErrorCount = requiredErrorsLength;
+        }
 
-    }]);
+        var i = 0;
+
+    };
+
+}]);
 
 cakeLoveControllers.controller('ContactInfoCtrl', [
     '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
@@ -222,7 +223,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         $scope.formName = 'Teaching Experience';
 
-        $scope.masterModel = {};        
+        $scope.masterModel = {};
 
         // get
         var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/teachingExperience');

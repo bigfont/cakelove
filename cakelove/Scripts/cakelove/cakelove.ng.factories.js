@@ -106,15 +106,22 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
 
 }]);
 
-cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', 'userSvc', function ($http, $fileUploader, userSvc) {
+cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'userSvc', function ($http, $fileUploader, $timeout, userSvc) {
 
     var formSvc = {};
 
+    formSvc.showSavedMessage = false;
+
     formSvc.update = function($scope, formModel, outerForm, url) {
 
-        outerForm.userSaving = true;
         $scope.masterModel = angular.copy(formModel);
-        $http({ method: "POST", url: url, data: formModel }); // todo success, error, then
+        $http({ method: "POST", url: url, data: formModel })
+            .success(function () {
+
+                formSvc.showSavedMessage = true;
+                $timeout(function () { formSvc.showSavedMessage = false; }, [10000]);
+
+            }); // todo error, then
 
     };
 
