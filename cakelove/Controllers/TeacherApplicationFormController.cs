@@ -80,6 +80,13 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        public async Task<IHttpActionResult> BiographyImage([FromBody] string value)
+        {
+            IHttpActionResult httpActionResult = Ok();
+
+            return httpActionResult;
+        }
+
         [System.Web.Http.Route("TeachingExperience")]
         public TeachingExperienceViewModel GetTeachingExperience()
         {

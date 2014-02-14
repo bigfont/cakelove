@@ -9,6 +9,11 @@
 
         <input ng-file-select type="file" />
 
+        <div ng-repeat="item in uploader.queue">
+            <strong>{{ item.file.name }}</strong>
+            <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+        </div>
+
         <button class="btn btn-default" ng-click="update(bio, outerForm)">Save</button>
 
     </div>

@@ -240,8 +240,8 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 ]);
 
 cakeLoveControllers.controller('BiographyCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
+    '$scope', '$http', '$location', '$window', '$fileUploader', 'userSvc', 'urlSvc', 'formSvc',
+    function ($scope, $http, $location, $window, $fileUploader, userSvc, urlSvc, formSvc) {
 
         $scope.formName = 'Biography';
 
@@ -260,6 +260,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
             formSvc.update($scope, formModel, outerForm, url);
+
+            var item = $scope.uploader.queue[0];
+            item.upload();
+
         };
 
         // reset the user input model
@@ -267,6 +271,19 @@ cakeLoveControllers.controller('BiographyCtrl', [
             $scope.experience = angular.copy($scope.masterModel);
         };
 
+        // Creates a uploader
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
+        var uploader = $scope.uploader = $fileUploader.create({
+            scope: $scope,
+            url: url
+        });        
+
+        // Images only filter
+        uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
+            var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
+            type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        });
     }
 ]);
 

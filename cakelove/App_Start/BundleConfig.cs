@@ -13,6 +13,7 @@ namespace cakelove
 
             // angular
             const string angularCdn = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/";
+            const string angularDir = "~/Scripts/angular/";
             var angular = new Dictionary<string, string>()
             {
                 { "ng","angular.js"},
@@ -23,9 +24,10 @@ namespace cakelove
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
                 var cdnPath = angularCdn + pair.Value;  // todo use minified cdn
-                var virtualPath = "~/Scripts/angular/" + pair.Value;
+                var virtualPath = angularDir + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
+            bundles.Add(new ScriptBundle("~/bundles/ngFileUpload").Include(angularDir + "angular-file-upload.js"));
 
             // angular.ui.bootstrap
             const string angularUiBootstrapCdn = "http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/";
@@ -38,7 +40,7 @@ namespace cakelove
             {
                 var bundleRoute = "~/bundles/" + pair.Key;
                 var cdnPath = angularUiBootstrapCdn + pair.Value;  // todo use minified cdn
-                var virtualPath = "~/Scripts/angular/" + pair.Value;
+                var virtualPath = angularDir + pair.Value;
                 bundles.Add(new ScriptBundle(bundleRoute, cdnPath).Include(virtualPath));
             }
 
