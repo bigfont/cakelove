@@ -10,7 +10,8 @@ var myApp = angular.module('cakeLoveApp', [
     'cakeLoveFilters',
     'cakeLoveDirectives',
     'cakeLoveFactories',
-    'bsElements'
+    'bsElements',
+    'angularFileUpload'
 ]);
 
 

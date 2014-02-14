@@ -1,9 +1,16 @@
 ﻿<div class="row">
     <div class="col-lg-8">
 
-        <div bse-input help-block="Please provide us with a short biography for use on our website in promoting your classes.  Kindly type your bio in the space below.  This is what people will read about you, please make sure that your grammar and spelling are correct." rows="10" outer-form="outerForm" lbl-text="Biography" type="textarea" the-model="bio.text"></div>
-        <div bse-input the-model="bio.image" type="file" lbl-text="Your picture" outer-form="outerForm" help-block="The image must be _____ dpi and measure _____ inches by _____ inches."></div>
+        {{ bio | json }}
+
+        <div bse-input submit-required
+             help-block="Please provide us with a short biography for use on our website in promoting your classes. Kindly type your bio in the space below. This is what people will read about you, please make sure that your grammar and spelling are correct."
+             rows="10" outer-form="outerForm" lbl-text="Biography" type="textarea" the-model="bio.text"></div>
+
+        <input ng-file-select type="file" />
+
         <button class="btn btn-default" ng-click="update(bio, outerForm)">Save</button>
 
     </div>
 </div>
+
