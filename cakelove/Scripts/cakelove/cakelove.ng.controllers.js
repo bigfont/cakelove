@@ -289,8 +289,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
 ]);
 
 cakeLoveControllers.controller('ClassesCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc, objSvc) {
+    '$scope', '$http', '$location', '$window', '$timeout', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
+    function ($scope, $http, $location, $window, $timeout, userSvc, urlSvc, formSvc, objSvc) {
 
         $scope.formName = 'Classes';
 
@@ -347,10 +347,9 @@ cakeLoveControllers.controller('ClassesCtrl', [
         function ActiveClassTabIndex() {
             for (classTabIndex in $scope.classes) {
                 var c = $scope.classes[classTabIndex];
-                if (c.active === 'true' || c.active === true)
-                {
+                if (c.active === 'true' || c.active === true) {
                     return classTabIndex;
-                }                
+                }
             }
         };
 
@@ -363,8 +362,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
             }
         };
 
-        function createUploader()
-        {
+        function createUploader() {
             var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
             var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
             uploader.bind('afteraddingfile', function (event, item) {
@@ -372,8 +370,10 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 var activeClass = ActiveClass();
                 item.removeAfterUpload = true;
                 item.formData = [{ imageId: activeClass.id }];
+
+
                 item.upload();
-                activeClass.hasClassImage = true;
+                $scope.activeClass.hasClassImage = true;
                 $scope.update(activeClass, $scope.outerForm);
             });
         }
