@@ -26,13 +26,6 @@
 
             </div>
 
-            <div ng-show="isHidden">
-
-                <input id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}" style="visibility:collapse;"
-                       ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
-
-            </div>
-
             <!--file-->
             <input ng-show="isFile" type="file" id="{{ id }}">
 
