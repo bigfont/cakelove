@@ -32,11 +32,6 @@ namespace cakelove.Models
 
     public class ContactInfoViewModel
     {
-        public ContactInfoViewModel()
-        {
-            Address = new AddressViewModel();
-        }
-
         [JsonProperty("id")]
         public int Id { get; set; }
 
@@ -46,11 +41,8 @@ namespace cakelove.Models
         [JsonProperty("address")]
         public AddressViewModel Address { get; set; }
 
-        [JsonProperty("phoneDay")]
-        public string PhoneDay { get; set; }
-
-        [JsonProperty("phoneCell")]
-        public string PhoneCell { get; set; }
+        [JsonProperty("contactPhone")]
+        public string ContactPhone { get; set; }
 
         [JsonProperty("businessName")]
         public string BusinessName { get; set; }

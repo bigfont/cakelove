@@ -28,15 +28,11 @@ namespace cakelove.Models
 
         public string Name { get; set; }
 
-        [ForeignKey("Address")]
-        [Column("Address_Id")]
-        public int AddressId { get; set; }
+
 
         public virtual AddressBindingModel Address { get; set; }
 
-        public string PhoneDay { get; set; }
-
-        public string PhoneCell { get; set; }
+        public string ContactPhone { get; set; }
 
         public string BusinessName { get; set; }
 

@@ -227,6 +227,14 @@
     <Compile Include="Migrations\201402132032054_virtualAddress.Designer.cs">
       <DependentUpon>201402132032054_virtualAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402140436049_contactPhone.cs" />
+    <Compile Include="Migrations\201402140436049_contactPhone.Designer.cs">
+      <DependentUpon>201402140436049_contactPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402140443133_addressId.cs" />
+    <Compile Include="Migrations\201402140443133_addressId.Designer.cs">
+      <DependentUpon>201402140443133_addressId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -590,6 +598,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402132032054_virtualAddress.resx">
       <DependentUpon>201402132032054_virtualAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402140436049_contactPhone.resx">
+      <DependentUpon>201402140436049_contactPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402140443133_addressId.resx">
+      <DependentUpon>201402140443133_addressId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
