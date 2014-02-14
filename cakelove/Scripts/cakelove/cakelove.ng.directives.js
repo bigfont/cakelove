@@ -112,22 +112,19 @@ cakeLoveDirectives.directive('submitRequired', function () {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
 
-            function validate(value) {
+            scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+                validate();
+            })
 
-                submitting = true;
-
-                if (!scope.outerForm.submitting) {
+            function validate() {
+                if (!scope.outerForm.userSubmitting) {
                     ctrl.$setValidity('submit', true);
-                    console.log();
-                    return value;
+                    return undefined;
                 } else {
                     ctrl.$setValidity('submit', false);
                     return undefined;
                 }
             };
-
-            ctrl.$parsers.unshift(validate);
-            ctrl.$formatters.unshift(validate);
         }
     };
 });

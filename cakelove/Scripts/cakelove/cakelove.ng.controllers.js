@@ -158,6 +158,17 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
 
         $scope.navType = 'pills';
 
+
+        // reset the user input model
+        $scope.submit = function () {
+
+            $scope.outerForm.userSaving = true;
+            $scope.outerForm.userSubmitting = true;
+            $scope.state = "userSubmitting";
+            $scope.$broadcast('userSubmitting');
+
+        };
+
     }]);
 
 cakeLoveControllers.controller('ContactInfoCtrl', [
@@ -317,20 +328,6 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.reset = function () {
             $scope.classes = angular.copy($scope.masterModel);
             $scope.classes[0].active = true;
-
-        };
-    }
-]);
-
-cakeLoveControllers.controller('SubmitCtrl', [
-    '$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc, objSvc) {
-
-        // reset the user input model
-        $scope.submit = function () {
-
-            $scope.outerForm.submitting = true;
-            $scope.state = "submitting";
 
         };
     }
