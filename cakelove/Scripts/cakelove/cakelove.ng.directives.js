@@ -89,10 +89,12 @@ cakeLoveDirectives.directive('smartFloat', function () {
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
-            function validate(viewValue) {
-                if (FLOAT_REGEXP.test(viewValue)) {
+
+            function validate(value) {
+
+                if (FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
-                    return parseFloat(viewValue.replace(',', '.'));
+                    return parseFloat(value.replace(',', '.'));
                 } else {
                     ctrl.$setValidity('float', false);
                     return undefined;
@@ -109,10 +111,12 @@ cakeLoveDirectives.directive('submitRequired', function () {
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
-            function validate(viewValue) {
-                if (FLOAT_REGEXP.test(viewValue)) {
+
+            function validate(value) {
+
+                if (FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
-                    return parseFloat(viewValue.replace(',', '.'));
+                    return parseFloat(value.replace(',', '.'));
                 } else {
                     ctrl.$setValidity('float', false);
                     return undefined;
