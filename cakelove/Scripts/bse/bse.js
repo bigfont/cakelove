@@ -19,6 +19,7 @@ bsElements.directive('bseInput', function () {
         {
             id: '@',
             lblText: '@',
+            todoHidden: '@',
             placeholder: '@',
             type: '@',
             width: '@',
@@ -67,7 +68,12 @@ bsElements.directive('bseInput', function () {
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'number'].indexOf(iAttrs.type) >= 0;
-                    scope.isHidden = iAttrs.type === 'hidden';
+
+                    if (typeof iAttrs["todoHidden"] !== 'undefined')
+                    {
+                        scope.isHidden = true;
+                    }
+
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
                     scope.isTextarea = 'textarea' == iAttrs.type;

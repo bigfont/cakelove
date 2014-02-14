@@ -1,18 +1,20 @@
 ﻿
 
-<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving ) && !innerForm.$invalid  }"
-     class="form-group">
+<div ng-class="
+     {
+     'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid,
+     'has-success':(innerForm.$dirty || outerForm.userSaving ) && !innerForm.$invalid,
+     'form-group': !isHidden }">
 
     <ng-form name="innerForm">
-        <div ng-class="width">
             <!--shared label-->
-            <label class="control-label" ng-show="isString || isTextarea || isFile" for="{{ id }}">
-                {{ lblText }} 
-            </label>
+        <label class="control-label" ng-show="!isHidden && (isString || isTextarea || isFile)" for="{{ id }}">
+            {{ lblText }}
+        </label>
             <span class="help-block">{{ helpBlock }}</span>
 
             <!--email, password, text, url-->
-            <div ng-show="isString">
+            <div ng-show="isString && !isHidden">
 
                 <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
                        ng-model="theModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
@@ -26,8 +28,13 @@
 
             </div>
 
-            <!--file-->
-            <input ng-show="isFile" type="file" id="{{ id }}">
+            <!--email, password, text, url-->
+            <div ng-show="isHidden">
+
+                <input id="{{ id }}" name="innerString" style="display:none;"
+                       ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
+
+            </div>
 
             <!--checkbox, radio-->
             <div ng-show="isRadioCheck" class="{{ type }}">
@@ -39,7 +46,6 @@
 
             <!-- textarea-->
             <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
-        </div>
     </ng-form>
 
     <!--Validation and Help-->
