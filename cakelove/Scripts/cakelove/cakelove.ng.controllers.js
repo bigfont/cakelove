@@ -280,9 +280,9 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
-            $scope.bio.hasBioImage = true;
             item.upload();
-
+            $scope.bio.hasBioImage = true;
+            $scope.update($scope.bio, $scope.outerForm);
         });
 
     }
@@ -374,6 +374,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 item.formData = [{ imageId: activeClass.id }];
                 item.upload();
                 activeClass.hasClassImage = true;
+                $scope.update(activeClass, $scope.outerForm);
             });
         }
     }

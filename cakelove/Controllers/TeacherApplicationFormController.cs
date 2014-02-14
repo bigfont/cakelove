@@ -195,7 +195,11 @@ namespace cakelove.Controllers
 
             if (bindingModel.Count == 0)
             {
-                bindingModel.Add(new ClassInfoBindingModel());
+                var classInfo = new ClassInfoBindingModel() { IdentityUserId = GetCurrentUserId(), ClassName = "New Class" };
+                db.ClassInfo.Attach(classInfo);
+                db.Entry(classInfo).State = EntityState.Added;
+                var result = db.SaveChanges();
+                bindingModel.Add(classInfo);
             }
 
             var viewModel = Mapper.Map<List<ClassInfoBindingModel>, List<ClassInfoViewModel>>(bindingModel);
