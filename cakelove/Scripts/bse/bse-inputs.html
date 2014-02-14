@@ -13,7 +13,7 @@
             <!--email, password, text, url-->
             <div ng-show="isString">
 
-                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}" 
+                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
                        ng-model="theModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}">
 
                 <!--with input group-->
@@ -44,26 +44,11 @@
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
     <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid">
-        <div ng-show="isTextarea">
-            <span ng-show="innerForm.innerTextarea.$error.submitRequired">{{ submitRequiredMsg }}</span>
+        <div class="warning">
+            <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
+            <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
+            <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
+            <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
         </div>
-        <div ng-show="isString">
-            <div ng-show="!hasAddOn">
-                <span ng-show="innerForm.innerString.$error.submitRequired">{{ submitRequiredMsg }}</span>
-                <span ng-show="innerForm.innerString.$error.email">That is not an email.</span>
-                <span ng-show="innerForm.innerString.$error.integer">Please use a number without decimals.</span>
-                <span ng-show="innerForm.innerString.$error.float">Please use a proper number.</span>
-
-            </div>
-            <div class="warning" ng-show="hasAddOn">
-                <span ng-show="innerForm.innerStringAddOn.$error.submitRequired">{{ submitRequiredMsg }}</span>
-                <span ng-show="innerForm.innerStringAddOn.$error.email">That is not an email.</span>
-                <span ng-show="innerForm.innerStringAddOn.$error.integer">Please use a number without decimals.</span>
-                <span ng-show="innerForm.innerStringAddOn.$error.float">Please use a proper number.</span>
-            </div>
-        </div>
-
-        {{ innerForm.innerString.$error | json }}
-
     </div>
 </div>
