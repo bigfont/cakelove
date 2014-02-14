@@ -265,6 +265,12 @@ namespace cakelove.Controllers
         private async void SaveImage(HttpRequestMessage request, string fileNameSuffix)
         {
             string root = HttpContext.Current.Server.MapPath("~/UserImages");
+
+            if (!Directory.Exists(root))
+            {
+                Directory.CreateDirectory(root);
+            }
+
             var provider = new MultipartFormDataStreamProvider(root);
 
             // Read the form data.
