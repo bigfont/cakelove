@@ -235,11 +235,17 @@
     <Compile Include="Migrations\201402140443133_addressId.Designer.cs">
       <DependentUpon>201402140443133_addressId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402141009097_biography.cs" />
+    <Compile Include="Migrations\201402141009097_biography.Designer.cs">
+      <DependentUpon>201402141009097_biography.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BiographyViewModel.cs" />
     <Compile Include="Models\ClassInfoBindingModel.cs" />
     <Compile Include="Models\ClassInfoViewModel.cs" />
+    <Compile Include="Models\BiographyBindingModel.cs" />
     <Compile Include="Models\ContactInfoBindingModel.cs" />
     <Compile Include="Models\ContactInfoViewModel.cs" />
     <Compile Include="Models\HasAnIdentityUserFk.cs" />
@@ -605,6 +611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402140443133_addressId.resx">
       <DependentUpon>201402140443133_addressId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402141009097_biography.resx">
+      <DependentUpon>201402141009097_biography.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

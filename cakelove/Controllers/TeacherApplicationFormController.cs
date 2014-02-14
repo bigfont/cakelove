@@ -85,10 +85,41 @@ namespace cakelove.Controllers
         }
 
         [System.Web.Http.Route("Biography")]
-        public async Task<IHttpActionResult> Biography()
+        public BiographyViewModel GetBiography()
         {
+            var db = new MyDbContext();
+            var userId = GetCurrentUserId();
+            var bindingModel = db.Biography.FirstOrDefault(b => b.IdentityUserId == userId) ?? new BiographyBindingModel();
+            var viewModel = Mapper.Map<BiographyBindingModel, BiographyViewModel>(bindingModel);
+            return viewModel;
+        }
 
-            return Ok();
+        [System.Web.Http.Route("Biography")]
+        public async Task<IHttpActionResult> Biography(BiographyBindingModel model)
+        {
+            IHttpActionResult httpActionResult = Ok();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var dbContext = new MyDbContext();
+
+                dbContext.Biography.Attach(model);
+                dbContext.Entry(model).State = GetBindingModelState(model);
+
+
+                var result = await dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                httpActionResult = CreateHttpActionResultFromException(e);
+            }
+
+            return httpActionResult;
         }
 
         [HttpPost]
@@ -157,6 +188,8 @@ namespace cakelove.Controllers
         [System.Web.Http.Route("TeachingExperience")]
         public async Task<IHttpActionResult> TeachingExperience(TeachingExperienceBindingModel model)
         {
+            IHttpActionResult httpActionResult = Ok();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -172,19 +205,12 @@ namespace cakelove.Controllers
 
                 var result = await dbContext.SaveChangesAsync();
             }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var error in e.EntityValidationErrors)
-                {
-                    var m = error.Entry;
-                }
-            }
             catch (Exception e)
             {
-                var message = e.Message;
+                httpActionResult = CreateHttpActionResultFromException(e);
             }
 
-            return Ok();
+            return httpActionResult;
         }
 
         [System.Web.Http.Route("ClassInfo")]

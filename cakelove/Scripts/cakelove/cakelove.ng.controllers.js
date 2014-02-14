@@ -248,8 +248,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.masterModel = {};
 
         // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
-        $http({ method: 'GET', url: url }).
+        var jsonUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
+        $http({ method: 'GET', url: jsonUrl }).
             success(function (data, status, headers, config) {
 
                 $scope.masterModel = data;
@@ -259,7 +259,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url);
+            formSvc.update($scope, formModel, outerForm, jsonUrl);
 
             var item = $scope.uploader.queue[0];
             item.upload();
@@ -272,10 +272,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
         };
 
         // Creates a uploader
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
+        var formUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = $fileUploader.create({
             scope: $scope,
-            url: url,
+            url: formUrl,
             headers: { Authorization: "Bearer " + userSvc.userToken } 
         });        
 
@@ -287,7 +287,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         });
 
         uploader.bind('afteraddingfile', function (event, item) {
-            $scope.bio.image = 'test;';
+            $scope.bio.hasBioImage = true;
         });
     }
 ]);
