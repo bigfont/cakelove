@@ -136,7 +136,7 @@ namespace cakelove.Controllers
             }           
             try
             {
-                SaveImage(Request, "bio");
+                await SaveImage(Request, "bio");
             }
             catch (System.Exception e)
             {
@@ -252,7 +252,7 @@ namespace cakelove.Controllers
 
             try
             {
-                SaveImage(Request, "class");
+                await SaveImage(Request, "class");           
             }
             catch (System.Exception e)
             {
@@ -262,7 +262,7 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
-        private async void SaveImage(HttpRequestMessage request, string fileNameSuffix)
+        private async Task SaveImage(HttpRequestMessage request, string fileNameSuffix)
         {
             string root = HttpContext.Current.Server.MapPath("~/UserImages");
 
