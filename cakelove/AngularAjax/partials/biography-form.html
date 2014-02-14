@@ -7,7 +7,8 @@
              help-block="Please provide us with a short biography for use on our website in promoting your classes. Kindly type your bio in the space below. This is what people will read about you, please make sure that your grammar and spelling are correct."
              rows="10" outer-form="outerForm" lbl-text="Biography" type="textarea" the-model="bio.text"></div>
 
-        <input ng-file-select type="file" />
+
+        <input ng-file-select type="file" submit-required />
 
         <div ng-repeat="item in uploader.queue">
             <strong>{{ item.file.name }}</strong>

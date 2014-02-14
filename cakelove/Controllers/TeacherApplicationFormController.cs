@@ -84,7 +84,15 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        [System.Web.Http.Route("Biography")]
+        public async Task<IHttpActionResult> Biography()
+        {
+
+            return Ok();
+        }
+
         [HttpPost]
+        [System.Web.Http.Route("BiographyImage")]
         public async Task<IHttpActionResult> BiographyImage()
         {
             IHttpActionResult httpActionResult = Ok();
