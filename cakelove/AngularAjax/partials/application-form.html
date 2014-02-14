@@ -18,13 +18,14 @@
             <tab ng-controller="SubmitCtrl" heading="Submit Application">
                 <p>Some warning text.</p>
 
-                <div bse-input id="yearsDec" lbl-text="Test" outer-form="outerForm" the-model="experience.yearsDecorating" type="text"></div>
+                <div bse-input id="test" lbl-text="Test" outer-form="outerForm" the-model="test" submit-required type="text"></div>
 
                 <ul>
                     <li>form.$pristine: {{ outerForm.innerForm.$pristine }}</li>
                     <li>form.$dirty: {{ outerForm.innerForm.$dirty }}</li>
                     <li>form.$valid: {{ outerForm.innerForm.$valid }}</li>
                     <li>form.$invalid: {{ outerForm.innerForm.$invalid }}</li>
+                    <li>form.$error: {{ outerForm.innerForm.$error }}</li>
                 </ul>
 
                 <p>{{ state }}</p>

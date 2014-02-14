@@ -27,6 +27,7 @@ bsElements.directive('bseInput', function () {
             // html5 validation
             integer: '@',
             smartFloat: '@',
+            submitRequired: '@',
             //pattern: '@',
             minlength: '@',
             maxlength: '@',
@@ -40,17 +41,20 @@ bsElements.directive('bseInput', function () {
             tElement.removeAttr("id");
             tElement.removeAttr("type");
 
+            function addAttribute(jqLiteInput, attr)
+            {
+                if (typeof tAttrs.integer !== "undefined") {
+                    jqLiteInput.attr(attr, attr);
+                }
+            }
+
             var inputs = tElement.find('input');
             var jqLiteInput;
             for (var i = 0; i < inputs.length; i++) {
-                if (typeof tAttrs.integer !== "undefined") {
-                    jqLiteInput = angular.element(inputs[i]);
-                    jqLiteInput.attr('integer', 'integer');
-                }
-                if (typeof tAttrs.smartFloat !== "undefined") {
-                    jqLiteInput = angular.element(inputs[i]);
-                    jqLiteInput.attr('smart-float', 'smart-float');
-                }
+                jqLiteInput = angular.element(inputs[i]);
+                addAttribute(jqLiteInput, 'integer');
+                addAttribute(jqLiteInput, 'smart-float');
+                addAttribute(jqLiteInput, 'submit-required');
             }
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
