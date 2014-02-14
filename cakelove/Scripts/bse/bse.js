@@ -19,7 +19,7 @@ bsElements.directive('bseInput', function () {
         {
             id: '@',
             lblText: '@',
-            todoHidden: '@',
+            hiddenInput: '@',
             placeholder: '@',
             type: '@',
             width: '@',
@@ -69,7 +69,7 @@ bsElements.directive('bseInput', function () {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'number'].indexOf(iAttrs.type) >= 0;
 
-                    if (typeof iAttrs["todoHidden"] !== 'undefined')
+                    if (typeof iAttrs["hiddenInput"] !== 'undefined')
                     {
                         scope.isHidden = true;
                     }
