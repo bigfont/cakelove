@@ -125,6 +125,14 @@ cakeLoveDirectives.directive('submitRequired', function () {
                     return undefined;
                 }
             };
+
+            function clear()
+            {
+                ctrl.$setValidity('submitRequired', true);
+            }
+
+            ctrl.$parsers.unshift(clear);
+            ctrl.$formatters.unshift(clear);
         }
     };
 });
