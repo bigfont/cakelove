@@ -371,9 +371,9 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 item.removeAfterUpload = true;
                 item.formData = [{ imageId: activeClass.id }];
 
-
                 item.upload();
-                $scope.activeClass.hasClassImage = true;
+                activeClass.hasClassImage = true;
+
                 $scope.update(activeClass, $scope.outerForm);
             });
         }
