@@ -112,14 +112,19 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     formSvc.showSavedMessage = false;
 
-    formSvc.update = function($scope, formModel, outerForm, url) {
+    formSvc.update = function($scope, formModel, outerForm, url, callback) {
 
         $scope.masterModel = angular.copy(formModel);
         $http({ method: "POST", url: url, data: formModel })
-            .success(function () {
+            .success(function (data, status, headers, config) {
 
                 formSvc.showSavedMessage = true;
                 $timeout(function () { formSvc.showSavedMessage = false; }, [10000]);
+                if (typeof data.classId !== 'undefined')
+                {
+                    formModel.id = data.classId;
+                }
+                callback(data);
 
             }); // todo error, then
 

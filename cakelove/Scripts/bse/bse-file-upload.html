@@ -2,7 +2,7 @@
      class="form-group">
 
     <label>{{ lblText }}</label><br />
-    <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/38a1f383-c9c8-4b87-bb19-14f06683736f.jpg" />
+    <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/{{userId}}_{{ imgIdentifier }}.jpg" />
     <div ng-show="!theModel" class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />

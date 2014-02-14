@@ -3,7 +3,7 @@
         <div tabset class="class-info-tabs">
             <tab ng-repeat="classInfo in classes" active="classInfo.active" disabled="true">
 
-                <h3>#{{ ActiveClassTabIndex() }}. {{ classInfo.className }}</h3>
+                <h3>{{ classInfo.className }} <small> {{ classInfo.id }} </small></h3>
 
                 <div accordion>
 

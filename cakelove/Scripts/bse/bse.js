@@ -87,7 +87,7 @@ bsElements.directive('bseInput', function () {
     };
 });
 
-bsElements.directive('bseFileUpload', function () {
+bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
     return {
         templateUrl: "/Scripts/bse/bse-file-upload.html",
         require: ["^form"],
@@ -104,6 +104,7 @@ bsElements.directive('bseFileUpload', function () {
             helpBlock: '@',
             addOnRight: '@',
             addOnLeft: '@',
+            imgIdentifier: '@',
             // html5 validation
             integer: '@',
             smartFloat: '@',
@@ -152,6 +153,7 @@ bsElements.directive('bseFileUpload', function () {
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
+                    scope.userId = userSvc.userId;
                 },
                 post: function postLink(scope, iElement, iAttrs, controller) {
 
@@ -160,4 +162,4 @@ bsElements.directive('bseFileUpload', function () {
             };
         }
     };
-});
+}]);

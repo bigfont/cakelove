@@ -333,7 +333,11 @@ cakeLoveControllers.controller('ClassesCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url);
+            formSvc.update($scope, formModel, outerForm, url, function (data) {
+
+                formModel.id = data.classId;
+
+            });
         };
 
         // reset the user input model
@@ -342,7 +346,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
             $scope.classes[0].active = true;
         };
 
-        $scope.ActiveClassTabIndex = function() {
+        function ActiveClassTabIndex() {
             for (classTabIndex in $scope.classes) {
                 var c = $scope.classes[classTabIndex];
                 if (c.active === 'true' || c.active === true)
@@ -352,7 +356,7 @@ cakeLoveControllers.controller('ClassesCtrl', [
             }
         };
 
-        $scope.ActiveClass = function () {
+        function ActiveClass() {
             for (classTabIndex in $scope.classes) {
                 var c = $scope.classes[classTabIndex];
                 if (c.active === 'true' || c.active === true) {
@@ -367,15 +371,11 @@ cakeLoveControllers.controller('ClassesCtrl', [
             var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
             uploader.bind('afteraddingfile', function (event, item) {
 
-                var activeClass = $scope.ActiveClass();
+                var activeClass = ActiveClass();
                 activeClass.hasClassImage = true;
-
-
-                
                 item.removeAfterUpload = true;
                 item.formData = [{ imageId: activeClass.id }];
                 item.upload();
-
 
                 //$scope.classes[$scope.ActiveClassTabIndex()].hasClassImage = true;
             });
