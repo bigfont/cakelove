@@ -1,7 +1,10 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
     <label>{{ lblText }}</label><br />
-    <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/{{userId}}_{{imgIdentifier}}.jpg" />
+    <img ng-show="theModel" class="img-rounded img-thumbnail"
+         ng-src="/UserImages/{{userId}}_{{imgIdentifier}}.jpg"
+         err-src="/UserImages/{{userId}}_{{imgIdentifier}}.png" />
+
     <div ng-show="!theModel" class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />

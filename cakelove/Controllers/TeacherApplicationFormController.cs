@@ -287,6 +287,7 @@ namespace cakelove.Controllers
                 {
                     case "image/jpeg": fileExtension = ".jpg"; break;
                     case "image/png": fileExtension = ".png"; break;
+                    default: break;
                 }
                 if (fileExtension != null)
                 {

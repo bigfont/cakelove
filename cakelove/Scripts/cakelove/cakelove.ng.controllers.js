@@ -154,7 +154,7 @@ cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location',
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc', 'formSvc',
 function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSvc) {
 
-    siteMapSvc.currentPage = "Application";
+     siteMapSvc.currentPage = "Application";
 
     $scope.formSvc = formSvc;
 
