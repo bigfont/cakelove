@@ -111,10 +111,19 @@ namespace cakelove.Controllers
                     // LocalFileName: C:\Users\Shaun\Documents\GitHub\cakelove\cakelove\App_Data\BodyPart_5c0b41d0-f79a-4131-bfa9-a6a557129e98
                     Debug.WriteLine("LocalFileName: " + file.LocalFileName);
 
-                    var newFileName = GetCurrentUserId();                    
-                    newFileName = Path.Combine(root, newFileName);
-
-                    File.Move(file.LocalFileName, newFileName);
+                    var mediaType = file.Headers.ContentType.MediaType;
+                    string fileExtension = null;
+                    switch (mediaType)
+                    {
+                        case "image/jpeg": fileExtension = ".jpg"; break;
+                        case "image/png": fileExtension = ".png"; break;
+                    }
+                    if (fileExtension != null)
+                    {
+                        var newFileName = GetCurrentUserId() + fileExtension;
+                        newFileName = Path.Combine(root, newFileName);
+                        File.Move(file.LocalFileName, newFileName);
+                    }
                 }
                 return Ok();
             }
