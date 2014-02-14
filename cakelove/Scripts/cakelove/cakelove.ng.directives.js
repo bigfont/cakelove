@@ -113,6 +113,13 @@ cakeLoveDirectives.directive('submitRequired', function () {
         link: function (scope, elm, attrs, ctrl) {
 
             scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+
+                if (elm.attr('type') !== 'text')
+                {
+                    var type = elm.attr('type');
+                    var i = 0;
+                }
+
                 validate(elm.val());
             })
 
@@ -126,9 +133,10 @@ cakeLoveDirectives.directive('submitRequired', function () {
                 }
             };
 
-            function clear()
+            function clear(value)
             {
                 ctrl.$setValidity('submitRequired', true);
+                return value;
             }
 
             ctrl.$parsers.unshift(clear);

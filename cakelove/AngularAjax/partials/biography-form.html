@@ -7,13 +7,44 @@
              help-block="Please provide us with a short biography for use on our website in promoting your classes. Kindly type your bio in the space below. This is what people will read about you, please make sure that your grammar and spelling are correct."
              rows="10" outer-form="outerForm" lbl-text="Biography" type="textarea" the-model="bio.text"></div>
 
+        <input type="text" ng-model="bio.image" submit-required />
 
-        <input ng-file-select type="file" submit-required />
 
-        <div ng-repeat="item in uploader.queue">
-            <strong>{{ item.file.name }}</strong>
-            <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+        <!-- Image Uploader -->
+        <div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
+             class="form-group">
+
+
+
+            <ng-form name="innerForm">
+
+
+
+                <div class="image-upload">
+                    <label>Your picture</label>
+                    <input ng-file-select type="file" />
+                    <input type="text" ng-model="bio.image" submit-required />
+
+                    <span class="help-block">Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels.</span>
+                    <div ng-repeat="item in uploader.queue">
+                        <span ng-init="bio.image = item.file.name"></span>
+                        <strong>{{ item.file.name }}</strong>
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                    </div>
+                </div>
+            </ng-form>
+
+            <span class="help-block">{{ helpBlock }}</span>
+            <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid">
+                <div class="warning">
+                    <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
+                    <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
+                    <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
+                    <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
+                </div>
+            </div>
         </div>
+        <!--End Image Uploader-->
 
         <button class="btn btn-default" ng-click="update(bio, outerForm)">Save</button>
 

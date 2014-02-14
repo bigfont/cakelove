@@ -268,7 +268,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
         // reset the user input model
         $scope.reset = function () {
-            $scope.experience = angular.copy($scope.masterModel);
+            $scope.bio = angular.copy($scope.masterModel);
         };
 
         // Creates a uploader
@@ -284,6 +284,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
             var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
             type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
             return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        });
+
+        uploader.bind('afteraddingfile', function (event, item) {
+            $scope.bio.image = 'test;';
         });
     }
 ]);
