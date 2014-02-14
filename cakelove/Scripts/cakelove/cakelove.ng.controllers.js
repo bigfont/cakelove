@@ -319,19 +319,15 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 }
 
                 $scope.reset();
-
+                createUploader();
             });
-
-        $scope.doSelect = function (index) {
-            $scope.selectedIndex = index;
-            $window.alert(index);
-        }
 
         // add a new classinfo
         $scope.create = function () {
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
             newClassInfo.active = true;
             setClassInfoDefaults(newClassInfo);
+            $scope.update(newClassInfo, $scope.outerForm);
             $scope.classes.push(newClassInfo);
         }
 
@@ -344,17 +340,45 @@ cakeLoveControllers.controller('ClassesCtrl', [
         $scope.reset = function () {
             $scope.classes = angular.copy($scope.masterModel);
             $scope.classes[0].active = true;
-
         };
 
+        $scope.ActiveClassTabIndex = function() {
+            for (classTabIndex in $scope.classes) {
+                var c = $scope.classes[classTabIndex];
+                if (c.active === 'true' || c.active === true)
+                {
+                    return classTabIndex;
+                }                
+            }
+        };
 
-        // Create a uploader
-        var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
-        var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
-        uploader.bind('afteraddingfile', function (event, item) {
-            $scope.classes[0].hasClassImage = true;
-            item.removeAfterUpload = true;
-            item.upload();
-        });
+        $scope.ActiveClass = function () {
+            for (classTabIndex in $scope.classes) {
+                var c = $scope.classes[classTabIndex];
+                if (c.active === 'true' || c.active === true) {
+                    return c;
+                }
+            }
+        };
+
+        function createUploader()
+        {
+            var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
+            var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
+            uploader.bind('afteraddingfile', function (event, item) {
+
+                var activeClass = $scope.ActiveClass();
+                activeClass.hasClassImage = true;
+
+
+                
+                item.removeAfterUpload = true;
+                item.formData = [{ imageId: activeClass.id }];
+                item.upload();
+
+
+                //$scope.classes[$scope.ActiveClassTabIndex()].hasClassImage = true;
+            });
+        }
     }
 ]);

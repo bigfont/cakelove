@@ -132,6 +132,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
             headers: { Authorization: "Bearer " + userSvc.userToken }
         });
 
+
         // Images only filter
         uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
             var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);

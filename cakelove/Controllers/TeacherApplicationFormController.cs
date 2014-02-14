@@ -18,6 +18,7 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace cakelove.Controllers
 {
@@ -219,6 +220,12 @@ namespace cakelove.Controllers
                 dbContext.Entry(model).State = GetBindingModelState(model);
 
                 var result = await dbContext.SaveChangesAsync();
+
+
+                var jsonSettings = new JsonSerializerSettings();
+                var jsonResult 
+                    = new JsonResult<Dictionary<string, string>>(new Dictionary<string, string> { { "courseId", "23424" } }, jsonSettings, System.Text.Encoding.UTF8, this);
+                httpActionResult = jsonResult;
             }
             catch (Exception e)
             {
@@ -260,6 +267,8 @@ namespace cakelove.Controllers
             // Read the form data.
             await request.Content.ReadAsMultipartAsync(provider);
 
+            var imageId = provider.FormData["imageId"] ?? string.Empty;
+
             // Save
             foreach (MultipartFileData file in provider.FileData)
             {
@@ -272,7 +281,7 @@ namespace cakelove.Controllers
                 }
                 if (fileExtension != null)
                 {
-                    var newFileName = GetCurrentUserId() + "_" + fileNameSuffix + fileExtension;
+                    var newFileName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
                     newFileName = Path.Combine(root, newFileName);
                     File.Move(file.LocalFileName, newFileName);
                 }
