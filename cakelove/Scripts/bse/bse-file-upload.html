@@ -1,12 +1,13 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
-    <label for="bioImgUploader">Your picture</label>
-    <img ng-show="bio.hasBioImage" class="img-rounded img-thumbnail" src="/UserImages/38a1f383-c9c8-4b87-bb19-14f06683736f.jpg" />
-    <div ng-show="!bio.hasBioImage" class="image-upload">
+
+    <label>Your picture</label><br />
+    <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/38a1f383-c9c8-4b87-bb19-14f06683736f.jpg" />
+    <div ng-show="!theModel" class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />
             <span class="help-block">Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels.</span>
-            <input class="hidden" type="text" ng-model="theModel" disabled submit-required />
+            <input class="hidden" type="text" ng-model="theModel" disabled submit-required="true" />
             <div ng-repeat="item in uploader.queue">
                 <strong>{{ item.file.name }}</strong>
                 <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>

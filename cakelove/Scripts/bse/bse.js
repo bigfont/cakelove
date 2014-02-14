@@ -47,7 +47,7 @@ bsElements.directive('bseInput', function () {
 
             function addAttribute(jqLiteInput, tAttrs, prop) {
 
-                var attr = snake_case(prop);
+                var attr = snake_case(prop).replace("_", "-");
 
                 var o = tAttrs[prop];
                 if (typeof o !== "undefined") {
@@ -62,7 +62,7 @@ bsElements.directive('bseInput', function () {
                 jqLiteInput = angular.element(inputs[i]);
                 addAttribute(jqLiteInput, tAttrs, 'integer');
                 addAttribute(jqLiteInput, tAttrs, 'smartFloat');
-                addAttribute(jqLiteInput, tAttrs, 'submitRequired');
+                //addAttribute(jqLiteInput, tAttrs, 'submitRequired');
             }
 
             return {
@@ -75,10 +75,6 @@ bsElements.directive('bseInput', function () {
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
-                },
-                post: function postLink(scope, iElement, iAttrs, controller) {
-
-
                 }
             };
         }

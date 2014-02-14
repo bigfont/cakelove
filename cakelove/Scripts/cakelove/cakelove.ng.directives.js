@@ -107,34 +107,36 @@ cakeLoveDirectives.directive('smartFloat', function () {
     };
 });
 
-cakeLoveDirectives.directive('submitRequired', function () {
+cakeLoveDirectives.directive('submitRequired', function (objSvc) {
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
 
             scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
-                if (elm.attr('type') !== 'text')
-                {
+                if (elm.attr('type') !== 'text') {
                     var type = elm.attr('type');
                     var i = 0;
                 }
 
-                validate(elm.val());
+                var isSubmitRequired = elm.attr('submit-required');
+                if (isSubmitRequired === "true") {
+                    validate(elm.val());
+                }
             })
 
+
             function validate(value) {
-                if (value === null || value.length === 0) {
-                    ctrl.$setValidity('submitRequired', false);
+                if (objSvc.isUndefinedOrNull(value)) {
+                    ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 } else {
-                    ctrl.$setValidity('submitRequired', true);
+                    ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 }
             };
 
-            function clear(value)
-            {
+            function clear(value) {
                 ctrl.$setValidity('submitRequired', true);
                 return value;
             }
@@ -153,11 +155,11 @@ cakeLoveDirectives.directive('submitRequired', function () {
 cakeLoveDirectives.directive('ngThumb', ['$window', function ($window) {
     var helper = {
         support: !!($window.FileReader && $window.CanvasRenderingContext2D),
-        isFile: function(item) {
+        isFile: function (item) {
             return angular.isObject(item) && item instanceof $window.File;
         },
-        isImage: function(file) {
-            var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+        isImage: function (file) {
+            var type = '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
             return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
         }
     };
@@ -165,7 +167,7 @@ cakeLoveDirectives.directive('ngThumb', ['$window', function ($window) {
     return {
         restrict: 'A',
         template: '<canvas/>',
-        link: function(scope, element, attributes) {
+        link: function (scope, element, attributes) {
             if (!helper.support) return;
 
             var params = scope.$eval(attributes.ngThumb);

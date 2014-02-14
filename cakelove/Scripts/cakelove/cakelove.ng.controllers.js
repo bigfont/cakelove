@@ -160,7 +160,7 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
         
         $scope.submit = function () {
 
-            $scope.outerForm.userSaving = true;
+            $scope.outerForm.userSubmitting = true;
             $scope.$broadcast('userSubmitting');
 
         };
@@ -214,7 +214,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         $scope.formName = 'Teaching Experience';
 
-        $scope.masterModel = {};
+        $scope.masterModel = {};        
 
         // get
         var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/teachingExperience');
