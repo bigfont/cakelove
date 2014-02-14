@@ -1,58 +1,73 @@
 ﻿<div class="row">
-
     <div class="col-lg-8">
-
         <div tabset class="class-info-tabs">
-            <!--heading="{{ classInfo.className == null ? 'New Class' : classInfo.className }}"-->
             <tab ng-repeat="classInfo in classes" active="classInfo.active" disabled="true">
+
+
 
                 <div bse-input class="hidden" id="id" type="hidden" the-model="classInfo.id" outer-form="outerForm"></div>
 
+
+
                 <fieldset>
                     <legend>Class Overview</legend>
-
-                    <div bse-input outer-form="outerForm" lbl-text="Class Name" id="className" type="text" the-model="classInfo.className"></div>
-
-                    <div bse-input outer-form="outerForm" lbl-text="Class Description" rows="10" type="textarea" the-model="classInfo.classDescription"></div>
-                    <!--Nice-to-Have: make a check box list directive-->
+                    <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Name" id="className" type="text" the-model="classInfo.className"></div>
+                    <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Description" rows="10" type="textarea" the-model="classInfo.classDescription"></div>
                     <fieldset>
+                        <!--Nice-to-Have: make a check box list directive-->
                         <label>Class Type:</label>
                         <div bse-input outer-form="outerForm" type="radio" lbl-text="Hands-On Class" value="handsOn" the-model="classInfo.classType"></div>
                         <div bse-input outer-form="outerForm" type="radio" lbl-text="Demo" value="demo" the-model="classInfo.classType"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" type="hidden" the-model="classInfo.classType"></div>
                     </fieldset>
-
-                    <div bse-input outer-form="outerForm" type="file" lbl-text="Class image" help-block="Please upload project image here."></div>
-
+                    <div bse-file-upload type="text" uploader="uploader" outer-form="outerForm" the-model="classInfo.hasClassImage"
+                         lbl-text="Class image" help-block="Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
                 </fieldset>
+
+
+
+
                 <fieldset>
                     <legend>Student Overview</legend>
-                    <div bse-input outer-form="outerForm" add-on-left="{{classInfo.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" the-model="classInfo.feePerStudent"></div>
-                    <!--Make this a drop down list add-on.-->
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Canadian" value="Canadian" the-model="classInfo.currency"></div>
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="US" value="US" the-model="classInfo.currency"></div>
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Euros" value="Euro" the-model="classInfo.currency"></div>
 
+                    <fieldset>
+                        <div bse-input submit-required="true" outer-form="outerForm" add-on-left="{{classInfo.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" the-model="classInfo.feePerStudent"></div>
+                        <!--Nice-to-have: Make this a drop down list add-on.-->
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="Canadian" value="Canadian" the-model="classInfo.currency"></div>
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="US" value="US" the-model="classInfo.currency"></div>
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="Euros" value="Euro" the-model="classInfo.currency"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" type="hidden" the-model="classInfo.currency"></div>
+                    </fieldset>
 
-                    <div bse-input outer-form="outerForm" add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" the-model="classInfo.classSizeMin"></div>
-                    <div bse-input outer-form="outerForm" add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" the-model="classInfo.classSizeMax"></div>
-                    <label>Skill Level:</label>
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Beginner" value="beginner" the-model="classInfo.skillLevel"></div>
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Intermediate" value="intermediate" the-model="classInfo.skillLevel"></div>
-                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Advanced" value="advanced" the-model="classInfo.skillLevel"></div>
+                    <fieldset>
+                        <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" the-model="classInfo.classSizeMin"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" the-model="classInfo.classSizeMax"></div>
+                    </fieldset>
+
+                    <fieldset>
+                        <label>Skill Level:</label>
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="Beginner" value="beginner" the-model="classInfo.skillLevel"></div>
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="Intermediate" value="intermediate" the-model="classInfo.skillLevel"></div>
+                        <div bse-input outer-form="outerForm" type="radio" lbl-text="Advanced" value="advanced" the-model="classInfo.skillLevel"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" type="hidden" the-model="classInfo.skillLevel"></div>
+                    </fieldset>
+
                 </fieldset>
+
+
+
                 <fieldset>
                     <legend>Class Schedule</legend>
 
-                    <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." the-model="isMultiDay"></div>
+                    <fieldset>
+                        <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." the-model="isMultiDay"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="classInfo.totalTimeDayOne"></div>
+                        <div bse-input submit-required="{{ isMultiDay }}" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's classInfo." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="isMultiDay" the-model="classInfo.totalTimeDayTwo"></div>
+                    </fieldset>
+
+
+
                     <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I have a class scheduling preference." the-model="hasTimePreference"></div>
-
-                    <strong>Todo: Enable 1/2 hour increments on class time.</strong>
-                    <strong>Todo: Make the maximum class time 8 hours.</strong>
-
-                    <div bse-input outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="classInfo.totalTimeDayOne"></div>
-
-                    <div bse-input outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's classInfo." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="isMultiDay" the-model="classInfo.totalTimeDayTwo"></div>
-
                     <div ng-show="hasTimePreference" class="row">
                         <div class="col-sm-6">
                             <label>Preferred {{ isMultiDay ? 'day one' : '' }} timing:</label>
@@ -62,6 +77,8 @@
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="classInfo.preferredTimeDayOne"></div>
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" the-model="classInfo.preferredTimeDayOne"></div>
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="classInfo.preferredTimeDayOne"></div>
+                            <div bse-input submit-required="{{ hasTimePreference }}" outer-form="outerForm" type="hidden" the-model="classInfo.preferredTimeDayOne"></div>
+
                         </div>
                         <div ng-show="isMultiDay" class="col-sm-6">
                             <label>Preferred day two timing:</label>
@@ -71,10 +88,14 @@
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="classInfo.preferredTimeDayTwo"></div>
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" the-model="classInfo.preferredTimeDayTwo"></div>
                             <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="classInfo.preferredTimeDayTwo"></div>
+                            <div bse-input submit-required="{{ isMultiDay && hasTimePreference }}" outer-form="outerForm" type="hidden" the-model="classInfo.preferredTimeDayTwo"></div>
+
                         </div>
                     </div>
 
-                    <p>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</p>
+
+
+                    <label>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</label>
                     <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for setup." the-model="needsExtraSetup"></div>
                     <div bse-input outer-form="outerForm" ng-show="needsExtraSetup"
                          lbl-text="Extra setup time:"
@@ -82,6 +103,7 @@
                          id="extraTime.setup"
                          type="number"
                          add-on-right="mins"
+                         submit-required="{{ needsExtraSetup }}"
                          the-model="classInfo.extraTimeSetup"></div>
                     <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." the-model="needsExtraCleanup"></div>
                     <div bse-input outer-form="outerForm" ng-show="needsExtraCleanup"
@@ -90,6 +112,7 @@
                          id="extraTime.cleanup"
                          type="number"
                          add-on-right="mins"
+                         submit-required="{{ needsExtraCleanup }}"
                          the-model="classInfo.extraTimeCleanup"></div>
 
 

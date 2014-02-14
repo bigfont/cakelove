@@ -1,12 +1,12 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
 
-    <label>Your picture</label><br />
+    <label>{{ lblText }}</label><br />
     <img ng-show="theModel" class="img-rounded img-thumbnail" src="/UserImages/38a1f383-c9c8-4b87-bb19-14f06683736f.jpg" />
     <div ng-show="!theModel" class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />
-            <span class="help-block">Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels.</span>
+            <span class="help-block"></span>
             <input class="hidden" type="text" ng-model="theModel" disabled submit-required="true" />
             <div ng-repeat="item in uploader.queue">
                 <strong>{{ item.file.name }}</strong>
@@ -15,12 +15,9 @@
         </ng-form>
 
         <span class="help-block">{{ helpBlock }}</span>
-        <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid">
+        <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid">
             <div class="warning">
                 <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
-                <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
-                <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
-                <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
             </div>
         </div>
     </div>

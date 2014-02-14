@@ -7,8 +7,9 @@
         <div ng-class="width">
             <!--shared label-->
             <label class="control-label" ng-show="isString || isTextarea || isFile" for="{{ id }}">
-                {{ lblText }}
+                {{ lblText }} 
             </label>
+            <span class="help-block">{{ helpBlock }}</span>
 
             <!--email, password, text, url-->
             <div ng-show="isString">
@@ -22,6 +23,13 @@
                     <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
                     <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
                 </div>
+
+            </div>
+
+            <div ng-show="isHidden">
+
+                <input id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}" style="visibility:collapse;"
+                       ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
             </div>
 
@@ -42,13 +50,12 @@
     </ng-form>
 
     <!--Validation and Help-->
-    <span class="help-block">{{ helpBlock }}</span>
     <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving || outerForm.userSubmitting) && innerForm.$invalid">
         <div class="warning">
-            <span ng-show="(innerForm.$error.submitRequired.length > 0) && outerForm.userSubmitting">{{ submitRequiredMsg }}</span>
-            <span ng-show="(innerForm.$error.email.length > 0) && outerForm.userSaving">That is not an email.</span>
-            <span ng-show="(innerForm.$error.integer.length > 0) && outerForm.userSaving">Please use a number without decimals.</span>
-            <span ng-show="(innerForm.$error.float.length > 0) && outerForm.userSaving">Please use a proper number.</span>
+            <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
+            <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
+            <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
+            <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
         </div>
     </div>
 </div>

@@ -114,24 +114,48 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
-                if (elm.attr('type') !== 'text') {
-                    var type = elm.attr('type');
-                    var i = 0;
-                }
+                var inputType = elm.attr('type');
+                var inputValue = elm.val();
+
 
                 var isSubmitRequired = elm.attr('submit-required');
                 if (isSubmitRequired === "true") {
-                    validate(elm.val());
+
+                    if (['text', 'textarea', 'email', 'hidden'].indexOf(inputType) >= 0) {
+                        validateString(inputValue);
+                    } else if (['checkbox', 'radio'].indexOf(inputType) >= 0) {
+                        validateGroup(elm);
+                    } else if ('number' === inputType) {
+                        validateNumber(inputValue)
+                    }
+
                 }
-            })
+            });
 
+            function validateGroup(elm) {
+                // we do this with a hidden input
+            }
 
-            function validate(value) {
-                if (objSvc.isUndefinedOrNull(value)) {
-                    ctrl.$setValidity('submitRequired', true);
+            function validateNumber(value) {
+                if (objSvc.isUndefinedOrNull(value) || value === '0') {
+                    console.log(value + " is invalid");
+                    ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
+                    console.log(value + " is VALID");
+                    ctrl.$setValidity('submitRequired', true);
+                    return undefined;
+                }
+            }
+
+            function validateString(value) {
+                if (objSvc.isUndefinedOrNull(value) || value.length === 0) {
+                    console.log(value + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
+                    return undefined;
+                } else {
+                    console.log(value + " is VALID");
+                    ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 }
             };

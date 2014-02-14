@@ -16,8 +16,13 @@
                 <div class-info-form-inputs></div>
             </tab>
             <tab heading="Submit Application">
+
+                <div ng-show="requiredErrorCount > 0" class="alert alert-danger">
+                    <p>You have {{ requiredErrorCount }} required fields to fill in before you can submit.</p>
+                </div>
+
                 <p>Some warning text.</p>
-                <div bse-input id="test" lbl-text="Test" outer-form="outerForm" the-model="test" submit-required="true" type="text"></div>
+                <div bse-input id="test" lbl-text="Please sign here." outer-form="outerForm" the-model="signOff" submit-required="true" type="text"></div>
                 <button class="btn btn-default" ng-click="submit()">Submit</button>
             </tab>
         </tabset>

@@ -61,13 +61,13 @@ bsElements.directive('bseInput', function () {
 
                 jqLiteInput = angular.element(inputs[i]);
                 addAttribute(jqLiteInput, tAttrs, 'integer');
-                addAttribute(jqLiteInput, tAttrs, 'smartFloat');
-                //addAttribute(jqLiteInput, tAttrs, 'submitRequired');
+                addAttribute(jqLiteInput, tAttrs, 'smartFloat');                
             }
 
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
-                    scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
+                    scope.isString = ['email', 'password', 'text', 'url', 'number'].indexOf(iAttrs.type) >= 0;
+                    scope.isHidden = iAttrs.type === 'hidden';
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
                     scope.isFile = 'file' == iAttrs.type;
                     scope.isTextarea = 'textarea' == iAttrs.type;

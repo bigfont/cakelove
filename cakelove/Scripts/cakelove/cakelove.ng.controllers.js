@@ -163,6 +163,14 @@ cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$loca
             $scope.outerForm.userSubmitting = true;
             $scope.$broadcast('userSubmitting');
 
+            var requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
+            if (requiredErrorsLength > 0)
+            {
+                $scope.requiredErrorCount = requiredErrorsLength;
+            }
+
+            var i = 0;
+
         };
 
     }]);
@@ -271,24 +279,13 @@ cakeLoveControllers.controller('BiographyCtrl', [
             $scope.bio = angular.copy($scope.masterModel);
         };
 
-        // Creates a uploader
-        var formUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
-        var uploader = $scope.uploader = $fileUploader.create({
-            scope: $scope,
-            url: formUrl,
-            headers: { Authorization: "Bearer " + userSvc.userToken } 
-        });        
-
-        // Images only filter
-        uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
-            var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
-            type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-        });
-
+        // Create a uploader
+        var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
+        var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
             $scope.bio.hasBioImage = true;
         });
+
     }
 ]);
 
@@ -348,5 +345,15 @@ cakeLoveControllers.controller('ClassesCtrl', [
             $scope.classes[0].active = true;
 
         };
+
+
+        // Create a uploader
+        var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
+        var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
+        uploader.bind('afteraddingfile', function (event, item) {
+            $scope.classes[0].hasClassImage = true;
+            item.removeAfterUpload = true;
+            item.upload();
+        });
     }
 ]);

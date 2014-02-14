@@ -106,7 +106,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
 
 }]);
 
-cakeLoveFactories.factory('formSvc', ['$http', function ($http) {
+cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', 'userSvc', function ($http, $fileUploader, userSvc) {
 
     var formSvc = {};
 
@@ -116,6 +116,23 @@ cakeLoveFactories.factory('formSvc', ['$http', function ($http) {
         $scope.masterModel = angular.copy(formModel);
         $http({ method: "POST", url: url, data: formModel }); // todo success, error, then
 
+    };
+
+    formSvc.createImageUploader = function ($scope, uploaderUrl) {
+        var uploader =  $fileUploader.create({
+            scope: $scope,
+            url: uploaderUrl,
+            headers: { Authorization: "Bearer " + userSvc.userToken }
+        });
+
+        // Images only filter
+        uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
+            var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
+            type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
+            return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        });
+
+        return uploader;
     };
 
     return formSvc;
