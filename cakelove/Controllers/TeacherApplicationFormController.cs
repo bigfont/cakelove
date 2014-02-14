@@ -132,43 +132,14 @@ namespace cakelove.Controllers
             if (!Request.Content.IsMimeMultipartContent())
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
-
-            string root = HttpContext.Current.Server.MapPath("~/UserImages");
-            var provider = new MultipartFormDataStreamProvider(root);
-
+            }           
             try
             {
-                // Read the form data.
-                await Request.Content.ReadAsMultipartAsync(provider);
-
-                // This illustrates how to get the file names.
-                foreach (MultipartFileData file in provider.FileData)
-                {
-                    // FileName: "business_happy_200x200.jpg"
-                    Debug.WriteLine("FileName: " + file.Headers.ContentDisposition.FileName);
-                    // LocalFileName: C:\Users\Shaun\Documents\GitHub\cakelove\cakelove\App_Data\BodyPart_5c0b41d0-f79a-4131-bfa9-a6a557129e98
-                    Debug.WriteLine("LocalFileName: " + file.LocalFileName);
-
-                    var mediaType = file.Headers.ContentType.MediaType;
-                    string fileExtension = null;
-                    switch (mediaType)
-                    {
-                        case "image/jpeg": fileExtension = ".jpg"; break;
-                        case "image/png": fileExtension = ".png"; break;
-                    }
-                    if (fileExtension != null)
-                    {
-                        var newFileName = GetCurrentUserId() + fileExtension;
-                        newFileName = Path.Combine(root, newFileName);
-                        File.Move(file.LocalFileName, newFileName);
-                    }
-                }
-                return Ok();
+                SaveImage(Request, "bio");
             }
             catch (System.Exception e)
             {
-                return Ok();
+                httpActionResult = CreateHttpActionResultFromException(e);
             }
 
             return httpActionResult;
@@ -233,9 +204,11 @@ namespace cakelove.Controllers
         [System.Web.Http.Route("ClassInfo")]
         public async Task<IHttpActionResult> ClassInfo(ClassInfoBindingModel model)
         {
+            IHttpActionResult httpActionResult = Ok();
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                httpActionResult = BadRequest(ModelState);
             }
 
             try
@@ -247,22 +220,66 @@ namespace cakelove.Controllers
 
                 var result = await dbContext.SaveChangesAsync();
             }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var error in e.EntityValidationErrors)
-                {
-                    var m = error.Entry;
-                }
-            }
             catch (Exception e)
             {
-                var message = e.Message;
+                httpActionResult = CreateHttpActionResultFromException(e);
             }
 
-            return Ok();
+            return httpActionResult;
         }
 
-        // todo Put this method into the IBindingModel or similar spot... model.SetState().
+        [HttpPost]
+        [System.Web.Http.Route("ClassImage")]
+        public async Task<IHttpActionResult> ClassImage()
+        {
+            IHttpActionResult httpActionResult = Ok();
+
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            try
+            {
+                SaveImage(Request, "class");
+            }
+            catch (System.Exception e)
+            {
+                httpActionResult = CreateHttpActionResultFromException(e);
+            }
+
+            return httpActionResult;
+        }
+
+        private async void SaveImage(HttpRequestMessage request, string fileNameSuffix)
+        {
+            string root = HttpContext.Current.Server.MapPath("~/UserImages");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            // Read the form data.
+            await request.Content.ReadAsMultipartAsync(provider);
+
+            // Save
+            foreach (MultipartFileData file in provider.FileData)
+            {
+                var mediaType = file.Headers.ContentType.MediaType;
+                string fileExtension = null;
+                switch (mediaType)
+                {
+                    case "image/jpeg": fileExtension = ".jpg"; break;
+                    case "image/png": fileExtension = ".png"; break;
+                }
+                if (fileExtension != null)
+                {
+                    var newFileName = GetCurrentUserId() + "_" + fileNameSuffix + fileExtension;
+                    newFileName = Path.Combine(root, newFileName);
+                    File.Move(file.LocalFileName, newFileName);
+                }
+            }
+        }
+
+        // Nice-to-have: Put this method into the IBindingModel or similar spot... model.SetState().
         private EntityState GetBindingModelState(IBindingModel model)
         {
             return model.Id == default(int) ? EntityState.Added : EntityState.Modified;
@@ -273,7 +290,7 @@ namespace cakelove.Controllers
             return HttpContext.Current.User.Identity.GetUserId();
         }
 
-        // todo improve this error handling
+        // Nice-to-have: improve this error handling
         private IHttpActionResult CreateHttpActionResultFromException(Exception exception)
         {
             Type exceptionType = exception.GetType();
