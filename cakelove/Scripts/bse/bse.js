@@ -1,8 +1,12 @@
 ﻿var bsElements = angular.module('bsElements', []);
 
-
-var INTEGER_REGEXP = /^\-?\d+$/;
-
+var SNAKE_CASE_REGEXP = /[A-Z]/g;
+function snake_case(name, separator) {
+    separator = separator || '_';
+    return name.replace(SNAKE_CASE_REGEXP, function (letter, pos) {
+        return (pos ? separator : '') + letter.toLowerCase();
+    });
+}
 
 /*
  * Handles most input types
@@ -41,9 +45,12 @@ bsElements.directive('bseInput', function () {
             tElement.removeAttr("id");
             tElement.removeAttr("type");
 
-            function addAttribute(jqLiteInput, attr)
-            {
-                if (typeof tAttrs.integer !== "undefined") {
+            function addAttribute(jqLiteInput, tAttrs, prop) {
+
+                var attr = snake_case(prop);
+
+                var o = tAttrs[prop];
+                if (typeof o !== "undefined") {
                     jqLiteInput.attr(attr, attr);
                 }
             }
@@ -51,10 +58,11 @@ bsElements.directive('bseInput', function () {
             var inputs = tElement.find('input');
             var jqLiteInput;
             for (var i = 0; i < inputs.length; i++) {
+
                 jqLiteInput = angular.element(inputs[i]);
-                addAttribute(jqLiteInput, 'integer');
-                addAttribute(jqLiteInput, 'smart-float');
-                addAttribute(jqLiteInput, 'submit-required');
+                addAttribute(jqLiteInput, tAttrs, 'integer');
+                addAttribute(jqLiteInput, tAttrs, 'smartFloat');
+                addAttribute(jqLiteInput, tAttrs, 'submitRequired');
             }
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {

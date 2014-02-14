@@ -329,8 +329,8 @@ cakeLoveControllers.controller('SubmitCtrl', [
         // reset the user input model
         $scope.submit = function () {
 
-            $scope.outerForm.submitted = true;
-            $scope.state = "submitted";
+            $scope.outerForm.submitting = true;
+            $scope.state = "submitting";
 
         };
     }

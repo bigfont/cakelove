@@ -1,6 +1,6 @@
 ﻿
 
-<div ng-class="{'has-error':(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.submitted) && !innerForm.$invalid  }"
+<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
 
     <ng-form name="innerForm">
@@ -13,13 +13,13 @@
             <!--email, password, text, url-->
             <div ng-show="isString">
 
-                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{submitted: outerForm.submitted}" 
+                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}" 
                        ng-model="theModel" ng-required="isRequired" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}">
 
                 <!--with input group-->
                 <div class="input-group" ng-show="{{ hasAddOn }}">
                     <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
-                    <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired" placeholder="{{ placeholder }}" type="{{ type }}">
+                    <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-required="isRequired" placeholder="{{ placeholder }}" type="{{ type }}">
                     <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
                 </div>
 
@@ -37,13 +37,13 @@
             </div>
 
             <!-- textarea-->
-            <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{submitted: outerForm.submitted}" ng-model="theModel" ng-required="isRequired && isTextarea" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
+            <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-required="isRequired && isTextarea" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
         </div>
     </ng-form>
 
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.submitted) && innerForm.$invalid">
+    <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid">
         <div ng-show="isTextarea">
             <span ng-show="innerForm.innerTextarea.$error.required">This input is required.</span>
         </div>

@@ -24,7 +24,7 @@
     
     <!--Validation and Help-->
     <span class="help-block">{{ helpBlock }}</span>
-    <div ng-show="(innerForm.$dirty || theOuterForm.submitted) && innerForm.$invalid">
+    <div ng-show="(innerForm.$dirty || theOuterForm.userSaving) && innerForm.$invalid">
         Invalid:
         <span ng-show="innerForm.innerFormInput.$error.required">Tell us your {{ labelText.toLowerCase() }}.</span>
         <span ng-show="innerForm.innerFormInput.$error.email">That is not an email.</span>

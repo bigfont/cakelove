@@ -112,7 +112,7 @@ cakeLoveFactories.factory('formSvc', ['$http', function ($http) {
 
     formSvc.update = function($scope, formModel, outerForm, url) {
 
-        outerForm.submitted = true;
+        outerForm.userSaving = true;
         $scope.masterModel = angular.copy(formModel);
         $http({ method: "POST", url: url, data: formModel }); // todo success, error, then
 

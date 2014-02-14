@@ -114,11 +114,14 @@ cakeLoveDirectives.directive('submitRequired', function () {
 
             function validate(value) {
 
-                if (FLOAT_REGEXP.test(value)) {
-                    ctrl.$setValidity('float', true);
-                    return parseFloat(value.replace(',', '.'));
+                submitting = true;
+
+                if (!scope.outerForm.submitting) {
+                    ctrl.$setValidity('submit', true);
+                    console.log();
+                    return value;
                 } else {
-                    ctrl.$setValidity('float', false);
+                    ctrl.$setValidity('submit', false);
                     return undefined;
                 }
             };
