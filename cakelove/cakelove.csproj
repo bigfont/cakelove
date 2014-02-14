@@ -278,6 +278,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular\angular-sanitize.js" />
+    <Content Include="Scripts\bse\bse-file-upload.html" />
     <Content Include="Scripts\bse\bse.js" />
     <Content Include="Scripts\bse\bse-inputs.html" />
     <Content Include="Scripts\cakelove\cakelove.ng.controllers.js" />
@@ -565,6 +566,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="sensitive\" />
+    <Folder Include="UserImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

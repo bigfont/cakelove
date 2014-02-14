@@ -134,7 +134,7 @@ namespace cakelove.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            string root = HttpContext.Current.Server.MapPath("~/UserImages");
             var provider = new MultipartFormDataStreamProvider(root);
 
             try
