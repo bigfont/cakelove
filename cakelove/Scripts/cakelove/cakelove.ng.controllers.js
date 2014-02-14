@@ -275,7 +275,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = $fileUploader.create({
             scope: $scope,
-            url: url
+            url: url,
+            headers: { Authorization: "Bearer " + userSvc.userToken } 
         });        
 
         // Images only filter

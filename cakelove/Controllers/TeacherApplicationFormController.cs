@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Net.Http;
 using AutoMapper;
 using cakelove.Models;
 using Microsoft.AspNet.Identity;
@@ -14,6 +15,9 @@ using System.Web.Http.Results;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Text;
+using System.Collections.Specialized;
+using System.Net;
+using System.IO;
 
 namespace cakelove.Controllers
 {
@@ -80,9 +84,44 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
-        public async Task<IHttpActionResult> BiographyImage([FromBody] string value)
+        [HttpPost]
+        public async Task<IHttpActionResult> BiographyImage()
         {
             IHttpActionResult httpActionResult = Ok();
+
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            try
+            {
+                // Read the form data.
+                await Request.Content.ReadAsMultipartAsync(provider);
+
+                // This illustrates how to get the file names.
+                foreach (MultipartFileData file in provider.FileData)
+                {
+                    // FileName: "business_happy_200x200.jpg"
+                    Debug.WriteLine("FileName: " + file.Headers.ContentDisposition.FileName);
+                    // LocalFileName: C:\Users\Shaun\Documents\GitHub\cakelove\cakelove\App_Data\BodyPart_5c0b41d0-f79a-4131-bfa9-a6a557129e98
+                    Debug.WriteLine("LocalFileName: " + file.LocalFileName);
+
+                    var newFileName = GetCurrentUserId();                    
+                    newFileName = Path.Combine(root, newFileName);
+
+                    File.Move(file.LocalFileName, newFileName);
+                }
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return Ok();
+            }
 
             return httpActionResult;
         }
