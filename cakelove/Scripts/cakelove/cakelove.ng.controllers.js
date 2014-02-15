@@ -60,7 +60,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
                         success(function (data, status, headers, config) {
 
                             userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
-                            $location.path("/agreement");
+                            $location.path("/instructor-guidelines");
 
                         }).
                         error(function (data, status, headers, config) {
@@ -107,7 +107,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
                     if (userSvc.isUserInRole('applicant')) {
                         $location.path("/application-form");
                     } else {
-                        $location.path("/agreement");
+                        $location.path("/instructor-guidelines");
                     }
                 }).
                 error(function (data, status, headers, config) {
@@ -121,14 +121,14 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         };
     }]);
 
-cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
+cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
     function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
 
         siteMapSvc.currentPage = "Instructor Guidelines";
 
-        $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
+        $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/instructor-guidelines-text')).success(function (data) {
 
-            $scope.agreementText = data;
+            $scope.instructorGuidelinesText = data;
 
         });
 

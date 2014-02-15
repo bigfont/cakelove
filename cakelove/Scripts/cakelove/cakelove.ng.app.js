@@ -30,9 +30,9 @@ function ($routeProvider) {
         templateUrl: 'ng/partials/login-register-form',
         controller: 'TokenCtrl'
     }).
-    when('/agreement', {
-        templateUrl: 'ng/partials/agreement',
-        controller: 'AgreementCtrl',
+    when('/instructor-guidelines', {
+        templateUrl: 'ng/partials/instructor-guidelines',
+        controller: 'InstructorGuidelinesCtrl',
         isSecure: true,
         allowTheseRoles: ["member"]
     }).
@@ -89,7 +89,7 @@ myApp.run(function ($rootScope, $location, userSvc) {
                 } else if (userSvc.isUserInRole('applicant')) {
                     $location.path("/application-form");
                 } else if (userSvc.isUserInRole('member')) {
-                    $location.path("/agreement");
+                    $location.path("/instructor-guidelines");
                 }
             }
         }
