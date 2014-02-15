@@ -59,7 +59,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
                     $http({ method: 'POST', url: url, data: grantRequest }).
                         success(function (data, status, headers, config) {
 
-                            userSvc.addUserLoginToStorage(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                            userSvc.storeUserLogin(data);
                             $location.path("/instructor-guidelines");
 
                         }).
@@ -101,7 +101,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
                 success(function (data, status, headers, config) {
 
                     // log the user in
-                    userSvc.addUserLoginToStorage(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                    userSvc.storeUserLogin(data);
 
                     // redirect the user
                     if (userSvc.isUserInRole('applicant')) {

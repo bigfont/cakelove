@@ -31,7 +31,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
 
     var userSvc = {
 
-        userToken: '',
+        access_token: '',
         userId: '',
         userName: '',
         userRolesCsv: '',
@@ -41,33 +41,45 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
 
     var storage = $window.localStorage;
 
-    function populate_ClientStorage_From_UserSvc()
+    function setHttpAuthHeader(access_token)
     {
-        if (!objSvc.isUndefinedOrNull(userSvc.userToken) && userSvc.userToken.length > 0)
-        {
-            storage.setItem('userToken', userSvc.userToken);
+        $http.defaults.headers.common.Authorization = "Bearer " + userSvc.access_token;
+    }
+
+    function populate_ClientStorage_From_UserSvc() {
+
+        if (!objSvc.isUndefinedOrNull(userSvc)) {
+            storage.setItem('access_token', userSvc.access_token);
             storage.setItem('userId', userSvc.userId);
             storage.setItem('userName', userSvc.userName);
             storage.setItem('userRolesCsv', userSvc.userRolesCsv);
+            storage.setItem('isLoggedIn', userSvc.isLoggedIn);
         }
+    }
+
+    function populate_UserSvc_From_LoginResult(loginResult) {
+
+        userSvc.access_token = loginResult.access_token;
+        userSvc.userId = loginResult.userId;
+        userSvc.userName = loginResult.userName;
+        userSvc.userRolesCsv = loginResult.userRolesCsv;
+        userSvc.isLoggedIn = true;
     }
 
     function populate_UserSvc_From_ClientStorage() {
 
-        userSvc.userToken = storage.getItem('userToken');
+        userSvc.access_token = storage.getItem('access_token');
         userSvc.userId = storage.getItem('userId');
         userSvc.userName = storage.getItem('userName');
         userSvc.userRolesCsv = storage.getItem('userRolesCsv');
-
-        if (!objSvc.isUndefinedOrNull(userSvc.userToken) && userSvc.userToken.length > 0) {
-
-            userSvc.isLoggedIn = true;
-            $http.defaults.headers.common.Authorization = "Bearer " + userSvc.userToken;
-
-        } else {
-            userSvc.isLoggedIn = false;
-        }
+        userSvc.isLoggedIn = storage.getItem('isLoggedIn');
     };
+
+    userSvc.loginFromClientStorage = function()
+    {
+        populate_UserSvc_From_ClientStorage();
+        setHttpAuthHeader();
+    }
 
     userSvc.createAspNetIdentityGrantRequest = function (userName, password) {
         return "grant_type=password&username=" + userName + "&password=" + password;;
@@ -108,13 +120,10 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
         return match;
     };
 
-    userSvc.addUserLoginToStorage = function (userName, userId, userRolesCsv, userToken) {
-
-        userSvc.userToken = userToken;
-        userSvc.userId = userId;
-        userSvc.userName = userName;
-        userSvc.userRolesCsv = userRolesCsv;
-
+    userSvc.storeUserLogin = function (loginResult) {
+      
+        setHttpAuthHeader(loginResult.access_token);
+        populate_UserSvc_From_LoginResult(loginResult);
         populate_ClientStorage_From_UserSvc();
     };
 
@@ -122,7 +131,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
 
         userSvc.isLoggedIn = false;
 
-        storage.removeItem('userToken');
+        storage.removeItem('access_token');
         storage.removeItem('userId');
         storage.removeItem('userName');
         storage.removeItem('userRolesCsv');
@@ -131,7 +140,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
 
     };
 
-    populate_UserSvc_From_ClientStorage();
+    userSvc.loginFromClientStorage();
 
     return userSvc;
 
@@ -167,7 +176,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
         var uploader = $fileUploader.create({
             scope: $scope,
             url: uploaderUrl,
-            headers: { Authorization: "Bearer " + userSvc.userToken }
+            headers: { Authorization: "Bearer " + userSvc.access_token }
         });
 
 
