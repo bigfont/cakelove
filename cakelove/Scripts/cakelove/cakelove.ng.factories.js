@@ -47,7 +47,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
     };
 
     function setHttpAuthHeader(access_token) {
-        $http.defaults.headers.common.Authorization = "Bearer " + userSvc.access_token;
+        $http.defaults.headers.common.Authorization = "Bearer " + access_token;
     }
 
     function storeNewUserRole(roleName)
