@@ -26,8 +26,11 @@
                     <p>You have {{ requiredErrorCount }} required fields to fill in before you can submit.</p>
                 </div>
 
-                <p>Some warning text.</p>
-                <div bse-input id="test" lbl-text="Please sign here." outer-form="outerForm" the-model="signOff" submit-required="true" type="text"></div>
+                <p>Now that you’ve finished your application, this is where you submit it for consideration.</p>
+                <p>Before you submit, please make sure that your application is complete and correct.</p>
+                <p>You will not be able to submit an incomplete application, nor will you be able to make any changes to your application once you submit it.</p>
+                <p>So…take a deep breath and submit away!</p>
+                <div bse-input id="test" lbl-text="Please type your username here to confirm:" outer-form="outerForm" the-model="signOff" submit-required="true" type="text"></div>
                 <button class="btn btn-default" ng-click="submit()">Submit</button>
             </tab>
         </tabset>
