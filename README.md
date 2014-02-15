@@ -2,6 +2,11 @@
 
 A portal/page/site that potential instructors can go to in order to apply as an instructor at Cake Love.
 
+# Client Steering, 15 Feb 2014
+
+- Add Class doesn't work on the Classes tab. 
+- Save complete pops up repeatedly.
+
 # Client Steering, 12 Feb 2014
 
 - must have
