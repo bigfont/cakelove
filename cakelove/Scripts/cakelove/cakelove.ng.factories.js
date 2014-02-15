@@ -114,7 +114,6 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     formSvc.update = function($scope, formModel, outerForm, url, callback) {
 
-        $scope.masterModel = angular.copy(formModel);
         $http({ method: "POST", url: url, data: formModel })
             .success(function (data, status, headers, config) {
 

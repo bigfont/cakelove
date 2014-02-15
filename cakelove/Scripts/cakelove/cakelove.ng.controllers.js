@@ -288,13 +288,12 @@ cakeLoveControllers.controller('BiographyCtrl', [
     }
 ]);
 
-cakeLoveControllers.controller('ClassesCtrl', [
-    '$scope', '$http', '$location', '$window', '$timeout', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
+cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '$window', '$timeout', 'userSvc', 'urlSvc', 'formSvc', 'objSvc',
     function ($scope, $http, $location, $window, $timeout, userSvc, urlSvc, formSvc, objSvc) {
 
         $scope.formName = 'Classes';
 
-        $scope.masterModel = {};
+        $scope.masterModelArray = [];
 
         function setClassInfoDefaults(classInfo) {
             if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length == 0) {
@@ -304,45 +303,6 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 classInfo.id = 0;
             }
         }
-
-        // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
-        $http({ method: 'GET', url: url }).
-            success(function (data, status, headers, config) {
-
-                $scope.masterModel = data;
-
-                for (var obj in data) {
-                    setClassInfoDefaults(obj);
-                }
-
-                $scope.reset();
-                createUploader();
-            });
-
-        // add a new classinfo
-        $scope.create = function () {
-            var newClassInfo = objSvc.copyWithoutValues($scope.masterModel[0]);
-            newClassInfo.active = true;
-            setClassInfoDefaults(newClassInfo);
-            $scope.update(newClassInfo, $scope.outerForm);
-            $scope.classes.push(newClassInfo);
-        }
-
-        // update master from the user input model
-        $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url, function (data) {
-
-                formModel.id = data.classId;
-
-            });
-        };
-
-        // reset the user input model
-        $scope.reset = function () {
-            $scope.classes = angular.copy($scope.masterModel);
-            $scope.classes[0].active = true;
-        };
 
         function ActiveClassTabIndex() {
             for (classTabIndex in $scope.classes) {
@@ -377,5 +337,47 @@ cakeLoveControllers.controller('ClassesCtrl', [
                 $scope.update(activeClass, $scope.outerForm);
             });
         }
+
+        // get
+        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
+
+                $scope.masterModelArray = data;
+
+                for (var obj in data) {
+                    setClassInfoDefaults(obj);
+                }
+
+                $scope.reset();
+                createUploader();
+            });
+
+        // add a new classinfo
+        $scope.create = function () {
+            var newClassInfo = objSvc.copyWithoutValues($scope.masterModelArray[0]);
+            newClassInfo.active = true;
+            setClassInfoDefaults(newClassInfo);
+            $scope.update(newClassInfo, $scope.outerForm);
+            $scope.classes.push(newClassInfo);
+        }
+
+        // update master from the user input model
+        $scope.update = function (formModel, outerForm) {
+            formSvc.update($scope, formModel, outerForm, url, function (data) {
+
+                formModel.id = data.classId;
+
+            });
+        };
+
+        // reset the user input model
+        $scope.reset = function () {
+            $scope.classes = angular.copy($scope.masterModelArray);
+            $scope.classes[0].active = true;
+        };
+
+
+
     }
 ]);
