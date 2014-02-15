@@ -1,6 +1,6 @@
 ﻿var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
-cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', function ($scope, userSvc, siteMapSvc) {
+cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', 'formSvc', function ($scope, userSvc, siteMapSvc, formSvc) {
 
     $scope.userSvc = userSvc;
     $scope.siteMapSvc = siteMapSvc;
@@ -121,14 +121,14 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
         };
     }]);
 
-cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
-    function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
+cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '$location', '$window', '$sce', 'userSvc', 'urlSvc', 'siteMapSvc',
+    function ($scope, $http, $location, $window, $sce, userSvc, urlSvc, siteMapSvc) {
 
         siteMapSvc.currentPage = "Instructor Guidelines";
 
         $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/instructor-guidelines-text')).success(function (data) {
 
-            $scope.instructorGuidelinesText = data;
+            $scope.instructorGuidelinesText = $sce.trustAsHtml(data);
 
         });
 
