@@ -1,6 +1,6 @@
 ﻿var cakeLoveFactories = angular.module("cakeLoveFactories", []);
 
-cakeLoveFactories.factory('siteMapSvc', [function() {
+cakeLoveFactories.factory('siteMapSvc', [function () {
 
     var siteMap = {};
 
@@ -27,19 +27,39 @@ cakeLoveFactories.factory('urlSvc', ['$location', function ($location) {
 }]);
 
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function ($window, $location, $http) {
+cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc', function ($window, $location, $http, objSvc) {
 
-    var userSvc = {};
+    var userSvc = {
+
+        userToken: '',
+        userId: '',
+        userName: '',
+        userRolesCsv: '',
+        isLoggedIn: ''
+
+    };
+
     var storage = $window.localStorage;
 
-    function setPropertiesFromSessionStorage() {
+    function populate_ClientStorage_From_UserSvc()
+    {
+        if (!objSvc.isUndefinedOrNull(userSvc.userToken) && userSvc.userToken.length > 0)
+        {
+            storage.setItem('userToken', userSvc.userToken);
+            storage.setItem('userId', userSvc.userId);
+            storage.setItem('userName', userSvc.userName);
+            storage.setItem('userRolesCsv', userSvc.userRolesCsv);
+        }
+    }
+
+    function populate_UserSvc_From_ClientStorage() {
 
         userSvc.userToken = storage.getItem('userToken');
         userSvc.userId = storage.getItem('userId');
         userSvc.userName = storage.getItem('userName');
         userSvc.userRolesCsv = storage.getItem('userRolesCsv');
 
-        if (typeof userSvc.userToken !== "undefined" && userSvc.userToken !== null && userSvc.userToken.length > 0) {
+        if (!objSvc.isUndefinedOrNull(userSvc.userToken) && userSvc.userToken.length > 0) {
 
             userSvc.isLoggedIn = true;
             $http.defaults.headers.common.Authorization = "Bearer " + userSvc.userToken;
@@ -49,11 +69,20 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
         }
     };
 
-    setPropertiesFromSessionStorage();
-
-    userSvc.createAspNetIdentityGrantRequest = function(userName, password) {
+    userSvc.createAspNetIdentityGrantRequest = function (userName, password) {
         return "grant_type=password&username=" + userName + "&password=" + password;;
     };
+
+    userSvc.addCurrentUserToRole = function (successCallback) {
+
+        $http.post(url, userRole)
+            .success(function (data, status, headers, config) {
+
+                successCallback();
+
+            });
+
+    }
 
     userSvc.isUserInRole = function (roleToCheck) {
 
@@ -79,14 +108,14 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
         return match;
     };
 
-    userSvc.login = function (userName, userId, userRolesCsv, userToken) {
+    userSvc.addUserLoginToStorage = function (userName, userId, userRolesCsv, userToken) {
 
-        storage.setItem('userToken', userToken);
-        storage.setItem('userId', userId);
-        storage.setItem('userName', userName);
-        storage.setItem('userRolesCsv', userRolesCsv);
+        userSvc.userToken = userToken;
+        userSvc.userId = userId;
+        userSvc.userName = userName;
+        userSvc.userRolesCsv = userRolesCsv;
 
-        setPropertiesFromSessionStorage();
+        populate_ClientStorage_From_UserSvc();
     };
 
     userSvc.logout = function () {
@@ -102,6 +131,8 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', function 
 
     };
 
+    populate_UserSvc_From_ClientStorage();
+
     return userSvc;
 
 }]);
@@ -110,8 +141,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     var formSvc = {};
 
-    function showFormUpdateMessage()
-    {
+    function showFormUpdateMessage() {
         formSvc.showSavedMessage = true;
         $timeout(function () { formSvc.showSavedMessage = false; }, [2000]);
         if (typeof data.classId !== 'undefined') {
@@ -122,7 +152,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     formSvc.showSavedMessage = false;
 
-    formSvc.update = function($scope, formModel, outerForm, url, callback) {
+    formSvc.update = function ($scope, formModel, outerForm, url, callback) {
 
         $http({ method: "POST", url: url, data: formModel })
             .success(function (data, status, headers, config) {
@@ -134,7 +164,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
     };
 
     formSvc.createImageUploader = function ($scope, uploaderUrl) {
-        var uploader =  $fileUploader.create({
+        var uploader = $fileUploader.create({
             scope: $scope,
             url: uploaderUrl,
             headers: { Authorization: "Bearer " + userSvc.userToken }
@@ -159,7 +189,7 @@ cakeLoveFactories.factory('objSvc', [function () {
 
     var objSvc = {};
 
-    objSvc.copyWithoutValues = function(obj) {
+    objSvc.copyWithoutValues = function (obj) {
         var newObj = angular.copy(obj);
         for (prop in newObj) {
             if (newObj.hasOwnProperty(prop)) {
@@ -169,8 +199,7 @@ cakeLoveFactories.factory('objSvc', [function () {
         return newObj;
     }
 
-    objSvc.isUndefinedOrNull = function(obj)
-    {
+    objSvc.isUndefinedOrNull = function (obj) {
         return (typeof obj === 'undefined' || obj === null);
     }
 

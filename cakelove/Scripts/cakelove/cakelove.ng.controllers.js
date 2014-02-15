@@ -59,7 +59,7 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
                     $http({ method: 'POST', url: url, data: grantRequest }).
                         success(function (data, status, headers, config) {
 
-                            userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                            userSvc.addUserLoginToStorage(data.userName, data.userId, data.userRolesCsv, data.access_token);
                             $location.path("/instructor-guidelines");
 
                         }).
@@ -101,7 +101,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
                 success(function (data, status, headers, config) {
 
                     // log the user in
-                    userSvc.login(data.userName, data.userId, data.userRolesCsv, data.access_token);
+                    userSvc.addUserLoginToStorage(data.userName, data.userId, data.userRolesCsv, data.access_token);
 
                     // redirect the user
                     if (userSvc.isUserInRole('applicant')) {
@@ -140,13 +140,13 @@ cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '
                 roleName: "applicant"
             };
 
-            $http.post(url, userRole)
-                .success(function (data, status, headers, config) {
-                    $location.path("/application-form");
-                })
-                .error(function (data, status, headers, config) {
-                    // todo
-                });
+            userSvc.addCurrentUserToRole("applicant", function () {
+
+                $location.path("/application-form");
+
+            });
+
+
         };
 
     }]);
