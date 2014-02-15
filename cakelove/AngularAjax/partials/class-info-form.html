@@ -65,27 +65,27 @@
 
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." the-model="isMultiDay"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ isMultiDay ? 'day one' : '' }} class time:" the-model="classInfo.totalTimeDayOne"></div>
-                            <div bse-input submit-required="{{ isMultiDay }}" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's classInfo." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="isMultiDay" the-model="classInfo.totalTimeDayTwo"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." the-model="classInfo.isMultiDay"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ classInfo.isMultiDay ? 'day one' : '' }} class time:" the-model="classInfo.totalTimeDayOne"></div>
+                            <div bse-input submit-required="{{ classInfo.isMultiDay }}" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's classInfo." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="classInfo.isMultiDay" the-model="classInfo.totalTimeDayTwo"></div>
                         </fieldset>
 
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I have a class scheduling preference." the-model="hasTimePreference"></div>
-                            <div ng-show="hasTimePreference" class="row">
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I have a class scheduling preference." the-model="classInfo.hasTimePreference"></div>
+                            <div ng-show="classInfo.hasTimePreference" class="row">
                                 <div class="col-sm-6">
-                                    <label>Preferred {{ isMultiDay ? 'day one' : '' }} timing:</label>
+                                    <label>Preferred {{ classInfo.isMultiDay ? 'day one' : '' }} timing:</label>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" the-model="classInfo.preferredTimeDayOne"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="classInfo.preferredTimeDayOne"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - am" value="sat-am" the-model="classInfo.preferredTimeDayOne"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="classInfo.preferredTimeDayOne"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" the-model="classInfo.preferredTimeDayOne"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input submit-required="{{ hasTimePreference }}" outer-form="outerForm" hidden-input type="text" the-model="classInfo.preferredTimeDayOne"></div>
+                                    <div bse-input submit-required="{{ classInfo.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" the-model="classInfo.preferredTimeDayOne"></div>
 
                                 </div>
-                                <div ng-show="isMultiDay" class="col-sm-6">
+                                <div ng-show="classInfo.isMultiDay" class="col-sm-6">
                                     <label>Preferred day two timing:</label>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" the-model="classInfo.preferredTimeDayTwo"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" the-model="classInfo.preferredTimeDayTwo"></div>
@@ -93,7 +93,7 @@
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" the-model="classInfo.preferredTimeDayTwo"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" the-model="classInfo.preferredTimeDayTwo"></div>
                                     <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" the-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input submit-required="{{ isMultiDay && hasTimePreference }}" outer-form="outerForm" hidden-input type="text" the-model="classInfo.preferredTimeDayTwo"></div>
+                                    <div bse-input submit-required="{{ classInfo.isMultiDay && classInfo.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" the-model="classInfo.preferredTimeDayTwo"></div>
 
                                 </div>
                             </div>
@@ -103,16 +103,16 @@
                         <fieldset>
 
                             <label>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</label>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for setup." the-model="needsExtraSetup"></div>
-                            <div bse-input outer-form="outerForm" ng-show="needsExtraSetup"
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for setup." the-model="classInfo.needsExtraSetup"></div>
+                            <div bse-input outer-form="outerForm" ng-show="classInfo.needsExtraSetup"
                                  lbl-text="Extra setup time:"
                                  help-block="How much additional time do you need?"
                                  id="extraTime.setup"
                                  type="number"
                                  add-on-right="mins"
-                                 submit-required="{{ needsExtraSetup }}"
+                                 submit-required="{{ classInfo.needsExtraSetup }}"
                                  the-model="classInfo.extraTimeSetup"></div>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." the-model="needsExtraCleanup"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." the-model="classInfo.needsExtraCleanup"></div>
                             <div bse-input outer-form="outerForm" ng-show="needsExtraCleanup"
                                  lbl-text="Extra cleanup time:"
                                  help-block="How much additional time do you need?"
@@ -154,15 +154,15 @@
 
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" the-model="isSelling"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" the-model="classInfo.isSelling"></div>
                             <div bse-input outer-form="outerForm" id="supplies-sale" rows="10" type="textarea"
-                                 lbl-text="If so, please list:" ng-show="isSelling" the-model="classInfo.suppliesWillSellThese"></div>
+                                 lbl-text="If so, please list:" ng-show="classInfo.isSelling" the-model="classInfo.suppliesWillSellThese"></div>
                         </fieldset>
 
                         <fieldset>
 
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I would like a vendor table..." the-model="doVendorTable"></div>
-                            <div ng-show="doVendorTable">
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I would like a vendor table..." the-model="classInfo.doVendorTable"></div>
+                            <div ng-show="classInfo.doVendorTable">
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" the-model="classInfo.vendorTable"></div>
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" the-model="classInfo.vendorTable"></div>
                                 <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" the-model="classInfo.vendorTable"></div>
@@ -174,9 +174,9 @@
                         <fieldset>
 
 
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class requires special supplies." the-model="doSpecialSupplies"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class requires special supplies." the-model="classInfo.doSpecialSupplies"></div>
 
-                            <div bse-input ng-show="doSpecialSupplies" outer-form="outerForm" id="supplies-special" submit-required="{{ doSpecialSupplies }}"
+                            <div bse-input ng-show="classInfo.doSpecialSupplies" outer-form="outerForm" id="supplies-special" submit-required="{{ classInfo.doSpecialSupplies }}"
                                  rows=" 10" type="textarea" lbl-text="Special equipment required for class:" the-model="classInfo.willNeedThisSpecialEquip"></div>
 
                         </fieldset>
