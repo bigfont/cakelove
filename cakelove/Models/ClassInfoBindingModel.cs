@@ -14,43 +14,24 @@ namespace cakelove.Models
     {
         public int Id { get; set; }
         public string ClassName { get; set; }
-
         public string ClassDescription { get; set; }
-
         public string ClassType { get; set; }
-
         public int? FeePerStudent { get; set; }
-
         public string Currency { get; set; }
-
         public int? ClassSizeMin { get; set; }
-
         public int? ClassSizeMax { get; set; }
-
         public string SkillLevel { get; set; }
-
         public int? TotalTimeDayOne { get; set; }
-
         public int? TotalTimeDayTwo { get; set; }
-
         public string PreferredTimeDayOne { get; set; }
-
         public string PreferredTimeDayTwo { get; set; }
-
         public int? ExtraTimeSetup { get; set; }
-
         public int? ExtraTimeCleanup { get; set; }
-
         public string SuppliesWillRequireThese { get; set; }
-
         public string SuppliesWillProvideThese { get; set; }
-
         public string SuppliesWillSellThese { get; set; }
-
         public string WillNeedThisSpecialEquip { get; set; }
-
         public string VendorTable { get; set; }
-
         public string HasClassImage { get; set; }
 
         public DateTime? CreatedDate { get; set; }
