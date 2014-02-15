@@ -89,7 +89,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
 
     userSvc.loginFromClientStorage = function () {
         populate_UserSvc_From_ClientStorage();
-        setHttpAuthHeader();
+        setHttpAuthHeader(userSvc.access_token);
     }
 
     userSvc.createAspNetIdentityGrantRequest = function (userName, password) {
