@@ -277,7 +277,7 @@
     </Content>
     <Content Include="AngularAjax\ajax\instructor-guidelines-text.html" />
     <Content Include="AngularAjax\ajax\welcome-text.html" />
-    <Content Include="AngularAjax\partials\agreement.html" />
+    <Content Include="AngularAjax\partials\instructor-guidelines.html" />
     <Content Include="AngularAjax\partials\application-form.html" />
     <Content Include="AngularAjax\partials\biography-form.html" />
     <Content Include="AngularAjax\partials\class-info-form.html" />
