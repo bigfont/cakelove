@@ -124,7 +124,7 @@ cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$loc
 cakeLoveControllers.controller('AgreementCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc',
     function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc) {
 
-        siteMapSvc.currentPage = "Agreement";
+        siteMapSvc.currentPage = "Instructor Guidelines";
 
         $http.get(urlSvc.ToAbsoluteUrl('/ng/ajax/agreement-text')).success(function (data) {
 
