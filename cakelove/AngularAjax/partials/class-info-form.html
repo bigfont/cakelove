@@ -132,11 +132,12 @@
                         <legend>Class Supplies</legend>
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" value="allInstructor" type="radio" lbl-text="I will provide all necessary supplies." the-model="classInfo.suppliesOption"></div>
-                            <div bse-input outer-form="outerForm" value="allStudent" type="radio" lbl-text="The student must bring all necessary supplies." the-model="classInfo.suppliesOption"></div>
-                            <div bse-input outer-form="outerForm" value="someInstructorSomeStudent" type="radio" lbl-text="I will provide some of the supplies, and the student must bring the rest." the-model="classInfo.suppliesOption"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" the-model="classInfo.suppliesOption"></div>
-
+                            <div class="radio-button-list">
+                                <div bse-input outer-form="outerForm" value="allInstructor" type="radio" lbl-text="I will provide all necessary supplies." the-model="classInfo.suppliesOption"></div>
+                                <div bse-input outer-form="outerForm" value="allStudent" type="radio" lbl-text="The student must bring all necessary supplies." the-model="classInfo.suppliesOption"></div>
+                                <div bse-input outer-form="outerForm" value="someInstructorSomeStudent" type="radio" lbl-text="I will provide some of the supplies, and the student must bring the rest." the-model="classInfo.suppliesOption"></div>
+                                <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" the-model="classInfo.suppliesOption"></div>
+                            </div>
                             <div bse-input outer-form="outerForm"
                                  ng-show="suppliesOption === 'allInstructor' || suppliesOption === 'someInstructorSomeStudent'"
                                  submit-required="{{suppliesOption === 'allInstructor' || suppliesOption === 'someInstructorSomeStudent'}}"

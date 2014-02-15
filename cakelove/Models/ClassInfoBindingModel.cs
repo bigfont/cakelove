@@ -33,9 +33,16 @@ namespace cakelove.Models
         public string WillNeedThisSpecialEquip { get; set; }
         public string VendorTable { get; set; }
         public string HasClassImage { get; set; }
-
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
+        public bool? DoSpecialSupplies { get; set; }
+        public bool? DoVendorTable { get; set; }
+        public bool? HasTimePreference { get; set; }
+        public bool? IsMultiDay { get; set; }
+        public bool? IsSelling { get; set; }
+        public bool? NeedsExtraCleanup { get; set; }
+        public bool? NeedsExtraSetup { get; set; }
+        public string SuppliesOption { get; set; } // radio
     }
 
 }

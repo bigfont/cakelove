@@ -251,6 +251,14 @@
     <Compile Include="Migrations\201402152309151_datemodefiedcreated.Designer.cs">
       <DependentUpon>201402152309151_datemodefiedcreated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402152357361_checkboxes.cs" />
+    <Compile Include="Migrations\201402152357361_checkboxes.Designer.cs">
+      <DependentUpon>201402152357361_checkboxes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402152358368_nullableBool.cs" />
+    <Compile Include="Migrations\201402152358368_nullableBool.Designer.cs">
+      <DependentUpon>201402152358368_nullableBool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -637,6 +645,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402152309151_datemodefiedcreated.resx">
       <DependentUpon>201402152309151_datemodefiedcreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402152357361_checkboxes.resx">
+      <DependentUpon>201402152357361_checkboxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402152358368_nullableBool.resx">
+      <DependentUpon>201402152358368_nullableBool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
