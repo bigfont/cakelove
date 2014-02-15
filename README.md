@@ -4,7 +4,7 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 
 # Client Steering, 15 Feb 2014
 
-- Add Class doesn't work on the Classes tab. 
+- Add Class doesn't work on the Classes tab (iff an only if you have just saved).
 - Save complete pops up repeatedly.
 
 # Client Steering, 12 Feb 2014
