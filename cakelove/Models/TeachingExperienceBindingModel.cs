@@ -11,7 +11,7 @@ namespace cakelove.Models
 {
 
     [Table("TeachingExperience")]
-    public class TeachingExperienceBindingModel : HasAnIdentityUserFk, IBindingModel
+    public class TeachingExperienceBindingModel : HasAnIdentityUserFk, IEntityBase
     {
         public int Id { get; set; }
 
@@ -24,6 +24,8 @@ namespace cakelove.Models
         public string PastConferences { get; set; }
 
         public string AveNumStudentsPerClass { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 
 }

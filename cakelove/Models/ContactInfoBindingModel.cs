@@ -2,11 +2,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
+using System;
 
 namespace cakelove.Models
 {
     [Table("Address")]
-    public class AddressBindingModel : IBindingModel
+    public class AddressBindingModel : IEntityBase
     {
         public int Id { get; set; }
 
@@ -19,16 +20,20 @@ namespace cakelove.Models
         public string PostalCode { get; set; }
 
         public string Country { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 
     [Table("ContactInfo")]
-    public class ContactInfoBindingModel : HasAnIdentityUserFk, IBindingModel
+    public class ContactInfoBindingModel : HasAnIdentityUserFk, IEntityBase
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
 
         public virtual AddressBindingModel Address { get; set; }
 

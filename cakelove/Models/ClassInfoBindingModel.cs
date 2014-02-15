@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace cakelove.Models
 {
     [Table("ClassInfo")]
-    public class ClassInfoBindingModel : HasAnIdentityUserFk, IBindingModel
+    public class ClassInfoBindingModel : HasAnIdentityUserFk, IEntityBase
     {
         public int Id { get; set; }
         public string ClassName { get; set; }
@@ -51,8 +51,10 @@ namespace cakelove.Models
 
         public string VendorTable { get; set; }
 
-        [JsonProperty("hasClassImage")]
         public string HasClassImage { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 
 }

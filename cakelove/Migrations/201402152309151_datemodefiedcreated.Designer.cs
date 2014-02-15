@@ -7,13 +7,13 @@ namespace cakelove.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class what : IMigrationMetadata
+    public sealed partial class datemodefiedcreated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(what));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(datemodefiedcreated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201402141917336_what"; }
+            get { return "201402152309151_datemodefiedcreated"; }
         }
         
         string IMigrationMetadata.Source

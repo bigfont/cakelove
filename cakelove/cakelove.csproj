@@ -247,9 +247,9 @@
     <Compile Include="Migrations\201402141743416_hasClassImage.Designer.cs">
       <DependentUpon>201402141743416_hasClassImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201402141917336_what.cs" />
-    <Compile Include="Migrations\201402141917336_what.Designer.cs">
-      <DependentUpon>201402141917336_what.cs</DependentUpon>
+    <Compile Include="Migrations\201402152309151_datemodefiedcreated.cs" />
+    <Compile Include="Migrations\201402152309151_datemodefiedcreated.Designer.cs">
+      <DependentUpon>201402152309151_datemodefiedcreated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -635,8 +635,8 @@
     <EmbeddedResource Include="Migrations\201402141743416_hasClassImage.resx">
       <DependentUpon>201402141743416_hasClassImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201402141917336_what.resx">
-      <DependentUpon>201402141917336_what.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201402152309151_datemodefiedcreated.resx">
+      <DependentUpon>201402152309151_datemodefiedcreated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

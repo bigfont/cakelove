@@ -7,8 +7,10 @@ using System.Web;
 
 namespace cakelove.Models
 {
-    public interface IBindingModel
+    public interface IEntityBase
     {
-        int Id { get; set; }        
+        int Id { get; set; }
+        DateTime? CreatedDate { get; set; }
+        DateTime? LastModifiedDate { get; set; }
     }
 }

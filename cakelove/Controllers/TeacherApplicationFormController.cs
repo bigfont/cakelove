@@ -304,7 +304,7 @@ namespace cakelove.Controllers
         }
 
         // Nice-to-have: Put this method into the IBindingModel or similar spot... model.SetState().
-        private EntityState GetBindingModelState(IBindingModel model)
+        private EntityState GetBindingModelState(IEntityBase model)
         {
             return model.Id == default(int) ? EntityState.Added : EntityState.Modified;
         }
