@@ -110,6 +110,16 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     var formSvc = {};
 
+    function showFormUpdateMessage()
+    {
+        formSvc.showSavedMessage = true;
+        $timeout(function () { formSvc.showSavedMessage = false; }, [2000]);
+        if (typeof data.classId !== 'undefined') {
+            formModel.id = data.classId;
+        }
+        callback(data);
+    }
+
     formSvc.showSavedMessage = false;
 
     formSvc.update = function($scope, formModel, outerForm, url, callback) {
@@ -117,13 +127,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
         $http({ method: "POST", url: url, data: formModel })
             .success(function (data, status, headers, config) {
 
-                formSvc.showSavedMessage = true;
-                $timeout(function () { formSvc.showSavedMessage = false; }, [10000]);
-                if (typeof data.classId !== 'undefined')
-                {
-                    formModel.id = data.classId;
-                }
-                callback(data);
+                showFormUpdateMessage();
 
             }); // todo error, then
 

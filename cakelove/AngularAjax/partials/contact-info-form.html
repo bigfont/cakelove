@@ -1,9 +1,15 @@
 ﻿<div class="row">
     <div class="col-lg-8">
-
-        <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.id" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" the-model="contactInfo.name" type="text"></div>
         <fieldset>
+            <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.id" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" the-model="contactInfo.name" type="text"></div>
+            <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" the-model="contactInfo.contactPhone" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" the-model="contactInfo.email" outer-form="outerForm"></div>
+            <div bse-input id="businessName" type="text" lbl-text="Business Name" the-model="contactInfo.businessName" outer-form="outerForm"></div>
+            <div bse-input id="website" type="text" lbl-text="Website" the-model="contactInfo.website" outer-form="outerForm"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Address</legend>
             <div bse-input submit-required="true" class="hidden" id="id" type="hidden" the-model="contactInfo.address.id" outer-form="outerForm"></div>
             <div bse-input submit-required="true" id="street" type="text" lbl-text="Street" the-model="contactInfo.address.street" outer-form="outerForm"></div>
             <div bse-input submit-required="true" id="city" type="text" lbl-text="City" the-model="contactInfo.address.city" outer-form="outerForm"></div>
@@ -11,10 +17,6 @@
             <div bse-input submit-required="true" id="postal" type="text" lbl-text="Postal/Zip Code" the-model="contactInfo.address.postalCode" outer-form="outerForm"></div>
             <div bse-input submit-required="true" id="country" type="text" lbl-text="Country" the-model="contactInfo.address.country" outer-form="outerForm"></div>
         </fieldset>
-        <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" the-model="contactInfo.contactPhone" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" the-model="contactInfo.email" outer-form="outerForm"></div>
-        <div bse-input id="businessName" type="text" lbl-text="Business Name" the-model="contactInfo.businessName" outer-form="outerForm"></div>
-        <div bse-input id="website" type="text" lbl-text="Website" the-model="contactInfo.website" outer-form="outerForm"></div>
         <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
 
     </div>
