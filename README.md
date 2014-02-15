@@ -5,7 +5,8 @@ A portal/page/site that potential instructors can go to in order to apply as an 
 # Client Steering, 15 Feb 2014
 
 - Add Class doesn't work iff you have just saved. Done.
-- Save complete pops up repeatedly.
+- Save complete pops up repeatedly. (Cannot reproduce).
+- Accepting the guidelines does not update user's roles.
 
 # Client Steering, 12 Feb 2014
 
