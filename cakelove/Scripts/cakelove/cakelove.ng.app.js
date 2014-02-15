@@ -73,8 +73,11 @@ myApp.run(function ($rootScope, $location, userSvc) {
             } else if (isRequiringRoles(next.allowTheseRoles) && !userSvc.isUserInOneOfTheseRoles(next.allowTheseRoles)) {
 
                 /* user is logged but not in the appropriate role */
+                if (next.allowTheseRoles.indexOf('applicant') >= 0) {
+                    $location.path('/instructor-guidelines');
+                }
 
-                throw "The user shouldn't be here, because he/she lacks the appropriate role.";
+
             }
         } else {
 
