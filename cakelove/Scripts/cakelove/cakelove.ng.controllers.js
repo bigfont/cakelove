@@ -134,12 +134,6 @@ cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '
 
         $scope.accept = function () {
 
-            var url = urlSvc.ToAbsoluteUrl("/api/Account/AddUserToRole");
-            var userRole = {
-                userId: userSvc.userId,
-                roleName: "applicant"
-            };
-
             userSvc.addCurrentUserToRole("applicant", function () {
 
                 $location.path("/application-form");

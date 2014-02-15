@@ -27,23 +27,33 @@ cakeLoveFactories.factory('urlSvc', ['$location', function ($location) {
 }]);
 
 // See http://blog.brunoscopelliti.com/deal-with-users-authentication-in-an-angularjs-web-app
-cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc', function ($window, $location, $http, objSvc) {
+cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc', 'urlSvc', function ($window, $location, $http, objSvc, urlSvc) {
 
-    var userSvc = {
+    var userSvc;
 
-        access_token: '',
-        userId: '',
-        userName: '',
-        userRolesCsv: '',
-        isLoggedIn: ''
+    function createBaseUserSvc() {
+        if (objSvc.isUndefinedOrNull(userSvc)) {
+            userSvc = {
 
+                access_token: '',
+                userId: '',
+                userName: '',
+                userRolesCsv: '',
+                isLoggedIn: '',
+                storage: ''
+            }
+            storage = $window.localStorage;
+        }
     };
 
-    var storage = $window.localStorage;
-
-    function setHttpAuthHeader(access_token)
-    {
+    function setHttpAuthHeader(access_token) {
         $http.defaults.headers.common.Authorization = "Bearer " + userSvc.access_token;
+    }
+
+    function storeNewUserRole(roleName)
+    {
+        userSvc.userRolesCsv += ',' + roleName;
+        storage.setItem('userRolesCsv', userSvc.userRolesCsv);
     }
 
     function populate_ClientStorage_From_UserSvc() {
@@ -75,8 +85,9 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
         userSvc.isLoggedIn = storage.getItem('isLoggedIn');
     };
 
-    userSvc.loginFromClientStorage = function()
-    {
+    createBaseUserSvc();
+
+    userSvc.loginFromClientStorage = function () {
         populate_UserSvc_From_ClientStorage();
         setHttpAuthHeader();
     }
@@ -85,11 +96,18 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
         return "grant_type=password&username=" + userName + "&password=" + password;;
     };
 
-    userSvc.addCurrentUserToRole = function (successCallback) {
+    userSvc.addCurrentUserToRole = function (roleName, successCallback) {
 
-        $http.post(url, userRole)
+        var url = urlSvc.ToAbsoluteUrl("/api/Account/AddUserToRole");
+        var userRoleData = {
+            userId: userSvc.userId,
+            roleName: roleName
+        };
+
+        $http.post(url, userRoleData)
             .success(function (data, status, headers, config) {
 
+                storeNewUserRole(roleName);
                 successCallback();
 
             });
@@ -121,7 +139,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
     };
 
     userSvc.storeUserLogin = function (loginResult) {
-      
+
         setHttpAuthHeader(loginResult.access_token);
         populate_UserSvc_From_LoginResult(loginResult);
         populate_ClientStorage_From_UserSvc();
