@@ -3,7 +3,7 @@
         <div tabset class="class-info-tabs">
             <tab ng-repeat="classInfo in classes" active="classInfo.active" disabled="true">
 
-                <h3>{{ classInfo.className }} <small> ({{ classInfo.id }}) </small></h3>
+                <h3>{{ classInfo.className }} <small> </small></h3>
 
                 <div accordion close-others="false" ng-init="isopen = true">
 
@@ -216,7 +216,7 @@
                 <a class="class-name" ng-click="classInfo.active = true">
                     <span>
                         <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span>{{ classInfo.className }} ({{ classInfo.id }})</span>
+                        <span>{{ classInfo.className }} </span>
                     </span>
                 </a>
                 <a class="class-delete" ng-click="delete(classInfo, $index)"><span class="glyphicon glyphicon-remove"></span></a>
