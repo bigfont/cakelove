@@ -555,7 +555,7 @@
     <Content Include="Scripts\notused\angular-animate.min.js" />
     <Content Include="Scripts\notused\angular-cookies.js" />
     <Content Include="Scripts\notused\angular-cookies.min.js" />
-    <Content Include="Scripts\notused\angular-csp.css" />
+    <Content Include="Content\angular-csp.css" />
     <Content Include="Scripts\notused\angular-loader.js" />
     <Content Include="Scripts\notused\angular-loader.min.js" />
     <Content Include="Scripts\notused\angular-mocks.js" />
