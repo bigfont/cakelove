@@ -112,7 +112,8 @@
                 .success(function (data, status, headers, config) {
 
                     storeNewUserRole(roleName);
-                    successCallback();
+
+                    if(!objSvc.isUndefinedOrNull(successCallback)) successCallback();
 
                 });
 
@@ -187,7 +188,7 @@
 
                     showFormUpdateMessage();
 
-                    successCallback(data);
+                    if (!objSvc.isUndefinedOrNull(successCallback)) successCallback(data);
 
                 }); // todo error, then
 
@@ -200,7 +201,7 @@
 
                     showFormUpdateMessage();
 
-                    successCallback();
+                    if (!objSvc.isUndefinedOrNull(successCallback)) successCallback();
 
                 }); // todo error, then
 
