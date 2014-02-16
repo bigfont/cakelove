@@ -97,17 +97,17 @@ bsElements.directive('bseInput', function () {
 
                     scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
-                        console.log(scope);
-                        console.log(elm);
-                        console.log(attrs);
-                        elm.css('border', 'thick solid red');
+                        ////console.log(scope);
+                        ////console.log(elm);
+                        ////console.log(attrs);
+                        ////elm.css('border', 'thick solid red');
 
-                        if (elm.$setPristine) {
-                            elm.$setPristine();
-                        }
-                        else {
-                            console.log('elm.$setPristine() is false');
-                        }
+                        ////if (elm.$setPristine) {
+                        ////    elm.$setPristine();
+                        ////}
+                        ////else {
+                        ////    console.log('elm.$setPristine() is false');
+                        ////}
 
                     });
 

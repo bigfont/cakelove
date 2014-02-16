@@ -63,7 +63,7 @@ cakeLoveDirectives.directive('integer', function () {
 
                     function validate(value) {
 
-                        if (INTEGER_REGEXP.test(value)) {
+                        if (ctrl.$isEmpty(value) || INTEGER_REGEXP.test(value)) {
                             // it is valid
                             ctrl.$setValidity('integer', true);
                             return value;
@@ -92,7 +92,7 @@ cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
 
             function validate(value) {
 
-                if (objSvc.isUndefinedOrNull(value) || FLOAT_REGEXP.test(value)) {
+                if (ctrl.$isEmpty(value) || FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
                     if (typeof value === 'string')
                     {
@@ -100,6 +100,7 @@ cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
                     }
                     return value;
                 } else {
+
                     ctrl.$setValidity('float', false);
                     return undefined;
                 }
