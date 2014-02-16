@@ -173,7 +173,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
         if (typeof data.classId !== 'undefined') {
             formModel.id = data.classId;
         }
-        callback(data);
+        
     }
 
     formSvc.showSavedMessage = false;
@@ -185,7 +185,7 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
                 showFormUpdateMessage();
 
-                successCallback();
+                successCallback(data);
 
             }); // todo error, then
 
