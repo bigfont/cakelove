@@ -139,14 +139,14 @@
                                 <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" the-model="classInfo.suppliesOption"></div>
                             </div>
                             <div bse-input outer-form="outerForm"
-                                 ng-show="suppliesOption === 'allInstructor' || suppliesOption === 'someInstructorSomeStudent'"
-                                 submit-required="{{suppliesOption === 'allInstructor' || suppliesOption === 'someInstructorSomeStudent'}}"
+                                 ng-show="classInfo.suppliesOption === 'allInstructor' || classInfo.suppliesOption === 'someInstructorSomeStudent'"
+                                 submit-required="{{suppliesOption === 'allInstructor' || classInfo.suppliesOption === 'someInstructorSomeStudent'}}"
                                  lbl-text="Supplies provided by instructor:"
                                  id="supplies-provided" rows="10" type="textarea" the-model="classInfo.suppliesWillProvideThese"></div>
 
                             <div bse-input outer-form="outerForm"
-                                 ng-show="suppliesOption === 'allStudent' || suppliesOption === 'someInstructorSomeStudent'"
-                                 submit-required="{{suppliesOption === 'allStudent' || suppliesOption === 'someInstructorSomeStudent'}}"
+                                 ng-show="classInfo.suppliesOption === 'allStudent' || classInfo.suppliesOption === 'someInstructorSomeStudent'"
+                                 submit-required="{{suppliesOption === 'allStudent' || classInfo.suppliesOption === 'someInstructorSomeStudent'}}"
                                  lbl-text="Supplies provided by student:"
                                  help-block="Please provide a detailed list of what will be required. Please be mindful of the long distances many students will have to travel. For example, if a student will require a 12&quot; piece of aluminum foil, you may wish to provide a communal role instead of asking every student to bring some."
                                  id="supplied-required" rows="10" type="textarea" the-model="classInfo.suppliesWillRequireThese">
