@@ -372,12 +372,8 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
                 $scope.classes.splice(index, 1);
 
-                var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfoDelete');
-                formSvc.deleteModelById(classInfo.id, url, function (data) {
-
-
-
-                });
+                var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/deleteClassInfo');
+                formSvc.deleteModelById(classInfo.id, url);
 
             }
         };

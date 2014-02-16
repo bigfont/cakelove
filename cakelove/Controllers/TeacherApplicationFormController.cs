@@ -133,7 +133,7 @@ namespace cakelove.Controllers
             if (!Request.Content.IsMimeMultipartContent())
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }           
+            }
             try
             {
                 await SaveImage(Request, "bio");
@@ -238,6 +238,19 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        [System.Web.Http.Route("DeleteClassInfo")]
+        public async Task<IHttpActionResult> DeleteClassInfo(int id)
+        {
+            IHttpActionResult httpActionResult = Ok();
+
+            var classInfo = new ClassInfoBindingModel() { Id = id };
+            var db = new MyDbContext();
+            db.Entry(classInfo).State = EntityState.Deleted;
+            await db.SaveChangesAsync();
+
+            return httpActionResult;
+        }
+
         [HttpPost]
         [System.Web.Http.Route("ClassImage")]
         public async Task<IHttpActionResult> ClassImage()
@@ -252,7 +265,7 @@ namespace cakelove.Controllers
 
             try
             {
-                await SaveImage(Request, "class");           
+                await SaveImage(Request, "class");
             }
             catch (System.Exception e)
             {
