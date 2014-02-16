@@ -184,16 +184,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
             $scope.masterModel = data;
             $scope.reset($scope);
 
-        }).
-        error(function (data, status, headers, config) {
-
-
-        }).
-        then(function (data, status, headers, config) {
-            miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
-
-        }
-    );
+        });
 
     // reset the user input model
     $scope.reset = reset = formSvc.resetModel;
