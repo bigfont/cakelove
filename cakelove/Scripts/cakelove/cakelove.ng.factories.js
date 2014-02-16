@@ -194,6 +194,10 @@
 
         };
 
+        formSvc.resetModel = function ($scope) {
+            $scope.formModel = angular.copy($scope.masterModel);
+        };
+
         formSvc.deleteModelById = function (id, url, successCallback) {            
 
             $http({ method: "POST", url: url + "/" + id })
