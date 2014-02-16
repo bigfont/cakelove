@@ -1,4 +1,4 @@
-﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
+﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
     <label>{{ lblText }}</label><br />
     <img ng-if="ngModel" class="img-rounded img-thumbnail"

@@ -81,6 +81,17 @@ bsElements.directive('bseInput', function () {
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
+
+                },
+                post: function postLink(scope, iElement, iAttrs, controller) {
+
+                    scope.hasError = function () {
+                        //return scope.innerForm.$invalid;
+                        //return (innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid;
+                        //return (scope.innerForm.$dirty || scope.outerForm.userSubmitting) && scope.innerForm.$invalid;
+                        //return scope.innerForm.$invalid && scope.innerForm.$dirty;
+                        return scope.outerForm.userSubmitting;
+                    }
                 }
             };
         }

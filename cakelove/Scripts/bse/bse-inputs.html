@@ -1,7 +1,7 @@
 ﻿<div ng-class="
      {
-     'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid,
-     'has-success':(innerForm.$dirty || outerForm.userSaving ) && !innerForm.$invalid,
+     'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid,
+     'has-success':(innerForm.$dirty || outerForm.userSubmitting ) && !innerForm.$invalid,
      'form-group': !isHidden }">
 
     <ng-form name="innerForm">
@@ -14,13 +14,13 @@
         <!--email, password, text, url-->
         <div ng-show="isString && !isHidden">
 
-            <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
+            <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerString"
                    ng-model="ngModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
             <!--with input dev-testing="{{ lblText }}" group-->
             <div class="input-group" ng-show="{{ hasAddOn }}">
                 <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
-                <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="ngModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
+                <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerStringAddOn" ng-model="ngModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
                 <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
             </div>
 
@@ -43,10 +43,11 @@
         </div>
 
         <!-- textarea-->
-        <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="ngModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
+        <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-model="ngModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
     </ng-form>
 
     <!--Validation-->
+    {{ hasError() }}
     <div class="text-danger" ng-show="innerForm.$invalid">
         <div class="save-validation-messages" ng-show="innerForm.$dirty">
             <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
