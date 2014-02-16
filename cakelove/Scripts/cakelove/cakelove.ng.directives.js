@@ -117,7 +117,6 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
                 var inputType = elm.attr('type');
                 var inputValue = elm.val();
 
-
                 var isSubmitRequired = elm.attr('submit-required');
                 if (isSubmitRequired === "true") {
 
@@ -133,7 +132,9 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
             });
 
             function validateGroup(elm) {
-                // we do this with a hidden input
+
+                console.log("validateGroup");
+
             }
 
             function validateNumber(value) {

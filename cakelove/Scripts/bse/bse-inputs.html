@@ -7,54 +7,56 @@
      'form-group': !isHidden }">
 
     <ng-form name="innerForm">
-            <!--shared label-->
+        <!--shared label-->
         <label class="control-label" ng-show="!isHidden && (isString || isTextarea || isFile)" for="{{ id }}">
             {{ lblText }}
         </label>
-            <span class="help-block">{{ helpBlock }}</span>
+        <span class="help-block">{{ helpBlock }}</span>
 
-            <!--email, password, text, url-->
-            <div ng-show="isString && !isHidden">
+        <!--email, password, text, url-->
+        <div ng-show="isString && !isHidden">
 
-                <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
-                       ng-model="theModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
+            <input class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
+                   ng-model="theModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
-                <!--with input group-->
-                <div class="input-group" ng-show="{{ hasAddOn }}">
-                    <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
-                    <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
-                    <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
-                </div>
-
+            <!--with input group-->
+            <div class="input-group" ng-show="{{ hasAddOn }}">
+                <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
+                <input class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
+                <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
             </div>
 
-            <!--email, password, text, url-->
-            <div ng-show="isHidden">
+        </div>
 
-                <input id="{{ id }}" name="innerString" style="display:none;"
-                       ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
+        <!--email, password, text, url-->
+        <div ng-show="isHidden">
 
-            </div>
+            <input id="{{ id }}" name="innerString" style="display:none;"
+                   ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
-            <!--checkbox, radio-->
-            <div ng-show="isRadioCheck" class="{{ type }}">
-                <label>
-                    <input type="{{ type }}" value="{{ value }}" name="{{ name }}" ng-model="theModel">
-                    {{ lblText }}
-                </label>
-            </div>
+        </div>
 
-            <!-- textarea-->
-            <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
+        <!--checkbox, radio-->
+        <div ng-show="isRadioCheck" class="{{ type }}">
+            <label>
+                <input type="{{ type }}" value="{{ value }}" name="{{ name }}" ng-model="theModel">
+                {{ lblText }}
+            </label>
+        </div>
+
+        <!-- textarea-->
+        <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
     </ng-form>
 
-    <!--Validation and Help-->
-    <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSaving || outerForm.userSubmitting) && innerForm.$invalid">
-        <div class="warning">
-            <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
+    <!--Validation-->
+    <div class="text-danger" ng-show="innerForm.$invalid">
+        <div class="save-validation-messages" ng-show="innerForm.$dirty">
             <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
             <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
             <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
+        </div>
+        <div class="submit-validation-messages" ng-show="outerForm.userSubmitting">
+            <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
         </div>
     </div>
 </div>
