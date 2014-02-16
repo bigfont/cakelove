@@ -1,23 +1,23 @@
 ﻿<div class="row">
     <div class="col-lg-8">
         <fieldset>
-            <div bse-input class="hidden" id="id" type="hidden" ng-model="contactInfo.id" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" ng-model="contactInfo.name" type="text"></div>
-            <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" ng-model="contactInfo.contactPhone" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" ng-model="contactInfo.email" outer-form="outerForm"></div>
-            <div bse-input id="businessName" type="text" lbl-text="Business Name" ng-model="contactInfo.businessName" outer-form="outerForm"></div>
-            <div bse-input id="website" type="text" lbl-text="Website" ng-model="contactInfo.website" outer-form="outerForm"></div>
+            <div bse-input class="hidden" id="id" type="hidden" ng-model="formModel.id" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" ng-model="formModel.name" type="text"></div>
+            <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" ng-model="formModel.contactPhone" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" ng-model="formModel.email" outer-form="outerForm"></div>
+            <div bse-input id="businessName" type="text" lbl-text="Business Name" ng-model="formModel.businessName" outer-form="outerForm"></div>
+            <div bse-input id="website" type="text" lbl-text="Website" ng-model="formModel.website" outer-form="outerForm"></div>
         </fieldset>
         <fieldset>
             <legend>Address</legend>
-            <div bse-input class="hidden" id="id" type="hidden" ng-model="contactInfo.address.id" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="street" type="text" lbl-text="Street" ng-model="contactInfo.address.street" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="city" type="text" lbl-text="City" ng-model="contactInfo.address.city" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="province" type="text" lbl-text="Province/State" ng-model="contactInfo.address.province" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="postal" type="text" lbl-text="Postal/Zip Code" ng-model="contactInfo.address.postalCode" outer-form="outerForm"></div>
-            <div bse-input submit-required="true" id="country" type="text" lbl-text="Country" ng-model="contactInfo.address.country" outer-form="outerForm"></div>
+            <div bse-input class="hidden" id="id" type="hidden" ng-model="formModel.address.id" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="street" type="text" lbl-text="Street" ng-model="formModel.address.street" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="city" type="text" lbl-text="City" ng-model="formModel.address.city" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="province" type="text" lbl-text="Province/State" ng-model="formModel.address.province" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="postal" type="text" lbl-text="Postal/Zip Code" ng-model="formModel.address.postalCode" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="country" type="text" lbl-text="Country" ng-model="formModel.address.country" outer-form="outerForm"></div>
         </fieldset>
-        <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
+        <button class="btn btn-default" ng-click="update(formModel, outerForm)">Save</button>
 
     </div>
 </div>

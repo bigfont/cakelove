@@ -181,7 +181,7 @@
 
         formSvc.showSavedMessage = false;
 
-        formSvc.updateModel = function ($scope, formModel, outerForm, url, successCallback) {
+        formSvc.updateModel = function (formModel, outerForm, url, successCallback) {
 
             $http({ method: "POST", url: url, data: formModel })
                 .success(function (data, status, headers, config) {

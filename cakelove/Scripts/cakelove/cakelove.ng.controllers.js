@@ -148,21 +148,21 @@ cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '
 cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc', 'formSvc',
 function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSvc) {
 
-     siteMapSvc.currentPage = "Application";
+    siteMapSvc.currentPage = "Application";
 
     $scope.formSvc = formSvc;
 
     $scope.navType = 'pills';
 
     $scope.submit = function () {
-        
+
         $scope.outerForm.userSubmitting = true;
         $scope.$broadcast('userSubmitting');
-        
+
         $scope.requiredErrorsLength = 0; // be extra safe
         $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired ? $scope.outerForm.$error.submitRequired.length : 0;
-        
-        
+
+
     };
 
 }]);
@@ -196,14 +196,18 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
     );
 
     // update master from the user input model
-    $scope.update = function (formModel, outerForm) {
-        formSvc.updateModel($scope, formModel, outerForm, url);
+    $scope.update = update = function (formModel, outerForm) {
+        formSvc.updateModel(formModel, outerForm, url);
     };
 
     // reset the user input model
     $scope.reset = function () {
-        $scope.contactInfo = angular.copy($scope.masterModel);
+        $scope.formModel = angular.copy($scope.masterModel);
     };
+
+    $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+        update($scope.formModel, $scope.outerForm, url);
+    });
 
 }
 ]);
@@ -228,7 +232,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel($scope, formModel, outerForm, url);
+            formSvc.updateModel(formModel, outerForm, url);
         };
 
         // reset the user input model
@@ -259,7 +263,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel($scope, formModel, outerForm, jsonUrl);
+            formSvc.updateModel(formModel, outerForm, jsonUrl);
         };
 
         // reset the user input model
@@ -355,7 +359,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel($scope, formModel, outerForm, url, function (data) {
+            formSvc.updateModel(formModel, outerForm, url, function (data) {
 
                 formModel.id = data.classId;
 
