@@ -1,23 +1,23 @@
 ﻿<div class="row">
-    <input class="col-lg-8">
-    <fieldset>
-        <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.id" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" the-model="contactInfo.name" type="text"></div>
-        <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" the-model="contactInfo.contactPhone" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" the-model="contactInfo.email" outer-form="outerForm"></div>
-        <div bse-input id="businessName" type="text" lbl-text="Business Name" the-model="contactInfo.businessName" outer-form="outerForm"></div>
-        <div bse-input id="website" type="text" lbl-text="Website" the-model="contactInfo.website" outer-form="outerForm"></div>
-    </fieldset>
-    <fieldset>
-        <legend>Address</legend>
-        <div bse-input class="hidden" id="id" type="hidden" the-model="contactInfo.address.id" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="street" type="text" lbl-text="Street" the-model="contactInfo.address.street" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="city" type="text" lbl-text="City" the-model="contactInfo.address.city" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="province" type="text" lbl-text="Province/State" the-model="contactInfo.address.province" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="postal" type="text" lbl-text="Postal/Zip Code" the-model="contactInfo.address.postalCode" outer-form="outerForm"></div>
-        <div bse-input submit-required="true" id="country" type="text" lbl-text="Country" the-model="contactInfo.address.country" outer-form="outerForm"></div>
-    </fieldset>
-    <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
+    <div class="col-lg-8">
+        <fieldset>
+            <div bse-input class="hidden" id="id" type="hidden" ng-model="contactInfo.id" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="name" lbl-text="Name" outer-form="outerForm" ng-model="contactInfo.name" type="text"></div>
+            <div bse-input submit-required="true" id="phoneDay" type="text" lbl-text="Contact Phone" ng-model="contactInfo.contactPhone" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="email" type="email" lbl-text="Email" ng-model="contactInfo.email" outer-form="outerForm"></div>
+            <div bse-input id="businessName" type="text" lbl-text="Business Name" ng-model="contactInfo.businessName" outer-form="outerForm"></div>
+            <div bse-input id="website" type="text" lbl-text="Website" ng-model="contactInfo.website" outer-form="outerForm"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Address</legend>
+            <div bse-input class="hidden" id="id" type="hidden" ng-model="contactInfo.address.id" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="street" type="text" lbl-text="Street" ng-model="contactInfo.address.street" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="city" type="text" lbl-text="City" ng-model="contactInfo.address.city" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="province" type="text" lbl-text="Province/State" ng-model="contactInfo.address.province" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="postal" type="text" lbl-text="Postal/Zip Code" ng-model="contactInfo.address.postalCode" outer-form="outerForm"></div>
+            <div bse-input submit-required="true" id="country" type="text" lbl-text="Country" ng-model="contactInfo.address.country" outer-form="outerForm"></div>
+        </fieldset>
+        <button class="btn btn-default" ng-click="update(contactInfo, outerForm)">Save</button>
 
-</div>
+    </div>
 </div>

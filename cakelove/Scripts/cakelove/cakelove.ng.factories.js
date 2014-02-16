@@ -170,7 +170,7 @@
 
     }]);
 
-    cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'userSvc', function ($http, $fileUploader, $timeout, userSvc) {
+    cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'userSvc', 'objSvc', function ($http, $fileUploader, $timeout, userSvc, objSvc) {
 
         var formSvc = {};
 

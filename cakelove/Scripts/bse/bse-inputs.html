@@ -1,6 +1,4 @@
-﻿
-
-<div ng-class="
+﻿<div ng-class="
      {
      'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid,
      'has-success':(innerForm.$dirty || outerForm.userSaving ) && !innerForm.$invalid,
@@ -17,12 +15,12 @@
         <div ng-show="isString && !isHidden">
 
             <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerString" ng-class="{userSaving: outerForm.userSaving}"
-                   ng-model="theModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
+                   ng-model="ngModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
             <!--with input dev-testing="{{ lblText }}" group-->
             <div class="input-group" ng-show="{{ hasAddOn }}">
                 <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
-                <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
+                <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerStringAddOn" ng-class="{userSaving: outerForm.userSaving}" ng-model="ngModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
                 <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
             </div>
 
@@ -32,20 +30,20 @@
         <div ng-show="isHidden">
 
             <input dev-testing="{{ lblText }}" id="{{ id }}" name="innerString" style="display:none;"
-                   ng-model="theModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
+                   ng-model="ngModel" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
         </div>
 
         <!--checkbox, radio-->
         <div ng-show="isRadioCheck" class="{{ type }}">
             <label>
-                <input dev-testing="{{ lblText }}" type="{{ type }}" value="{{ value }}" name="{{ name }}" ng-model="theModel">
+                <input dev-testing="{{ lblText }}" type="{{ type }}" value="{{ value }}" name="{{ name }}" ng-model="ngModel">
                 {{ lblText }}
             </label>
         </div>
 
         <!-- textarea-->
-        <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="theModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
+        <textarea class="form-control" id="{{ id }}" name="innerTextarea" ng-class="{userSaving: outerForm.userSaving}" ng-model="ngModel" ng-show="isTextarea" placeholder="{{ placeholder }}" rows="{{ rows }}"></textarea>
     </ng-form>
 
     <!--Validation-->

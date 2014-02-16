@@ -39,7 +39,7 @@ bsElements.directive('bseInput', function () {
             min: '@',
             max: '@',
             // two way bindings
-            theModel: '=',
+            ngModel: '=',
             outerForm: '=',
         },
         compile: function compile(tElement, tAttrs, transclude) {
@@ -90,7 +90,7 @@ bsElements.directive('bseInput', function () {
 bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
     return {
         templateUrl: "/Scripts/bse/bse-file-upload.html",
-        require: ["^form"],
+        require: ["ngModel", "outerForm"],
         scope:
         {
             id: '@',
@@ -115,7 +115,7 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
             min: '@',
             max: '@',
             // two way bindings
-            theModel: '=',
+            ngModel: '=',
             outerForm: '=',
             uploader: '='
         },

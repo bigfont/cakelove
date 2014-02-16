@@ -1,15 +1,15 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSaving) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSaving) && !innerForm.$invalid  }"
      class="form-group">
     <label>{{ lblText }}</label><br />
-    <img ng-if="theModel" class="img-rounded img-thumbnail"
+    <img ng-if="ngModel" class="img-rounded img-thumbnail"
          ng-src="/UserImages/{{userId}}_{{imgIdentifier}}.jpg"
          err-src="/UserImages/{{userId}}_{{imgIdentifier}}.png" />
 
-    <div ng-if="!theModel" class="image-upload">
+    <div ng-if="!ngModel" class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />
             <span class="help-block"></span>
-            <input class="hidden" type="text" ng-model="theModel" disabled submit-required="true" />
+            <input class="hidden" type="text" ng-model="ngModel" disabled submit-required="true" />
             <div ng-repeat="item in uploader.queue">
                 <strong>{{ item.file.name }}</strong>
                 <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
