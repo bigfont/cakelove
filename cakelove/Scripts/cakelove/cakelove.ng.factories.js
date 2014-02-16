@@ -156,6 +156,8 @@
             userSvc.storage.removeItem('userId');
             userSvc.storage.removeItem('userName');
             userSvc.storage.removeItem('userRolesCsv');
+            userSvc.storage.removeItem('userName');
+            userSvc.storage.removeItem('isLoggedIn');
 
             $location.path("/");
 
