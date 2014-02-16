@@ -183,7 +183,7 @@
                             <div ng-show="classInfo.doVendorTable">
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" the-model="classInfo.vendorTable"></div>
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" the-model="classInfo.vendorTable"></div>
-                                <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" the-model="classInfo.vendorTable"></div>
+                                <div bse-input submit-required="{{ classInfo.doVendorTable }}" outer-form="outerForm" hidden-input type="text" the-model="classInfo.vendorTable"></div>
 
                             </div>
 

@@ -139,11 +139,10 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             function validateNumber(value) {
                 if (objSvc.isUndefinedOrNull(value) || value === '0') {
-                    console.log(value + " is invalid");
+                    console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
-                    console.log(value + " is VALID");
                     ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 }
@@ -151,11 +150,10 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             function validateString(value) {
                 if (objSvc.isUndefinedOrNull(value) || value.length === 0) {
-                    console.log(value + " is invalid");
+                    console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
-                    console.log(value + " is VALID");
                     ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 }
