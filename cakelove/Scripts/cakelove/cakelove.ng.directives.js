@@ -146,7 +146,6 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
             function validateNumber(value) {
                 var integer = parseInt(value, 10);
                 if (isNaN(integer) || integer <= 0) {
-                    console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
@@ -157,8 +156,6 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             function validateString(value) {
                 if (objSvc.isUndefinedOrNull(value) || value.length === 0) {
-                    console.log(elm.attr('submit-required'));
-                    console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;
                 } else {
