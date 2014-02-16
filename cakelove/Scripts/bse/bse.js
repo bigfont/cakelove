@@ -14,7 +14,7 @@ function snake_case(name, separator) {
 bsElements.directive('bseInput', function () {
     return {
         templateUrl: "/Scripts/bse/bse-inputs.html",
-        require: "^form",
+        require: ["ngModel",],
         scope:
         {
             id: '@',
@@ -90,7 +90,7 @@ bsElements.directive('bseInput', function () {
 bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
     return {
         templateUrl: "/Scripts/bse/bse-file-upload.html",
-        require: ["ngModel", "outerForm"],
+        require: ["ngModel"],
         scope:
         {
             id: '@',
