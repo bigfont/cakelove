@@ -177,7 +177,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
     $scope.masterModel = {};
 
     // get
-    var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
+    $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
@@ -195,14 +195,14 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
         }
     );
 
-    // update master from the user input model
-    $scope.update = update = function (formModel, outerForm) {
-        formSvc.updateModel(formModel, outerForm, url);
-    };
-
     // reset the user input model
     $scope.reset = function () {
         $scope.formModel = angular.copy($scope.masterModel);
+    };
+
+    // update master from the user input model
+    $scope.update = update = function () {
+        formSvc.updateModel($scope.formModel, $scope.outerForm, $scope.url);
     };
 
     $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
