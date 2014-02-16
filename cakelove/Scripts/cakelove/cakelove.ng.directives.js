@@ -118,13 +118,13 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
+                clear();
+
                 var inputType = elm.attr('type');
                 var inputValue = elm.val();
 
                 var isSubmitRequired = elm.attr('submit-required');
                 if (isSubmitRequired === "true") {
-
-                    clear();
 
                     if (['text', 'textarea', 'email', 'hidden'].indexOf(inputType) >= 0) {
                         validateString(inputValue);
