@@ -124,6 +124,8 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
                 var isSubmitRequired = elm.attr('submit-required');
                 if (isSubmitRequired === "true") {
 
+                    clear();
+
                     if (['text', 'textarea', 'email', 'hidden'].indexOf(inputType) >= 0) {
                         validateString(inputValue);
                     } else if (['checkbox', 'radio'].indexOf(inputType) >= 0) {
