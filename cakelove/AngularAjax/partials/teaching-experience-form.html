@@ -3,11 +3,11 @@
 
         <div add-on-right="years" bse-input submit-required="true" id="yearsDec" lbl-text="How long have you been decorating cakes?" outer-form="outerForm" smart-float ng-model="experience.yearsDecorating" type="text"></div>
         <div bse-input lbl-text="I have taught cake decorating before." ng-model="experience.hasTaught" type="checkbox"></div>
-        <!--<div ng-show="experience.hasTaught">-->
-            <div add-on-right="years" bse-input submit-required="{{ experience.hasTaught }}" id="yearsTeach" lbl-text="How long have you been teaching?" outer-form="outerForm" smart-float ng-model="experience.yearsTeaching" type="text"></div>
-            <div bse-input submit-required="{{ experience.hasTaught }}" lbl-text="Briefly describe your experience." rows="5" ng-model="experience.pastConferences" outer-form="outerForm" type="textarea"></div>
-            <div add-on-right="people" bse-input submit-required="{{ experience.hasTaught }}" lbl-text="On average, how many people do you teach at a time?" outer-form="outerForm" ng-model="experience.aveNumStudentsPerClass" type="text" integer></div>
-        <!--</div>-->
+        <div ng-show="experience.hasTaught">
+            <div add-on-right="years" bse-input id="yearsTeach" lbl-text="How long have you been teaching?" outer-form="outerForm" smart-float ng-model="experience.yearsTeaching" type="text"></div>
+            <div bse-input lbl-text="Briefly describe your experience." rows="5" ng-model="experience.pastConferences" outer-form="outerForm" type="textarea"></div>
+            <div add-on-right="people" bse-input lbl-text="On average, how many people do you teach at a time?" outer-form="outerForm" ng-model="experience.aveNumStudentsPerClass" type="text" integer></div>
+        </div>
         <button class="btn btn-default" ng-click="update(experience, outerForm)">Save</button>
 
     </div>
