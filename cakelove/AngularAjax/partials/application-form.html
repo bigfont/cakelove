@@ -22,8 +22,8 @@
             </tab>
             <tab heading="Submit Application">
 
-                <div ng-show="requiredErrorCount > 0" class="alert alert-danger">
-                    <p>You have {{ requiredErrorCount }} required fields to fill in before you can submit.</p>
+                <div ng-show="requiredErrorsLength > 0" class="alert alert-danger">
+                    <p>You have {{ requiredErrorsLength }} required fields to fill in before you can submit.</p>
                 </div>
 
                 <p>Now that you’ve finished your application, this is where you submit it for consideration.</p>

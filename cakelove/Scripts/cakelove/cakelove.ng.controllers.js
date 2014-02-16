@@ -158,14 +158,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
 
         $scope.outerForm.userSubmitting = true;
         $scope.$broadcast('userSubmitting');
-
-        var requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
-        if (requiredErrorsLength > 0) {
-            $scope.requiredErrorCount = requiredErrorsLength;
-        }
-
-        var i = 0;
-
+        $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
     };
 
 }]);
