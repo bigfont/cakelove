@@ -5,7 +5,7 @@
 
                 <h3>{{ classInfo.className }} <small> ({{ classInfo.id }}) </small></h3>
 
-                <div accordion close-others="false">
+                <div accordion close-others="false" ng-init="isopen = true">
 
                     <div bse-input class="hidden" id="id" type="hidden" the-model="classInfo.id" outer-form="outerForm"></div>
 
@@ -35,7 +35,7 @@
 
 
                     <!--Student Overview-->
-                    <fieldset accordion-group is-open="true">
+                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
 
                         <accordion-heading>
                             Student Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
@@ -69,7 +69,7 @@
 
 
                     <!--Class Schedule-->
-                    <fieldset accordion-group is-open="isopen">
+                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
 
                         <accordion-heading>
                             Class Schedule <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
@@ -139,7 +139,7 @@
 
 
                     <!--Class Supplies-->
-                    <fieldset accordion-group is-open="isopen">
+                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
 
                         <accordion-heading>
                             Class Supplies <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
