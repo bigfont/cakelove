@@ -11,7 +11,12 @@
 
 
                     <!--Class Overview-->
-                    <fieldset accordion-group is-open="true" heading="Class Overview">
+                    <fieldset accordion-group is-open="isopen">
+
+                        <accordion-heading>
+                            Class Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                        </accordion-heading>
+
                         <legend>Class Overview</legend>
                         <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Name" id="className" type="text" the-model="classInfo.className"></div>
                         <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Description" rows="10" type="textarea" the-model="classInfo.classDescription"></div>
@@ -30,7 +35,12 @@
 
 
                     <!--Student Overview-->
-                    <fieldset accordion-group is-open="true" heading="Student Overview">
+                    <fieldset accordion-group is-open="true">
+
+                        <accordion-heading>
+                            Student Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                        </accordion-heading>
+
                         <legend>Student Overview</legend>
 
                         <fieldset>
@@ -59,10 +69,13 @@
 
 
                     <!--Class Schedule-->
-                    <fieldset accordion-group is-open="true" heading="Class Schedule">
+                    <fieldset accordion-group is-open="isopen">
+
+                        <accordion-heading>
+                            Class Schedule <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                        </accordion-heading>
+
                         <legend>Class Schedule</legend>
-
-
                         <fieldset>
                             <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." the-model="classInfo.isMultiDay"></div>
                             <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ classInfo.isMultiDay ? 'day one' : '' }} class time:" the-model="classInfo.totalTimeDayOne"></div>
@@ -126,7 +139,12 @@
 
 
                     <!--Class Supplies-->
-                    <fieldset accordion-group is-open="true" heading="Class Supplies">
+                    <fieldset accordion-group is-open="isopen">
+
+                        <accordion-heading>
+                            Class Supplies <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                        </accordion-heading>
+
 
                         <legend>Class Supplies</legend>
 
