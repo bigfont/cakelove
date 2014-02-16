@@ -47,9 +47,10 @@
     </ng-form>
 
     <!--Validation-->
-    {{ hasError() }}
+    <!--hasSaveError {{ hasSaveError(innerForm)  }}
+    hasSubmitError {{ hasSubmitError(innerForm)  }}-->
     <div class="text-danger" ng-show="innerForm.$invalid">
-        <div class="save-validation-messages" ng-show="innerForm.$dirty">
+        <div class="save-validation-messages" ng-show="innerForm.$dirty && !hasSubmitError(innerForm)">
             <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
             <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
             <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>

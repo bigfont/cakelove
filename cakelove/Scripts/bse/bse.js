@@ -14,7 +14,7 @@ function snake_case(name, separator) {
 bsElements.directive('bseInput', function () {
     return {
         templateUrl: "/Scripts/bse/bse-inputs.html",
-        require: ["ngModel",],
+        require: ["ngModel", ],
         scope:
         {
             id: '@',
@@ -62,15 +62,14 @@ bsElements.directive('bseInput', function () {
 
                 jqLiteInput = angular.element(inputs[i]);
                 addAttribute(jqLiteInput, tAttrs, 'integer');
-                addAttribute(jqLiteInput, tAttrs, 'smartFloat');                
+                addAttribute(jqLiteInput, tAttrs, 'smartFloat');
             }
 
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'number'].indexOf(iAttrs.type) >= 0;
 
-                    if (typeof iAttrs["hiddenInput"] !== 'undefined')
-                    {
+                    if (typeof iAttrs["hiddenInput"] !== 'undefined') {
                         scope.isHidden = true;
                     }
 
@@ -83,15 +82,19 @@ bsElements.directive('bseInput', function () {
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
 
                 },
-                post: function postLink(scope, iElement, iAttrs, controller) {
+                post: function postLink(scope) {
 
-                    scope.hasError = function () {
-                        //return scope.innerForm.$invalid;
-                        //return (innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid;
-                        //return (scope.innerForm.$dirty || scope.outerForm.userSubmitting) && scope.innerForm.$invalid;
-                        //return scope.innerForm.$invalid && scope.innerForm.$dirty;
-                        return scope.outerForm.userSubmitting;
-                    }
+                    scope.hasSaveError = function (innerForm) {
+                        return typeof innerForm.$error.integer !== 'undefined' ||
+                            typeof innerForm.$error.email !== 'undefined' ||
+                            typeof innerForm.$error.integer !== 'undefined' ||
+                            typeof innerForm.$error.float !== 'undefined';
+                    };
+
+                    scope.hasSubmitError = function (innerForm) {
+                        return typeof innerForm.$error.submitRequired !== 'undefined' && innerForm.$error.submitRequired.length > 0;
+                    };
+
                 }
             };
         }
