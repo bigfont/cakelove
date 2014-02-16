@@ -200,7 +200,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
 
     // update master from the user input model
     $scope.update = function (formModel, outerForm) {
-        formSvc.update($scope, formModel, outerForm, url);
+        formSvc.updateModel($scope, formModel, outerForm, url);
     };
 
     // reset the user input model
@@ -231,7 +231,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url);
+            formSvc.updateModel($scope, formModel, outerForm, url);
         };
 
         // reset the user input model
@@ -262,7 +262,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, jsonUrl);
+            formSvc.updateModel($scope, formModel, outerForm, jsonUrl);
         };
 
         // reset the user input model
@@ -358,11 +358,28 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.update($scope, formModel, outerForm, url, function (data) {
+            formSvc.updateModel($scope, formModel, outerForm, url, function (data) {
 
                 formModel.id = data.classId;
 
             });
+        };
+
+        $scope.delete = function (classInfo, index) {
+
+
+            if (window.confirm("Do you want to delete " + classInfo.className + " (" + classInfo.id + ") now" + "?")) {
+
+                $scope.classes.splice(index, 1);
+
+                var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfoDelete');
+                formSvc.deleteModelById(classInfo.id, url, function (data) {
+
+
+
+                });
+
+            }
         };
 
         // reset the user input model

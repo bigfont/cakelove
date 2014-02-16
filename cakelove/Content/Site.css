@@ -51,21 +51,27 @@ div#user-success-message {
     left: 50%;
     margin-left: -200px;
     z-index: 1000;
-    text-align:center;
+    text-align: center;
 }
 
-fieldset
-{
-    border:thin solid #dddddd;
-    margin-bottom:10px;
-    border-radius:5px;
-    padding:20px;    
+fieldset {
+    border: thin solid #dddddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 20px;
 }
 
     fieldset legend {
-    
-        font-size:20px;
-        padding-left:10px;
-        border:none;
-    
+        font-size: 20px;
+        padding-left: 10px;
+        border: none;
     }
+
+#classes-nav > li > a.class-name {
+    float: left;
+    width: 75%;
+}
+
+#classes-nav > li > a.class-delete {
+    float: left;
+}

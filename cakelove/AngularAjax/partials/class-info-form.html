@@ -3,7 +3,7 @@
         <div tabset class="class-info-tabs">
             <tab ng-repeat="classInfo in classes" active="classInfo.active" disabled="true">
 
-                <h3>{{ classInfo.className }} <small> {{ classInfo.id }} </small></h3>
+                <h3>{{ classInfo.className }} <small> ({{ classInfo.id }}) </small></h3>
 
                 <div accordion close-others="false">
 
@@ -192,9 +192,17 @@
 
     <div class="col-lg-4">
 
-        <ul class="nav nav-pills nav-stacked">
+        <ul id="classes-nav" class="nav nav-pills nav-stacked">
             <li ng-click="create()"><a><span class="glyphicon glyphicon-plus"></span> Add New Class</a></li>
-            <li ng-class="{active:classInfo.active }" ng-repeat="classInfo in classes" ng-click="classInfo.active = true"><a><span class="glyphicon glyphicon-chevron-left"></span> {{ classInfo.className }}</a></li>
+            <li class="clearfix" ng-class="{active:classInfo.active }" ng-repeat="classInfo in classes" >
+                <a class="class-name" ng-click="classInfo.active = true">
+                    <span>
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span>{{ classInfo.className }} ({{ classInfo.id }})</span>
+                    </span>
+                </a>
+                <a class="class-delete" ng-click="delete(classInfo, $index)"><span class="glyphicon glyphicon-remove"></span></a>
+            </li>
         </ul>
 
     </div>

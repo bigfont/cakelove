@@ -50,8 +50,7 @@ cakeLoveFactories.factory('userSvc', ['$window', '$location', '$http', 'objSvc',
         $http.defaults.headers.common.Authorization = "Bearer " + access_token;
     }
 
-    function storeNewUserRole(roleName)
-    {
+    function storeNewUserRole(roleName) {
         userSvc.userRolesCsv += ',' + roleName;
         storage.setItem('userRolesCsv', userSvc.userRolesCsv);
     }
@@ -179,12 +178,27 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     formSvc.showSavedMessage = false;
 
-    formSvc.update = function ($scope, formModel, outerForm, url, callback) {
+    formSvc.updateModel = function ($scope, formModel, outerForm, url, successCallback) {
 
         $http({ method: "POST", url: url, data: formModel })
             .success(function (data, status, headers, config) {
 
                 showFormUpdateMessage();
+
+                successCallback();
+
+            }); // todo error, then
+
+    };
+
+    formSvc.deleteModelById = function (id, url, successCallback) {
+
+        $http({ method: "POST", url: url, data: id })
+            .success(function (data, status, headers, config) {
+
+                showFormUpdateMessage();
+
+                successCallback();
 
             }); // todo error, then
 
