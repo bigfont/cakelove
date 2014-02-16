@@ -48,12 +48,12 @@
 
     <!--Validation-->
     <div class="text-danger" ng-show="innerForm.$invalid">
-        <div class="save-validation-messages" ng-show="innerForm.$dirty && !hasSubmitError(innerForm)">
+        <div class="save-validation-messages" ng-show="innerForm.$dirty">
             <span ng-show="innerForm.$error.email.length > 0">That is not an email.</span>
             <span ng-show="innerForm.$error.integer.length > 0">Please use a number without decimals.</span>
             <span ng-show="innerForm.$error.float.length > 0">Please use a proper number.</span>
         </div>
-        <div class="submit-validation-messages" ng-show="outerForm.userSubmitting && !hasSaveError(innerForm)">
+        <div class="submit-validation-messages" ng-show="outerForm.userSubmitting">
             <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
         </div>
     </div>
