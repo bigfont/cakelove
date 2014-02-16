@@ -238,8 +238,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.masterModel = {};
 
         // get
-        $scope.jsonUrl = jsonUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
-        $http({ method: 'GET', url: jsonUrl }).
+        $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
+        $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
                 $scope.masterModel = data;
@@ -249,7 +249,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
         // update master from the user input model
         $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel(formModel, outerForm, jsonUrl);
+            formSvc.updateModel(formModel, outerForm, url);
         };
 
         // reset the user input model
