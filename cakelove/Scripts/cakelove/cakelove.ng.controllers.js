@@ -155,7 +155,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
     $scope.navType = 'pills';
 
     $scope.submit = function () {
-
+        
         $scope.outerForm.userSubmitting = true;
         $scope.$broadcast('userSubmitting');
         $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
