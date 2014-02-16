@@ -125,7 +125,7 @@
                                  submit-required="{{ classInfo.needsExtraSetup }}"
                                  ng-model="classInfo.extraTimeSetup"></div>
                             <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." ng-model="classInfo.needsExtraCleanup"></div>
-                            <div bse-input outer-form="outerForm" ng-show="needsExtraCleanup"
+                            <div bse-input outer-form="outerForm" ng-show="classInfo.needsExtraCleanup"
                                  lbl-text="Extra cleanup time:"
                                  help-block="How much additional time do you need?"
                                  id="extraTime.cleanup"
