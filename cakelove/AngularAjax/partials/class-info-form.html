@@ -5,16 +5,16 @@
 
                 <h3>{{ classInfo.className }} <small> </small></h3>
 
-                <div accordion close-others="false" ng-init="isopen = true">
+                <div accordion close-others="false">
 
                     <div bse-input class="hidden" id="id" type="hidden" ng-model="classInfo.id" outer-form="outerForm"></div>
 
 
                     <!--Class Overview-->
-                    <fieldset accordion-group is-open="isopen">
+                    <fieldset accordion-group is-open="isopenOne" ng-init="isopenOne = true">
 
                         <accordion-heading>
-                            Class Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                            Class Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopenOne, 'glyphicon-chevron-right': !isopenOne}"></i>
                         </accordion-heading>
 
                         <legend>Class Overview</legend>
@@ -35,10 +35,10 @@
 
 
                     <!--Student Overview-->
-                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
+                    <fieldset accordion-group is-open="isopenTwo" ng-init="isopenTwo = true">
 
                         <accordion-heading>
-                            Student Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                            Student Overview <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopenTwo, 'glyphicon-chevron-right': !isopenTwo}"></i>
                         </accordion-heading>
 
                         <legend>Student Overview</legend>
@@ -69,10 +69,10 @@
 
 
                     <!--Class Schedule-->
-                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
+                    <fieldset accordion-group is-open="isopenThree" ng-init="isopenThree = true">
 
                         <accordion-heading>
-                            Class Schedule <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                            Class Schedule <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopenThree, 'glyphicon-chevron-right': !isopenThree}"></i>
                         </accordion-heading>
 
                         <legend>Class Schedule</legend>
@@ -139,10 +139,10 @@
 
 
                     <!--Class Supplies-->
-                    <fieldset accordion-group is-open="isopen" ng-init="isopen = true">
+                    <fieldset accordion-group is-open="isopenFour" ng-init="isopenFour = true">
 
                         <accordion-heading>
-                            Class Supplies <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                            Class Supplies <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopenFour, 'glyphicon-chevron-right': !isopenFour}"></i>
                         </accordion-heading>
 
 
