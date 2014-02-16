@@ -158,10 +158,9 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
         
         $scope.outerForm.userSubmitting = true;
         $scope.$broadcast('userSubmitting');
-        if ($scope.outerForm.$error.submitRequired.length)
-        {
-            $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired.length;
-        }
+        
+        $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired ? $scope.outerForm.$error.submitRequired.length : 0;
+        
         
     };
 

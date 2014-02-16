@@ -157,6 +157,7 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
 
             function validateString(value) {
                 if (objSvc.isUndefinedOrNull(value) || value.length === 0) {
+                    console.log(elm.attr('submit-required'));
                     console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;

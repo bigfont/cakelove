@@ -19,6 +19,7 @@
 
             <!--with input dev-testing="{{ lblText }}" group-->
             <div class="input-group" ng-show="{{ hasAddOn }}">
+                submitRequired {{ submitRequired }}
                 <span ng-if="hasAddOnLeft" class="input-group-addon">{{ addOnLeft }}</span>
                 <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerStringAddOn" ng-model="ngModel" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
                 <span ng-if="hasAddOnRight" class="input-group-addon">{{ addOnRight }}</span>
