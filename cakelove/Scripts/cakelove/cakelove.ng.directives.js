@@ -138,7 +138,8 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
             }
 
             function validateNumber(value) {
-                if (objSvc.isUndefinedOrNull(value) || value === '0') {
+                var integer = parseInt(value, 10);
+                if (isNaN(integer) || integer <= 0) {
                     console.log(elm.attr('dev-testing') + " is invalid");
                     ctrl.$setValidity('submitRequired', false);
                     return undefined;
