@@ -206,6 +206,7 @@ namespace cakelove.Controllers
             return viewModel;
         }
 
+        [HttpPost]
         [System.Web.Http.Route("ClassInfo")]
         public async Task<IHttpActionResult> ClassInfo(ClassInfoBindingModel model)
         {
@@ -238,7 +239,9 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
-        [System.Web.Http.Route("DeleteClassInfo")]
+        // api/TeacherApplicationForm/deleteClassInfo/78
+        [HttpPost]
+        [System.Web.Http.Route("DeleteClassInfo/{id}")]
         public async Task<IHttpActionResult> DeleteClassInfo(int id)
         {
             IHttpActionResult httpActionResult = Ok();

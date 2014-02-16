@@ -193,7 +193,9 @@ cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'use
 
     formSvc.deleteModelById = function (id, url, successCallback) {
 
-        $http({ method: "POST", url: url, data: id })
+        data = { id: id };
+
+        $http({ method: "POST", url: url + "/" + id })
             .success(function (data, status, headers, config) {
 
                 showFormUpdateMessage();

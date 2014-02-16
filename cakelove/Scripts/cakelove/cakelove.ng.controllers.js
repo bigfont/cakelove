@@ -367,7 +367,6 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         $scope.delete = function (classInfo, index) {
 
-
             if (window.confirm("Do you want to delete " + classInfo.className + " (" + classInfo.id + ") now" + "?")) {
 
                 $scope.classes.splice(index, 1);
