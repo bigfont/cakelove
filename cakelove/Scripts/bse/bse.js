@@ -82,7 +82,7 @@ bsElements.directive('bseInput', function () {
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
 
                 },
-                post: function postLink(scope) {
+                post: function postLink(scope, elm, attrs, ctrl) {
 
                     scope.hasSaveError = function (innerForm) {
                         return typeof innerForm.$error.integer !== 'undefined' ||
@@ -94,6 +94,22 @@ bsElements.directive('bseInput', function () {
                     scope.hasSubmitError = function (innerForm) {
                         return typeof innerForm.$error.submitRequired !== 'undefined' && innerForm.$error.submitRequired.length > 0;
                     };
+
+                    scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+
+                        console.log(scope);
+                        console.log(elm);
+                        console.log(attrs);
+                        elm.css('border', 'thick solid red');
+
+                        if (elm.$setPristine) {
+                            elm.$setPristine();
+                        }
+                        else {
+                            console.log('elm.$setPristine() is false');
+                        }
+
+                    });
 
                 }
             };

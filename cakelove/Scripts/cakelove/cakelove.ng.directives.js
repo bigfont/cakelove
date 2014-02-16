@@ -85,14 +85,14 @@ cakeLoveDirectives.directive('integer', function () {
 });
 
 var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
-cakeLoveDirectives.directive('smartFloat', function () {
+cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
 
             function validate(value) {
 
-                if (FLOAT_REGEXP.test(value)) {
+                if (objSvc.isUndefinedOrNull(value) || FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
                     if (typeof value === 'string')
                     {
@@ -109,7 +109,7 @@ cakeLoveDirectives.directive('smartFloat', function () {
             ctrl.$formatters.unshift(validate);
         }
     };
-});
+}]);
 
 cakeLoveDirectives.directive('submitRequired', function (objSvc) {
     return {
