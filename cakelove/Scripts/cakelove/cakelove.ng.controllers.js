@@ -238,12 +238,12 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.masterModel = {};
 
         // get
-        var jsonUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
+        $scope.jsonUrl = jsonUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
         $http({ method: 'GET', url: jsonUrl }).
             success(function (data, status, headers, config) {
 
                 $scope.masterModel = data;
-                $scope.reset();
+                $scope.reset($scope);
 
             });
 
@@ -253,9 +253,14 @@ cakeLoveControllers.controller('BiographyCtrl', [
         };
 
         // reset the user input model
-        $scope.reset = function () {
-            $scope.bio = angular.copy($scope.masterModel);
-        };
+        $scope.reset = reset = formSvc.resetModel;
+
+        // update master from the user input model
+        $scope.update = update = formSvc.updateModel;
+
+        $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+            update($scope.formModel, $scope.outerForm, $scope.url);
+        });
 
         // Create a uploader
         var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
