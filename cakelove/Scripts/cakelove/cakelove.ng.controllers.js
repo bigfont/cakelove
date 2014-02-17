@@ -317,7 +317,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
             for (var i = 0; i < $scope.classes.length; i++)
             {
-                var c = $scope.classes[$scope.classes[i]];
+                var c = $scope.classes[i];
                 if (c.active === 'true' || c.active === true) {
                     return c;
                 }
