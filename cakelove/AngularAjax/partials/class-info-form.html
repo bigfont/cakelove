@@ -10,7 +10,7 @@
                     'label-default': totalClassHours() <= 12,
                     'label-info': totalClassHours() <= 15,
                     'label-primary': totalClassHours() <= 17,
-                    'label-success': totalClassHours() <= 20 }">{{ totalClassHours() }}</span>
+                    'label-success': totalClassHours() <= 20 }">{{ totalClassHours() }}</span></label>
 
         <div tabset class="class-info-tabs">
             <tab ng-repeat="formModel in classes" active="formModel.active" disabled="true">
