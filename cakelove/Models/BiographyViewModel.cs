@@ -18,6 +18,9 @@ namespace cakelove.Models
 
         [JsonProperty("hasBioImage")]
         public string HasBioImage { get; set; }
+
+        [JsonProperty("bioImageRelativePath")]
+        public string BioImageRelativePath { get; set; }
     }
 
 }

@@ -11,11 +11,11 @@ namespace cakelove.Models
     {
         public int Id { get; set; }
 
-        [JsonProperty("text")]
         public string Text { get; set; }
 
-        [JsonProperty("hasBioImage")]
         public string HasBioImage { get; set; }
+
+        public string BioImageRelativePath { get; set; }
 
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
