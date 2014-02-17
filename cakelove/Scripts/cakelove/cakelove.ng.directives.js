@@ -94,13 +94,12 @@ cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
 
                 if (ctrl.$isEmpty(value) || FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
-                    if (typeof value === 'string')
+                    if (typeof value === 'string' && value.indexOf(',') >= 0)
                     {
                         value = parseFloat(value.replace(',', '.'));
                     }
                     return value;
                 } else {
-
                     ctrl.$setValidity('float', false);
                     return undefined;
                 }
