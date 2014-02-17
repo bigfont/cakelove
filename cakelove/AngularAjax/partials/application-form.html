@@ -29,8 +29,8 @@
                 <p>You will not be able to submit an incomplete application, nor will you be able to make any changes to your application once you submit it.</p>
                 <p>So…take a deep breath and submit away!</p>
                 <form name="submitForm">
-                    <div bse-input id="test" lbl-text="Please type your username here to confirm:" outer-form="outerForm" ng-model="userNameConfirmation" submit-required="true" type="text"></div>
-                    <button class="btn btn-default" ng-disabled="!userNameConfirmation" ng-click="submit()">Submit</button>
+                    <div bse-input id="userNameConfirm" name="userNameConfirm" lbl-text="Please type your username here to confirm:" outer-form="outerForm" ng-model="userNameConfirm" submit-required="true" type="text" pattern="/^{{userSvc.userName}}+$/"></div>
+                    <button class="btn btn-default" ng-disabled="!userNameConfirm" ng-click="submit()">Submit</button>
                 </form>
             </tab>
         </tabset>

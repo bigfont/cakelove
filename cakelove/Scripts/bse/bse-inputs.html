@@ -14,7 +14,7 @@
         <!--email, password, text, url-->
         <div ng-show="isString && !isHidden">
 
-            <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerString"
+            <input dev-testing="{{ lblText }}" class="form-control" id="{{ id }}" name="innerString" ng-pattern="{{ pattern }}"
                    ng-model="ngModel" ng-show="!hasAddOn" placeholder="{{ placeholder }}" type="{{ type }}" submit-required="{{ submitRequired }}" />
 
             <!--with input dev-testing="{{ lblText }}" group-->

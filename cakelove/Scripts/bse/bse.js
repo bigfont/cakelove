@@ -33,11 +33,12 @@ bsElements.directive('bseInput', function () {
             integer: '@',
             smartFloat: '@',
             submitRequired: '@',
-            //pattern: '@',
+            pattern: '@',
             minlength: '@',
             maxlength: '@',
             min: '@',
             max: '@',
+            required:'@',
             // two way bindings
             ngModel: '=',
             outerForm: '=',
