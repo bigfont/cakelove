@@ -188,6 +188,11 @@
 
                     showFormUpdateMessage();
 
+                    if (data.id)
+                    {
+                        formModel.id = data.id;
+                    }
+                    
                     if (!objSvc.isUndefinedOrNull(successCallback)) successCallback(data);
 
                 }); // todo error, then

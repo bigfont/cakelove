@@ -320,12 +320,12 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
                 item.upload();
                 activeClass.hasClassImage = true;
 
-                $scope.update(activeClass, $scope.outerForm);
+                $scope.update(activeClass, $scope.outerForm, $scope.url);
             });
         }
 
         // get
-        var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
+        $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
@@ -344,18 +344,9 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             var newClassInfo = objSvc.copyWithoutValues($scope.masterModelArray[0]);
             newClassInfo.active = true;
             setClassInfoDefaults(newClassInfo);
-            $scope.update(newClassInfo, $scope.outerForm);
+            $scope.update(newClassInfo, $scope.outerForm, $scope.url);
             $scope.classes.push(newClassInfo);
         }
-
-        // update master from the user input model
-        $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel(formModel, outerForm, url, function (data) {
-
-                formModel.id = data.classId;
-
-            });
-        };
 
         $scope.delete = function (classInfo, index) {
 
@@ -375,7 +366,17 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             $scope.classes[0].active = true;
         };
 
+        $scope.update = update = formSvc.updateModel;
+        
+        $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
+            angular.forEach($scope.classes, function (value, key) {
 
+                console.log('userSubmitting');
+                update(value, $scope.outerForm, $scope.url);
+
+            });
+
+        });
     }
 ]);

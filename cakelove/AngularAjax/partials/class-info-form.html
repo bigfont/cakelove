@@ -1,13 +1,13 @@
 ﻿<div class="row">
     <div class="col-lg-8">
         <div tabset class="class-info-tabs">
-            <tab ng-repeat="classInfo in classes" active="classInfo.active" disabled="true">
+            <tab ng-repeat="formModel in classes" active="formModel.active" disabled="true">
 
-                <h3>{{ classInfo.className }} <small> </small></h3>
+                <h3>{{ formModel.className }} <small> </small></h3>
 
                 <div accordion close-others="false">
 
-                    <div bse-input class="hidden" id="id" type="hidden" ng-model="classInfo.id" outer-form="outerForm"></div>
+                    <div bse-input class="hidden" id="id" type="hidden" ng-model="formModel.id" outer-form="outerForm"></div>
 
 
                     <!--Class Overview-->
@@ -18,18 +18,18 @@
                         </accordion-heading>
 
                         <legend>Class Overview</legend>
-                        <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Name" id="className" type="text" ng-model="classInfo.className"></div>
-                        <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Description" rows="10" type="textarea" ng-model="classInfo.classDescription"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Name" id="className" type="text" ng-model="formModel.className"></div>
+                        <div bse-input submit-required="true" outer-form="outerForm" lbl-text="Class Description" rows="10" type="textarea" ng-model="formModel.classDescription"></div>
                         <fieldset>
                             <!--Nice-to-Have: make a check box list directive-->
                             <label>Class Type:</label>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Hands-On Class" value="handsOn" ng-model="classInfo.classType"></div>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Demo" value="demo" ng-model="classInfo.classType"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.classType"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Hands-On Class" value="handsOn" ng-model="formModel.classType"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Demo" value="demo" ng-model="formModel.classType"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="formModel.classType"></div>
                         </fieldset>
                         <fieldset>
-                            <div bse-file-upload type="text" uploader="uploader" outer-form="outerForm" ng-model="classInfo.hasClassImage"
-                                 lbl-text="Class image" img-identifier="class{{ classInfo.id }}" help-block="Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
+                            <div bse-file-upload type="text" uploader="uploader" outer-form="outerForm" ng-model="formModel.hasClassImage"
+                                 lbl-text="Class image" img-identifier="class{{ formModel.id }}" help-block="Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
                         </fieldset>
                     </fieldset>
 
@@ -44,25 +44,25 @@
                         <legend>Student Overview</legend>
 
                         <fieldset>
-                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="{{classInfo.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" ng-model="classInfo.feePerStudent"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="{{formModel.currency}}" add-on-right=".00" id="feePerStudent" type="number" lbl-text="Fee per student" ng-model="formModel.feePerStudent"></div>
                             <!--Nice-to-have: Make this a drop down list add-on.-->
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Canadian" value="Canadian" ng-model="classInfo.currency"></div>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="US" value="US" ng-model="classInfo.currency"></div>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Euros" value="Euro" ng-model="classInfo.currency"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.currency"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Canadian" value="Canadian" ng-model="formModel.currency"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="US" value="US" ng-model="formModel.currency"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Euros" value="Euro" ng-model="formModel.currency"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="formModel.currency"></div>
                         </fieldset>
 
                         <fieldset>
-                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" ng-model="classInfo.classSizeMin"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" ng-model="classInfo.classSizeMax"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Min Students" lbl-text="Minimum Number of Students" id="classSizeMin" type="number" ng-model="formModel.classSizeMin"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Max Students" lbl-text="Maximum Number of Students" id="classSizeMax" type="number" ng-model="formModel.classSizeMax"></div>
                         </fieldset>
 
                         <fieldset>
                             <label>Skill Level:</label>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Beginner" value="beginner" ng-model="classInfo.skillLevel"></div>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Intermediate" value="intermediate" ng-model="classInfo.skillLevel"></div>
-                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Advanced" value="advanced" ng-model="classInfo.skillLevel"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.skillLevel"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Beginner" value="beginner" ng-model="formModel.skillLevel"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Intermediate" value="intermediate" ng-model="formModel.skillLevel"></div>
+                            <div bse-input outer-form="outerForm" type="radio" lbl-text="Advanced" value="advanced" ng-model="formModel.skillLevel"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="formModel.skillLevel"></div>
                         </fieldset>
 
                     </fieldset>
@@ -77,35 +77,35 @@
 
                         <legend>Class Schedule</legend>
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." ng-model="classInfo.isMultiDay"></div>
-                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ classInfo.isMultiDay ? 'day one' : '' }} class time:" ng-model="classInfo.totalTimeDayOne"></div>
-                            <div bse-input submit-required="{{ classInfo.isMultiDay }}" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's classInfo." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="classInfo.isMultiDay" ng-model="classInfo.totalTimeDayTwo"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class will run more than one day." ng-model="formModel.isMultiDay"></div>
+                            <div bse-input submit-required="true" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for class (do not include set up or clean up)." id="totalTimeDayOne" type="number" lbl-text="Total {{ formModel.isMultiDay ? 'day one' : '' }} class time:" ng-model="formModel.totalTimeDayOne"></div>
+                            <div bse-input submit-required="{{ formModel.isMultiDay }}" outer-form="outerForm" add-on-left="Hours" help-block="Total time required for day two's formModel." id="totalTimeDayTwo" type="number" lbl-text="Total day two class time:" ng-show="formModel.isMultiDay" ng-model="formModel.totalTimeDayTwo"></div>
                         </fieldset>
 
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I have a class scheduling preference." ng-model="classInfo.hasTimePreference"></div>
-                            <div ng-show="classInfo.hasTimePreference" class="row">
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I have a class scheduling preference." ng-model="formModel.hasTimePreference"></div>
+                            <div ng-show="formModel.hasTimePreference" class="row">
                                 <div class="col-sm-6">
-                                    <label>Preferred {{ classInfo.isMultiDay ? 'day one' : '' }} timing:</label>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - am" value="sat-am" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" ng-model="classInfo.preferredTimeDayOne"></div>
-                                    <div bse-input submit-required="{{ classInfo.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.preferredTimeDayOne"></div>
+                                    <label>Preferred {{ formModel.isMultiDay ? 'day one' : '' }} timing:</label>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - am" value="sat-am" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" ng-model="formModel.preferredTimeDayOne"></div>
+                                    <div bse-input submit-required="{{ formModel.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" ng-model="formModel.preferredTimeDayOne"></div>
 
                                 </div>
-                                <div ng-show="classInfo.isMultiDay" class="col-sm-6">
+                                <div ng-show="formModel.isMultiDay" class="col-sm-6">
                                     <label>Preferred day two timing:</label>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - am" value="sat-am" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" ng-model="classInfo.preferredTimeDayTwo"></div>
-                                    <div bse-input submit-required="{{ classInfo.isMultiDay && classInfo.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - am" value="fri-am" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Fri - pm" value="fri-pm" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - am" value="sat-am" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sat - pm" value="sat-pm" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - am" value="sun-am" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input outer-form="outerForm" type="radio" lbl-text="Sun - pm" value="sun-pm" ng-model="formModel.preferredTimeDayTwo"></div>
+                                    <div bse-input submit-required="{{ formModel.isMultiDay && formModel.hasTimePreference }}" outer-form="outerForm" hidden-input type="text" ng-model="formModel.preferredTimeDayTwo"></div>
 
                                 </div>
                             </div>
@@ -115,24 +115,24 @@
                         <fieldset>
 
                             <label>We will automatically add 15 mins for set up and 15 mins for clean up, do you require more time:</label>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for setup." ng-model="classInfo.needsExtraSetup"></div>
-                            <div bse-input outer-form="outerForm" ng-show="classInfo.needsExtraSetup"
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for setup." ng-model="formModel.needsExtraSetup"></div>
+                            <div bse-input outer-form="outerForm" ng-show="formModel.needsExtraSetup"
                                  lbl-text="Extra setup time:"
                                  help-block="How much additional time do you need?"
                                  id="extraTime.setup"
                                  type="number"
                                  add-on-right="mins"
-                                 submit-required="{{ classInfo.needsExtraSetup }}"
-                                 ng-model="classInfo.extraTimeSetup"></div>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." ng-model="classInfo.needsExtraCleanup"></div>
-                            <div bse-input outer-form="outerForm" ng-show="classInfo.needsExtraCleanup"
+                                 submit-required="{{ formModel.needsExtraSetup }}"
+                                 ng-model="formModel.extraTimeSetup"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I require more than 15-mins for clean-up." ng-model="formModel.needsExtraCleanup"></div>
+                            <div bse-input outer-form="outerForm" ng-show="formModel.needsExtraCleanup"
                                  lbl-text="Extra cleanup time:"
                                  help-block="How much additional time do you need?"
                                  id="extraTime.cleanup"
                                  type="number"
                                  add-on-right="mins"
-                                 submit-required="{{ classInfo.needsExtraCleanup }}"
-                                 ng-model="classInfo.extraTimeCleanup"></div>
+                                 submit-required="{{ formModel.needsExtraCleanup }}"
+                                 ng-model="formModel.extraTimeCleanup"></div>
 
                         </fieldset>
                     </fieldset>
@@ -150,40 +150,40 @@
 
                         <fieldset>
                             <div class="radio-button-list">
-                                <div bse-input outer-form="outerForm" value="allInstructor" type="radio" lbl-text="I will provide all necessary supplies." ng-model="classInfo.suppliesOption"></div>
-                                <div bse-input outer-form="outerForm" value="allStudent" type="radio" lbl-text="The student must bring all necessary supplies." ng-model="classInfo.suppliesOption"></div>
-                                <div bse-input outer-form="outerForm" value="someInstructorSomeStudent" type="radio" lbl-text="I will provide some of the supplies, and the student must bring the rest." ng-model="classInfo.suppliesOption"></div>
-                                <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.suppliesOption"></div>
+                                <div bse-input outer-form="outerForm" value="allInstructor" type="radio" lbl-text="I will provide all necessary supplies." ng-model="formModel.suppliesOption"></div>
+                                <div bse-input outer-form="outerForm" value="allStudent" type="radio" lbl-text="The student must bring all necessary supplies." ng-model="formModel.suppliesOption"></div>
+                                <div bse-input outer-form="outerForm" value="someInstructorSomeStudent" type="radio" lbl-text="I will provide some of the supplies, and the student must bring the rest." ng-model="formModel.suppliesOption"></div>
+                                <div bse-input submit-required="true" outer-form="outerForm" hidden-input type="text" ng-model="formModel.suppliesOption"></div>
                             </div>
                             <div bse-input outer-form="outerForm"
-                                 ng-show="classInfo.suppliesOption === 'allInstructor' || classInfo.suppliesOption === 'someInstructorSomeStudent'"
-                                 submit-required="{{suppliesOption === 'allInstructor' || classInfo.suppliesOption === 'someInstructorSomeStudent'}}"
+                                 ng-show="formModel.suppliesOption === 'allInstructor' || formModel.suppliesOption === 'someInstructorSomeStudent'"
+                                 submit-required="{{suppliesOption === 'allInstructor' || formModel.suppliesOption === 'someInstructorSomeStudent'}}"
                                  lbl-text="Supplies provided by instructor:"
-                                 id="supplies-provided" rows="10" type="textarea" ng-model="classInfo.suppliesWillProvideThese"></div>
+                                 id="supplies-provided" rows="10" type="textarea" ng-model="formModel.suppliesWillProvideThese"></div>
 
                             <div bse-input outer-form="outerForm"
-                                 ng-show="classInfo.suppliesOption === 'allStudent' || classInfo.suppliesOption === 'someInstructorSomeStudent'"
-                                 submit-required="{{suppliesOption === 'allStudent' || classInfo.suppliesOption === 'someInstructorSomeStudent'}}"
+                                 ng-show="formModel.suppliesOption === 'allStudent' || formModel.suppliesOption === 'someInstructorSomeStudent'"
+                                 submit-required="{{suppliesOption === 'allStudent' || formModel.suppliesOption === 'someInstructorSomeStudent'}}"
                                  lbl-text="Supplies provided by student:"
                                  help-block="Please provide a detailed list of what will be required. Please be mindful of the long distances many students will have to travel. For example, if a student will require a 12&quot; piece of aluminum foil, you may wish to provide a communal role instead of asking every student to bring some."
-                                 id="supplied-required" rows="10" type="textarea" ng-model="classInfo.suppliesWillRequireThese">
+                                 id="supplied-required" rows="10" type="textarea" ng-model="formModel.suppliesWillRequireThese">
                             </div>
                         </fieldset>
 
 
                         <fieldset>
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" ng-model="classInfo.isSelling"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I will be offering some of the required supplies for sale!" ng-model="formModel.isSelling"></div>
                             <div bse-input outer-form="outerForm" id="supplies-sale" rows="10" type="textarea"
-                                 lbl-text="If so, please list:" ng-show="classInfo.isSelling" ng-model="classInfo.suppliesWillSellThese"></div>
+                                 lbl-text="If so, please list:" ng-show="formModel.isSelling" ng-model="formModel.suppliesWillSellThese"></div>
                         </fieldset>
 
                         <fieldset>
 
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I would like a vendor table..." ng-model="classInfo.doVendorTable"></div>
-                            <div ng-show="classInfo.doVendorTable">
-                                <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" ng-model="classInfo.vendorTable"></div>
-                                <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" ng-model="classInfo.vendorTable"></div>
-                                <div bse-input submit-required="{{ classInfo.doVendorTable }}" outer-form="outerForm" hidden-input type="text" ng-model="classInfo.vendorTable"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I would like a vendor table..." ng-model="formModel.doVendorTable"></div>
+                            <div ng-show="formModel.doVendorTable">
+                                <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" ng-model="formModel.vendorTable"></div>
+                                <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" ng-model="formModel.vendorTable"></div>
+                                <div bse-input submit-required="{{ formModel.doVendorTable }}" outer-form="outerForm" hidden-input type="text" ng-model="formModel.vendorTable"></div>
 
                             </div>
 
@@ -192,17 +192,17 @@
                         <fieldset>
 
 
-                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class requires special supplies." ng-model="classInfo.doSpecialSupplies"></div>
+                            <div bse-input outer-form="outerForm" type="checkbox" lbl-text="My class requires special supplies." ng-model="formModel.doSpecialSupplies"></div>
 
-                            <div bse-input ng-show="classInfo.doSpecialSupplies" outer-form="outerForm" id="supplies-special" submit-required="{{ classInfo.doSpecialSupplies }}"
-                                 rows=" 10" type="textarea" lbl-text="Special equipment required for class:" ng-model="classInfo.willNeedThisSpecialEquip"></div>
+                            <div bse-input ng-show="formModel.doSpecialSupplies" outer-form="outerForm" id="supplies-special" submit-required="{{ formModel.doSpecialSupplies }}"
+                                 rows=" 10" type="textarea" lbl-text="Special equipment required for class:" ng-model="formModel.willNeedThisSpecialEquip"></div>
 
                         </fieldset>
 
                     </fieldset>
 
                 </div><br />
-                <button class="btn btn-default" ng-click="update(classInfo, outerForm)">Save</button>
+                <button class="btn btn-default" ng-click="update(formModel, outerForm, url)">Save</button>
 
             </tab>
         </div>
@@ -212,14 +212,14 @@
 
         <ul id="classes-nav" class="nav nav-pills nav-stacked">
             <li ng-click="create()"><a><span class="glyphicon glyphicon-plus"></span> Add New Class</a></li>
-            <li class="clearfix" ng-class="{active:classInfo.active }" ng-repeat="classInfo in classes" >
-                <a class="class-name" ng-click="classInfo.active = true">
+            <li class="clearfix" ng-class="{active:formModel.active }" ng-repeat="formModel in classes" >
+                <a class="class-name" ng-click="formModel.active = true">
                     <span>
                         <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span>{{ classInfo.className }} </span>
+                        <span>{{ formModel.className }} </span>
                     </span>
                 </a>
-                <a class="class-delete" ng-click="delete(classInfo, $index)"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="class-delete" ng-click="delete(formModel, $index)"><span class="glyphicon glyphicon-remove"></span></a>
             </li>
         </ul>
 
