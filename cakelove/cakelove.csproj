@@ -262,6 +262,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationStatusBindingModel.cs" />
+    <Compile Include="Models\ApplicationStatusViewModel.cs" />
     <Compile Include="Models\BiographyViewModel.cs" />
     <Compile Include="Models\ClassInfoBindingModel.cs" />
     <Compile Include="Models\ClassInfoViewModel.cs" />

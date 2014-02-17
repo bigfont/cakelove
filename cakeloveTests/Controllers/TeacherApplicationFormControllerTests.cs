@@ -70,8 +70,7 @@ namespace cakelove.Controllers.Tests
 
             var minimalUpdate = new ContactInfoBindingModel()
             {
-                Id = 5,
-                AddressId = 5,
+                Id = 5,           
                 Address = new AddressBindingModel() { Id = 5 },
                 Name = TestUser.UserName += DateTime.Now.Ticks,
                 IdentityUserId = TestUser.Id
