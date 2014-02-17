@@ -112,25 +112,9 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
         {
             id: '@',
             lblText: '@',
-            placeholder: '@',
-            type: '@',
-            width: '@',
-            name: '@',
-            rows: '@',
-            value: '@',
             helpBlock: '@',
-            addOnRight: '@',
-            addOnLeft: '@',
             imgIdentifier: '@',
-            // html5 validation
-            integer: '@',
-            smartFloat: '@',
             submitRequired: '@',
-            //pattern: '@',
-            minlength: '@',
-            maxlength: '@',
-            min: '@',
-            max: '@',
             // two way bindings
             ngModel: '=',
             outerForm: '=',
@@ -138,7 +122,6 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
         },
         compile: function compile(tElement, tAttrs, transclude) {
             tElement.removeAttr("id");
-            tElement.removeAttr("type");
 
             function addAttribute(jqLiteInput, tAttrs, prop) {
 
@@ -155,20 +138,11 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
             for (var i = 0; i < inputs.length; i++) {
 
                 jqLiteInput = angular.element(inputs[i]);
-                addAttribute(jqLiteInput, tAttrs, 'integer');
-                addAttribute(jqLiteInput, tAttrs, 'smartFloat');
                 addAttribute(jqLiteInput, tAttrs, 'submitRequired');
             }
 
             return {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
-                    scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
-                    scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
-                    scope.isFile = 'file' === iAttrs.type;
-                    scope.isTextarea = 'textarea' === iAttrs.type;
-                    scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
-                    scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
-                    scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
                     scope.userId = userSvc.userId;
                 }
