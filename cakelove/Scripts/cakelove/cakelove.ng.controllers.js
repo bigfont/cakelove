@@ -155,7 +155,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            $scope.outerForm.userSubmitted = data;            
+            $scope.outerForm.userSubmitted = data.isSumbitted;            
 
         });
 
