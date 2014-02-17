@@ -145,8 +145,8 @@ cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '
 
     }]);
 
-cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc', 'formSvc',
-function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSvc) {
+cakeLoveControllers.controller('ApplicationFormCtrl', ['$scope', '$http', '$location', '$window', 'userSvc', 'urlSvc', 'siteMapSvc', 'formSvc', 'objSvc',
+function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSvc, objSvc) {
 
     siteMapSvc.currentPage = "Application";
 
@@ -155,8 +155,10 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            $scope.outerForm.userSubmitted = data.isSubmitted;            
-
+            if (!objSvc.isUndefinedOrNull($scope.outerForm))
+            {
+                $scope.outerForm.userSubmitted = data.isSubmitted;
+            }           
         });
 
     $scope.formSvc = formSvc;
