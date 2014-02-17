@@ -10,7 +10,8 @@
                     'label-default': totalClassHours() >= 12 && totalClassHours() < 15,
                     'label-info': totalClassHours() >= 15 && totalClassHours() < 17,
                     'label-primary': totalClassHours() >= 17 && totalClassHours() < 20,
-                    'label-success': totalClassHours() >= 20 }">{{ totalClassHours() }}</span></h3>
+                    'label-success': totalClassHours() >= 20 }">{{ totalClassHours() }}</span>
+        </h3>
 
         <div tabset class="class-info-tabs">
             <tab ng-repeat="formModel in classes" active="formModel.active" disabled="true">
@@ -218,20 +219,25 @@
 
             </tab>
         </div>
+
     </div>
 
     <div class="col-lg-4">
 
-        <ul id="classes-nav" class="nav nav-pills nav-stacked">
-            <li ng-click="create()"><a><span class="glyphicon glyphicon-plus"></span> Add New Class</a></li>
-            <li class="clearfix" ng-class="{active:formModel.active }" ng-repeat="formModel in classes">
-                <a class="class-name" ng-click="formModel.active = true">
-                    <span>
+        <ul class="list-unstyled" id="class-info-btn-group">
+            <li>
+                <button class="btn btn-primary" ng-click="create()"><span class="glyphicon glyphicon-plus"></span> Add New Class</button>
+            </li>
+            <li ng-repeat="formModel in classes">
+                <div class="btn-group">
+                    <button class="btn btn-primary" ng-click="formModel.active = true">
                         <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span>{{ formModel.className }} </span>
-                    </span>
-                </a>
-                <a class="class-delete" ng-click="delete(formModel, $index)"><span class="glyphicon glyphicon-remove"></span></a>
+                        <span>{{ formModel.className }}</span>
+                    </button>
+                    <button class="btn btn-danger" ng-click="delete(formmodel, $index)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
             </li>
         </ul>
 

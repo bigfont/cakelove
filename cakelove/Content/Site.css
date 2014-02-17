@@ -67,11 +67,8 @@ fieldset {
         border: none;
     }
 
-#classes-nav > li > a.class-name {
-    float: left;
-    width: 75%;
-}
+#class-info-btn-group > .btn-group {
 
-#classes-nav > li > a.class-delete {
-    float: left;
+    display:block;
+
 }
