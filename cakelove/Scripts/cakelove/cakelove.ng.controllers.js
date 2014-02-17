@@ -152,18 +152,28 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
 
     $scope.formSvc = formSvc;
 
-    $scope.navType = 'pills';
-
     $scope.submit = function () {
 
-        $scope.outerForm.userSubmitted = true;
         $scope.outerForm.userSubmitting = true;
-        $scope.$broadcast('userSubmitting');
+        $scope.$broadcast('userSubmitting'); // this saves to db
 
-        $scope.requiredErrorsLength = 0; // be extra safe
+        // validate
+        var passesSubmitRequired;
+        var passesCumulativeClassHours;
+
+        // set default to be extra safe, then validate
+        $scope.requiredErrorsLength = 0;        
         $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired ? $scope.outerForm.$error.submitRequired.length : 0;
+        passesSubmitRequired = $scope.requiredErrorsLength === 0;
 
+        // query form class hours
+        passesCumulativeClassHours = true;
 
+        // check if valid
+        if (passesSubmitRequired && passesCumulativeClassHours)
+        {
+            $scope.outerForm.userSubmitted = true;
+        }
     };
 
 }]);
@@ -268,8 +278,8 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
             item.upload();
-            $scope.bio.hasBioImage = true;
-            $scope.update($scope.bio, $scope.outerForm);
+            $scope.formModel.hasBioImage = true;
+            $scope.update($scope.formModel, $scope.outerForm);
         });
 
     }
