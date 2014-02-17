@@ -67,8 +67,8 @@ fieldset {
         border: none;
     }
 
-#class-info-btn-group > .btn-group {
+ul#class-info-btn-group > li {
 
-    display:block;
+    margin:5px;
 
 }
