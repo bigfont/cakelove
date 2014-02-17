@@ -140,7 +140,17 @@ namespace cakelove.Controllers
             try
             {
                 saveFileRelativePath = await SaveImage(Request, "bio");
-                // todo Save file to database
+                                
+                var db = new MyDbContext();
+
+                string currentUserId = GetCurrentUserId();
+                var model = db.Biography.FirstOrDefault(b => b.IdentityUser.Id.Equals(currentUserId));
+
+                model.BioImageRelativePath = saveFileRelativePath;
+                db.Biography.Attach(model);
+
+                await InsertOrUpdateAsync(db, model);                
+               
                 // todo Return file name to client
             }
             catch (System.Exception e)
@@ -271,7 +281,7 @@ namespace cakelove.Controllers
                 IsSubmitted = true
             };
             var db = new MyDbContext();
-            await InsertOrUpdate(db, applicationStatus);
+            await InsertOrUpdateAsync(db, applicationStatus);
 
             return httpActionResult;
         }
@@ -382,7 +392,7 @@ namespace cakelove.Controllers
             return model.Id == default(int) ? EntityState.Added : EntityState.Modified;
         }
 
-        public async Task InsertOrUpdate(DbContext context, IEntityBase entity)
+        public async Task InsertOrUpdateAsync(DbContext context, IEntityBase entity)
         {
             context.Entry(entity).State = entity.Id == 0 ?
                                            EntityState.Added :
