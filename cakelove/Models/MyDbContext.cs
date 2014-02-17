@@ -15,6 +15,7 @@ namespace cakelove.Models
         public DbSet<TeachingExperienceBindingModel> TeachingExperience { get; set; }
         public DbSet<ClassInfoBindingModel> ClassInfo { get; set; }
         public DbSet<BiographyBindingModel> Biography { get; set; }
+        public DbSet<ApplicationStatusBindingModel> ApplicationStatus { get; set; }
 
         public override int SaveChanges()
         {

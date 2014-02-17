@@ -11,7 +11,7 @@ namespace cakelove.Models
     {
         public int Id { get; set; }
         
-        public bool IsSubmitted { get; set; }
+        public bool? IsSubmitted { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

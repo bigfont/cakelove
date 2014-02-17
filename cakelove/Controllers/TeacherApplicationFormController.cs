@@ -254,7 +254,21 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        [HttpPut]
+        public async Task<IHttpActionResult> SubmitCurrentUserApplication()
+        {
+            IHttpActionResult httpActionResult = Ok();
 
+            var applicationStatus = new ApplicationStatusBindingModel()
+            {
+                IdentityUserId = GetCurrentUserId(),
+                IsSubmitted = true
+            };
+            var db = new MyDbContext();
+            await InsertOrUpdate(db, applicationStatus);
+
+            return httpActionResult;
+        }
 
         [HttpPost]
         [System.Web.Http.Route("ClassImage")]
@@ -322,9 +336,18 @@ namespace cakelove.Controllers
         }
 
         // Nice-to-have: Put this method into the IBindingModel or similar spot... model.SetState().
+        // Maybe use the answer here: http://stackoverflow.com/questions/16195847/does-ef-upsert-has-to-be-done-manually
         private EntityState GetBindingModelState(IEntityBase model)
         {
             return model.Id == default(int) ? EntityState.Added : EntityState.Modified;
+        }
+
+        public async Task InsertOrUpdate(DbContext context, IEntityBase entity)
+        {
+            context.Entry(entity).State = entity.Id == 0 ?
+                                           EntityState.Added :
+                                           EntityState.Modified;
+            await context.SaveChangesAsync();
         }
 
         private string GetCurrentUserId()

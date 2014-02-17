@@ -215,8 +215,9 @@
                 }); // todo error, then
         };
 
-        formSvc.submitApplication = function () {
+        formSvc.submitCurrentUserApplication = function () {
 
+            $http({ method: "PUT", url: '' });
         }
 
         formSvc.createImageUploader = function ($scope, uploaderUrl) {

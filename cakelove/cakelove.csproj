@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201402152358368_nullableBool.Designer.cs">
       <DependentUpon>201402152358368_nullableBool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402170804182_applicationStatus.cs" />
+    <Compile Include="Migrations\201402170804182_applicationStatus.Designer.cs">
+      <DependentUpon>201402170804182_applicationStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -654,6 +658,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402152358368_nullableBool.resx">
       <DependentUpon>201402152358368_nullableBool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402170804182_applicationStatus.resx">
+      <DependentUpon>201402170804182_applicationStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

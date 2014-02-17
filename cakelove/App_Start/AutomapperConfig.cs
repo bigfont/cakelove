@@ -16,6 +16,7 @@ namespace cakelove.App_Start
             Mapper.CreateMap<TeachingExperienceBindingModel, TeachingExperienceViewModel>();
             Mapper.CreateMap<ClassInfoBindingModel, ClassInfoViewModel>();
             Mapper.CreateMap<BiographyBindingModel, BiographyViewModel>();
+            Mapper.CreateMap<ApplicationStatusBindingModel, ApplicationStatusViewModel>();
 
         }
     }
