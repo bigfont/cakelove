@@ -1,16 +1,16 @@
 ﻿<div class="row">
     <div class="col-lg-8">
 
-        <label>
+        <h3>
             Total class hours:
             <span class="label"
                   ng-class="{
-                    'label-danger': totalClassHours() <= 6,
-                    'label-warning': totalClassHours() <= 9,
-                    'label-default': totalClassHours() <= 12,
-                    'label-info': totalClassHours() <= 15,
-                    'label-primary': totalClassHours() <= 17,
-                    'label-success': totalClassHours() <= 20 }">{{ totalClassHours() }}</span></label>
+                    'label-danger': totalClassHours() >=0 && totalClassHours() < 9,
+                    'label-warning': totalClassHours() >= 9 && totalClassHours() < 12,
+                    'label-default': totalClassHours() >= 12 && totalClassHours() < 15,
+                    'label-info': totalClassHours() >= 15 && totalClassHours() < 17,
+                    'label-primary': totalClassHours() >= 17 && totalClassHours() < 20,
+                    'label-success': totalClassHours() >= 20 }">{{ totalClassHours() }}</span></h3>
 
         <div tabset class="class-info-tabs">
             <tab ng-repeat="formModel in classes" active="formModel.active" disabled="true">
