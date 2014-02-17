@@ -1,10 +1,15 @@
 ﻿
 <div ng-if="outerForm.userSubmitted">
 
-    <div class="alert alert-success">Hooray!</div>
+    <div class="alert alert-success">
+        <strong>Hooray!</strong>
+        <p>You have submitted your application. Well done.</p>
+        <p>You may review your application; you cannot, though, make any further changes.</p>
+        <p>Good luck, and thank you for your application!</p>
+    </div>
 
 </div>
-<div ng-if ="!outerForm.userSubmitted">
+<div ng-if="!outerForm.userSubmitted">
     <div ng-show="failsSubmitRequired" class="alert alert-danger">
         <p>You have {{ requiredErrorsLength }} required fields to fill in before you can submit.</p>
     </div>
@@ -19,4 +24,4 @@
         <div bse-input id="userNameConfirm" name="userNameConfirm" lbl-text="Please type your username here to confirm:" outer-form="outerForm" ng-model="userNameConfirm" submit-required="true" type="text" pattern="/^{{userSvc.userName}}+$/"></div>
         <button class="btn btn-primary" ng-disabled="!userNameConfirm" ng-click="submit()">Submit</button>
     </form>
-</divng-if>
+    </divng-if>
