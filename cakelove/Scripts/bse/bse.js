@@ -1,4 +1,6 @@
-﻿var bsElements = angular.module('bsElements', []);
+﻿/*global angular*/
+
+var bsElements = angular.module('bsElements', []);
 
 var SNAKE_CASE_REGEXP = /[A-Z]/g;
 function snake_case(name, separator) {
@@ -38,7 +40,7 @@ bsElements.directive('bseInput', function () {
             maxlength: '@',
             min: '@',
             max: '@',
-            required:'@',
+            required: '@',
             // two way bindings
             ngModel: '=',
             outerForm: '=',
@@ -70,13 +72,13 @@ bsElements.directive('bseInput', function () {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'number'].indexOf(iAttrs.type) >= 0;
 
-                    if (typeof iAttrs["hiddenInput"] !== 'undefined') {
+                    if (typeof iAttrs.hiddenInput !== 'undefined') {
                         scope.isHidden = true;
                     }
 
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
-                    scope.isFile = 'file' == iAttrs.type;
-                    scope.isTextarea = 'textarea' == iAttrs.type;
+                    scope.isFile = 'file' === iAttrs.type;
+                    scope.isTextarea = 'textarea' === iAttrs.type;
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
@@ -162,17 +164,13 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.isString = ['email', 'password', 'text', 'url', 'hidden', 'number'].indexOf(iAttrs.type) >= 0;
                     scope.isRadioCheck = ['radio', 'checkbox'].indexOf(iAttrs.type) >= 0;
-                    scope.isFile = 'file' == iAttrs.type;
-                    scope.isTextarea = 'textarea' == iAttrs.type;
+                    scope.isFile = 'file' === iAttrs.type;
+                    scope.isTextarea = 'textarea' === iAttrs.type;
                     scope.hasAddOnRight = typeof iAttrs.addOnRight !== 'undefined';
                     scope.hasAddOnLeft = typeof iAttrs.addOnLeft !== 'undefined';
                     scope.hasAddOn = scope.hasAddOnLeft || scope.hasAddOnRight;
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
                     scope.userId = userSvc.userId;
-                },
-                post: function postLink(scope, iElement, iAttrs, controller) {
-
-
                 }
             };
         }

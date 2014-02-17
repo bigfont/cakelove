@@ -113,7 +113,7 @@
 
                     storeNewUserRole(roleName);
 
-                    if(!objSvc.isUndefinedOrNull(successCallback)) successCallback();
+                    if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(); }
 
                 });
 
@@ -193,7 +193,7 @@
                         formModel.id = data.id;
                     }
                     
-                    if (!objSvc.isUndefinedOrNull(successCallback)) successCallback(data);
+                    if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(data); }
 
                 }); // todo error, then
 
@@ -210,7 +210,7 @@
 
                     showFormUpdateMessage();
 
-                    if (!objSvc.isUndefinedOrNull(successCallback)) successCallback();
+                    if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(); }
 
                 }); // todo error, then
         };
@@ -219,7 +219,7 @@
 
             var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/SubmitCurrentUserApplication');
             $http({ method: "PUT", url: url });
-        }
+        };
 
         formSvc.createImageUploader = function ($scope, uploaderUrl) {
             var uploader = $fileUploader.create({

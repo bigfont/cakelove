@@ -1,4 +1,6 @@
-﻿var miscFunctions = (function () {
+﻿/*global angular*/
+
+var miscFunctions = (function () {
 
     var module = {};
 

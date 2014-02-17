@@ -1,4 +1,6 @@
-﻿var cakeLoveDirectives = angular.module("cakeLoveDirectives", []);
+﻿/*global angular*/
+
+var cakeLoveDirectives = angular.module("cakeLoveDirectives", []);
 
 cakeLoveDirectives.directive('dynamicName', function ($compile, $parse) {
     return {
@@ -79,7 +81,7 @@ cakeLoveDirectives.directive('integer', function () {
                             ctrl.$setValidity('integer', false);
                             return undefined;
                         }
-                    };
+                    }
 
                     ctrl.$parsers.unshift(validate);
                     ctrl.$formatters.unshift(validate);
@@ -109,7 +111,7 @@ cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
                     ctrl.$setValidity('float', false);
                     return undefined;
                 }
-            };
+            }
 
             ctrl.$parsers.unshift(validate);
             ctrl.$formatters.unshift(validate);
@@ -137,7 +139,7 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
                     } else if (['checkbox', 'radio'].indexOf(inputType) >= 0) {
                         validateGroup(elm);
                     } else if ('number' === inputType) {
-                        validateNumber(inputValue)
+                        validateNumber(inputValue);
                     }
 
                 }
@@ -168,7 +170,7 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
                     ctrl.$setValidity('submitRequired', true);
                     return undefined;
                 }
-            };
+            }
 
             function clear(value) {
                 ctrl.$setValidity('submitRequired', true);
@@ -202,12 +204,12 @@ cakeLoveDirectives.directive('ngThumb', ['$window', function ($window) {
         restrict: 'A',
         template: '<canvas/>',
         link: function (scope, element, attributes) {
-            if (!helper.support) return;
+            if (!helper.support) { return; }
 
             var params = scope.$eval(attributes.ngThumb);
 
-            if (!helper.isFile(params.file)) return;
-            if (!helper.isImage(params.file)) return;
+            if (!helper.isFile(params.file)) { return; }
+            if (!helper.isImage(params.file)) { return; }
 
             var canvas = element.find('canvas');
             var reader = new FileReader();
@@ -238,5 +240,5 @@ cakeLoveDirectives.directive('errSrc', function () {
                 element.attr('src', attrs.errSrc);
             });
         }
-    }
+    };
 });

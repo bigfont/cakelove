@@ -1,4 +1,6 @@
-﻿var cakeLoveControllers = angular.module("cakeLoveControllers", []);
+﻿/*global angular, miscFunctions */
+
+var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
 cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', 'formSvc', function ($scope, userSvc, siteMapSvc, formSvc) {
 
@@ -37,11 +39,6 @@ cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 
             success(function (data, status, headers, config) {
 
                 $scope.masterModel = miscFunctions.InferTheHtmlInputAttributesOfEachKeyValuePair(data);
-
-            }).
-            error(function (data, status, headers, config) {
-
-                miscFunctions.ShowAjaxResultsForDevelopment($scope, data, status, headers, config);
 
             });
 
@@ -140,7 +137,6 @@ cakeLoveControllers.controller('InstructorGuidelinesCtrl', ['$scope', '$http', '
 
             });
 
-
         };
 
     }]);
@@ -151,6 +147,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
     siteMapSvc.currentPage = "Application";
 
     // get
+    var url;
     $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/currentUserApplicationStatus');
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
@@ -199,6 +196,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
     $scope.masterModel = {};
 
     // get
+    var url;
     $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/contactInfo');
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
@@ -209,9 +207,11 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, formSvc) {
         });
 
     // reset the user input model
+    var reset;
     $scope.reset = reset = formSvc.resetModel;
 
     // update master from the user input model
+    var update;
     $scope.update = update = formSvc.updateModel;
 
     $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
@@ -228,7 +228,8 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         $scope.masterModel = {};
 
-        // get
+        // get        
+        var url;
         $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/teachingExperience');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
@@ -239,9 +240,11 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
             });
 
         // reset the user input model
+        var reset;
         $scope.reset = reset = formSvc.resetModel; 
 
         // update master from the user input model
+        var update;
         $scope.update = update = formSvc.updateModel;
 
         $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
@@ -260,6 +263,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         $scope.masterModel = {};
 
         // get
+        var url;
         $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biography');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
@@ -270,9 +274,11 @@ cakeLoveControllers.controller('BiographyCtrl', [
             });
 
         // reset the user input model
+        var reset;
         $scope.reset = reset = formSvc.resetModel;
 
         // update master from the user input model
+        var update;
         $scope.update = update = formSvc.updateModel;
 
         $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
@@ -299,7 +305,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         $scope.masterModelArray = [];
 
         function setClassInfoDefaults(classInfo) {
-            if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length == 0) {
+            if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length === 0) {
                 classInfo.className = "New Class";
             }
             if (objSvc.isUndefinedOrNull(classInfo.id) || classInfo.id < 0) {
@@ -307,23 +313,16 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             }
         }
 
-        function ActiveClassTabIndex() {
-            for (classTabIndex in $scope.classes) {
-                var c = $scope.classes[classTabIndex];
-                if (c.active === 'true' || c.active === true) {
-                    return classTabIndex;
-                }
-            }
-        };
-
         function ActiveClass() {
-            for (classTabIndex in $scope.classes) {
-                var c = $scope.classes[classTabIndex];
+
+            for (var i = 0; i < $scope.classes.length; i++)
+            {
+                var c = $scope.classes[$scope.classes[i]];
                 if (c.active === 'true' || c.active === true) {
                     return c;
                 }
             }
-        };
+        }
 
         function createUploader() {
             var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
@@ -360,14 +359,16 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         };
 
         // get
+        var url;
         $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
                 $scope.masterModelArray = data;
 
-                for (var obj in data) {
-                    setClassInfoDefaults(obj);
+                for (var i = 0; i < data.length; i++)
+                {
+                    setClassInfoDefaults(data[i]);
                 }
 
                 $scope.reset();
@@ -381,7 +382,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             setClassInfoDefaults(newClassInfo);
             $scope.update(newClassInfo, $scope.outerForm, $scope.url);
             $scope.classes.push(newClassInfo);
-        }
+        };
 
         $scope.delete = function (classInfo, index) {
 
@@ -401,6 +402,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             $scope.classes[0].active = true;
         };
 
+        var update;
         $scope.update = update = formSvc.updateModel;
         
         $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {

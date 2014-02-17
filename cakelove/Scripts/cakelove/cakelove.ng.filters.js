@@ -1,4 +1,5 @@
-﻿
+﻿/*global angular*/
+
 var cakeLoveFilters = angular.module("cakeLoveFilters", []);
 
 cakeLoveFilters.filter('toArray', function () {
