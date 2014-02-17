@@ -255,6 +255,7 @@ namespace cakelove.Controllers
         }
 
         [HttpPut]
+        [System.Web.Http.Route("SubmitCurrentUserApplication")]
         public async Task<IHttpActionResult> SubmitCurrentUserApplication()
         {
             IHttpActionResult httpActionResult = Ok();

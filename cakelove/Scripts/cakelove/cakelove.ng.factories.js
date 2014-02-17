@@ -170,7 +170,7 @@
 
     }]);
 
-    cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'userSvc', 'objSvc', function ($http, $fileUploader, $timeout, userSvc, objSvc) {
+    cakeLoveFactories.factory('formSvc', ['$http', '$fileUploader', '$timeout', 'userSvc', 'objSvc', 'urlSvc', function ($http, $fileUploader, $timeout, userSvc, objSvc, urlSvc) {
 
         var formSvc = {};
 
@@ -217,7 +217,8 @@
 
         formSvc.submitCurrentUserApplication = function () {
 
-            $http({ method: "PUT", url: '' });
+            var url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/SubmitCurrentUserApplication');
+            $http({ method: "PUT", url: url });
         }
 
         formSvc.createImageUploader = function ($scope, uploaderUrl) {

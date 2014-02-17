@@ -171,6 +171,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
         // check if valid
         if (!failsSubmitRequired && !failsTotalClassHours)
         {
+            formSvc.submitCurrentUserApplication();
             $scope.outerForm.userSubmitted = true;
         }
     };
