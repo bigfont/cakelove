@@ -271,6 +271,19 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        [HttpGet]
+        [System.Web.Http.Route("CurrentUserApplicationStatus")]
+        public ApplicationStatusViewModel GetCurrentUserApplicationStatus()
+        {
+            var db = new MyDbContext();
+            var userId = GetCurrentUserId();
+
+            var bindingModel = db.ApplicationStatus.FirstOrDefault(a => a.IdentityUserId == userId) ?? new ApplicationStatusBindingModel();
+
+            var viewModel = Mapper.Map<ApplicationStatusBindingModel, ApplicationStatusViewModel>(bindingModel);
+            return viewModel;
+        }
+
         [HttpPost]
         [System.Web.Http.Route("ClassImage")]
         public async Task<IHttpActionResult> ClassImage()

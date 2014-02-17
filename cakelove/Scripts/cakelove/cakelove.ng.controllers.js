@@ -150,6 +150,15 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
 
     siteMapSvc.currentPage = "Application";
 
+    // get
+    $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/currentUserApplicationStatus');
+    $http({ method: 'GET', url: url }).
+        success(function (data, status, headers, config) {
+
+            $scope.outerForm.userSubmitted = data;            
+
+        });
+
     $scope.formSvc = formSvc;
 
     $scope.submit = function () {
