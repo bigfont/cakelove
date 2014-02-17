@@ -5,8 +5,11 @@
 
 </div>
 <div ng-if ="!outerForm.userSubmitted">
-    <div ng-show="requiredErrorsLength > 0" class="alert alert-danger">
+    <div ng-show="failsSubmitRequired" class="alert alert-danger">
         <p>You have {{ requiredErrorsLength }} required fields to fill in before you can submit.</p>
+    </div>
+    <div ng-show="failsTotalClassHours" class="alert alert-danger">
+        <p>You have only commited to teach {{ formSvc.totalClassHours() }} of the required 20 total class hours.</p>
     </div>
     <p>Now that you’ve finished your application, this is where you submit it for consideration.</p>
     <p>Before you submit, please make sure that your application is complete and correct.</p>

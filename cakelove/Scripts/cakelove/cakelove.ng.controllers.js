@@ -158,20 +158,18 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
         $scope.$broadcast('userSubmitting'); // this saves to db
 
         // validate
-        var passesSubmitRequired;
-        var passesCumulativeClassHours;
+        var failsSubmitRequired;
+        var failsTotalClassHours;
 
         // set default to be extra safe, then validate
         $scope.requiredErrorsLength = 0;        
         $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired ? $scope.outerForm.$error.submitRequired.length : 0;
-        passesSubmitRequired = $scope.requiredErrorsLength === 0;
+        $scope.failsSubmitRequired = failsSubmitRequired = $scope.requiredErrorsLength > 0;
 
-        // query form class hours
-        var hmm = $scope.outerForm.$error.submitTotalClassTime;
-        passesCumulativeClassHours = true;
+        $scope.failsTotalClassHours = failsTotalClassHours = formSvc.totalClassHours() < 20;
 
         // check if valid
-        if (passesSubmitRequired && passesCumulativeClassHours)
+        if (!failsSubmitRequired && !failsTotalClassHours)
         {
             $scope.outerForm.userSubmitted = true;
         }
@@ -330,6 +328,24 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
                 $scope.update(activeClass, $scope.outerForm, $scope.url);
             });
         }
+
+        $scope.totalClassHours = formSvc.totalClassHours = function () {
+            var total = 0;
+
+            function safeAddend(value)
+            {
+                var safe;
+                safe = parseInt(value, 10);
+                safe = isNaN(safe) ? 0 : safe;
+                return safe;
+            }
+
+            angular.forEach($scope.classes, function (item) {                
+                total += safeAddend(item.totalTimeDayOne);
+                total += safeAddend(item.totalTimeDayTwo);
+            });
+            return total;
+        };
 
         // get
         $scope.url = url = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classInfo');
