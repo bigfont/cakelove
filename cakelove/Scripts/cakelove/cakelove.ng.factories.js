@@ -205,7 +205,7 @@
 
         formSvc.deleteModelById = function (id, url, successCallback) {            
 
-            $http({ method: "POST", url: url + "/" + id })
+            $http({ method: "DELETE", url: url + "/" + id })
                 .success(function (data, status, headers, config) {
 
                     showFormUpdateMessage();
@@ -213,8 +213,11 @@
                     if (!objSvc.isUndefinedOrNull(successCallback)) successCallback();
 
                 }); // todo error, then
-
         };
+
+        formSvc.submitApplication = function () {
+
+        }
 
         formSvc.createImageUploader = function ($scope, uploaderUrl) {
             var uploader = $fileUploader.create({

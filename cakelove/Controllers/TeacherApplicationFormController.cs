@@ -240,7 +240,7 @@ namespace cakelove.Controllers
         }
 
         // api/TeacherApplicationForm/deleteClassInfo/78
-        [HttpPost]
+        [HttpDelete]
         [System.Web.Http.Route("DeleteClassInfo/{id}")]
         public async Task<IHttpActionResult> DeleteClassInfo(int id)
         {
@@ -253,6 +253,8 @@ namespace cakelove.Controllers
 
             return httpActionResult;
         }
+
+
 
         [HttpPost]
         [System.Web.Http.Route("ClassImage")]
