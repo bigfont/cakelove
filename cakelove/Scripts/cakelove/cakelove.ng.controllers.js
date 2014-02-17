@@ -156,6 +156,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
 
     $scope.submit = function () {
 
+        $scope.outerForm.userSubmitted = true;
         $scope.outerForm.userSubmitting = true;
         $scope.$broadcast('userSubmitting');
 

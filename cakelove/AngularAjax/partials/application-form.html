@@ -4,26 +4,27 @@
         <span>Save complete.</span><button type="button" class="close" ng-click="formSvc.showSavedMessage = false" aria-hidden="true">&times;</button>
     </div>
 
-    <ng-form name="outerForm">
-        <tabset>
-            <!-- NiceToHave Use ng-repeat instead of copy and paste -->
-            <tab ng-controller="ContactInfoCtrl" heading="{{ formName }}">
-                <div contact-info-form-inputs></div>
-            </tab>
-            <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
-                <!--  -->
-                <div teaching-experience-form-inputs></div>
-            </tab>
-            <tab ng-controller="BiographyCtrl" heading="{{ formName }}">
-                <div biography-form-inputs></div>
-            </tab>
-            <tab ng-controller="ClassesCtrl" heading="{{ formName }}">
-                <div class-info-form-inputs></div>
-            </tab>
-            <tab heading="Submit Application">
-                <div submit-application-form-inputs></div>
-                
-            </tab>
-        </tabset>
+    <ng-form name="outerForm" >
+        <fieldset ng-disabled="outerForm.userSubmitted">
+            <tabset>
+                <!-- NiceToHave Use ng-repeat instead of copy and paste -->
+                <tab ng-controller="ContactInfoCtrl" heading="{{ formName }}">
+                    <div contact-info-form-inputs></div>
+                </tab>
+                <tab ng-controller="TeachingExperienceCtrl" heading="{{ formName }}">
+                    <!--  -->
+                    <div teaching-experience-form-inputs></div>
+                </tab>
+                <tab ng-controller="BiographyCtrl" heading="{{ formName }}">
+                    <div biography-form-inputs></div>
+                </tab>
+                <tab ng-controller="ClassesCtrl" heading="{{ formName }}">
+                    <div class-info-form-inputs></div>
+                </tab>
+                <tab heading="Submit Application">
+                    <div submit-application-form-inputs></div>
+                </tab>
+            </tabset>
+        </fieldset>
     </ng-form>
 </div>
