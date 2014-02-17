@@ -5,6 +5,7 @@ using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace cakelove.Models
 {
@@ -17,7 +18,7 @@ namespace cakelove.Models
         public DbSet<BiographyBindingModel> Biography { get; set; }
         public DbSet<ApplicationStatusBindingModel> ApplicationStatus { get; set; }
 
-        public override int SaveChanges()
+        private void AddDataCreatedAndOrDateModified()
         {
             ObjectContext context = ((IObjectContextAdapter)this).ObjectContext;
 
@@ -43,7 +44,16 @@ namespace cakelove.Models
 
                 entityBase.LastModifiedDate = currentTime;
             }
+        }
 
+        public override Task<int> SaveChangesAsync()
+        {
+            AddDataCreatedAndOrDateModified();
+            return base.SaveChangesAsync();
+        }
+        public override int SaveChanges()
+        {
+            AddDataCreatedAndOrDateModified();
             return base.SaveChanges();
         }
     }
