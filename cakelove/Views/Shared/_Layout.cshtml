@@ -7,13 +7,28 @@
     <title>Cake Love</title>
 
     @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+
+        (function(){
+            
+            function hasClass(element, cls) {
+                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            }
+
+            var body = document.getElementsByTagName('html')[0];
+            var browserHasReqFeatures = hasClass(body, 'canvas');
+
+            window.alert(browserHasReqFeatures);
+
+        })();
+
+    </script>
 
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/bigfont")
 
 </head>
 <body>
-
 
     @RenderBody()
 

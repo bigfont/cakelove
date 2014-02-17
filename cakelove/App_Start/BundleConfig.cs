@@ -50,7 +50,8 @@ namespace cakelove
             bundles.Add(new StyleBundle("~/Content/bootstrap", bootstrapCdn).Include("~/Content/bootstrap.css"));
 
             // modernizr
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizer-{version}.js"));
+            // modernizr-2.7.1
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-{version}.js"));
 
             // site
             bundles.Add(new StyleBundle("~/Content/bigfont").Include(
