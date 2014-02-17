@@ -49,6 +49,13 @@ cakeLoveDirectives.directive('teachingExperienceFormInputs', function () {
     };
 });
 
+cakeLoveDirectives.directive('submitApplicationFormInputs', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/submit-application-form'
+    };
+});
+
 // validation
 var INTEGER_REGEXP = /^\-?\d+$/;
 cakeLoveDirectives.directive('integer', function () {
