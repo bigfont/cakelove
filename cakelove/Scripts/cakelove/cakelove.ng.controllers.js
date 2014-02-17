@@ -258,11 +258,6 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
             });
 
-        // update master from the user input model
-        $scope.update = function (formModel, outerForm) {
-            formSvc.updateModel(formModel, outerForm, url);
-        };
-
         // reset the user input model
         $scope.reset = reset = formSvc.resetModel;
 
@@ -279,7 +274,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         uploader.bind('afteraddingfile', function (event, item) {
             item.upload();
             $scope.formModel.hasBioImage = true;
-            $scope.update($scope.formModel, $scope.outerForm);
+            $scope.update($scope.formModel, $scope.outerForm, $scope.url);
         });
 
     }
