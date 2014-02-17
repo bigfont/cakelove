@@ -6,7 +6,7 @@
              help-block="Please provide us with a short biography for use on our website in promoting your classes. Kindly type your bio in the space below. This is what people will read about you, please make sure that your grammar and spelling are correct."
              rows="10" outer-form="outerForm" lbl-text="Biography" type="textarea" ng-model="formModel.text"></div>
         <div bse-file-upload type="text" uploader="uploader" outer-form="outerForm" ng-model="formModel.hasBioImage"
-             lbl-text="Your image" img-identifier="formModel" help-block="Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
+             lbl-text="Your image" img-identifier="bio" help-block="Your picture should be about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
         <button class="btn btn-primary" ng-click="update(formModel, outerForm, url)">Save</button>
 
     </div>
