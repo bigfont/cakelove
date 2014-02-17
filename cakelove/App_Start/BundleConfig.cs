@@ -49,6 +49,9 @@ namespace cakelove
             const string bootstrapCdn = "http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css";
             bundles.Add(new StyleBundle("~/Content/bootstrap", bootstrapCdn).Include("~/Content/bootstrap.css"));
 
+            // modernizr
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizer-{version}.js"));
+
             // site
             bundles.Add(new StyleBundle("~/Content/bigfont").Include(
                       "~/Content/site.css",

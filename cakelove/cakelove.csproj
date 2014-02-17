@@ -312,6 +312,7 @@
     <Content Include="Scripts\cakelove\cakelove.ng.directives.js" />
     <Content Include="Scripts\angular\angular-file-upload.js" />
     <Content Include="Scripts\cakelove\misc-functions.js" />
+    <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\notused\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\notused\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\notused\i18n\angular-locale_af.js" />
