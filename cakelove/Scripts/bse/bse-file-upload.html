@@ -1,11 +1,8 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
     <label>{{ lblText }}</label><br />
-    <img ng-if="ngModel" class="img-rounded img-thumbnail"
-         ng-src="/UserImages/{{userId}}_{{imgIdentifier}}.jpg"
-         err-src="/UserImages/{{userId}}_{{imgIdentifier}}.png" />
-
-    <div ng-if="!ngModel" class="image-upload">
+    <!--Uploaded-->
+    <div class="image-upload">
         <ng-form name="innerForm">
             <input ng-file-select type="file" id="bioImgUploader" />
             <span class="help-block"></span>
@@ -15,7 +12,6 @@
                 <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
             </div>
         </ng-form>
-
         <span class="help-block">{{ helpBlock }}</span>
         <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid">
             <div class="warning">
