@@ -101,8 +101,7 @@ cakeLoveDirectives.directive('smartFloat', ['objSvc', function (objSvc) {
 
                 if (ctrl.$isEmpty(value) || FLOAT_REGEXP.test(value)) {
                     ctrl.$setValidity('float', true);
-                    if (typeof value === 'string' && value.indexOf(',') >= 0)
-                    {
+                    if (typeof value === 'string' && value.indexOf(',') >= 0) {
                         value = parseFloat(value.replace(',', '.'));
                     }
                     return value;
@@ -182,6 +181,30 @@ cakeLoveDirectives.directive('submitRequired', function (objSvc) {
     };
 });
 
+cakeLoveDirectives.directive('submitTotalClassTime', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+            scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
+
+
+                function validate(value) {
+                    if (!ctrl.$isEmpty(value) && parseInt(value) >= 20) {
+                        ctrl.$setValidity('userSubmitting', true);
+                        return value;
+                    } else {
+                        ctrl.$setValidity('userSubmitting', false);
+                        return undefined;
+                    }
+                };
+
+                validate(elm.val());
+
+            });
+        }
+    }
+});
+
 /**
    * The ng-thumb directive
    * @author: nerv
@@ -231,7 +254,6 @@ cakeLoveDirectives.directive('ngThumb', ['$window', function ($window) {
         }
     };
 }]);
-
 
 cakeLoveDirectives.directive('errSrc', function () {
     return {

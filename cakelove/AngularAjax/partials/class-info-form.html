@@ -3,7 +3,9 @@
         <div tabset class="class-info-tabs">
             <tab ng-repeat="formModel in classes" active="formModel.active" disabled="true">
 
-                <h3>{{ formModel.className }} <small> </small></h3>
+                <h3>{{ formModel.className }}</h3>
+
+                <input type="number" submit-total-class-time ng-model="totalClassTime" />
 
                 <div accordion close-others="false">
 

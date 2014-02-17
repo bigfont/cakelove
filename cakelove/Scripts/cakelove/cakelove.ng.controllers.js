@@ -167,6 +167,7 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
         passesSubmitRequired = $scope.requiredErrorsLength === 0;
 
         // query form class hours
+        var hmm = $scope.outerForm.$error.submitTotalClassTime;
         passesCumulativeClassHours = true;
 
         // check if valid
