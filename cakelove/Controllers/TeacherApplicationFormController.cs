@@ -228,7 +228,7 @@ namespace cakelove.Controllers
 
                 var jsonSettings = new JsonSerializerSettings();
                 var jsonResult
-                    = new JsonResult<Dictionary<string, int>>(new Dictionary<string, int> { { "classId", model.Id } }, jsonSettings, System.Text.Encoding.UTF8, this);
+                    = new JsonResult<Dictionary<string, int>>(new Dictionary<string, int> { { "id", model.Id } }, jsonSettings, System.Text.Encoding.UTF8, this);
                 httpActionResult = jsonResult;
             }
             catch (Exception e)
