@@ -19,6 +19,7 @@ using System.Collections.Specialized;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace cakelove.Controllers
 {
@@ -134,9 +135,13 @@ namespace cakelove.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
+
+            string saveFileRelativePath = null;
             try
             {
-                await SaveImage(Request, "bio");
+                saveFileRelativePath = await SaveImage(Request, "bio");
+                // todo Save file to database
+                // todo Return file name to client
             }
             catch (System.Exception e)
             {
@@ -308,45 +313,66 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
-        private async Task SaveImage(HttpRequestMessage request, string fileNameSuffix)
+        private void CreateDirIfNotExists(string dirAbsolutePath)
         {
-            string root = HttpContext.Current.Server.MapPath("~/UserImages");
-
-            if (!Directory.Exists(root))
+            if (!Directory.Exists(dirAbsolutePath))
             {
-                Directory.CreateDirectory(root);
+                Directory.CreateDirectory(dirAbsolutePath);
             }
+        }
 
-            var provider = new MultipartFormDataStreamProvider(root);
+        private string GetFileExtensionFromMultipartFileData(MultipartFileData file)
+        {
+            var mediaType = file.Headers.ContentType.MediaType;
+            string fileExtension = null;
+            switch (mediaType)
+            {
+                case "image/jpeg": fileExtension = ".jpg"; break;
+                case "image/png": fileExtension = ".png"; break;
+                default: break;
+            }
+            return fileExtension;
+        }
+
+        private async Task<string> SaveImage(HttpRequestMessage request, string fileNameSuffix)
+        {
+            string root = HttpContext.Current.Server.MapPath("~/");
+
+            string saveDirBaseName = "UserImages";
+            string saveDirAbsolutePath = null;
+
+            string saveFileBaseName = null;
+            string saveFileRelativePath = null;
+            string saveFileAbsolutePath = null;
 
             // Read the form data.
+            var provider = new MultipartFormDataStreamProvider(root);
             await request.Content.ReadAsMultipartAsync(provider);
-
             var imageId = provider.FormData["imageId"] ?? string.Empty;
+
+            // create dir if not exists
+            saveDirAbsolutePath = Path.Combine(root, saveDirBaseName);
+            CreateDirIfNotExists(saveDirAbsolutePath);
 
             // Save
             foreach (MultipartFileData file in provider.FileData)
             {
-                var mediaType = file.Headers.ContentType.MediaType;
-                string fileExtension = null;
-                switch (mediaType)
-                {
-                    case "image/jpeg": fileExtension = ".jpg"; break;
-                    case "image/png": fileExtension = ".png"; break;
-                    default: break;
-                }
+                var fileExtension = GetFileExtensionFromMultipartFileData(file);
                 if (fileExtension != null)
                 {
-                    var newFileName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
-                    newFileName = Path.Combine(root, newFileName);
+                    saveFileBaseName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
+                    saveFileRelativePath = Path.Combine(saveDirBaseName, saveFileBaseName);
+                    saveFileAbsolutePath = Path.Combine(root, saveFileRelativePath);
 
-                    if (File.Exists(newFileName))
+                    if (File.Exists(saveFileAbsolutePath))
                     {
-                        File.Delete(newFileName);
+                        File.Delete(saveFileAbsolutePath);
                     }
-                    File.Move(file.LocalFileName, newFileName);
+                    File.Move(file.LocalFileName, saveFileAbsolutePath);
                 }
             }
+
+            return saveFileRelativePath;
         }
 
         // Nice-to-have: Put this method into the IBindingModel or similar spot... model.SetState().
