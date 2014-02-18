@@ -2,7 +2,6 @@
      class="form-group">
     <label>{{ lblText }}</label><br />
     <!--Uploaded-->
-
     <!--Uploader-->
     <div class="image-upload">
         <ng-form name="innerForm">
@@ -10,8 +9,33 @@
             <span class="help-block"></span>
             <input class="hidden" type="text" ng-model="ngModel" disabled submit-required="true" />
             <div ng-repeat="item in uploader.queue">
-                <strong>{{ item.file.name }}</strong>
-                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label>Preview</label>
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <dl>
+                            <dt>Size</dt>
+                            <dd>{{ item.file.size/1024/1024|number:2 }} MB</dd>
+                            <dt>Name</dt>
+                            <dd>{{ item.file.name }}</dd>
+                            <dt>Type</dt>
+                            <dd>{{ item.file.type }}</dd>
+                        </dl>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </ng-form>
         <span class="help-block">{{ helpBlock }}</span>
