@@ -289,7 +289,6 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
-            ////item.upload();
             $scope.formModel.hasBioImage = true;
             $scope.update($scope.formModel, $scope.outerForm, $scope.url);
         });

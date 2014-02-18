@@ -244,7 +244,7 @@
                 type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
                 var isValid = allowedTypes.indexOf(type) !== -1;
                 if (!isValid) {
-                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + convertPipeSeparatedListToPhrase(allowedTypes) ];
+                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + convertPipeSeparatedListToPhrase(allowedTypes)];                    
                 }
                 return isValid;
             });
@@ -252,7 +252,7 @@
             // Image size filter
             uploader.filters.push(function (item) {
                 var maxSize = 0.5; /*MB*/
-                var size = uploader.isHTML5 ? item.type : -1; /*what if it isn't HTML5?*/
+                var size = uploader.isHTML5 ? item.size : -1; /*what if it isn't HTML5?*/
                 var sizeMB = (size / 1024 / 1024);
                 var isValid = sizeMB <= 0.5;
                 if (!isValid) {
