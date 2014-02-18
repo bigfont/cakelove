@@ -77,13 +77,11 @@
     <!--Complete-->
     <div>
         <label>Saved Image</label>
-        <div>
-            <img class="img-thumbnail" ng-if="hasUploadedImg" class="img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
-            <img class="img-thumbnail" ng-if="!formModel.hasBioImage" class="img-rounded img-thumbnail" src="{{ formModel.bioImageRelativePath }}" />
-
+        <div ng-switch on="hasUploadedImg">
+            <img class="img-thumbnail" ng-if="!true" class="img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
+            <img class="img-thumbnail" ng-if="!false" data-src="holder.js/187x187" holder-fix>
         </div>
     </div>
-
 
 
 </div>
