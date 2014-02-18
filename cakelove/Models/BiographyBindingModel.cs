@@ -13,9 +13,9 @@ namespace cakelove.Models
 
         public string Text { get; set; }
 
-        public string HasBioImage { get; set; }
+        public string HasImage { get; set; }
 
-        public string BioImageRelativePath { get; set; }
+        public string ImageRelativePath { get; set; }
 
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }

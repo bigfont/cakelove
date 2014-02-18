@@ -69,7 +69,10 @@ namespace cakelove.Models
         public bool? NeedsExtraSetup { get; set; }
         [JsonProperty("suppliesOption")]
         public string SuppliesOption { get; set; } // radio
-
+        [JsonProperty("hasImage")]
+        public string HasImage { get; set; }
+        [JsonProperty("imageRelativePath")]
+        public string ImageRelativePath { get; set; }
     }
 
 }

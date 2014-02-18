@@ -288,7 +288,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('beforeupload', function (event, item) {
             item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
-                var jsonPropertyName = 'bioImageRelativePath';
+                var jsonPropertyName = 'imageRelativePath';
                 $scope.formModel[jsonPropertyName] =
                     formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
             };
@@ -339,15 +339,19 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         ////}
 
         // Create a uploader
-        var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
-        var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
-        uploader.bind('beforeupload', function (event, item) {
-            item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
-                var jsonPropertyName = 'bioImageRelativePath';
-                $scope.formModel[jsonPropertyName] =
-                    formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
-            };
-        });
+        function createUploader() {
+            var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
+            var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
+            uploader.bind('beforeupload', function (event, item) {
+                item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
+                    var jsonPropertyName = 'imageRelativePath';
+                    $scope.formModel[jsonPropertyName] =
+                        formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
+                };
+            });
+        }
+
+
 
         $scope.totalClassHours = formSvc.totalClassHours = function () {
             var total = 0;

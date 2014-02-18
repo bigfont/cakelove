@@ -16,11 +16,11 @@ namespace cakelove.Models
         [JsonProperty("text")]
         public string Text { get; set; }
 
-        [JsonProperty("hasBioImage")]
-        public string HasBioImage { get; set; }
+        [JsonProperty("hasImage")]
+        public string HasImage { get; set; }
 
-        [JsonProperty("bioImageRelativePath")]
-        public string BioImageRelativePath { get; set; }
+        [JsonProperty("ImageRelativePath")]
+        public string ImageRelativePath { get; set; }
     }
 
 }

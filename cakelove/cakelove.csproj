@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201402172247017_bioImage.Designer.cs">
       <DependentUpon>201402172247017_bioImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402180816437_classAndBioImage.cs" />
+    <Compile Include="Migrations\201402180816437_classAndBioImage.Designer.cs">
+      <DependentUpon>201402180816437_classAndBioImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -670,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402172247017_bioImage.resx">
       <DependentUpon>201402172247017_bioImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402180816437_classAndBioImage.resx">
+      <DependentUpon>201402180816437_classAndBioImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

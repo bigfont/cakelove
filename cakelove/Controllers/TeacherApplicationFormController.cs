@@ -150,12 +150,12 @@ namespace cakelove.Controllers
                     db.Biography.First(b => b.IdentityUser.Id.Equals(currentUserId)) ??
                     new BiographyBindingModel() { IdentityUserId = currentUserId };
 
-                model.BioImageRelativePath = rootRelativeImgSrc;
+                model.ImageRelativePath = rootRelativeImgSrc;
                 db.Biography.Attach(model);
 
                 await InsertOrUpdateAsync(db, model);
 
-                dynamic content = new { bioImageRelativePath = model.BioImageRelativePath };
+                dynamic content = new { imageRelativePath = model.ImageRelativePath };
                 httpActionResult = new JsonResult<dynamic>(content, new JsonSerializerSettings(), System.Text.Encoding.UTF8, this);
 
             }
