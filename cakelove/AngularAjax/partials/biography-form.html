@@ -11,14 +11,6 @@
              uploaded-img-path="formModel.bioImageRelativePath" has-uploaded-img="formModel.hasBioImage"
              lbl-text="Your image" img-identifier="bio" help-block="Your picture should be a about a 2.5 inch rectangle with a 75 DPI resolution. In other words, it should be about 187 pixels by 187 pixels."></div>
 
-        <div>
-            <label>Saved Image</label>
-            <div>
-                <img class="img-thumbnail" ng-if="formModel.hasBioImage" class="img-rounded img-thumbnail" src="{{ formModel.bioImageRelativePath }}" />
-                <img class="img-thumbnail" ng-if="!formModel.hasBioImage" class="img-rounded img-thumbnail" src="{{ formModel.bioImageRelativePath }}" />
-            </div>
-        </div>
-
         <!--End Image-->
 
         <button class="btn btn-primary" ng-click="update(formModel, outerForm, url)">Save</button>
