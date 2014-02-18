@@ -297,13 +297,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
             item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
 
-
                 // target, currentTarger, srcElement... which is most appropriate?
                 var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
 
                 $scope.formModel.bioImageRelativePath = xmlHttpRequest.bioImageRelativePath;
-
-
             };
 
         });
