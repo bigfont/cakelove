@@ -152,10 +152,9 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
-            if (!objSvc.isUndefinedOrNull($scope.outerForm))
-            {
+            if (!objSvc.isUndefinedOrNull($scope.outerForm)) {
                 $scope.outerForm.userSubmitted = data.isSubmitted;
-            }           
+            }
         });
 
     $scope.formSvc = formSvc;
@@ -170,15 +169,14 @@ function ($scope, $http, $location, $window, userSvc, urlSvc, siteMapSvc, formSv
         var failsTotalClassHours;
 
         // set default to be extra safe, then validate
-        $scope.requiredErrorsLength = 0;        
+        $scope.requiredErrorsLength = 0;
         $scope.requiredErrorsLength = $scope.outerForm.$error.submitRequired ? $scope.outerForm.$error.submitRequired.length : 0;
         $scope.failsSubmitRequired = failsSubmitRequired = $scope.requiredErrorsLength > 0;
 
         $scope.failsTotalClassHours = failsTotalClassHours = formSvc.totalClassHours() < 20;
 
         // check if valid
-        if (!failsSubmitRequired && !failsTotalClassHours)
-        {
+        if (!failsSubmitRequired && !failsTotalClassHours) {
             formSvc.submitCurrentUserApplication();
             $scope.outerForm.userSubmitted = true;
         }
@@ -241,7 +239,7 @@ cakeLoveControllers.controller('TeachingExperienceCtrl', [
 
         // reset the user input model
         var reset;
-        $scope.reset = reset = formSvc.resetModel; 
+        $scope.reset = reset = formSvc.resetModel;
 
         // update master from the user input model
         var update;
@@ -290,14 +288,21 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('beforeupload', function (event, item) {
 
-            item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
+            var updateImgSrcFromXMLHTTPRequestEvent = function (xmlHttpRequestProgressEvent, jsonPropertyName) {
 
                 // target, currentTarger, srcElement... which is most appropriate?
                 var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
                 var responseJson = xmlHttpRequest.responseText;
                 var responseObj = angular.fromJson(responseJson);
-                var bioImageRelativePath = responseObj.bioImageRelativePath;                
-                $scope.formModel.bioImageRelativePath = bioImageRelativePath + "?" + new Date().getTime();
+                var imgRootRelativePath = responseObj[jsonPropertyName];
+                $scope.formModel[jsonPropertyName] = imgRootRelativePath + "?" + new Date().getTime();
+            }
+
+            item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
+
+                var jsonPropertyName = 'bioImageRelativePath';
+                updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName)
+
             };
 
         });
@@ -323,8 +328,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         function ActiveClass() {
 
-            for (var i = 0; i < $scope.classes.length; i++)
-            {
+            for (var i = 0; i < $scope.classes.length; i++) {
                 var c = $scope.classes[i];
                 if (c.active === 'true' || c.active === true) {
                     return c;
@@ -351,15 +355,14 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         $scope.totalClassHours = formSvc.totalClassHours = function () {
             var total = 0;
 
-            function safeAddend(value)
-            {
+            function safeAddend(value) {
                 var safe;
                 safe = parseInt(value, 10);
                 safe = isNaN(safe) ? 0 : safe;
                 return safe;
             }
 
-            angular.forEach($scope.classes, function (item) {                
+            angular.forEach($scope.classes, function (item) {
                 total += safeAddend(item.totalTimeDayOne);
                 total += safeAddend(item.totalTimeDayTwo);
             });
@@ -374,8 +377,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
                 $scope.masterModelArray = data;
 
-                for (var i = 0; i < data.length; i++)
-                {
+                for (var i = 0; i < data.length; i++) {
                     setClassInfoDefaults(data[i]);
                 }
 
@@ -412,7 +414,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         var update;
         $scope.update = update = formSvc.updateModel;
-        
+
         $scope.$on('userSubmitting', function (scopeDetails, msgFromParent) {
 
             angular.forEach($scope.classes, function (value, key) {
