@@ -107,7 +107,7 @@ bsElements.directive('bseInput', function () {
 bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
     return {
         templateUrl: "/Scripts/bse/bse-file-upload.html",
-        require: ["hasUploadedImg", "uploadedImgPath", "outerForm", "uploaded"],
+        ////require: ["hasUploadedImg", "uploadedImgPath", "outerForm", "uploaded"],
         scope:
         {
             id: '@',
@@ -146,6 +146,11 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
                 pre: function preLink(scope, iElement, iAttrs, controller) {
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
                     scope.userId = userSvc.userId;
+
+                    scope.uploader.bind('completeall', function (event, item) {
+                        scope.hasUploadedImg = true;
+                    });
+
                 }
             };
         }
