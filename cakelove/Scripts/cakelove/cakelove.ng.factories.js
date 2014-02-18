@@ -188,11 +188,10 @@
 
                     showFormUpdateMessage();
 
-                    if (data.id)
-                    {
+                    if (data.id) {
                         formModel.id = data.id;
                     }
-                    
+
                     if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(data); }
 
                 }); // todo error, then
@@ -203,7 +202,7 @@
             $scope.formModel = angular.copy($scope.masterModel);
         };
 
-        formSvc.deleteModelById = function (id, url, successCallback) {            
+        formSvc.deleteModelById = function (id, url, successCallback) {
 
             $http({ method: "DELETE", url: url + "/" + id })
                 .success(function (data, status, headers, config) {
@@ -228,11 +227,38 @@
                 headers: { Authorization: "Bearer " + userSvc.access_token }
             });
 
-            // Images only filter
+            // Image type filter
             uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
+
+                function listToPhrase(list, separator) {
+                    var phrase = list
+                        .replace(/\|?/, '') /*first instance*/
+                        .replace(/\|[^\|]*$/, '.') /*last instance*/
+                        .replace(/\|([^\|]*)$/, ', or $1 ') /*last instance*/
+                        .replace(/\|/, ', ') /*the rest*/
+                    return phrase;
+                }
+
+                var allowedTypes = '|jpg|png|jpeg|';
                 var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
                 type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+                var isValid = allowedTypes.indexOf(type) !== -1;
+                if (!isValid) {
+                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + listToPhrase(allowedTypes) ];
+                }
+                return isValid;
+            });
+
+            // Image size filter
+            uploader.filters.push(function (item) {
+                var maxSize = 0.5; /*MB*/
+                var size = uploader.isHTML5 ? item.type : -1; /*what if it isn't HTML5?*/
+                var sizeMB = (size / 1024 / 1024);
+                var isValid = sizeMB <= 0.5;
+                if (!isValid) {
+                    $scope.uploader.filterErrors = ['The file must be no more than ' + maxSize + ' MB'];
+                }
+                return isValid;
             });
 
             return uploader;

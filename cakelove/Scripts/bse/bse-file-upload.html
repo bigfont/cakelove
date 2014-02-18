@@ -38,8 +38,9 @@
                 </div>
             </div>
         </ng-form>
+        <span ng-repeat="filterError in uploader.filterErrors">{{ filterError }}</span>
         <span class="help-block">{{ helpBlock }}</span>
-        <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid">
+        <div class="validation-messages" ng-show="(innerForm.$dirty || outerForm.userSubmitting || uploader.filterErrors.length > 0) && innerForm.$invalid">
             <div class="warning">
                 <span ng-show="innerForm.$error.submitRequired.length > 0">{{ submitRequiredMsg }}</span>
             </div>
