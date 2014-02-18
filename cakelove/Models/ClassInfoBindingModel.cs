@@ -43,7 +43,7 @@ namespace cakelove.Models
         public bool? NeedsExtraCleanup { get; set; }
         public bool? NeedsExtraSetup { get; set; }        
         public string SuppliesOption { get; set; } // radio
-        public string HasImage { get; set; }
+        public bool? HasImage { get; set; }
         public string ImageRelativePath { get; set; }
 
     }

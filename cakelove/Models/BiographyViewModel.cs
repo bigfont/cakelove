@@ -17,9 +17,9 @@ namespace cakelove.Models
         public string Text { get; set; }
 
         [JsonProperty("hasImage")]
-        public string HasImage { get; set; }
+        public bool? HasImage { get; set; }
 
-        [JsonProperty("ImageRelativePath")]
+        [JsonProperty("imageRelativePath")]
         public string ImageRelativePath { get; set; }
     }
 

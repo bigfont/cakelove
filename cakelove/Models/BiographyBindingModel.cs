@@ -13,7 +13,7 @@ namespace cakelove.Models
 
         public string Text { get; set; }
 
-        public string HasImage { get; set; }
+        public bool? HasImage { get; set; }
 
         public string ImageRelativePath { get; set; }
 

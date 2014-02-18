@@ -151,6 +151,7 @@ namespace cakelove.Controllers
                     new BiographyBindingModel() { IdentityUserId = currentUserId };
 
                 model.ImageRelativePath = rootRelativeImgSrc;
+                model.HasImage = true;
                 db.Biography.Attach(model);
 
                 await InsertOrUpdateAsync(db, model);
