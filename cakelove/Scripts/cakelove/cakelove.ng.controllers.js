@@ -345,7 +345,8 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             uploader.bind('beforeupload', function (event, item) {
                 item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
                     var jsonPropertyName = 'imageRelativePath';
-                    $scope.formModel[jsonPropertyName] =
+                    var activeClass = ActiveClass();
+                    activeClass[jsonPropertyName] =
                         formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
                 };
             });

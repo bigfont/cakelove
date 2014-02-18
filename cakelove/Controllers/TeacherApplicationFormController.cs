@@ -126,6 +126,15 @@ namespace cakelove.Controllers
             return httpActionResult;
         }
 
+        private async void SaveModelImageToDatabase(DbContext db, DbSet<IEntityHasImage> dbSet, IEntityHasImage model, string rootRelativeImgSrc)
+        {
+            model.ImageRelativePath = rootRelativeImgSrc;
+            model.HasImage = true;
+
+            dbSet.Attach(model);
+            await InsertOrUpdateAsync(db, model);
+        }
+
         [HttpPost]
         [System.Web.Http.Route("BiographyImage")]
         public async Task<IHttpActionResult> BiographyImage()
@@ -153,7 +162,6 @@ namespace cakelove.Controllers
                 model.ImageRelativePath = rootRelativeImgSrc;
                 model.HasImage = true;
                 db.Biography.Attach(model);
-
                 await InsertOrUpdateAsync(db, model);
 
                 dynamic content = new { imageRelativePath = model.ImageRelativePath };
@@ -317,9 +325,26 @@ namespace cakelove.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
+            string rootRelativeImgSrc = null;
+
             try
-            {
-                await SaveImage(Request, "class");
+            {                
+                rootRelativeImgSrc = await SaveImage(Request, "class");
+
+                var db = new MyDbContext();
+
+                string currentUserId = GetCurrentUserId();
+                var model =
+                    db.ClassInfo.First(b => b.IdentityUser.Id.Equals(currentUserId)) ??
+                    new ClassInfoBindingModel() { IdentityUserId = currentUserId };
+
+                model.ImageRelativePath = rootRelativeImgSrc;
+                model.HasImage = true;
+                db.ClassInfo.Attach(model);
+                await InsertOrUpdateAsync(db, model);
+
+                dynamic content = new { imageRelativePath = model.ImageRelativePath };
+                httpActionResult = new JsonResult<dynamic>(content, new JsonSerializerSettings(), System.Text.Encoding.UTF8, this);
             }
             catch (System.Exception e)
             {

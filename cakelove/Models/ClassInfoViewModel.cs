@@ -51,8 +51,6 @@ namespace cakelove.Models
         public string WillNeedThisSpecialEquip { get; set; }
         [JsonProperty("vendorTable")]
         public string VendorTable { get; set; }
-        [JsonProperty("hasClassImage")]
-        public string HasClassImage { get; set; }
         [JsonProperty("doSpecialSupplies")]
         public bool? DoSpecialSupplies { get; set; }
         [JsonProperty("doVendorTable")]
@@ -70,7 +68,7 @@ namespace cakelove.Models
         [JsonProperty("suppliesOption")]
         public string SuppliesOption { get; set; } // radio
         [JsonProperty("hasImage")]
-        public bool HasImage { get; set; }
+        public bool? HasImage { get; set; }
         [JsonProperty("imageRelativePath")]
         public string ImageRelativePath { get; set; }
     }

@@ -13,4 +13,10 @@ namespace cakelove.Models
         DateTime? CreatedDate { get; set; }
         DateTime? LastModifiedDate { get; set; }
     }
+
+    public interface IEntityHasImage : IEntityBase
+    {
+        bool? HasImage { get; set; }
+        string ImageRelativePath { get; set; }
+    }
 }

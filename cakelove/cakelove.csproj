@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201402180829358_useBool.Designer.cs">
       <DependentUpon>201402180829358_useBool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402180906333_removeHasClassImage.cs" />
+    <Compile Include="Migrations\201402180906333_removeHasClassImage.Designer.cs">
+      <DependentUpon>201402180906333_removeHasClassImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -684,6 +688,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201402180829358_useBool.resx">
       <DependentUpon>201402180829358_useBool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402180906333_removeHasClassImage.resx">
+      <DependentUpon>201402180906333_removeHasClassImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

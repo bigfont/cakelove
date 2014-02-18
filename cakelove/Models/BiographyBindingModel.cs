@@ -7,7 +7,7 @@ using System;
 namespace cakelove.Models
 {
     [Table("Biography")]
-    public class BiographyBindingModel : HasAnIdentityUserFk, IEntityBase
+    public class BiographyBindingModel : HasAnIdentityUserFk, IEntityBase, IEntityHasImage
     {
         public int Id { get; set; }
 

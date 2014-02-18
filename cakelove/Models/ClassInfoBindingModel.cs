@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace cakelove.Models
 {
     [Table("ClassInfo")]
-    public class ClassInfoBindingModel : HasAnIdentityUserFk, IEntityBase
+    public class ClassInfoBindingModel : HasAnIdentityUserFk, IEntityBase, IEntityHasImage
     {
         public int Id { get; set; }
         public string ClassName { get; set; }
@@ -32,7 +32,6 @@ namespace cakelove.Models
         public string SuppliesWillSellThese { get; set; }
         public string WillNeedThisSpecialEquip { get; set; }
         public string VendorTable { get; set; }
-        public string HasClassImage { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public bool? DoSpecialSupplies { get; set; }
