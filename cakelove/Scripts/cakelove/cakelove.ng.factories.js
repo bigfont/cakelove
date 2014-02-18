@@ -220,6 +220,7 @@
             $http({ method: "PUT", url: url });
         };
 
+        // todo put he image uploader functions into a separate fileUploader service
         formSvc.createImageUploader = function ($scope, uploaderUrl) {
             var uploader = $fileUploader.create({
                 scope: $scope,
@@ -262,6 +263,16 @@
             });
 
             return uploader;
+        };
+
+        formSvc.updateImgSrcFromXMLHTTPRequestEvent = function ($scope, xmlHttpRequestProgressEvent, jsonPropertyName) {
+
+            // target, currentTarger, srcElement... which is most appropriate?
+            var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
+            var responseJson = xmlHttpRequest.responseText;
+            var responseObj = angular.fromJson(responseJson);
+            var imgRootRelativePath = responseObj[jsonPropertyName];
+            $scope.formModel[jsonPropertyName] = imgRootRelativePath + "?" + new Date().getTime();
         };
 
         return formSvc;

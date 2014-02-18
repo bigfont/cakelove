@@ -288,20 +288,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('beforeupload', function (event, item) {
 
-            var updateImgSrcFromXMLHTTPRequestEvent = function (xmlHttpRequestProgressEvent, jsonPropertyName) {
-
-                // target, currentTarger, srcElement... which is most appropriate?
-                var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
-                var responseJson = xmlHttpRequest.responseText;
-                var responseObj = angular.fromJson(responseJson);
-                var imgRootRelativePath = responseObj[jsonPropertyName];
-                $scope.formModel[jsonPropertyName] = imgRootRelativePath + "?" + new Date().getTime();
-            }
-
             item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
 
                 var jsonPropertyName = 'bioImageRelativePath';
-                updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName)
+                formSvc.updateImgSrcFromXMLHTTPRequestEvent($scope, xmlHttpRequestProgressEvent, jsonPropertyName)
 
             };
 
