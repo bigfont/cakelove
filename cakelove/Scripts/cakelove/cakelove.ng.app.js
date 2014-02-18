@@ -1,5 +1,4 @@
-﻿
-/*global: angular */
+﻿/*global angular */
 
 //app module
 var myApp = angular.module('cakeLoveApp', [
@@ -13,7 +12,6 @@ var myApp = angular.module('cakeLoveApp', [
     'bsElements',
     'angularFileUpload'
 ]);
-
 
 myApp.config(['$routeProvider',
 function ($routeProvider) {
@@ -76,8 +74,6 @@ myApp.run(function ($rootScope, $location, userSvc) {
                 if (next.allowTheseRoles.indexOf('applicant') >= 0) {
                     $location.path('/instructor-guidelines');
                 }
-
-
             }
         } else {
 
@@ -99,6 +95,3 @@ myApp.run(function ($rootScope, $location, userSvc) {
     });
 
 });
-
-
-

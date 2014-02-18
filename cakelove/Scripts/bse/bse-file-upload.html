@@ -81,9 +81,9 @@
     <!--Complete-->
     <div>
         <label>Saved Image</label>
-        <div ng-switch on="hasUploadedImg">
-            <img class="img-thumbnail" ng-if="true" class="img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
-            <img class="img-thumbnail" ng-if="false" data-src="holder.js/187x187" holder-fix>
+        <div>
+            <img class="img-thumbnail" ng-if="hasImage" class="img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
+            <img class="img-thumbnail" ng-if="!hasImage" data-src="holder.js/187x187" holder-fix>
         </div>
     </div>
 </div>

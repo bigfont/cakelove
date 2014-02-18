@@ -1,4 +1,4 @@
-﻿/*global angular*/
+﻿/*global angular, Holder*/
 
 var cakeLoveDirectives = angular.module("cakeLoveDirectives", []);
 

@@ -352,8 +352,6 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             });
         }
 
-
-
         $scope.totalClassHours = formSvc.totalClassHours = function () {
             var total = 0;
 

@@ -107,7 +107,6 @@ bsElements.directive('bseInput', function () {
 bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
     return {
         templateUrl: "/Scripts/bse/bse-file-upload.html",
-        ////require: ["hasUploadedImg", "uploadedImgPath", "outerForm", "uploaded"],
         scope:
         {
             id: '@',
@@ -116,7 +115,7 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
             imgIdentifier: '@',
             submitRequired: '@',
             // two way bindings
-            hasUploadedImg: '=',
+            hasImage: '=',
             uploadedImgPath: '=',
             outerForm: '=',
             uploader: '='
@@ -148,7 +147,7 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
                     scope.userId = userSvc.userId;
 
                     scope.uploader.bind('completeall', function (event, items) {
-                        scope.hasUploadedImg = true;
+                        scope.hasImage = true;
                         for (var i = 0; i < items.length; i++)
                         {
                             items[i].remove();

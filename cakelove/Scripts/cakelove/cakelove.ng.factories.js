@@ -233,10 +233,10 @@
 
                 function convertPipeSeparatedListToPhrase(list, separator) {
                     var phrase = list
-                        .replace(/\|?/, '') /*first instance*/
-                        .replace(/\|[^\|]*$/, '.') /*last instance*/
-                        .replace(/\|([^\|]*)$/, ', or $1 ') /*last instance*/
-                        .replace(/\|/, ', ') /*the rest*/
+                        .replace(/\|?/, '') /*{first instance}*/
+                        .replace(/\|[^\|]*$/, '.') /*{last instance}*/
+                        .replace(/\|([^\|]*)$/, ', or $1 ') /*{last instance}*/
+                        .replace(/\|/, ', '); /*{the rest}*/
                     return phrase;
                 }
 
@@ -268,10 +268,18 @@
         formSvc.updateImgSrcFromXMLHTTPRequestEvent = function (xmlHttpRequestProgressEvent, jsonPropertyName) {
 
             // target, currentTarger, srcElement... which is most appropriate?
-            var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
+            var xmlHttpRequest = xmlHttpRequestProgressEvent.target;            
             var responseJson = xmlHttpRequest.responseText;
+            if (responseJson.length === 0)
+            {
+                return null;
+            }
             var responseObj = angular.fromJson(responseJson);
             var imgRootRelativePath = responseObj[jsonPropertyName];
+            if (objSvc.isUndefinedOrNull(imgRootRelativePath))
+            {
+                return null;
+            }
             var updatedPath = imgRootRelativePath + "?" + new Date().getTime();
             return updatedPath;
         };
