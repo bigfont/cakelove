@@ -149,9 +149,11 @@ namespace cakelove.Controllers
                 model.BioImageRelativePath = saveFileRelativePath;
                 db.Biography.Attach(model);
 
-                await InsertOrUpdateAsync(db, model);                
-               
-                // todo Return file name to client
+                await InsertOrUpdateAsync(db, model);
+
+                dynamic content = new { BioImageRelativePath = model.BioImageRelativePath };
+                httpActionResult = new JsonResult<dynamic>(content, new JsonSerializerSettings(), System.Text.Encoding.UTF8, this);
+
             }
             catch (System.Exception e)
             {
@@ -241,9 +243,8 @@ namespace cakelove.Controllers
 
                 var result = await dbContext.SaveChangesAsync();
 
-                var jsonSettings = new JsonSerializerSettings();
                 var jsonResult
-                    = new JsonResult<Dictionary<string, int>>(new Dictionary<string, int> { { "id", model.Id } }, jsonSettings, System.Text.Encoding.UTF8, this);
+                    = new JsonResult<Dictionary<string, int>>(new Dictionary<string, int> { { "id", model.Id } }, new JsonSerializerSettings(), System.Text.Encoding.UTF8, this);
                 httpActionResult = jsonResult;
             }
             catch (Exception e)

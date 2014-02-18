@@ -293,6 +293,20 @@ cakeLoveControllers.controller('BiographyCtrl', [
             $scope.formModel.hasBioImage = true;
             $scope.update($scope.formModel, $scope.outerForm, $scope.url);
         });
+        uploader.bind('beforeupload', function (event, item) {
+
+            item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
+
+
+                // target, currentTarger, srcElement... which is most appropriate?
+                var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
+
+                $scope.formModel.bioImageRelativePath = xmlHttpRequest.bioImageRelativePath;
+
+
+            };
+
+        });
 
     }
 ]);
