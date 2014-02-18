@@ -1,10 +1,11 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
+    <label for="fileInput">{{ lblText }}</label>
     <div class="row">
         <!--Uploader-->
         <div class="col-lg-6">
             <div ng-form name="innerForm" class="panel panel-default">
-                <div class="panel-heading"><label for="fileInput">{{ lblText }}</label></div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
                     <input id="fileInput" ng-file-select type="file" id="bioImgUploader" />
                     <input class="hidden" type="text" ng-model="ngModel" disabled submit-required="true" />
@@ -71,6 +72,9 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="progress" style="">
+                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
             </div>
         </div>
     </div>

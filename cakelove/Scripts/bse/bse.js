@@ -147,10 +147,13 @@ bsElements.directive('bseFileUpload', ['userSvc', function (userSvc) {
                     scope.submitRequiredMsg = 'This input is required before you can submit.';
                     scope.userId = userSvc.userId;
 
-                    scope.uploader.bind('completeall', function (event, item) {
+                    scope.uploader.bind('completeall', function (event, items) {
                         scope.hasUploadedImg = true;
+                        for (var i = 0; i < items.length; i++)
+                        {
+                            items[i].remove();
+                        }
                     });
-
                 }
             };
         }

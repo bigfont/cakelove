@@ -20,6 +20,8 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace cakelove.Controllers
 {
@@ -347,6 +349,26 @@ namespace cakelove.Controllers
             return fileExtension;
         }
 
+        public Image MakeSquareImage(Image imageToResize, int widthAndHeightInPixels)
+        {
+            Size size = new Size(widthAndHeightInPixels, widthAndHeightInPixels);
+            return ResizeImage(imageToResize, size);
+        }
+
+        public Image ResizeImage(Image imageToResize, Size size)
+        {            
+            Bitmap newImage = new Bitmap(size.Width, size.Height);
+            using (Graphics gr = Graphics.FromImage(newImage))
+            {
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(imageToResize, new Rectangle(0, 0, size.Width, size.Height));
+            }
+
+            return newImage;
+        }
+
         /// <returns>A root relative http style uri such as "/UserImages/somefile.jpg".</returns>
         private async Task<string> SaveImage(HttpRequestMessage request, string fileNameSuffix)
         {
@@ -359,7 +381,7 @@ namespace cakelove.Controllers
             string saveFileAbsolutePath = null;
             string rootRelativeImgSrc = null;
 
-            // Read the form data.
+            // upload the file; its name will be file.LocalFileName; we rename it below
             var provider = new MultipartFormDataStreamProvider(root);
             await request.Content.ReadAsMultipartAsync(provider);
             var imageId = provider.FormData["imageId"] ?? string.Empty;
@@ -371,18 +393,28 @@ namespace cakelove.Controllers
             // Save
             foreach (MultipartFileData file in provider.FileData)
             {
+                // resize the file
+                Image imageToResize = Image.FromFile(file.LocalFileName);
+                Image resizedImage = MakeSquareImage(imageToResize, 187);
+
                 var fileExtension = GetFileExtensionFromMultipartFileData(file);
                 if (fileExtension != null)
                 {
                     saveFileBaseName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
                     saveFileAbsolutePath = Path.Combine(saveDirAbsolutePath, saveFileBaseName);
-
+                    
                     if (File.Exists(saveFileAbsolutePath))
                     {
                         File.Delete(saveFileAbsolutePath);
                     }
-                    File.Move(file.LocalFileName, saveFileAbsolutePath);
 
+                    resizedImage.Save(saveFileAbsolutePath);
+
+
+                   // rename the uploaded file to the target name
+                     // File.Move(file.LocalFileName, saveFileAbsolutePath);
+
+                    // create a img.src path for the web
                     rootRelativeImgSrc = "/" + saveDirBaseName + "/" + saveFileBaseName;
                 }
             }
