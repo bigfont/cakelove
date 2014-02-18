@@ -265,14 +265,15 @@
             return uploader;
         };
 
-        formSvc.updateImgSrcFromXMLHTTPRequestEvent = function ($scope, xmlHttpRequestProgressEvent, jsonPropertyName) {
+        formSvc.updateImgSrcFromXMLHTTPRequestEvent = function (xmlHttpRequestProgressEvent, jsonPropertyName) {
 
             // target, currentTarger, srcElement... which is most appropriate?
             var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
             var responseJson = xmlHttpRequest.responseText;
             var responseObj = angular.fromJson(responseJson);
             var imgRootRelativePath = responseObj[jsonPropertyName];
-            $scope.formModel[jsonPropertyName] = imgRootRelativePath + "?" + new Date().getTime();
+            var updatedPath = imgRootRelativePath + "?" + new Date().getTime();
+            return updatedPath;
         };
 
         return formSvc;

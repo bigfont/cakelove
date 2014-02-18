@@ -287,16 +287,12 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('beforeupload', function (event, item) {
-
             item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
-
                 var jsonPropertyName = 'bioImageRelativePath';
-                formSvc.updateImgSrcFromXMLHTTPRequestEvent($scope, xmlHttpRequestProgressEvent, jsonPropertyName)
-
+                $scope.formModel[jsonPropertyName] =
+                    formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
             };
-
         });
-
     }
 ]);
 
@@ -326,21 +322,32 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             }
         }
 
-        function createUploader() {
-            var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
-            var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
-            uploader.bind('afteraddingfile', function (event, item) {
+        ////function createUploader() {
+        ////    var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
+        ////    var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
+        ////    uploader.bind('afteraddingfile', function (event, item) {
 
-                var activeClass = ActiveClass();
-                item.removeAfterUpload = true;
-                item.formData = [{ imageId: activeClass.id }];
+        ////        var activeClass = ActiveClass();
+        ////        item.removeAfterUpload = true;
+        ////        item.formData = [{ imageId: activeClass.id }];
 
-                item.upload();
-                activeClass.hasClassImage = true;
+        ////        item.upload();
+        ////        activeClass.hasClassImage = true;
 
-                $scope.update(activeClass, $scope.outerForm, $scope.url);
-            });
-        }
+        ////        $scope.update(activeClass, $scope.outerForm, $scope.url);
+        ////    });
+        ////}
+
+        // Create a uploader
+        var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
+        var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
+        uploader.bind('beforeupload', function (event, item) {
+            item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
+                var jsonPropertyName = 'bioImageRelativePath';
+                $scope.formModel[jsonPropertyName] =
+                    formSvc.updateImgSrcFromXMLHTTPRequestEvent(xmlHttpRequestProgressEvent, jsonPropertyName);
+            };
+        });
 
         $scope.totalClassHours = formSvc.totalClassHours = function () {
             var total = 0;
