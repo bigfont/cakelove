@@ -8,7 +8,7 @@
                 <div class="panel-heading"></div>
                 <div class="panel-body">
                     <input id="fileInput" ng-file-select type="file" id="bioImgUploader" />
-                    <input class="hidden" type="text" ng-model="ngModel" disabled submit-required="true" />
+                    <input class="hidden" type="text" ng-model="uploadedImgPath" disabled submit-required="true" />
                     <span class="help-block">Upload a new image or replace your existing one.</span>
                     <!--Validation-->
                     <span class="text-danger" ng-repeat="filterError in uploader.filterErrors">{{ filterError }}</span>
