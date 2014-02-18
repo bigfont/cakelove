@@ -156,7 +156,7 @@ namespace cakelove.Controllers
 
                 string currentUserId = GetCurrentUserId();
                 var model =
-                    db.Biography.First(b => b.IdentityUser.Id.Equals(currentUserId)) ??
+                    db.Biography.FirstOrDefault(b => b.IdentityUser.Id.Equals(currentUserId)) ??
                     new BiographyBindingModel() { IdentityUserId = currentUserId };
 
                 model.ImageRelativePath = rootRelativeImgSrc;
@@ -335,7 +335,7 @@ namespace cakelove.Controllers
 
                 string currentUserId = GetCurrentUserId();
                 var model =
-                    db.ClassInfo.First(b => b.IdentityUser.Id.Equals(currentUserId)) ??
+                    db.ClassInfo.FirstOrDefault(b => b.IdentityUser.Id.Equals(currentUserId)) ??
                     new ClassInfoBindingModel() { IdentityUserId = currentUserId };
 
                 model.ImageRelativePath = rootRelativeImgSrc;
