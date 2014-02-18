@@ -289,7 +289,7 @@ cakeLoveControllers.controller('BiographyCtrl', [
         var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/biographyImage');
         var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
         uploader.bind('afteraddingfile', function (event, item) {
-            item.upload();
+            ////item.upload();
             $scope.formModel.hasBioImage = true;
             $scope.update($scope.formModel, $scope.outerForm, $scope.url);
         });
@@ -299,8 +299,10 @@ cakeLoveControllers.controller('BiographyCtrl', [
 
                 // target, currentTarger, srcElement... which is most appropriate?
                 var xmlHttpRequest = xmlHttpRequestProgressEvent.target;
-
-                $scope.formModel.bioImageRelativePath = xmlHttpRequest.bioImageRelativePath;
+                var responseJson = xmlHttpRequest.responseText;
+                var responseObj = angular.fromJson(responseJson);
+                var bioImageRelativePath = responseObj.bioImageRelativePath;                
+                $scope.formModel.bioImageRelativePath = bioImageRelativePath + "?" + new Date().getTime();
             };
 
         });

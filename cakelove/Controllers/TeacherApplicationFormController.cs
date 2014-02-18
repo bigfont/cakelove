@@ -136,22 +136,24 @@ namespace cakelove.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            string saveFileRelativePath = null;
+            string rootRelativeImgSrc = null;
             try
             {
-                saveFileRelativePath = await SaveImage(Request, "bio");
+                rootRelativeImgSrc = await SaveImage(Request, "bio");
                                 
                 var db = new MyDbContext();
 
                 string currentUserId = GetCurrentUserId();
-                var model = db.Biography.FirstOrDefault(b => b.IdentityUser.Id.Equals(currentUserId));
+                var model =
+                    db.Biography.First(b => b.IdentityUser.Id.Equals(currentUserId)) ??
+                    new BiographyBindingModel() { IdentityUserId = currentUserId };
 
-                model.BioImageRelativePath = saveFileRelativePath;
+                model.BioImageRelativePath = rootRelativeImgSrc;
                 db.Biography.Attach(model);
 
                 await InsertOrUpdateAsync(db, model);
 
-                dynamic content = new { BioImageRelativePath = model.BioImageRelativePath };
+                dynamic content = new { bioImageRelativePath = model.BioImageRelativePath };
                 httpActionResult = new JsonResult<dynamic>(content, new JsonSerializerSettings(), System.Text.Encoding.UTF8, this);
 
             }
@@ -345,6 +347,7 @@ namespace cakelove.Controllers
             return fileExtension;
         }
 
+        /// <returns>A root relative http style uri such as "/UserImages/somefile.jpg".</returns>
         private async Task<string> SaveImage(HttpRequestMessage request, string fileNameSuffix)
         {
             string root = HttpContext.Current.Server.MapPath("~/");
@@ -353,8 +356,8 @@ namespace cakelove.Controllers
             string saveDirAbsolutePath = null;
 
             string saveFileBaseName = null;
-            string saveFileRelativePath = null;
             string saveFileAbsolutePath = null;
+            string rootRelativeImgSrc = null;
 
             // Read the form data.
             var provider = new MultipartFormDataStreamProvider(root);
@@ -372,18 +375,19 @@ namespace cakelove.Controllers
                 if (fileExtension != null)
                 {
                     saveFileBaseName = GetCurrentUserId() + "_" + fileNameSuffix + imageId + fileExtension;
-                    saveFileRelativePath = Path.Combine(saveDirBaseName, saveFileBaseName);
-                    saveFileAbsolutePath = Path.Combine(root, saveFileRelativePath);
+                    saveFileAbsolutePath = Path.Combine(saveDirAbsolutePath, saveFileBaseName);
 
                     if (File.Exists(saveFileAbsolutePath))
                     {
                         File.Delete(saveFileAbsolutePath);
                     }
                     File.Move(file.LocalFileName, saveFileAbsolutePath);
+
+                    rootRelativeImgSrc = "/" + saveDirBaseName + "/" + saveFileBaseName;
                 }
             }
 
-            return saveFileRelativePath;
+            return rootRelativeImgSrc;
         }
 
         // Nice-to-have: Put this method into the IBindingModel or similar spot... model.SetState().
