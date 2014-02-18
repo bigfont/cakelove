@@ -230,7 +230,7 @@
             // Image type filter
             uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
 
-                function listToPhrase(list, separator) {
+                function convertPipeSeparatedListToPhrase(list, separator) {
                     var phrase = list
                         .replace(/\|?/, '') /*first instance*/
                         .replace(/\|[^\|]*$/, '.') /*last instance*/
@@ -244,7 +244,7 @@
                 type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
                 var isValid = allowedTypes.indexOf(type) !== -1;
                 if (!isValid) {
-                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + listToPhrase(allowedTypes) ];
+                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + convertPipeSeparatedListToPhrase(allowedTypes) ];
                 }
                 return isValid;
             });
