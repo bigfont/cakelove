@@ -252,12 +252,12 @@
 
             // Image size filter
             uploader.filters.push(function (item) {
-                var maxSize = 0.5; /*MB*/
+                var maxSizeMB = 2; /*MB*/
                 var size = uploader.isHTML5 ? item.size : -1; /*what if it isn't HTML5?*/
                 var sizeMB = (size / 1024 / 1024);
-                var isValid = sizeMB <= 0.5;
+                var isValid = sizeMB <= maxSizeMB;
                 if (!isValid) {
-                    $scope.uploader.filterErrors = ['The file must be no more than ' + maxSize + ' MB'];
+                    $scope.uploader.filterErrors = ['The file must be no more than ' + maxSizeMB + ' MB'];
                 }
                 return isValid;
             });
