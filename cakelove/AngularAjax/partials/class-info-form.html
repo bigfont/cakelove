@@ -5,7 +5,7 @@
 
             <span class="label"
                   ng-class="{
-                    'label-default': totalClassHours() < 20,
+                    'label-danger': totalClassHours() < 20,
                     'label-success': totalClassHours() >= 20 }">Total class hours: {{ totalClassHours() }} / 20.</span>
         </h3>
 
