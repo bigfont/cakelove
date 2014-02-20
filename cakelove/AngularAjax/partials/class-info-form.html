@@ -191,6 +191,7 @@
 
                             <div bse-input outer-form="outerForm" type="checkbox" lbl-text="I would like a vendor table..." ng-model="formModel.doVendorTable"></div>
                             <div ng-show="formModel.doVendorTable">
+                                <label>Where would you like a vendor table?</label>
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the classroom ($40)." value="classRoom" ng-model="formModel.vendorTable"></div>
                                 <div bse-input outer-form="outerForm" type="radio" lbl-text="I would like a vendor table in the vendor room (must complete online vendor form)." value="vendorRoom" ng-model="formModel.vendorTable"></div>
                                 <div bse-input submit-required="{{ formModel.doVendorTable }}" outer-form="outerForm" hidden-input type="text" ng-model="formModel.vendorTable"></div>
