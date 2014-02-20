@@ -72,3 +72,9 @@ ul#class-info-btn-group > li {
     margin:5px;
 
 }
+
+div#img-upload-preview canvas
+{    
+    width:187px;
+    height:187px;
+}

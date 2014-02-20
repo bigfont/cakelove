@@ -28,7 +28,8 @@
                     <ul class="list-unstyled">
                         <li>
                             <strong>Size</strong>
-                            <span>0.5 MB</span>
+                            <!-- Todo set this programmatically based on the img size filter -->
+                            <span>2 MB</span>
                         </li>
                         <li>
                             <strong>Type</strong>
@@ -49,7 +50,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <label>Preview</label>
-                    <div class="img-thumbnail img-rounded" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                    <div id="img-upload-preview" class="img-thumbnail img-rounded img-responsive" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
                 </div>
                 <div class="col-lg-8">
                     <dl>
