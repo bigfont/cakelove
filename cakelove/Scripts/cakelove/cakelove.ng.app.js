@@ -40,6 +40,12 @@ function ($routeProvider) {
         isSecure: true,
         allowTheseRoles: ["applicant"]
     }).
+    when('/admin', {
+        templateUrl: 'ng/partials/admin',
+        //controller: 'AdminCtrl',
+        isSecure: true,
+        allowTheseRoles: ["admin"]
+    }).
     otherwise({
         redirectTo: '/welcome'
     });
@@ -49,6 +55,18 @@ myApp.run(function ($rootScope, $location, userSvc) {
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
+
+        function viewRequiresRole(role) {
+            return next.allowTheseRoles.indexOf(role) >= 0;
+        }
+
+        function redirectUserThatLacksRequiredRole()
+        {
+            var redirectTo;
+            if (viewRequiresRole('applicant')) { redirectTo = '/instructor-guidelines' }
+            else if (viewRequiresRole('admin')) { redirectTo = '/'; }
+            $location.path(redirectTo);
+        }
 
         function isSecureView(isSecure) {
             return typeof next.isSecure !== "undefined" && next.isSecure === true;
@@ -60,24 +78,24 @@ myApp.run(function ($rootScope, $location, userSvc) {
 
         if (isSecureView(next.isSecure)) {
 
-            /* secure views */
+            /* view is secure */
 
             if (!userSvc.isLoggedIn) {
 
-                /* user is not logged */
+                /* user is NOT logged */
 
                 $location.path("/login");
 
             } else if (isRequiringRoles(next.allowTheseRoles) && !userSvc.isUserInOneOfTheseRoles(next.allowTheseRoles)) {
 
-                /* user is logged but not in the appropriate role */
-                if (next.allowTheseRoles.indexOf('applicant') >= 0) {
-                    $location.path('/instructor-guidelines');
-                }
+                /* user is logged but NOT in appropriate role, redirect as apporpriate */
+
+                redirectUserThatLacksRequiredRole();
+
             }
         } else {
 
-            /* non-secure views */
+            /* view is NOT secure */
 
             if (userSvc.isLoggedIn) {
 
