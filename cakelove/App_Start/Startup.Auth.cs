@@ -20,7 +20,10 @@ namespace cakelove
 
             RoleManagerFactory = () => new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
 
-            CreateRolesIfNotExists(new string[] { "admin", "member", "applicant" });        
+            CreateRolesIfNotExists(new string[] { "admin", "member", "applicant" });
+
+            // hack
+            AddExistingUserToExistingRole("aa403d2d-a493-4af0-bc8d-43cc8d803be3", "admin");
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
@@ -76,6 +79,17 @@ namespace cakelove
                 result = !roleManager.RoleExists(roleName) ? roleManager.Create(new IdentityRole(roleName)) : IdentityResult.Success;
             }
             return result;
+        }
+
+        private static void AddExistingUserToExistingRole(string userId, string roleName)
+        {
+            IdentityResult result = IdentityResult.Failed();
+            UserManager<IdentityUser> userManager = UserManagerFactory();
+            RoleManager<IdentityRole> roleManager = RoleManagerFactory();
+            if(roleManager.RoleExists(roleName) && userManager.FindById(userId) != null && !userManager.IsInRole(userId, roleName))
+            {
+                userManager.AddToRole(userId, roleName);
+            }
         }
     }
 }
