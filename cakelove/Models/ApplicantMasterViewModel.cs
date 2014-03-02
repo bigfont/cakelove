@@ -8,5 +8,7 @@ namespace cakelove.Models
     public class ApplicantMasterViewModel
     {
         public string UserName { get; set; }
+
+        public bool? ApplicationStatus { get; set; }
     }
 }

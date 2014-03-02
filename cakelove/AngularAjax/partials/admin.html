@@ -1,7 +1,18 @@
-﻿Admin - Applicants
-
+﻿
 <div ng-controller="AdminCtrl">
 
-    <div ng-repeat="applicant in applicants">{{ applicant.UserName }}</div>
+    <h2>Users</h2>
+    <table class="table table-bordered table-striped table-hover table-responsive">        
+        <tbody>
+            <tr>
+                <th>UserName</th>
+                <th>Roles</th>
+            </tr>
+            <tr ng-repeat="applicant in applicants">
+                <td>{{ applicant.UserName }}</td>
+                <td>{{ applicant.Roles }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>

@@ -412,7 +412,9 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
     }
 ]);
 
-cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', 'urlSvc', function ($scope, $http, urlSvc) {
+cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', 'urlSvc', 'siteMapSvc', function ($scope, $http, urlSvc, siteMapSvc) {
+
+    siteMapSvc.currentPage = "Admin";
 
     // get
     var url;

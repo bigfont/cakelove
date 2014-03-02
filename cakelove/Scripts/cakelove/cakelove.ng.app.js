@@ -104,7 +104,7 @@ myApp.run(function ($rootScope, $location, userSvc) {
                 /* user is logged in */
 
                 if (userSvc.isUserInRole('admin')) {
-                    $location.path("/admin-dashboard");
+                    $location.path("/admin");
                 } else if (userSvc.isUserInRole('applicant')) {
                     $location.path("/application-form");
                 } else if (userSvc.isUserInRole('member')) {

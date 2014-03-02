@@ -15,8 +15,15 @@ namespace cakelove.Controllers
         public IEnumerable<ApplicantMasterViewModel> Get()
         {
             MyDbContext db = new MyDbContext();
-            var viewModel = db.Users.Select<IdentityUser, ApplicantMasterViewModel>(u =>
-                    new ApplicantMasterViewModel() { UserName = u.UserName });
+            //var viewModel = db.Users.Select<IdentityUser, ApplicantMasterViewModel>(u =>
+            //        new ApplicantMasterViewModel() { UserName = u.UserName });
+
+            IEnumerable<ApplicantMasterViewModel> viewModel =
+                db.Users.Join<IdentityUser, ApplicationStatusBindingModel, String, ApplicantMasterViewModel>(
+                db.ApplicationStatus,
+                user => user.Id,
+                status => status.IdentityUserId,
+                (user, status) => new ApplicantMasterViewModel() { UserName = user.UserName, ApplicationStatus = status.IsSubmitted });
 
             return viewModel.ToList();
         }
