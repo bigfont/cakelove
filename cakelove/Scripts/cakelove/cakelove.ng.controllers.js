@@ -322,22 +322,6 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
             }
         }
 
-        ////function createUploader() {
-        ////    var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
-        ////    var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
-        ////    uploader.bind('afteraddingfile', function (event, item) {
-
-        ////        var activeClass = ActiveClass();
-        ////        item.removeAfterUpload = true;
-        ////        item.formData = [{ imageId: activeClass.id }];
-
-        ////        item.upload();
-        ////        activeClass.hasClassImage = true;
-
-        ////        $scope.update(activeClass, $scope.outerForm, $scope.url);
-        ////    });
-        ////}
-
         // Create a uploader
         function createUploader() {
             var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
@@ -427,3 +411,9 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         });
     }
 ]);
+
+cakeLoveControllers.controller('AdminCtrl', [function () {
+
+
+
+}]);
