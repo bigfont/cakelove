@@ -178,6 +178,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Binders\HasAnIdentityUserFkModelBinder.cs" />
     <Compile Include="Controllers\AccountApiController.cs" />
+    <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\AngularController.cs" />
     <Compile Include="Controllers\TeacherApplicationFormController.cs" />
     <Compile Include="Global.asax.cs">
@@ -282,6 +283,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicantDetailViewModel.cs" />
+    <Compile Include="Models\ApplicantMasterViewModel.cs" />
     <Compile Include="Models\ApplicationStatusBindingModel.cs" />
     <Compile Include="Models\ApplicationStatusViewModel.cs" />
     <Compile Include="Models\BiographyViewModel.cs" />
