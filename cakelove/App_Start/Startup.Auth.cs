@@ -23,7 +23,8 @@ namespace cakelove
             CreateRolesIfNotExists(new string[] { "admin", "member", "applicant" });
 
             // hack
-            AddExistingUserToExistingRole("aa403d2d-a493-4af0-bc8d-43cc8d803be3", "admin");
+            AddExistingUserToExistingRole("aa403d2d-a493-4af0-bc8d-43cc8d803be3", "admin"); // jenandaussie
+            AddExistingUserToExistingRole("03a82e3a-e828-4795-ae87-778e23655a21", "admin"); // test0009
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
