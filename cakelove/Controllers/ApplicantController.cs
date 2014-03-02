@@ -1,4 +1,6 @@
-﻿using System;
+﻿using cakelove.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +12,13 @@ namespace cakelove.Controllers
     public class ApplicantController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<ApplicantMasterViewModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            MyDbContext db = new MyDbContext();
+            var viewModel = db.Users.Select<IdentityUser, ApplicantMasterViewModel>(u =>
+                    new ApplicantMasterViewModel() { UserName = u.UserName });
+
+            return viewModel.ToList();
         }
 
         // GET api/<controller>/5
