@@ -7,12 +7,14 @@
             <tr>
                 <th></th>
                 <th>UserName</th>
+                <th>Name</th>
                 <th>Submitted</th>
             </tr>
             <tr ng-repeat="applicant in applicants">
                 <td>{{ $index }}</td>
                 <td>{{ applicant.UserName }}</td>
-                <td>Todo</td>
+                <td>{{ applicant.Name }}</td>
+                <td>{{ applicant.IsSubmitted }}</td>
             </tr>
         </tbody>
     </table>

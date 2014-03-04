@@ -10,5 +10,7 @@ namespace cakelove.Models
         public string UserName { get; set; }
 
         public bool? ApplicationStatus { get; set; }
+
+        public string Name { get; set; }
     }
 }

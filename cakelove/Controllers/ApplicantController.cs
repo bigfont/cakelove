@@ -15,8 +15,12 @@ namespace cakelove.Controllers
         public IEnumerable<ApplicantMasterViewModel> Get()
         {
             MyDbContext db = new MyDbContext();
-            var viewModel = db.Users.Select<IdentityUser, ApplicantMasterViewModel>(u =>
-                    new ApplicantMasterViewModel() { UserName = u.UserName });
+            var viewModel = db.Users
+                .GroupJoin(db.ApplicationStatus, u => u.Id, a => a.IdentityUserId, (u, a)
+                => new { UserId = u.Id, UserName = u.UserName, IsSubmitted = a.FirstOrDefault().IsSubmitted })
+                .GroupJoin(db.ContactInfo, z => z.UserId, ci => ci.IdentityUserId, (z, ci)
+                => new ApplicantMasterViewModel { UserName = z.UserName, Name = ci.FirstOrDefault().Name, ApplicationStatus = z.IsSubmitted })
+                .Where(z => !z.UserName.Contains("test00"));
 
             return viewModel.ToList();
         }
