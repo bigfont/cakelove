@@ -5,10 +5,12 @@
     <table class="table table-bordered table-striped table-hover table-responsive">        
         <tbody>
             <tr>
+                <th></th>
                 <th>UserName</th>
                 <th>Submitted</th>
             </tr>
             <tr ng-repeat="applicant in applicants">
+                <td>{{ $index }}</td>
                 <td>{{ applicant.UserName }}</td>
                 <td>Todo</td>
             </tr>
