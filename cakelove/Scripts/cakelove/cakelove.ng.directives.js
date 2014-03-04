@@ -58,6 +58,13 @@ cakeLoveDirectives.directive('submitApplicationFormInputs', function () {
     };
 });
 
+cakeLoveDirectives.directive('adminUserList', function () {
+    return {
+        restrict: 'AE',
+        templateUrl: 'ng/partials/admin/user-list'
+    };
+});
+
 // validation
 var INTEGER_REGEXP = /^\-?\d+$/;
 cakeLoveDirectives.directive('integer', function () {

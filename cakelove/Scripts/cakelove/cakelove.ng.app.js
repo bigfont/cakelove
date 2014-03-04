@@ -42,7 +42,7 @@ myApp.config(['$routeProvider',
                  allowTheseRoles: ["applicant"]
              }).
              when('/admin', {
-                 templateUrl: 'ng/partials/admin',
+                 templateUrl: 'ng/partials/admin/dashboard',
                  controller: 'AdminCtrl',
                  isSecure: true,
                  allowTheseRoles: ["admin"]

@@ -11,8 +11,8 @@ namespace cakelove
 
             routes.MapPageRoute(
                 routeName: "Angular",
-                routeUrl: "ng/{folder}/{filename}",
-                physicalFile: "~/AngularAjax/{folder}/{filename}.html",
+                routeUrl: "ng/{*filePath}",
+                physicalFile: "~/AngularAjax/{filePath}.html",
                 checkPhysicalUrlAccess: true);
 
             // Default Route:
