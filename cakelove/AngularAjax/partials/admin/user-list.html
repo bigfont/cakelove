@@ -6,9 +6,9 @@
             <th>Name</th>
             <th>Submitted</th>
         </tr>
-        <tr ng-repeat="applicant in applicants" ng-click="">
+        <tr ng-repeat="applicant in applicants">
             <td>{{ $index }}</td>
-            <td>{{ applicant.UserName }}</td>
+            <td><a href="#/admin/user/{{ applicant.UserName }}">{{ applicant.UserName }}</a></td>
             <td>{{ applicant.Name }}</td>
             <td>{{ applicant.IsSubmitted === null ? "No" : "Yes" }}</td>
         </tr>

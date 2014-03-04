@@ -412,21 +412,39 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
     }
 ]);
 
-cakeLoveControllers.controller('UserCtrl', ['$scope', '$http', 'urlSvc', 'siteMapSvc', function ($scope, $http, urlSvc, siteMapSvc) {
+cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$routeParams', 'urlSvc', 'siteMapSvc', function ($scope, $http, $location, $routeParams, urlSvc, siteMapSvc) {
 
     siteMapSvc.currentPage = "Admin";
 
-    // get
-    var url;
-    $scope.url = url = urlSvc.ToAbsoluteUrl('/api/applicant');
+    // todo Refactor the user related code into its own controller
+    var adminSection = $routeParams.adminSection;
+    var adminSubsection = $routeParams.adminSubsection;
+    
+    $scope.listUsers = listUsers = function() {
+        var url;
+        $scope.userView = 'list';
+        $scope.url = url = urlSvc.ToAbsoluteUrl('/api/applicant');
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
 
-    $http({ method: 'GET', url: url }).
-        success(function (data, status, headers, config) {
+                $scope.applicants = data;
 
-            $scope.applicants = data;
+            });
+    }
 
-        });
+    function displayUser(userName)
+    {
+        $scope.userView = 'details';
+        $scope.UserName = userName;
+    }
 
+    
+    if (adminSection === 'user' && adminSubsection !== null) {
+        displayUser(adminSubsection);
+    }
+    else {
+        listUsers();
 
+    }
 
 }]);

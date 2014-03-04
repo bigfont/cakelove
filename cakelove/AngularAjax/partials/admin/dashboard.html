@@ -1,8 +1,19 @@
 ﻿
-<div ng-controller="UserCtrl">
+<div ng-controller="AdminCtrl">
 
-    <h2>Users</h2>    
+    <div ng-switch="userView">
 
-    <div admin-user-list></div>
+        <div ng-switch-when="list">
+            <h2>User List</h2>
+            <div admin-user-list></div>
+        </div>
+
+        <div ng-switch-when="details">
+            <a class="btn btn-primary" href="#/admin"><span class="glyphicon glyphicon-arrow-left">&nbsp;</span>All Users</a>
+            <h2>{{ UserName }}</h2>
+            
+        </div>
+
+    </div>
 
 </div>

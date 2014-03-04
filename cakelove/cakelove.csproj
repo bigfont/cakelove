@@ -311,6 +311,7 @@
     <Content Include="AngularAjax\ajax\instructor-guidelines-text.html" />
     <Content Include="AngularAjax\ajax\welcome-text.html" />
     <Content Include="AngularAjax\partials\admin\dashboard.html" />
+    <Content Include="AngularAjax\partials\admin\user-details.html" />
     <Content Include="AngularAjax\partials\admin\user-list.html" />
     <Content Include="AngularAjax\partials\submit-application-form.html" />
     <Content Include="AngularAjax\partials\instructor-guidelines.html" />
