@@ -416,6 +416,7 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
 
     siteMapSvc.currentPage = "Admin";
 
+    // todo Refactor the admin related code into its own file
     // todo Refactor the user related code into its own controller
     var adminSection = $routeParams.adminSection;
     var adminSubsection = $routeParams.adminSubsection;
@@ -437,14 +438,12 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
         $scope.userView = 'details';
         $scope.UserName = userName;
     }
-
     
     if (adminSection === 'user' && adminSubsection !== null) {
         displayUser(adminSubsection);
     }
     else {
         listUsers();
-
     }
 
 }]);
