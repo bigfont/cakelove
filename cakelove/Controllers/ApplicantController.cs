@@ -19,7 +19,7 @@ namespace cakelove.Controllers
                 .GroupJoin(db.ApplicationStatus, u => u.Id, a => a.IdentityUserId, (u, a)
                 => new { UserId = u.Id, UserName = u.UserName, IsSubmitted = a.FirstOrDefault().IsSubmitted })
                 .GroupJoin(db.ContactInfo, z => z.UserId, ci => ci.IdentityUserId, (z, ci)
-                => new ApplicantMasterViewModel { UserName = z.UserName, Name = ci.FirstOrDefault().Name, ApplicationStatus = z.IsSubmitted })
+                => new ApplicantMasterViewModel { UserName = z.UserName, Name = ci.FirstOrDefault().Name, IsSubmitted = z.IsSubmitted })
                 .Where(z => !z.UserName.Contains("test00"));
 
             return viewModel.ToList();
