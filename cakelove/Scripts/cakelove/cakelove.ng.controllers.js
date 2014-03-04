@@ -412,18 +412,21 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
     }
 ]);
 
-cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', 'urlSvc', 'siteMapSvc', function ($scope, $http, urlSvc, siteMapSvc) {
+cakeLoveControllers.controller('UserCtrl', ['$scope', '$http', 'urlSvc', 'siteMapSvc', function ($scope, $http, urlSvc, siteMapSvc) {
 
     siteMapSvc.currentPage = "Admin";
 
     // get
     var url;
     $scope.url = url = urlSvc.ToAbsoluteUrl('/api/applicant');
+
     $http({ method: 'GET', url: url }).
         success(function (data, status, headers, config) {
 
             $scope.applicants = data;
 
         });
+
+
 
 }]);

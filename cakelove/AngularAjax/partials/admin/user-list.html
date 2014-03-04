@@ -1,1 +1,16 @@
-﻿
+﻿<table class="table table-bordered table-striped table-hover table-responsive">
+    <tbody>
+        <tr>
+            <th></th>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Submitted</th>
+        </tr>
+        <tr ng-repeat="applicant in applicants" ng-click="">
+            <td>{{ $index }}</td>
+            <td>{{ applicant.UserName }}</td>
+            <td>{{ applicant.Name }}</td>
+            <td>{{ applicant.IsSubmitted === null ? "No" : "Yes" }}</td>
+        </tr>
+    </tbody>
+</table>
