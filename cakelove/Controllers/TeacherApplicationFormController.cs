@@ -314,8 +314,8 @@ namespace cakelove.Controllers
         }
 
         [HttpPost]
-        [System.Web.Http.Route("ClassImage")]
-        public async Task<IHttpActionResult> ClassImage()
+        [System.Web.Http.Route("ClassImage/{id}")]
+        public async Task<IHttpActionResult> ClassImage(int id)
         {
             IHttpActionResult httpActionResult = Ok();
 

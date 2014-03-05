@@ -326,7 +326,12 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
         function createUploader() {
             var uploaderUrl = urlSvc.ToAbsoluteUrl('/api/TeacherApplicationForm/classImage');
             var uploader = $scope.uploader = formSvc.createImageUploader($scope, uploaderUrl);
-            uploader.bind('beforeupload', function (event, item) {
+            uploader.bind('beforeupload', function (event, item) {                
+
+                // add the class.id
+                item.url += "/" + ActiveClass().id;                
+
+                // respond to upload complete
                 item._xhr.onreadystatechange = function (xmlHttpRequestProgressEvent) {
                     var jsonPropertyName = 'imageRelativePath';
                     var activeClass = ActiveClass();
