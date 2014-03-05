@@ -225,7 +225,7 @@ namespace cakelove.Controllers
 
             if (bindingModel.Count == 0)
             {
-                var classInfo = new ClassInfoBindingModel() { IdentityUserId = GetCurrentUserId(), ClassName = "New Class" };
+                var classInfo = new ClassInfoBindingModel() { IdentityUserId = GetCurrentUserId(), ClassName = "Untitled Class" };
                 db.ClassInfo.Attach(classInfo);
                 db.Entry(classInfo).State = EntityState.Added;
                 var result = db.SaveChanges();

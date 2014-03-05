@@ -305,7 +305,7 @@ cakeLoveControllers.controller('ClassesCtrl', ['$scope', '$http', '$location', '
 
         function setClassInfoDefaults(classInfo) {
             if (objSvc.isUndefinedOrNull(classInfo.className) || classInfo.className.length === 0) {
-                classInfo.className = "New Class";
+                classInfo.className = "Untitled Class";
             }
             if (objSvc.isUndefinedOrNull(classInfo.id) || classInfo.id < 0) {
                 classInfo.id = 0;
