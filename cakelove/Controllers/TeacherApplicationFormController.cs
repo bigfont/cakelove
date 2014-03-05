@@ -328,8 +328,9 @@ namespace cakelove.Controllers
             string rootRelativeImgSrc = null;
 
             try
-            {                
-                rootRelativeImgSrc = await SaveImage(Request, "class");
+            {
+                var fileNameSuffix = "class" + id;
+                rootRelativeImgSrc = await SaveImage(Request, fileNameSuffix);
 
                 var db = new MyDbContext();
 
