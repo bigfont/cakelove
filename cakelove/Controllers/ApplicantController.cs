@@ -51,7 +51,7 @@ namespace cakelove.Controllers
             {
                 UserName = first.UserName,
                 ContactInfo = Mapper.Map<IEnumerable<ContactInfoViewModel>>(first.ContactInfo),
-                Biography = Mapper.Map<IEnumerable<BiographyViewModel>>(first.Biography)
+                Biography = Mapper.Map<IEnumerable<BiographyViewModel>>(first.Biography),
                 TeachingExperience = Mapper.Map<IEnumerable<TeachingExperienceViewModel>>(first.TeachingExperience),
                 ClassInfo = Mapper.Map<IEnumerable<ClassInfoViewModel>>(first.ClassInfo)
             };
