@@ -426,7 +426,7 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
     var adminSection = $routeParams.adminSection;
     var adminSubsection = $routeParams.adminSubsection;
     
-    $scope.listUsers = listUsers = function() {
+    function listUsers() {
         var url;
         $scope.userView = 'list';
         $scope.url = url = urlSvc.ToAbsoluteUrl('/api/applicant');
@@ -444,6 +444,7 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
         $scope.UserName = userName;
     }
     
+    // either show all users or show a specific user
     if (adminSection === 'user' && adminSubsection !== null) {
         displayUser(adminSubsection);
     }
