@@ -35,7 +35,7 @@ namespace cakelove.Controllers
                         join te in db.TeachingExperience on u.Id equals te.IdentityUserId into teGroup
                         join b in db.Biography on u.Id equals b.IdentityUserId into bGroup
                         join cl in db.ClassInfo on u.Id equals cl.IdentityUserId into clGroup
-                        where u.UserName == "test0009"
+                        where u.UserName == id
                         select new
                         {
                             UserName = u.UserName,
