@@ -35,7 +35,7 @@ namespace cakelove.Controllers
                         join te in db.TeachingExperience on u.Id equals te.IdentityUserId into teGroup
                         join b in db.Biography on u.Id equals b.IdentityUserId into bGroup
                         join cl in db.ClassInfo on u.Id equals cl.IdentityUserId into clGroup
-                        where u.UserName == "test0009"                        
+                        where u.UserName == "test0009"
                         select new
                         {
                             UserName = u.UserName,
@@ -45,11 +45,15 @@ namespace cakelove.Controllers
                             ClassInfo = clGroup
                         };
 
-
+            var first = query.FirstOrDefault();
+            
             var viewModel = new ApplicantDetailViewModel()
             {
-                UserName = query.FirstOrDefault().UserName,
-                ContactInfo = Mapper.Map<IEnumerable<ContactInfoViewModel>>(query.FirstOrDefault().ContactInfo)
+                UserName = first.UserName,
+                ContactInfo = Mapper.Map<IEnumerable<ContactInfoViewModel>>(first.ContactInfo),
+                Biography = Mapper.Map<IEnumerable<BiographyViewModel>>(first.Biography)
+                TeachingExperience = Mapper.Map<IEnumerable<TeachingExperienceViewModel>>(first.TeachingExperience),
+                ClassInfo = Mapper.Map<IEnumerable<ClassInfoViewModel>>(first.ClassInfo)
             };
 
             return viewModel;
