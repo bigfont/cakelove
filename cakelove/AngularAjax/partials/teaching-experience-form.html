@@ -5,7 +5,7 @@
         <div bse-input lbl-text="I have taught cake decorating before." ng-model="formModel.hasTaught" type="checkbox"></div>
         <div ng-show="formModel.hasTaught">
             <div add-on-right="years" bse-input id="yearsTeach" lbl-text="How long have you been teaching?" outer-form="outerForm" smart-float ng-model="formModel.yearsTeaching" type="text"></div>
-            <div bse-input lbl-text="Briefly describe your formModel." rows="5" ng-model="formModel.pastConferences" outer-form="outerForm" type="textarea"></div>
+            <div bse-input lbl-text="Briefly describe your experience." rows="5" ng-model="formModel.pastConferences" outer-form="outerForm" type="textarea"></div>
             <div add-on-right="people" bse-input lbl-text="On average, how many people do you teach at a time?" outer-form="outerForm" ng-model="formModel.aveNumStudentsPerClass" type="text" integer></div>
         </div>
         <button class="btn btn-primary" ng-click="update(formModel, outerForm, url)">Save</button>
