@@ -1,4 +1,5 @@
-﻿using cakelove.Models;
+﻿using AutoMapper;
+using cakelove.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,33 @@ namespace cakelove.Controllers
             return viewModel.ToList();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        // GET api/<controller>/pete
+        public ApplicantDetailViewModel Get(string id)
         {
-            return "value";
+            var db = new MyDbContext();
+            var query = from u in db.Users
+                        join ci in db.ContactInfo on u.Id equals ci.IdentityUserId into ciGroup
+                        join te in db.TeachingExperience on u.Id equals te.IdentityUserId into teGroup
+                        join b in db.Biography on u.Id equals b.IdentityUserId into bGroup
+                        join cl in db.ClassInfo on u.Id equals cl.IdentityUserId into clGroup
+                        where u.UserName == "test0009"                        
+                        select new
+                        {
+                            UserName = u.UserName,
+                            ContactInfo = ciGroup,
+                            TeachingExperience = teGroup,
+                            Biography = bGroup,
+                            ClassInfo = clGroup
+                        };
+
+
+            var viewModel = new ApplicantDetailViewModel()
+            {
+                UserName = query.FirstOrDefault().UserName,
+                ContactInfo = Mapper.Map<IEnumerable<ContactInfoViewModel>>(query.FirstOrDefault().ContactInfo)
+            };
+
+            return viewModel;
         }
 
         // POST api/<controller>

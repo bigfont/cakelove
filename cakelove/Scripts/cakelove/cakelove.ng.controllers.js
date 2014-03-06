@@ -426,10 +426,9 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
     var adminSection = $routeParams.adminSection;
     var adminSubsection = $routeParams.adminSubsection;
     
-    function listUsers() {
-        var url;
+    function listUsers() {        
+        var url = urlSvc.ToAbsoluteUrl('/api/applicant');
         $scope.userView = 'list';
-        $scope.url = url = urlSvc.ToAbsoluteUrl('/api/applicant');
         $http({ method: 'GET', url: url }).
             success(function (data, status, headers, config) {
 
@@ -440,8 +439,14 @@ cakeLoveControllers.controller('AdminCtrl', ['$scope', '$http', '$location', '$r
 
     function displayUser(userName)
     {
+        var url = urlSvc.ToAbsoluteUrl('/api/applicant/' + userName);
         $scope.userView = 'details';
-        $scope.UserName = userName;
+        $http({ method: 'GET', url: url }).
+            success(function (data, status, headers, config) {
+
+                $scope.applicant = data;
+
+            });        
     }
     
     // either show all users or show a specific user
