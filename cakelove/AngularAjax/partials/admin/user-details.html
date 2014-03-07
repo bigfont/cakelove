@@ -30,7 +30,7 @@
 <div class="well">
     <h2>Teaching Experience</h2>
     <ul>
-        <li>Average Number of Students Per Class {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}</li>
+        <li>Ave Students / Class {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}</li>
         <li>Has Taught Previously {{applicant.TeachingExperience[0].hasTaught}}</li>
         <li>Past Conferences {{applicant.TeachingExperience[0].pastConferences}}</li>
         <li>Years Decorating {{applicant.TeachingExperience[0].yearsDecorating}}</li>
@@ -40,9 +40,8 @@
 
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
-    <h2>Class {{$index + 1}}: {{ci.className}}</h2>
-    <p><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
-    <p>{{ci.classType}}</p>
+    <h2>Class {{$index + 1}}: {{ci.className}} <small>{{ci.classType}}</small></h2>
+    <p class="clearfix"><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
 
     <h3>Student Overview</h3>
     <ul>
