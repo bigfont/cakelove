@@ -1,6 +1,20 @@
-﻿<div class="well">
-    <h3>Biography</h3>
-    <p class="clearfix"><img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" />{{applicant.Biography[0].text}}</p>
+﻿<div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
+
+    <div class="panel-heading">Biography</div>
+    <div class="panel-body" ng-switch-when="true">
+
+        <div class="media">
+            <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(applicant.Biography[0].imageRelativePath)">
+                <img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" err-src="holder.js/187x187" />
+                <!--<img class="pull-left img-thumbnail" data-src="holder.js/187x187" holder-fix />-->
+            </div>
+            <div class="media-body">
+                {{applicant.Biography[0].text}}
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
 
 <div class="well clearfix">

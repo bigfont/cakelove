@@ -264,3 +264,15 @@ cakeLoveDirectives.directive('holderFix', function () {
         }
     };
 });
+
+cakeLoveDirectives.directive('errSrc', function () {
+    var fallbackSrc = {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                angular.element(this).replaceWith('<img class="placeholder pull-left img-thumbnail" data-src="holder.js/187x187" holder-fix />');
+                Holder.run({ images: '.placeholder', nocss: true });
+            });
+        }
+    }
+    return fallbackSrc;
+});
