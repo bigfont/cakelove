@@ -53,12 +53,6 @@
                 <li>{{ci.currency}}${{ci.feePerStudent}} / student</li>
                 <li>{{ci.classSizeMin}} to {{ci.classSizeMax}} students</li>
                 <li>{{ci.skillLevel}}</li>
-                <li>
-                    <div ng-switch="{{ci.doSpecialSupplies}}">
-                        <span ng-switch-when="true">needs special supplies.</span>
-                        <span ng-switch-when="false">does NOT need special supplies.</span>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -81,14 +75,38 @@
         <div class="col-lg-6">
             <h3>Class Supplies</h3>
             <ul>
-                <li>{{ci.suppliesOption}}</li>
-                <li>Requires: {{ci.willNeedThisSpecialEquip}}</li>
-                <li>{{ci.suppliesWillProvideThese}}</li>
-                <li>{{ ci.isSelling === true ? 'Is selling supplies.' : 'Is NOT selling supplies.' }}</li>
-                <li>{{ci.suppliesWillSellThese}}</li>
-                <li>{{ci.doVendorTable}}</li>
-                <li>{{ci.vendorTable}}</li>
-                <li>{{ci.suppliesWillRequireThese}}</li>
+                <li ng-switch="ci.suppliesOption">
+                    <span ng-switch-when="allInstructor">The instructor will supply all necessary supplies: {{ci.suppliesWillProvideThese}}</span>
+                    <span ng-switch-when="allStudent">The student will supply all necessary supplies: {{ci.suppliesWillRequireThese}}</span>
+                    <ul ng-switch-when="someInstructorSomeStudent">
+                        <li>
+                            The instructor will bring some of the supplies, and the student must bring the rest.
+                        </li>
+                        <li>Instructor: {{ci.suppliesWillProvideThese}}</li>
+                        <li>Student: {{ci.suppliesWillRequireThese}}</li>
+                    </ul>
+                </li>
+                <li>
+                    <div ng-switch="{{ci.doSpecialSupplies === true}}">
+                        The instructor
+                        <span ng-switch-when="true">needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
+                        <span ng-switch-when="false">does NOT need special supplies.</span>
+                    </div>
+                </li>
+                <li>
+                    <div ng-switch="{{ci.isSelling === true}}">
+                        The instructor
+                        <span ng-switch-when="true">is selling these supplies: {{ci.suppliesWillSellThese}}</span>
+                        <span ng-switch-when="false">is NOT selling supplies.</span>
+                    </div>
+                </li>
+                <li>
+                    <div ng-switch="{{ci.doVendorTable === true}}">
+                        The instructor
+                        <span ng-switch-when="true">would like a vendor table in the {{ci.vendorTable}}</span>
+                        <span ng-switch-when="false">would NOT like a vendor table.</span>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
