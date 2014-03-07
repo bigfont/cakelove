@@ -90,14 +90,6 @@ dl {
     margin-top: 0px;
 }
 
-.spacer1 {
-    margin-top: 5px;
-}
-
-.spacer2 {
-    margin-top: 10px;
-}
-
-.spacer3 {
-    margin-top: 15px;
+.spacer {
+    margin-top: 20px;
 }
