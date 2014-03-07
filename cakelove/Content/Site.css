@@ -87,5 +87,17 @@ dl {
         Add margin-top:0px, 
         because there is a mysterious margin-top:14px on some description lists.
     */
-    margin-top:0px;
+    margin-top: 0px;
+}
+
+.spacer1 {
+    margin-top: 5px;
+}
+
+.spacer2 {
+    margin-top: 10px;
+}
+
+.spacer3 {
+    margin-top: 15px;
 }
