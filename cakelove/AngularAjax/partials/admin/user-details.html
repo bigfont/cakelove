@@ -4,7 +4,7 @@
     <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
-                <img class="media-object" src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
+                <img class="media-object img-thumbnail" src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
             </div>
             <div class="media-body">
                 {{bio.text}}
@@ -88,7 +88,7 @@
             <div class="col-lg-6">
                 <div class="media">
                     <div class="pull-left">
-                        <img class="media-object" src="{{ci.imageRelativePath}}" err-src="holder.js/187x187" />
+                        <img class="media-object img-thumbnail" src="{{ci.imageRelativePath}}" err-src="holder.js/187x187" />
                     </div>
                     <div class="media-body" ng-switch="ci.classDescription !== null">
                         <p ng-switch-when="true">{{ci.classDescription}}</p>
