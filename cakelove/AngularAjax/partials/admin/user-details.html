@@ -135,20 +135,20 @@
             </div>
             <div class="col-lg-3" ng-switch="{{ci.doSpecialSupplies}}">
                 <h4>Special Supplies</h4>
-                <span ng-switch-when="null">...</span>
+                <span ng-switch-default>...</span>
                 <span ng-switch-when="true">The instructor needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
                 <span ng-switch-when="false">The instructor does NOT need special supplies.</span>
             </div>
 
             <div class="col-lg-3" ng-switch="{{ci.isSelling}}">
                 <h4>Supply Sales</h4>                
-                <span ng-switch-when="null">...</span>
+                <span ng-switch-default>...</span>
                 <span ng-switch-when="true">The instructor is selling these supplies: {{ci.suppliesWillSellThese}}</span>
                 <span ng-switch-when="false">is NOT selling supplies.</span>
             </div>
             <div class="col-lg-3" ng-switch="{{ci.doVendorTable}}">
                 <h4>Vendor Table</h4>
-                <span ng-switch-when="null">...</span>
+                <span ng-switch-default>...</span>
                 <span ng-switch-when="true">The instructor would like a vendor table in the {{ci.vendorTable}}</span>
                 <span ng-switch-when="false">would NOT like a vendor table.</span>
             </div>
