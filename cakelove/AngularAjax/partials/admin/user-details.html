@@ -41,45 +41,55 @@
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
     <h2>Class {{$index + 1}}: {{ci.className}} <small>{{ci.classType}}</small></h2>
-    <p class="clearfix"><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
 
-    <h3>Student Overview</h3>
-    <ul>
-        <li>{{ci.currency}}${{ci.feePerStudent}} / student</li>
-        <li>{{ci.classSizeMin}} to {{ci.classSizeMax}} students</li>
-        <li>{{ci.skillLevel}}</li>
-        <li>
-            <div ng-switch="{{ci.doSpecialSupplies}}">
-                <span ng-switch-when="true">needs special supplies.</span>
-                <span ng-switch-when="false">does NOT need special supplies.</span>
-            </div>
-        </li>
-    </ul>
-
-    <h3>Class Schedule</h3>
-    <ul>
-        <li>{{ci.isMultiDay === true ? 'multi day' : 'one day' }}</li>
-        <li>Total Time, Day One: {{ci.totalTimeDayOne}}</li>
-        <li ng-if="ci.isMultiDay === true">Total Time, Day Two: {{ci.totalTimeDayTwo}}</li>
-        <li>{{ci.hasTimePreference === true ? 'has' : 'does NOT have' }} a time preference</li>
-        <li ng-if="ci.hasTimePreference === true">
-            <span>Prefered Time, Day One {{ci.preferredTimeDayOne}}, </span>
-            <span>Prefered Time, Day Two {{ci.preferredTimeDayTwo}}</span>
-        </li>
-        <li>needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
-        <li>needs {{ci.extraTimeSetup}} mins extra setup time.</li>
-    </ul>
-
-    <h3>Class Supplies</h3>
-
-    <ul>
-        <li>{{ci.suppliesOption}}</li>
-        <li>{{ci.willNeedThisSpecialEquip}}</li>
-        <li>{{ci.suppliesWillProvideThese}}</li>
-        <li>{{ ci.isSelling === true ? 'Is selling supplies.' : 'Is NOT selling supplies.' }}</li>
-        <li>{{ci.suppliesWillSellThese}}</li>
-        <li>{{ci.doVendorTable}}</li>
-        <li>{{ci.vendorTable}}</li>
-        <li>{{ci.suppliesWillRequireThese}}</li>
-    </ul>
+    <div class="row">
+        <div class="col-lg-6 clearfix">
+            <h3>Description</h3>
+            <p><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
+        </div>
+        <div class="col-lg-6">
+            <h3>Student Overview</h3>
+            <ul>
+                <li>{{ci.currency}}${{ci.feePerStudent}} / student</li>
+                <li>{{ci.classSizeMin}} to {{ci.classSizeMax}} students</li>
+                <li>{{ci.skillLevel}}</li>
+                <li>
+                    <div ng-switch="{{ci.doSpecialSupplies}}">
+                        <span ng-switch-when="true">needs special supplies.</span>
+                        <span ng-switch-when="false">does NOT need special supplies.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Class Schedule</h3>
+            <ul>
+                <li>{{ci.isMultiDay === true ? 'multi day' : 'one day' }}</li>
+                <li>Total Time, Day One: {{ci.totalTimeDayOne}}</li>
+                <li ng-if="ci.isMultiDay === true">Total Time, Day Two: {{ci.totalTimeDayTwo}}</li>
+                <li>{{ci.hasTimePreference === true ? 'has' : 'does NOT have' }} a time preference</li>
+                <li ng-if="ci.hasTimePreference === true">
+                    <span>Prefered Time, Day One {{ci.preferredTimeDayOne}}, </span>
+                    <span>Prefered Time, Day Two {{ci.preferredTimeDayTwo}}</span>
+                </li>
+                <li>needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
+                <li>needs {{ci.extraTimeSetup}} mins extra setup time.</li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h3>Class Supplies</h3>
+            <ul>
+                <li>{{ci.suppliesOption}}</li>
+                <li>{{ci.willNeedThisSpecialEquip}}</li>
+                <li>{{ci.suppliesWillProvideThese}}</li>
+                <li>{{ ci.isSelling === true ? 'Is selling supplies.' : 'Is NOT selling supplies.' }}</li>
+                <li>{{ci.suppliesWillSellThese}}</li>
+                <li>{{ci.doVendorTable}}</li>
+                <li>{{ci.vendorTable}}</li>
+                <li>{{ci.suppliesWillRequireThese}}</li>
+            </ul>
+        </div>
+    </div>
 </div>
