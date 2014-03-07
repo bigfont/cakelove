@@ -83,8 +83,8 @@
     <div>
         <label>Saved Image</label>
         <div id="img-upload-saved">
-            <img class="img-thumbnail" ng-if="hasImage" class="img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
-            <img class="img-thumbnail" ng-if="!hasImage" data-src="holder.js/187x187" holder-fix>
+            <img ng-if="hasImage" class="img-rounded img-thumbnail img-responsive" src="{{ uploadedImgPath }}" />
+            <img ng-if="!hasImage" class="img-rounded img-thumbnail img-responsive" data-src="holder.js/187x187" holder-fix>
         </div>
     </div>
 </div>
