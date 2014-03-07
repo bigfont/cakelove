@@ -419,11 +419,9 @@ namespace cakelove.Controllers
 
             // Save
             foreach (MultipartFileData file in provider.FileData)
-            {
-                // resize the file
-                Image imageToResize = Image.FromFile(file.LocalFileName);
-                Image resizedImage = MakeSquareImage(imageToResize, 187);
-
+            {                
+                Image image = Image.FromFile(file.LocalFileName);
+                
                 var fileExtension = GetFileExtensionFromMultipartFileData(file);
                 if (fileExtension != null)
                 {
@@ -435,11 +433,7 @@ namespace cakelove.Controllers
                         File.Delete(saveFileAbsolutePath);
                     }
 
-                    resizedImage.Save(saveFileAbsolutePath);
-
-
-                   // rename the uploaded file to the target name
-                     // File.Move(file.LocalFileName, saveFileAbsolutePath);
+                    image.Save(saveFileAbsolutePath);
 
                     // create a img.src path for the web
                     rootRelativeImgSrc = "/" + saveDirBaseName + "/" + saveFileBaseName;
