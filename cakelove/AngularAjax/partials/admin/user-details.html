@@ -1,4 +1,5 @@
-﻿<div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
+﻿<!--Biography-->
+<div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
     <div class="panel-heading">Biography</div>
     <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
@@ -12,7 +13,8 @@
     </div>
     <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
-
+<!--End Biography-->
+<!--Contact Info-->
 <div class="panel panel-default" ng-switch="applicant.ContactInfo.length > 0">
     <div class="panel-heading">Contact Info</div>
     <div class="panel-body" ng-switch-when="true" ng-init="ci = applicant.ContactInfo[0]">
@@ -43,17 +45,38 @@
     </div>
     <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
-
-<div class="well">
-    <h2>Teaching Experience</h2>
-    <ul>
-        <li>Ave Students / Class {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}</li>
-        <li>Has Taught Previously {{applicant.TeachingExperience[0].hasTaught}}</li>
-        <li>Past Conferences {{applicant.TeachingExperience[0].pastConferences}}</li>
-        <li>Years Decorating {{applicant.TeachingExperience[0].yearsDecorating}}</li>
-        <li>Years Teaching {{applicant.TeachingExperience[0].yearsTeaching}}</li>
-    </ul>
+<!--End Contact Info-->
+<!--Teaching Experience-->
+<div class="panel panel-default" ng-switch="applicant.TeachingExperience.length > 0">
+    <div class="panel-heading">Teaching Experience</div>
+    <div class="panel-body" ng-switch-when="true" ng-init="te = applicant.TeachingExperience[0]">
+        <strong>Past Conferences</strong>
+        <p>{{te.pastConferences}}</p>
+        <table class="table table-bordered">
+            <tbody>                
+                <tr>
+                    <th class="col-lg-2">Ave Students / Class</th>
+                    <td class="col-lg-10">{{te.aveNumStudentsPerClass}}</td>
+                </tr>
+                <tr>
+                    <th>Has Taught Previously</th>
+                    <td>{{te.hasTaught}}</td>
+                </tr>
+                <tr>
+                    <th>Years Decorating</th>
+                    <td>{{te.yearsDecorating}}</td>
+                </tr>
+                <tr>
+                    <th>Years Teaching</th>
+                    <td>{{te.yearsTeaching}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
+<!--End Teaching Experience-->
+
 
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
