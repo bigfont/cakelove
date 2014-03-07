@@ -6,32 +6,31 @@
     <meta name="viewport" content="width=device-width" />
     <title>Cake Love</title>
 
+    @*Modernizer*@
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/ie6/warning.js"></script>
     <script type="text/javascript">
-
-        (function(){
-            
+        window.onload = function(){
             function hasClass(element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
-
             var body = document.getElementsByTagName('html')[0];
             var browserHasReqFeatures = hasClass(body, 'canvas');
-
             if (!browserHasReqFeatures)
             {
-                window.alert('Your browser is not supported.');
+                e("scripts/ie6/");
             }
-
-        })();
-
+        };
     </script>
+    @*End Modernizer*@
 
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/bigfont")
 
 </head>
 <body>
+
+
 
     @RenderBody()
 

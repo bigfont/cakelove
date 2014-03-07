@@ -335,6 +335,14 @@
     <Content Include="Scripts\angular\angular-file-upload.js" />
     <Content Include="Scripts\cakelove\misc-functions.js" />
     <Content Include="Scripts\holder.js" />
+    <Content Include="Scripts\ie6\background_browser.gif" />
+    <Content Include="Scripts\ie6\browser_chrome.gif" />
+    <Content Include="Scripts\ie6\browser_firefox.gif" />
+    <Content Include="Scripts\ie6\browser_ie.gif" />
+    <Content Include="Scripts\ie6\browser_opera.gif" />
+    <Content Include="Scripts\ie6\browser_safari.gif" />
+    <Content Include="Scripts\ie6\index.html" />
+    <Content Include="Scripts\ie6\warning.js" />
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\notused\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\notused\i18n\angular-locale_af-za.js" />
@@ -616,6 +624,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\ie6\.svn\props\" />
+    <Folder Include="Scripts\ie6\.svn\tmp\prop-base\" />
+    <Folder Include="Scripts\ie6\.svn\tmp\props\" />
+    <Folder Include="Scripts\ie6\.svn\tmp\text-base\" />
     <Folder Include="sensitive\" />
     <Folder Include="UserImages\" />
   </ItemGroup>
@@ -713,6 +725,24 @@
     <Content Include="Scripts\notused\angular-touch.min.js.map" />
     <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="Scripts\notused\errors.json" />
+    <Content Include="Scripts\ie6\.svn\all-wcprops" />
+    <Content Include="Scripts\ie6\.svn\entries" />
+    <Content Include="Scripts\ie6\.svn\format" />
+    <Content Include="Scripts\ie6\.svn\prop-base\background_browser.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\prop-base\browser_chrome.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\prop-base\browser_firefox.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\prop-base\browser_ie.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\prop-base\browser_opera.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\prop-base\browser_safari.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\background_browser.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\browser_chrome.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\browser_firefox.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\browser_ie.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\browser_opera.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\browser_safari.gif.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\index.html.svn-base" />
+    <Content Include="Scripts\ie6\.svn\text-base\warning.js.svn-base" />
+    <Content Include="Scripts\ie6\warning.js~" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
