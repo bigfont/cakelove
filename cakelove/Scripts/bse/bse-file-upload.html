@@ -1,6 +1,5 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
-    
     <!--Uploader-->
     <div class="row">
         <div class="col-lg-6">
@@ -83,7 +82,7 @@
             </div>
         </div>
     </div>
-    <div class="progress">
+    <div class="progress" style="">
         <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
     </div>
 </div>
