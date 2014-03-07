@@ -122,7 +122,7 @@
         <div class="row">
             <div class="col-lg-3" ng-switch="ci.suppliesOption">
                 <h4>Supplies Option</h4>
-                <p ng-switch-when="null">...</p>
+                <p ng-switch-default>...</p>
                 <p ng-switch-when="allInstructor">The instructor will supply all: {{ci.suppliesWillProvideThese}}</p>
                 <p ng-switch-when="allStudent">The student will supply all: {{ci.suppliesWillRequireThese}}</p>
                 <div ng-switch-when="someInstructorSomeStudent">
