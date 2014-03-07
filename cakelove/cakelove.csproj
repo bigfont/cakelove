@@ -742,7 +742,6 @@
     <Content Include="Scripts\ie6\.svn\text-base\browser_safari.gif.svn-base" />
     <Content Include="Scripts\ie6\.svn\text-base\index.html.svn-base" />
     <Content Include="Scripts\ie6\.svn\text-base\warning.js.svn-base" />
-    <Content Include="Scripts\ie6\warning.js~" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
