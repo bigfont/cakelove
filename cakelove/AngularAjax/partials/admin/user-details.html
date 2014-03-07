@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-lg-6 clearfix">
             <h3>Description</h3>
-            <p><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
+            <p><img class="pull-left img-thumbnail" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
         </div>
         <div class="col-lg-6">
             <h3>Student Overview</h3>
@@ -82,7 +82,7 @@
             <h3>Class Supplies</h3>
             <ul>
                 <li>{{ci.suppliesOption}}</li>
-                <li>{{ci.willNeedThisSpecialEquip}}</li>
+                <li>Requires: {{ci.willNeedThisSpecialEquip}}</li>
                 <li>{{ci.suppliesWillProvideThese}}</li>
                 <li>{{ ci.isSelling === true ? 'Is selling supplies.' : 'Is NOT selling supplies.' }}</li>
                 <li>{{ci.suppliesWillSellThese}}</li>
