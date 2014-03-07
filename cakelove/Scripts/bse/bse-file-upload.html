@@ -1,11 +1,11 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
-    <label for="fileInput">{{ lblText }}</label>
+    
+    <!--Uploader-->
     <div class="row">
-        <!--Uploader-->
         <div class="col-lg-6">
             <div ng-form name="innerForm" class="panel panel-default">
-                <div class="panel-heading"></div>
+                <div class="panel-heading"><label for="fileInput">{{ lblText }}</label></div>
                 <div class="panel-body">
                     <input id="fileInput" ng-file-select type="file" id="bioImgUploader" />
                     <input class="hidden" type="text" ng-model="uploadedImgPath" disabled submit-required="true" />
@@ -45,32 +45,39 @@
         </div>
     </div>
     <!--Preview-->
-    <div class="panel panel-default" ng-repeat="item in uploader.queue">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-6">
-                    <label>Preview</label><br />
-                    <div id="img-upload-preview" class="img-responsive img-rounded img-thumbnail" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+    <div class="row">
+        <div ng-repeat="item in uploader.queue">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Preview</div>
+                    <div class="panel-body">
+                        <div id="img-upload-preview" class="img-responsive img-rounded img-thumbnail" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <dl>
-                        <dt>Size</dt>
-                        <dd>{{ item.file.size/1024/1024|number:2 }} MB</dd>
-                        <dt>Name</dt>
-                        <dd>{{ item.file.name }}</dd>
-                        <dt>Type</dt>
-                        <dd>{{ item.file.type }}</dd>
-                    </dl>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                            <span class="glyphicon glyphicon-upload"></span> Upload
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                            <span class="glyphicon glyphicon-trash"></span> Remove
-                        </button>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Image Specs</div>
+                    <div class="panel-body">
+                        <dl>
+                            <dt>Size</dt>
+                            <dd>{{ item.file.size/1024/1024|number:2 }} MB</dd>
+                            <dt>Name</dt>
+                            <dd>{{ item.file.name }}</dd>
+                            <dt>Type</dt>
+                            <dd>{{ item.file.type }}</dd>
+                        </dl>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,12 +86,13 @@
             </div>
         </div>
     </div>
-    <!--Complete-->
-    <div>
-        <label>Saved Image</label>
-        <div id="img-upload-saved">
-            <img ng-if="hasImage" class="img-responsive img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
-            <img ng-if="!hasImage" class="img-responsive img-rounded img-thumbnail" data-src="holder.js/187x187" holder-fix>
-        </div>
+</div>
+<!--Complete-->
+<div>
+    <label>Saved Image</label>
+    <div id="img-upload-saved">
+        <img ng-if="hasImage" class="img-responsive img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
+        <img ng-if="!hasImage" class="img-responsive img-rounded img-thumbnail" data-src="holder.js/187x187" holder-fix>
     </div>
+</div>
 </div>
