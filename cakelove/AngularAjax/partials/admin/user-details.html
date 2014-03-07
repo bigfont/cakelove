@@ -1,13 +1,12 @@
 ﻿<div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
     <div class="panel-heading">Biography</div>
-    <div class="panel-body" ng-switch-when="true">
+    <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
-            <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(applicant.Biography[0].imageRelativePath)">
-                <img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" err-src="holder.js/187x187" />
-                <!--<img class="pull-left img-thumbnail" data-src="holder.js/187x187" holder-fix />-->
+            <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
+                <img class="pull-left img-thumbnail" src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
             </div>
             <div class="media-body">
-                {{applicant.Biography[0].text}}
+                {{bio.text}}
             </div>
         </div>
     </div>
@@ -16,27 +15,33 @@
 
 <div class="panel panel-default" ng-switch="applicant.ContactInfo.length > 0">
     <div class="panel-heading">Contact Info</div>
-    <div class="panel-body">
+    <div class="panel-body" ng-switch-when="true" ng-init="ci = applicant.ContactInfo[0]">
         <div class="row">
             <div class="col-lg-3">
                 <strong>Address</strong>
                 <address>
-                        {{applicant.ContactInfo[0].name}}<br />
-                        {{applicant.ContactInfo[0].businessName}}<br />
-                        {{applicant.ContactInfo[0].address.street}}<br />
-                        {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
-                        {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
+                    <span ng-if="ci.name">{{ci.name}}<br /></span>
+                    <span ng-if="ci.businessName">{{ci.businessName}}<br /></span>
+                    <span ng-if="ci.address.street">{{ci.address.street}}<br /></span>
+                    <span ng-if="ci.address.city">{{ci.address.city}},</span>
+                    <span ng-if="ci.address.province">{{ci.address.province}}<br /></span>
+                    <span ng-if="ci.address.country">{{ci.address.country}}</span>
+                    <span ng-if="ci.address.postalCode">{{ci.address.postalCode}}<br /></</span>
                 </address>
             </div>
             <div class="col-lg-3">
-                    <dl style="margin-top:0px;">
-                        <dt>Phone</dt><dd>{{applicant.ContactInfo[0].contactPhone}}</dd>
-                        <dt>Email </dt><dd>{{applicant.ContactInfo[0].email}}</dd>
-                        <dt>Web </dt><dd>{{applicant.ContactInfo[0].website}}</dd>
-                    </dl>
+                <dl style="margin-top:0px;">
+                    <dt>Phone</dt>
+                    <dd>{{applicant.ContactInfo[0].contactPhone}}</dd>
+                    <dt>Email</dt>
+                    <dd>{{applicant.ContactInfo[0].email}}</dd>
+                    <dt>Web</dt>
+                    <dd>{{applicant.ContactInfo[0].website}}</dd>
+                </dl>
             </div>
         </div>
     </div>
+    <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
 
 <div class="well">
