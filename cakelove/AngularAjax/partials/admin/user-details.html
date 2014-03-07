@@ -59,11 +59,9 @@
     </dl>
 </div>
 
-<h2>Classes</h2>
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
-    <h3>Class Overview</h3>
-    <p>{{ci.className}}</p>
+    <h2>Class {{$index + 1}}: {{ci.className}}</h2>
     <p><img src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
     <p>{{ci.classType}}</p>
 
