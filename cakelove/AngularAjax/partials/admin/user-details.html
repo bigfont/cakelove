@@ -2,7 +2,7 @@
 
 <div class="well">
     <h3>Biography</h3>
-    <p><img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" />{{applicant.Biography[0].text}}</p>
+    <p class="clearfix"><img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" />{{applicant.Biography[0].text}}</p>
 </div>
 
 <div class="well clearfix">
@@ -41,7 +41,6 @@
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
     <h2>Class {{$index + 1}}: {{ci.className}} <small>{{ci.classType}}</small></h2>
-
     <div class="row">
         <div class="col-lg-6 clearfix">
             <h3>Class Description</h3>
