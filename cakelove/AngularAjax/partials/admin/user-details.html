@@ -4,7 +4,7 @@
     <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
-                <img class="pull-left img-thumbnail" src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
+                <img class="media-object" src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
             </div>
             <div class="media-body">
                 {{bio.text}}
@@ -79,89 +79,115 @@
     <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
 <!--End Teaching Experience-->
+<!--Class Info-->
 
-
-<div class="well" ng-repeat="ci in applicant.ClassInfo">
-
-    <h2>Class {{$index + 1}}: {{ci.className}} <small>{{ci.classType}}</small></h2>
-    <div class="row">
-        <div class="col-lg-6 clearfix">
-            <h3>Class Description</h3>
-            <p><img class="pull-left img-thumbnail" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
-        </div>
-        <div class="col-lg-6">
-            <h3>Student Overview</h3>
-            <ul>
-                <li>{{ci.currency}}${{ci.feePerStudent}} / student</li>
-                <li>{{ci.classSizeMin}} to {{ci.classSizeMax}} students</li>
-                <li>{{ci.skillLevel}}</li>
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <h3>Class Schedule</h3>
-            <ul>
-                <li>
-                    <div ng-switch="{{ci.isMultiDay === true}}">
-                        The class is
-                        <span ng-switch-when="true">two days; {{ci.totalTimeDayOne}} hours and {{ci.totalTimeDayTwo}} hours.</span>
-                        <span ng-switch-when="false">one day only and is {{ci.totalTimeDayOne}} hours</span>
+<div class="panel panel-default" ng-repeat="ci in applicant.ClassInfo">
+    <div class="panel-heading">Class {{$index + 1}}: {{ci.className}}</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="media-object" src="{{ci.imageRelativePath}}" err-src="holder.js/187x187" />
                     </div>
-                </li>
-
-                <li>
-                    <div ng-switch="{{ci.hasTimePreference === true}}">
-                        The instructor
-                        <div ng-switch-when="true">
-                            has a scheduling preference: <ul>
-                                <li>Day One {{ci.preferredTimeDayOne}}</li>
-                                <li>Day Two {{ci.preferredTimeDayTwo}}</li>
-                            </ul>
+                    <div class="media-body" ng-switch="ci.classDescription !== null">
+                        <p ng-switch-when="true">{{ci.classDescription}}</p>
+                        <p ng-switch-when="false">...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="col-lg-5">Class Type</th>
+                            <td class="col-lg-7">{{ci.classType}}</td>
+                        </tr>
+                        <tr>
+                            <th>Price Per Student</th>
+                            <td>{{ci.currency}}${{ci.feePerStudent}}</td>
+                        </tr>
+                        <tr>
+                            <th>Students</th>
+                            <td>{{ci.classSizeMin}} to {{ci.classSizeMax}}</td>
+                        </tr>
+                        <tr>
+                            <th>Skill Level</th>
+                            <td>{{ci.skillLevel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Class Supplies</h3>
+                <ul>
+                    <li ng-switch="ci.suppliesOption">
+                        <span ng-switch-when="allInstructor">The instructor will supply all necessary supplies: {{ci.suppliesWillProvideThese}}</span>
+                        <span ng-switch-when="allStudent">The student will supply all necessary supplies: {{ci.suppliesWillRequireThese}}</span>
+                        <ul ng-switch-when="someInstructorSomeStudent">
+                            <li>
+                                The instructor will bring some of the supplies, and the student must bring the rest.
+                            </li>
+                            <li>Instructor: {{ci.suppliesWillProvideThese}}</li>
+                            <li>Student: {{ci.suppliesWillRequireThese}}</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div ng-switch="{{ci.doSpecialSupplies === true}}">
+                            The instructor
+                            <span ng-switch-when="true">needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
+                            <span ng-switch-when="false">does NOT need special supplies.</span>
                         </div>
-                        <span ng-switch-when="false">does NOT have a scheduling preference.</span>
-                    </div>
-                </li>
-                <li>Needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
-                <li>Needs {{ci.extraTimeSetup}} mins extra setup time.</li>
-            </ul>
-        </div>
-        <div class="col-lg-6">
-            <h3>Class Supplies</h3>
-            <ul>
-                <li ng-switch="ci.suppliesOption">
-                    <span ng-switch-when="allInstructor">The instructor will supply all necessary supplies: {{ci.suppliesWillProvideThese}}</span>
-                    <span ng-switch-when="allStudent">The student will supply all necessary supplies: {{ci.suppliesWillRequireThese}}</span>
-                    <ul ng-switch-when="someInstructorSomeStudent">
-                        <li>
-                            The instructor will bring some of the supplies, and the student must bring the rest.
-                        </li>
-                        <li>Instructor: {{ci.suppliesWillProvideThese}}</li>
-                        <li>Student: {{ci.suppliesWillRequireThese}}</li>
-                    </ul>
-                </li>
-                <li>
-                    <div ng-switch="{{ci.doSpecialSupplies === true}}">
-                        The instructor
-                        <span ng-switch-when="true">needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
-                        <span ng-switch-when="false">does NOT need special supplies.</span>
-                    </div>
-                </li>
-                <li>
-                    <div ng-switch="{{ci.isSelling === true}}">
-                        The instructor
-                        <span ng-switch-when="true">is selling these supplies: {{ci.suppliesWillSellThese}}</span>
-                        <span ng-switch-when="false">is NOT selling supplies.</span>
-                    </div>
-                </li>
-                <li>
-                    <div ng-switch="{{ci.doVendorTable === true}}">
-                        The instructor
-                        <span ng-switch-when="true">would like a vendor table in the {{ci.vendorTable}}</span>
-                        <span ng-switch-when="false">would NOT like a vendor table.</span>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                    <li>
+                        <div ng-switch="{{ci.isSelling === true}}">
+                            The instructor
+                            <span ng-switch-when="true">is selling these supplies: {{ci.suppliesWillSellThese}}</span>
+                            <span ng-switch-when="false">is NOT selling supplies.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div ng-switch="{{ci.doVendorTable === true}}">
+                            The instructor
+                            <span ng-switch-when="true">would like a vendor table in the {{ci.vendorTable}}</span>
+                            <span ng-switch-when="false">would NOT like a vendor table.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-6">
+                <h3>Class Schedule</h3>
+                <ul>
+                    <li>
+                        <div ng-switch="{{ci.isMultiDay === true}}">
+                            The class is
+                            <span ng-switch-when="true">two days; {{ci.totalTimeDayOne}} hours and {{ci.totalTimeDayTwo}} hours.</span>
+                            <span ng-switch-when="false">one day only and is {{ci.totalTimeDayOne}} hours</span>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div ng-switch="{{ci.hasTimePreference === true}}">
+                            The instructor
+                            <div ng-switch-when="true">
+                                has a scheduling preference: <ul>
+                                    <li>Day One {{ci.preferredTimeDayOne}}</li>
+                                    <li>Day Two {{ci.preferredTimeDayTwo}}</li>
+                                </ul>
+                            </div>
+                            <span ng-switch-when="false">does NOT have a scheduling preference.</span>
+                        </div>
+                    </li>
+                    <li>Needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
+                    <li>Needs {{ci.extraTimeSetup}} mins extra setup time.</li>
+                </ul>
+            </div>
+
         </div>
     </div>
+
 </div>
+<!--End Class Info-->
