@@ -5,58 +5,43 @@
     <p><img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" />{{applicant.Biography[0].text}}</p>
 </div>
 
-<div class="well">
+<div class="well clearfix">
     <h2>Contact Info</h2>
-    <dl class="">
-        <dt>Address</dt>
-        <dd>
-            {{applicant.ContactInfo[0].name}}<br />
-            {{applicant.ContactInfo[0].businessName}}<br />
-            {{applicant.ContactInfo[0].address.street}}<br />
-            {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
-            {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
-        </dd>
-        <dt>Phone</dt>
-        <dd>
-            {{applicant.ContactInfo[0].contactPhone}}
-        </dd>
-        <dt>Email</dt>
-        <dd>
-            {{applicant.ContactInfo[0].email}}
-        </dd>
-        <dt>Web</dt>
-        <dd>{{applicant.ContactInfo[0].website}}</dd>
-    </dl>
+    <div class="pull-left">
+        <address>
+            <p>
+                {{applicant.ContactInfo[0].name}}<br />
+                {{applicant.ContactInfo[0].businessName}}<br />
+                {{applicant.ContactInfo[0].address.street}}<br />
+                {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
+                {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
+            </p>
+        </address>
+    </div>
+    <div class="pull-left">
+        <ul>
+            <li>Phone {{applicant.ContactInfo[0].contactPhone}}</li>
+            <li>Email {{applicant.ContactInfo[0].email}}</li>
+            <li>Web {{applicant.ContactInfo[0].website}}</li>
+        </ul>
+    </div>
 </div>
 
 <div class="well">
     <h2>Teaching Experience</h2>
-    <dl class="">
-        <dt>Average Number of Students Per Class</dt>
-        <dd>
-            {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}
-        </dd>
-        <dt>Has Taught Previously</dt>
-        <dd>
-            {{applicant.TeachingExperience[0].hasTaught}}
-        </dd>
-        <dt>Has Done Past Conferences</dt>
-        <dd>
-            {{applicant.TeachingExperience[0].pastConferences}}
-        </dd>
-        <dt>Years Decorating</dt>
-        <dd>
-            {{applicant.TeachingExperience[0].yearsDecorating}}
-        </dd>
-        <dt>Years Teaching</dt>
-        <dd>{{applicant.TeachingExperience[0].yearsTeaching}}</dd>
-    </dl>
+    <ul>
+        <li>Average Number of Students Per Class {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}</li>
+        <li>Has Taught Previously {{applicant.TeachingExperience[0].hasTaught}}</li>
+        <li>Past Conferences {{applicant.TeachingExperience[0].pastConferences}}</li>
+        <li>Years Decorating {{applicant.TeachingExperience[0].yearsDecorating}}</li>
+        <li>Years Teaching {{applicant.TeachingExperience[0].yearsTeaching}}</li>
+    </ul>
 </div>
 
 <div class="well" ng-repeat="ci in applicant.ClassInfo">
 
     <h2>Class {{$index + 1}}: {{ci.className}}</h2>
-    <p><img src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
+    <p><img class="pull-left" src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
     <p>{{ci.classType}}</p>
 
     <h3>Student Overview</h3>
