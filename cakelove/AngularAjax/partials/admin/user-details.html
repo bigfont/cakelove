@@ -1,8 +1,6 @@
 ﻿<div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
-
     <div class="panel-heading">Biography</div>
     <div class="panel-body" ng-switch-when="true">
-
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(applicant.Biography[0].imageRelativePath)">
                 <img class="pull-left img-thumbnail" src="{{applicant.Biography[0].imageRelativePath}}" err-src="holder.js/187x187" />
@@ -12,30 +10,32 @@
                 {{applicant.Biography[0].text}}
             </div>
         </div>
-
     </div>
     <div class="panel-body" ng-switch-when="false">Lacks Content</div>
 </div>
 
-<div class="well clearfix">
-    <h2>Contact Info</h2>
-    <div class="pull-left">
-        <address>
-            <p>
-                {{applicant.ContactInfo[0].name}}<br />
-                {{applicant.ContactInfo[0].businessName}}<br />
-                {{applicant.ContactInfo[0].address.street}}<br />
-                {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
-                {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
-            </p>
-        </address>
-    </div>
-    <div class="pull-left">
-        <ul>
-            <li>Phone {{applicant.ContactInfo[0].contactPhone}}</li>
-            <li>Email {{applicant.ContactInfo[0].email}}</li>
-            <li>Web {{applicant.ContactInfo[0].website}}</li>
-        </ul>
+<div class="panel panel-default" ng-switch="applicant.ContactInfo.length > 0">
+    <div class="panel-heading">Contact Info</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-3">
+                <strong>Address</strong>
+                <address>
+                        {{applicant.ContactInfo[0].name}}<br />
+                        {{applicant.ContactInfo[0].businessName}}<br />
+                        {{applicant.ContactInfo[0].address.street}}<br />
+                        {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
+                        {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
+                </address>
+            </div>
+            <div class="col-lg-3">
+                    <dl style="margin-top:0px;">
+                        <dt>Phone</dt><dd>{{applicant.ContactInfo[0].contactPhone}}</dd>
+                        <dt>Email </dt><dd>{{applicant.ContactInfo[0].email}}</dd>
+                        <dt>Web </dt><dd>{{applicant.ContactInfo[0].website}}</dd>
+                    </dl>
+            </div>
+        </div>
     </div>
 </div>
 

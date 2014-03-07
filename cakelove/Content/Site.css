@@ -80,3 +80,11 @@ p > img.pull-left {
     margin-top: 5px;
     margin-right: 15px;
 }
+
+dl {
+    /* 
+        Add margin-top:0px, 
+        because there is a mysterious margin-top:14px on some description lists.
+    */
+    margin-top:0px;
+}
