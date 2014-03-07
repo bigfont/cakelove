@@ -21,7 +21,7 @@
         </div>
         <!--Help Block-->
         <div class="col-lg-6">
-            <div class="panel panel-info">
+            <div class="panel panel-warning">
                 <div class="panel-heading">Image Requirements</div>
                 <div class="panel-body">
                     <ul class="list-unstyled">
@@ -87,11 +87,10 @@
     </div>
 </div>
 <!--Complete-->
-<div>
-    <label>Saved Image</label>
-    <div id="img-upload-saved">
+<div class="panel panel-default">
+    <div class="panel-heading">Saved Image</div>
+    <div id="img-upload-saved" class="panel-body">
         <img ng-if="hasImage" class="img-responsive img-rounded img-thumbnail" src="{{ uploadedImgPath }}" />
         <img ng-if="!hasImage" class="img-responsive img-rounded img-thumbnail" data-src="holder.js/187x187" holder-fix>
     </div>
-</div>
 </div>
