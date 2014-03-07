@@ -44,8 +44,8 @@
         </div>
     </div>
     <!--Preview-->
-    <div class="row">
-        <div ng-repeat="item in uploader.queue">
+    <div ng-repeat="item in uploader.queue">
+        <div class="row">
             <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">Preview</div>
@@ -80,11 +80,13 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
         </div>
     </div>
-    <div class="progress" style="">
-        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
-    </div>
+
 </div>
 <!--Complete-->
 <div class="panel panel-default">
