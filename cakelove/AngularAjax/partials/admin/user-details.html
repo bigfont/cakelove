@@ -50,10 +50,13 @@
 <div class="panel panel-default" ng-switch="applicant.TeachingExperience.length > 0">
     <div class="panel-heading">Teaching Experience</div>
     <div class="panel-body" ng-switch-when="true" ng-init="te = applicant.TeachingExperience[0]">
-        <strong>Past Conferences</strong>
-        <p>{{te.pastConferences}}</p>
+        <div class="well" ng-switch="te.pastConferences !== null">
+            <strong>Past Conferences</strong>
+            <p ng-switch-when="true">{{te.pastConferences}}</p>
+            <p ng-switch-when="false">...</p>
+        </div>
         <table class="table table-bordered">
-            <tbody>                
+            <tbody>
                 <tr>
                     <th class="col-lg-2">Ave Students / Class</th>
                     <td class="col-lg-10">{{te.aveNumStudentsPerClass}}</td>
