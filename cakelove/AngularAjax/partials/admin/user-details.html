@@ -60,16 +60,28 @@
         <div class="col-lg-6">
             <h3>Class Schedule</h3>
             <ul>
-                <li>{{ci.isMultiDay === true ? 'multi day' : 'one day' }}</li>
-                <li>Total Time, Day One: {{ci.totalTimeDayOne}}</li>
-                <li ng-if="ci.isMultiDay === true">Total Time, Day Two: {{ci.totalTimeDayTwo}}</li>
-                <li>{{ci.hasTimePreference === true ? 'has' : 'does NOT have' }} a time preference</li>
-                <li ng-if="ci.hasTimePreference === true">
-                    <span>Prefered Time, Day One {{ci.preferredTimeDayOne}}, </span>
-                    <span>Prefered Time, Day Two {{ci.preferredTimeDayTwo}}</span>
+                <li>
+                    <div ng-switch="{{ci.isMultiDay === true}}">
+                        The class is
+                        <span ng-switch-when="true">two days; {{ci.totalTimeDayOne}} hours and {{ci.totalTimeDayTwo}} hours.</span>
+                        <span ng-switch-when="false">one day only and is {{ci.totalTimeDayOne}} hours</span>
+                    </div>
                 </li>
-                <li>needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
-                <li>needs {{ci.extraTimeSetup}} mins extra setup time.</li>
+
+                <li>
+                    <div ng-switch="{{ci.hasTimePreference === true}}">
+                        The instructor
+                        <div ng-switch-when="true">
+                            has a scheduling preference: <ul>
+                                <li>Day One {{ci.preferredTimeDayOne}}</li>
+                                <li>Day Two {{ci.preferredTimeDayTwo}}</li>
+                            </ul>
+                        </div>
+                        <span ng-switch-when="false">does NOT have a scheduling preference.</span>
+                    </div>
+                </li>
+                <li>Needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
+                <li>Needs {{ci.extraTimeSetup}} mins extra setup time.</li>
             </ul>
         </div>
         <div class="col-lg-6">
