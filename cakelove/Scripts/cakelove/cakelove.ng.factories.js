@@ -306,6 +306,10 @@
             return (typeof obj === 'undefined' || obj === null);
         };
 
+        objSvc.typeof = function (obj) {
+            return typeof obj;
+        };
+
         return objSvc;
 
     }]);

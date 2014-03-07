@@ -1,1 +1,109 @@
-﻿<p>{{applicant}}</p>
+﻿<h1>{{applicant.UserName}}</h1>
+
+<div class="well">
+    <h3>Biography</h3>
+    <dl class="">
+        <dt>Image</dt>
+        <dd><img src="{{applicant.Biography[0].imageRelativePath}}" /></dd>
+        <dt>Biography
+        <dt />
+        <dd>{{applicant.Biography[0].text}}</dd>
+    </dl>
+</div>
+
+<div class="well">
+    <h2>Contact Info</h2>
+    <dl class="">
+        <dt>Address</dt>
+        <dd>
+            {{applicant.ContactInfo[0].name}}<br />
+            {{applicant.ContactInfo[0].businessName}}<br />
+            {{applicant.ContactInfo[0].address.street}}<br />
+            {{applicant.ContactInfo[0].address.city}}, {{applicant.ContactInfo[0].address.province}}<br />
+            {{applicant.ContactInfo[0].address.country}} {{applicant.ContactInfo[0].address.postalCode}}<br />
+        </dd>
+        <dt>Phone</dt>
+        <dd>
+            {{applicant.ContactInfo[0].contactPhone}}
+        </dd>
+        <dt>Email</dt>
+        <dd>
+            {{applicant.ContactInfo[0].email}}
+        </dd>
+        <dt>Web</dt>
+        <dd>{{applicant.ContactInfo[0].website}}</dd>
+    </dl>
+</div>
+
+<div class="well">
+    <h2>Teaching Experience</h2>
+    <dl class="">
+        <dt>Average Number of Students Per Class</dt>
+        <dd>
+            {{applicant.TeachingExperience[0].aveNumStudentsPerClass}}
+        </dd>
+        <dt>Has Taught Previously</dt>
+        <dd>
+            {{applicant.TeachingExperience[0].hasTaught}}
+        </dd>
+        <dt>Has Done Past Conferences</dt>
+        <dd>
+            {{applicant.TeachingExperience[0].pastConferences}}
+        </dd>
+        <dt>Years Decorating</dt>
+        <dd>
+            {{applicant.TeachingExperience[0].yearsDecorating}}
+        </dd>
+        <dt>Years Teaching</dt>
+        <dd>{{applicant.TeachingExperience[0].yearsTeaching}}</dd>
+    </dl>
+</div>
+
+<h2>Classes</h2>
+<div class="well" ng-repeat="ci in applicant.ClassInfo">
+
+    <h3>Class Overview</h3>
+    <p>{{ci.className}}</p>
+    <p><img src="{{ci.imageRelativePath}}" />{{ci.classDescription}}</p>
+    <p>{{ci.classType}}</p>
+
+    <h3>Student Overview</h3>
+    <ul>
+        <li>{{ci.currency}}${{ci.feePerStudent}} / student</li>
+        <li>{{ci.classSizeMin}} to {{ci.classSizeMax}} students</li>
+        <li>{{ci.skillLevel}}</li>
+        <li>
+            <div ng-switch="{{ci.doSpecialSupplies}}">
+                <span ng-switch-when="true">needs special supplies.</span>
+                <span ng-switch-when="false">does NOT need special supplies.</span>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Class Schedule</h3>
+    <ul>
+        <li>{{ci.isMultiDay === true ? 'multi day' : 'one day' }}</li>
+        <li>Total Time, Day One: {{ci.totalTimeDayOne}}</li>
+        <li ng-if="ci.isMultiDay === true">Total Time, Day Two: {{ci.totalTimeDayTwo}}</li>
+        <li>{{ci.hasTimePreference === true ? 'has' : 'does NOT have' }} a time preference</li>
+        <li ng-if="ci.hasTimePreference === true">
+            <span>Prefered Time, Day One {{ci.preferredTimeDayOne}}, </span>
+            <span>Prefered Time, Day Two {{ci.preferredTimeDayTwo}}</span>
+        </li>
+        <li>needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
+        <li>needs {{ci.extraTimeSetup}} mins extra setup time.</li>
+    </ul>
+
+    <h3>Class Supplies</h3>
+
+    <ul>
+        <li>{{ci.suppliesOption}}</li>
+        <li>{{ci.willNeedThisSpecialEquip}}</li>
+        <li>{{ci.suppliesWillProvideThese}}</li>
+        <li>{{ ci.isSelling === true ? 'Is selling supplies.' : 'Is NOT selling supplies.' }}</li>
+        <li>{{ci.suppliesWillSellThese}}</li>
+        <li>{{ci.doVendorTable}}</li>
+        <li>{{ci.vendorTable}}</li>
+        <li>{{ci.suppliesWillRequireThese}}</li>
+    </ul>
+</div>

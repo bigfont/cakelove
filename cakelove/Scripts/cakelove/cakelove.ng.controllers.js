@@ -2,10 +2,11 @@
 
 var cakeLoveControllers = angular.module("cakeLoveControllers", []);
 
-cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', 'formSvc', function ($scope, userSvc, siteMapSvc, formSvc) {
+cakeLoveControllers.controller("MainCtrl", ['$scope', 'userSvc', 'siteMapSvc', 'formSvc', 'objSvc', function ($scope, userSvc, siteMapSvc, formSvc, objSvc) {
 
     $scope.userSvc = userSvc;
     $scope.siteMapSvc = siteMapSvc;
+    $scope.objSvc = objSvc;
 
 }]);
 
