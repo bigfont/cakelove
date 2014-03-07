@@ -24,21 +24,15 @@
             <div class="panel panel-danger">
                 <div class="panel-heading">Image Requirements</div>
                 <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>
-                            <strong>Size</strong>
-                            <!-- Todo set this programmatically based on the img size filter -->
-                            <span>2 MB</span>
-                        </li>
-                        <li>
-                            <strong>Type</strong>
-                            <span>JPEG, JPG, PNG</span>
-                        </li>
-                        <li>
-                            <strong>Resolution</strong>
-                            <span>{{ helpBlock }}</span>
-                        </li>
-                    </ul>
+                    <dl>
+                        <!-- Todo set this programmatically based on the img size filter -->
+                        <dt>Size</dt>
+                        <dd>2 MB</dd>
+                        <dt>Type</dt>
+                        <dd>JPEG, JPG, PNG</dd>
+                        <dt>Resolution</dt>
+                        <dd>{{ helpBlock }}</dd>
+                    </dl>
                 </div>
             </div>
         </div>
@@ -61,10 +55,10 @@
                         <dl>
                             <dt>Size</dt>
                             <dd>{{ item.file.size/1024/1024|number:2 }} MB</dd>
-                            <dt>Name</dt>
-                            <dd>{{ item.file.name }}</dd>
                             <dt>Type</dt>
                             <dd>{{ item.file.type }}</dd>
+                            <dt>Name</dt>
+                            <dd>{{ item.file.name }}</dd>
                         </dl>
                         <div class="btn-group">
                             <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
