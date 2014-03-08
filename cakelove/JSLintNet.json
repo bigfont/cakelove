@@ -1,4 +1,5 @@
 ﻿{
+  "output": "Warning",
   "ignore": [
     "\\Scripts\\polyfills\\",
     "\\Scripts\\angular\\",
@@ -15,6 +16,10 @@
       "FileReader": false,
       "Image": false
     },
+    "nomen": true,
+    "regexp": true,
     "unparam": true
-  }
+  },
+  "cancelBuild": false,
+  "errorLimit": 20
 }
