@@ -18,7 +18,7 @@ namespace cakelove.Models
         public DbSet<BiographyBindingModel> Biography { get; set; }
         public DbSet<ApplicationStatusBindingModel> ApplicationStatus { get; set; }
 
-        private void AddDataCreatedAndOrDateModified()
+        private void AddDateCreatedAndOrDateModified()
         {
             ObjectContext context = ((IObjectContextAdapter)this).ObjectContext;
 
@@ -48,12 +48,12 @@ namespace cakelove.Models
 
         public override Task<int> SaveChangesAsync()
         {
-            AddDataCreatedAndOrDateModified();
+            AddDateCreatedAndOrDateModified();
             return base.SaveChangesAsync();
         }
         public override int SaveChanges()
         {
-            AddDataCreatedAndOrDateModified();
+            AddDateCreatedAndOrDateModified();
             return base.SaveChanges();
         }
     }
