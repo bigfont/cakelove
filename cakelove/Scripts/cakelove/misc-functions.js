@@ -1,27 +1,27 @@
-﻿/*global angular*/
+﻿var miscFunctions = (function (angular) {
 
-var miscFunctions = (function () {
+    'use strict';
 
     var module = {};
 
     module.InferTheHtmlInputTypeOfTheKeyValuePair = function (key, value) {
 
-        var inputType = "text"; // this is the default input type
+        var inputType, i, regex, htmlTextualInputTypes, t;
+        inputType = "text"; // this is the default input type
 
         if (/[a-zA-Z]/.test(key)) {
             key = key.toLowerCase(); // set to lowercase for comparison
         }
 
         // iterate all the html input types to look for a match
-        var regex;
-        var htmlTextualInputTypes = [
+        htmlTextualInputTypes = [
             "hidden", "text", "search", "tel", "url", "email",
             "password", "datetime", "date", "month", "week", "time", "datetime-local", "number", "range", "color",
             "checkbox", "radio", "file", "submit", "image"
         ];
-        for (var i = 0; i < htmlTextualInputTypes.length; i++) {
+        for (i = 0; i < htmlTextualInputTypes.length; i += 1) {
 
-            var t = htmlTextualInputTypes[i];
+            t = htmlTextualInputTypes[i];
             regex = new RegExp(t);
             if (regex.test(key)) {
                 inputType = t;
@@ -34,18 +34,20 @@ var miscFunctions = (function () {
 
     module.InferTheHtmlInputAttributesOfEachKeyValuePair = function (data) {
 
-        var newData = angular.copy(data);
+        var newData, i, inferredType, valueObj;
 
-        var i = 0;
+        newData = angular.copy(data);
+
+        i = 0;
         angular.forEach(data, function (value, key) {
 
-            var inferredType = module.InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
+            inferredType = module.InferTheHtmlInputTypeOfTheKeyValuePair(key, value);
 
-            var valueObj = {};
+            valueObj = {};
             valueObj.superValue = value;
             valueObj.type = inferredType;
             valueObj.required = true;
-            valueObj.order = i++;
+            valueObj.order = i + 1;
 
             newData[key] = valueObj;
 
@@ -89,4 +91,4 @@ var miscFunctions = (function () {
 
     return module;
 
-}());
+}(angular));

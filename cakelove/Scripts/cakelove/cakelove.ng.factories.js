@@ -17,10 +17,10 @@
 
     cakeLoveFactories.factory('urlSvc', ['$location', function ($location) {
 
-        var url = {};
+        var url, base;
 
-        var base = $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port;
-
+        url = {};
+        base = $location.$$protocol + '://' + $location.$$host + ':' + $location.$$port;
         url.ToAbsoluteUrl = function (rightPart) {
 
             return base + rightPart;
@@ -102,8 +102,10 @@
 
         userSvc.addCurrentUserToRole = function (roleName, successCallback) {
 
-            var url = urlSvc.ToAbsoluteUrl("/api/Account/AddUserToRole");
-            var userRoleData = {
+            var url, userRoleData;
+
+            url = urlSvc.ToAbsoluteUrl("/api/Account/AddUserToRole");
+            userRoleData = {
                 userId: userSvc.userId,
                 roleName: roleName
             };
@@ -126,13 +128,10 @@
         };
 
         userSvc.isUserInOneOfTheseRoles = function (rolesToCheckArray) {
-            var match, userRolesArray;
+            var match, userRolesArray, i, index, role;
             match = false;
-
             userRolesArray = this.userRolesCsv.split(',');
-
-            for (var i = 0; i < userRolesArray.length; i++) {
-                var index, role;
+            for (i = 0; i < userRolesArray.length; i += 1) {
                 role = userRolesArray[i];
                 index = rolesToCheckArray.indexOf(role);
                 if (index >= 0) {
@@ -194,7 +193,7 @@
 
                     if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(data); }
 
-                }); // todo error, then
+                });
 
         };
 
@@ -211,7 +210,7 @@
 
                     if (!objSvc.isUndefinedOrNull(successCallback)) { successCallback(); }
 
-                }); // todo error, then
+                });
         };
 
         formSvc.submitCurrentUserApplication = function () {
@@ -220,7 +219,6 @@
             $http({ method: "PUT", url: url });
         };
 
-        // todo put he image uploader functions into a separate fileUploader service
         formSvc.createImageUploader = function ($scope, uploaderUrl) {
             var uploader = $fileUploader.create({
                 scope: $scope,
@@ -228,8 +226,8 @@
                 headers: { Authorization: "Bearer " + userSvc.access_token }
             });
 
-            // Image type filter
-            uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
+            // Image type filter {File|HTMLInputElement}
+            uploader.filters.push(function (item) {
 
                 function convertPipeSeparatedListToPhrase(list, separator) {
                     var phrase = list
@@ -240,22 +238,27 @@
                     return phrase;
                 }
 
-                var allowedTypes = '|jpg|png|jpeg|';
-                var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
+                var allowedTypes, type, isValid;
+
+                allowedTypes = '|jpg|png|jpeg|';
+                type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
                 type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-                var isValid = allowedTypes.indexOf(type) !== -1;
+                isValid = allowedTypes.indexOf(type) !== -1;
                 if (!isValid) {
-                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + convertPipeSeparatedListToPhrase(allowedTypes)];                    
+                    $scope.uploader.filterErrors = ['The file must be one of these types: ' + convertPipeSeparatedListToPhrase(allowedTypes)];
                 }
                 return isValid;
             });
 
             // Image size filter
             uploader.filters.push(function (item) {
-                var maxSizeMB = 2; /*MB*/
-                var size = uploader.isHTML5 ? item.size : -1; /*what if it isn't HTML5?*/
-                var sizeMB = (size / 1024 / 1024);
-                var isValid = sizeMB <= maxSizeMB;
+
+                var maxSizeMB, size, sizeMB, isValid;
+
+                maxSizeMB = 2; /*MB*/
+                size = uploader.isHTML5 ? item.size : -1; /*what if it isn't HTML5?*/
+                sizeMB = (size / 1024 / 1024);
+                isValid = sizeMB <= maxSizeMB;
                 if (!isValid) {
                     $scope.uploader.filterErrors = ['The file must be no more than ' + maxSizeMB + ' MB'];
                 }
@@ -267,20 +270,20 @@
 
         formSvc.updateImgSrcFromXMLHTTPRequestEvent = function (xmlHttpRequestProgressEvent, jsonPropertyName) {
 
+            var updatedPath, imgRootRelativePath, responseObj, responseJson, xmlHttpRequest;
+
             // target, currentTarger, srcElement... which is most appropriate?
-            var xmlHttpRequest = xmlHttpRequestProgressEvent.target;            
-            var responseJson = xmlHttpRequest.responseText;
-            if (responseJson.length === 0)
-            {
+            xmlHttpRequest = xmlHttpRequestProgressEvent.target;
+            responseJson = xmlHttpRequest.responseText;
+            if (responseJson.length === 0) {
                 return null;
             }
-            var responseObj = angular.fromJson(responseJson);
-            var imgRootRelativePath = responseObj[jsonPropertyName];
-            if (objSvc.isUndefinedOrNull(imgRootRelativePath))
-            {
+            responseObj = angular.fromJson(responseJson);
+            imgRootRelativePath = responseObj[jsonPropertyName];
+            if (objSvc.isUndefinedOrNull(imgRootRelativePath)) {
                 return null;
             }
-            var updatedPath = imgRootRelativePath + "?" + new Date().getTime();
+            updatedPath = imgRootRelativePath + "?" + new Date().getTime();
             return updatedPath;
         };
 
@@ -290,11 +293,13 @@
 
     cakeLoveFactories.factory('objSvc', [function () {
 
-        var objSvc = {};
+        var objSvc, prop, newObj;
+
+        objSvc = {};
 
         objSvc.copyWithoutValues = function (obj) {
-            var newObj = angular.copy(obj);
-            for (var prop in newObj) {
+            newObj = angular.copy(obj);
+            for (prop in newObj) {
                 if (newObj.hasOwnProperty(prop)) {
                     newObj[prop] = null;
                 }
@@ -303,7 +308,7 @@
         };
 
         objSvc.isUndefinedOrNull = function (obj) {
-            return (typeof obj === 'undefined' || obj === null);
+            return (obj === undefined || obj === null);
         };
 
         objSvc.typeof = function (obj) {

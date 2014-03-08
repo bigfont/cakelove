@@ -15,42 +15,42 @@ var myApp = angular.module('cakeLoveApp', [
 
 myApp.config(['$routeProvider',
      function ($routeProvider) {
-         'use strict';
-         $routeProvider.
+        'use strict';
+        $routeProvider.
              when('/welcome', {
-                 templateUrl: 'ng/partials/welcome',
-                 controller: 'WelcomeCtrl'
-             }).
+                templateUrl: 'ng/partials/welcome',
+                controller: 'WelcomeCtrl'
+            }).
              when('/register', {
-                 templateUrl: 'ng/partials/login-register-form',
-                 controller: 'RegisterCtrl'
-             }).
+                templateUrl: 'ng/partials/login-register-form',
+                controller: 'RegisterCtrl'
+            }).
              when('/login', {
-                 templateUrl: 'ng/partials/login-register-form',
-                 controller: 'TokenCtrl'
-             }).
+                templateUrl: 'ng/partials/login-register-form',
+                controller: 'TokenCtrl'
+            }).
              when('/instructor-guidelines', {
-                 templateUrl: 'ng/partials/instructor-guidelines',
-                 controller: 'InstructorGuidelinesCtrl',
-                 isSecure: true,
-                 allowTheseRoles: ["member"]
-             }).
+                templateUrl: 'ng/partials/instructor-guidelines',
+                controller: 'InstructorGuidelinesCtrl',
+                isSecure: true,
+                allowTheseRoles: ["member"]
+            }).
              when('/application-form', {
-                 templateUrl: 'ng/partials/application-form',
-                 controller: 'ApplicationFormCtrl',
-                 isSecure: true,
-                 allowTheseRoles: ["applicant"]
-             }).
+                templateUrl: 'ng/partials/application-form',
+                controller: 'ApplicationFormCtrl',
+                isSecure: true,
+                allowTheseRoles: ["applicant"]
+            }).
              when('/admin/:adminSection?/:adminSubsection?', {
-                 templateUrl: 'ng/partials/admin/dashboard',
-                 controller: 'AdminCtrl',
-                 isSecure: true,
-                 allowTheseRoles: ["admin"]
-             }).
+                templateUrl: 'ng/partials/admin/dashboard',
+                controller: 'AdminCtrl',
+                isSecure: true,
+                allowTheseRoles: ["admin"]
+            }).
              otherwise({
-                 redirectTo: '/welcome'
-             });
-     }]);
+                redirectTo: '/welcome'
+            });
+    }]);
 
 myApp.run(function ($rootScope, $location, userSvc) {
     'use strict';
@@ -58,15 +58,17 @@ myApp.run(function ($rootScope, $location, userSvc) {
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
-
         function viewRequiresRole(role) {
             return next.allowTheseRoles.indexOf(role) >= 0;
         }
 
         function redirectUserThatLacksRequiredRole() {
             var redirectTo;
-            if (viewRequiresRole('applicant')) { redirectTo = '/instructor-guidelines'; }
-            else if (viewRequiresRole('admin')) { redirectTo = '/'; }
+            if (viewRequiresRole('applicant')) {
+                redirectTo = '/instructor-guidelines';
+            } else if (viewRequiresRole('admin')) {
+                redirectTo = '/';
+            }
             $location.path(redirectTo);
         }
 
