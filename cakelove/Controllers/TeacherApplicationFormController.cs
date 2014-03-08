@@ -52,8 +52,8 @@ namespace cakelove.Controllers
             var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
 
             if (bindingModel == null)
-            { 
-                bindingModel = new ContactInfoBindingModel() { IdentityUserId = GetCurrentUserId(), Address = new AddressBindingModel() };
+            {
+                bindingModel = new ContactInfoBindingModel() { IdentityUserId = userId, Address = new AddressBindingModel() };
                 await ContactInfo(bindingModel); // insert
             }
                 
@@ -105,7 +105,7 @@ namespace cakelove.Controllers
 
             if (bindingModel == null)
             {
-                bindingModel = new BiographyBindingModel() { IdentityUserId = GetCurrentUserId() };
+                bindingModel = new BiographyBindingModel() { IdentityUserId = userId };
                 await Biography(bindingModel);
             }
 
@@ -192,13 +192,19 @@ namespace cakelove.Controllers
         }
 
         [System.Web.Http.Route("TeachingExperience")]
-        public TeachingExperienceViewModel GetTeachingExperience()
+        public async Task<TeachingExperienceViewModel> GetTeachingExperience()
         {
             var db = new MyDbContext();
             var userId = GetCurrentUserId();
-            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new TeachingExperienceBindingModel();
-            var viewModel = Mapper.Map<TeachingExperienceBindingModel, TeachingExperienceViewModel>(bindingModel);
+            var bindingModel = db.TeachingExperience.FirstOrDefault(ci => ci.IdentityUserId == userId);
+            
+            if (bindingModel == null)
+            {
+                bindingModel = new TeachingExperienceBindingModel() { IdentityUserId = userId };
+                await TeachingExperience(bindingModel);
+            }
 
+            var viewModel = Mapper.Map<TeachingExperienceBindingModel, TeachingExperienceViewModel>(bindingModel);
             return viewModel;
         }
 
@@ -231,7 +237,7 @@ namespace cakelove.Controllers
         }
 
         [System.Web.Http.Route("ClassInfo")]
-        public IEnumerable<ClassInfoViewModel> GetClassInfo()
+        public async Task<IEnumerable<ClassInfoViewModel>> GetClassInfo()
         {
             var db = new MyDbContext();
             var userId = GetCurrentUserId();
@@ -240,10 +246,8 @@ namespace cakelove.Controllers
 
             if (bindingModel.Count == 0)
             {
-                var classInfo = new ClassInfoBindingModel() { IdentityUserId = GetCurrentUserId(), ClassName = "Untitled Class" };
-                db.ClassInfo.Attach(classInfo);
-                db.Entry(classInfo).State = EntityState.Added;
-                var result = db.SaveChanges();
+                var classInfo = new ClassInfoBindingModel() { IdentityUserId = userId, ClassName = "Untitled Class" };
+                await ClassInfo(classInfo);
                 bindingModel.Add(classInfo);
             }
 
