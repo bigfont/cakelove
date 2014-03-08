@@ -97,11 +97,18 @@ namespace cakelove.Controllers
         }
 
         [System.Web.Http.Route("Biography")]
-        public BiographyViewModel GetBiography()
+        public async Task<BiographyViewModel> GetBiography()
         {
             var db = new MyDbContext();
             var userId = GetCurrentUserId();
-            var bindingModel = db.Biography.FirstOrDefault(b => b.IdentityUserId == userId) ?? new BiographyBindingModel();
+            var bindingModel = db.Biography.FirstOrDefault(b => b.IdentityUserId == userId);
+
+            if (bindingModel == null)
+            {
+                bindingModel = new BiographyBindingModel() { IdentityUserId = GetCurrentUserId() };
+                await Biography(bindingModel);
+            }
+
             var viewModel = Mapper.Map<BiographyBindingModel, BiographyViewModel>(bindingModel);
             return viewModel;
         }
