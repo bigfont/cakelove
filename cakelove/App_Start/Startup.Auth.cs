@@ -24,7 +24,7 @@ namespace cakelove
 
             // hack
             AddExistingUserToExistingRole("aa403d2d-a493-4af0-bc8d-43cc8d803be3", "admin"); // jenandaussie
-            AddExistingUserToExistingRole("03a82e3a-e828-4795-ae87-778e23655a21", "admin"); // test0009
+            AddExistingUserToExistingRole("acc327ab-b955-44fc-ab1b-9827e0e2ec36", "admin"); // shaunluttin
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
