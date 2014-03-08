@@ -1,9 +1,15 @@
 ﻿<div ng-class="{'has-error':(innerForm.$dirty || outerForm.userSubmitting) && innerForm.$invalid, 'has-success':(innerForm.$dirty || outerForm.userSubmitting) && !innerForm.$invalid  }"
      class="form-group">
+    <!-- 
+        Add a 'spacer' class to each panel, 
+        because sometimes panels will be inside a panel-group.
+        Panels inside a panel group have their bottom margin set to zero,
+        and we want to maintain the 20px bottom margin.
+    -->
     <div class="row">
         <!--Uploader-->
         <div class="col-lg-6">
-            <div ng-form name="innerForm" class="panel panel-default">
+            <div ng-form name="innerForm" class="panel panel-default spacer">
                 <div class="panel-heading"><label for="fileInput">{{ lblText }}</label></div>
                 <div class="panel-body">
                     <input id="fileInput" ng-file-select type="file" id="bioImgUploader" />
@@ -21,7 +27,7 @@
         </div>
         <!--Help Block-->
         <div class="col-lg-6">
-            <div class="panel panel-info">
+            <div class="panel panel-info spacer">
                 <div class="panel-heading">Image Requirements</div>
                 <div class="panel-body">
                     <dl>
@@ -41,7 +47,7 @@
         <!--Preview-->
         <div class="row">
             <div class="col-lg-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default spacer">
                     <div class="panel-heading">Preview</div>
                     <div class="panel-body">
                         <div class="img-responsive img-rounded img-thumbnail img-medium" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
@@ -49,7 +55,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default spacer">
                     <div class="panel-heading">Image Specs</div>
                     <div class="panel-body">
                         <dl>
@@ -81,7 +87,7 @@
     </div>
 </div>
 <!--Complete-->
-<div class="panel panel-success">
+<div class="panel panel-success spacer">
     <div class="panel-heading">Saved Image</div>
     <div class="panel-body">
         <img class="img-responsive img-rounded img-thumbnail img-medium" ng-src="{{uploadedImgPath}}" err-src="holder.js/187x187" />

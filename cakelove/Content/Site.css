@@ -1,26 +1,10 @@
-﻿*[required] {
-    border-style: dashed;
-}
-
-div.validation-messages {
+﻿div.validation-messages {
     color: #b94a48;
-}
-
-html {
 }
 
 body {
     background-color: white;
     padding: 20px;
-}
-
-header {
-}
-
-article {
-}
-
-footer {
 }
 
 .tab-pane {
@@ -91,5 +75,5 @@ dl {
 }
 
 .spacer {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
