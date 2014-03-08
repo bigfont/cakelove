@@ -18,12 +18,12 @@
         <div ng-switch="siteMapSvc.currentPage.toLowerCase()">
             
             <div ng-switch-when="login">
-                <button type="button" class="btn btn-primary" ng-click="submit()">Login</button>
+                <button type="submit" class="btn btn-primary" ng-click="submit()">Login</button>
                 <a type="button" class="btn btn-link" href="#register">Register</a>
             </div>
             
             <div ng-switch-when="register">
-                <button type="button" class="btn btn-primary" ng-click="submit()">Register</button>
+                <button type="submit" class="btn btn-primary" ng-click="submit()">Register</button>
                 <a type="button" class="btn btn-link" href="#login">Login</a>
             </div>
 
