@@ -44,11 +44,19 @@ namespace cakelove.Controllers
         }
 
         [System.Web.Http.Route("ContactInfo")]
-        public ContactInfoViewModel GetContactInfo()
+        public async Task<ContactInfoViewModel> GetContactInfo()
         {
             var db = new MyDbContext();
             var userId = GetCurrentUserId();
-            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId) ?? new ContactInfoBindingModel() { Address = new AddressBindingModel() };
+
+            var bindingModel = db.ContactInfo.Include(ci => ci.Address).FirstOrDefault(ci => ci.IdentityUserId == userId);
+
+            if (bindingModel == null)
+            { 
+                bindingModel = new ContactInfoBindingModel() { IdentityUserId = GetCurrentUserId(), Address = new AddressBindingModel() };
+                await ContactInfo(bindingModel); // insert
+            }
+                
             var viewModel = Mapper.Map<ContactInfoBindingModel, ContactInfoViewModel>(bindingModel);
             return viewModel;
         }
@@ -75,7 +83,7 @@ namespace cakelove.Controllers
                     dbContext.Entry(model).State = GetBindingModelState(model);
                     //address
                     dbContext.Address.Attach(model.Address);
-                    dbContext.Entry(model.Address).State = GetBindingModelState(model);
+                    dbContext.Entry(model.Address).State = GetBindingModelState(model.Address);
                     //save
                     var result = await dbContext.SaveChangesAsync();
                 }
