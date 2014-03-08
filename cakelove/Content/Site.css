@@ -71,8 +71,8 @@ ul#class-info-btn-group > li {
     margin: 5px;
 }
 
-div#img-upload-preview > canvas,
-div#img-upload-saved > img {
+div.img-medium > canvas,
+img.img-medium {
     width: 187px;
     height: 187px;
 }

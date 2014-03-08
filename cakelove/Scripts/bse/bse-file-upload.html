@@ -44,7 +44,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Preview</div>
                     <div class="panel-body">
-                        <div id="img-upload-preview" class="img-responsive img-rounded img-thumbnail" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
+                        <div class="img-responsive img-rounded img-thumbnail img-medium" ng-show="uploader.isHTML5" ng-thumb="{ file: item.file, height: 187 }"></div>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
 <!--Complete-->
 <div class="panel panel-success">
     <div class="panel-heading">Saved Image</div>
-    <div id="img-upload-saved" class="panel-body">
-        <img class="img-responsive img-rounded img-thumbnail" ng-src="{{uploadedImgPath}}" err-src="holder.js/187x187" />
+    <div class="panel-body">
+        <img class="img-responsive img-rounded img-thumbnail img-medium" ng-src="{{uploadedImgPath}}" err-src="holder.js/187x187" />
     </div>
 </div>
