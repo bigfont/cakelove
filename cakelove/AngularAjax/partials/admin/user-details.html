@@ -5,7 +5,7 @@
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
                 <div class="media-object thumbnail">
-                    <img class="img-medium" img-src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
+                    <img class="img-medium" ng-src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
                     <div class="caption">
                         <a href="{{bio.imageRelativePath}}" class="btn btn-default" role="button">Full Size</a>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="media">
                     <div class="pull-left">
                         <div class="media-object thumbnail">
-                            <img class="img-medium" img-src="{{ci.imageRelativePath}}" err-src="holder.js/187x187" />
+                            <img class="img-medium" ng-src="{{ci.imageRelativePath}}" err-src="holder.js/187x187" />
                             <div class="caption">
                                 <a href="{{ci.imageRelativePath}}" class="btn btn-default" role="button">Full Size</a>
                             </div>
