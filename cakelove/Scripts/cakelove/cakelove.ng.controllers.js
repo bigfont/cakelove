@@ -28,8 +28,8 @@
 
         }]);
 
-    cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 'userSvc', 'urlSvc', 'siteMapSvc', 'miscFunctions',
-        function ($scope, $http, $location, userSvc, urlSvc, siteMapSvc, miscFunctions) {
+    cakeLoveControllers.controller('RegisterCtrl', ['$scope', '$http', '$location', 'userSvc', 'urlSvc', 'siteMapSvc',
+        function ($scope, $http, $location, userSvc, urlSvc, siteMapSvc) {
 
             siteMapSvc.currentPage = "Register";
 
@@ -77,8 +77,8 @@
 
         }]);
 
-    cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlSvc', 'siteMapSvc', 'miscFunctions',
-        function ($scope, $http, $window, $location, userSvc, urlSvc, siteMapSvc, miscFunctions) {
+    cakeLoveControllers.controller('TokenCtrl', ['$scope', '$http', '$window', '$location', 'userSvc', 'urlSvc', 'siteMapSvc',
+        function ($scope, $http, $window, $location, userSvc, urlSvc, siteMapSvc) {
 
             var grantRequest, url, password, userName, userCredentials;
 

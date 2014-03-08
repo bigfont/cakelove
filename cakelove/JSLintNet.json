@@ -14,7 +14,8 @@
       "Holder": false,
       "console": false,
       "FileReader": false,
-      "Image": false
+      "Image": false,
+      "miscFunctions": false
     },
     "nomen": true,
     "regexp": true,
