@@ -8,8 +8,8 @@ namespace cakelove
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = false;
-            bundles.UseCdn = true;
+            BundleTable.EnableOptimizations = true;
+            bundles.UseCdn = true;            
 
             // angular
             const string angularCdn = "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/";

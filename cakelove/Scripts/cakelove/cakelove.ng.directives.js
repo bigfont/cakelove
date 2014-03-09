@@ -6,7 +6,7 @@
 
     cakeLoveDirectives = angular.module("cakeLoveDirectives", []);
 
-    cakeLoveDirectives.directive('dynamicName', function ($compile, $parse) {
+    cakeLoveDirectives.directive('dynamicName', ['$compile', '$parse', function ($compile, $parse) {
         return {
             restrict: 'A',
             terminal: true,
@@ -18,7 +18,7 @@
                 $compile(elem)(scope);
             }
         };
-    });
+    }]);
 
     cakeLoveDirectives.directive('loginRegisterForm', function () {
         return {
@@ -139,7 +139,7 @@
         };
     }]);
 
-    cakeLoveDirectives.directive('submitRequired', function (objSvc) {
+    cakeLoveDirectives.directive('submitRequired', ['objSvc', function (objSvc) {
         return {
             require: 'ngModel',
             link: function (scope, elm, attrs, ctrl) {
@@ -208,7 +208,7 @@
                 ctrl.$formatters.unshift(clear);
             }
         };
-    });
+    }]);
 
     /**
        * The ng-thumb directive

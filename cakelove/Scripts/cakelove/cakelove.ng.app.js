@@ -52,7 +52,7 @@ myApp.config(['$routeProvider',
             });
     }]);
 
-myApp.run(function ($rootScope, $location, userSvc) {
+myApp.run(['$rootScope', '$location', 'userSvc', function ($rootScope, $location, userSvc) {
     'use strict';
 
     // register listener to watch route changes
@@ -116,4 +116,4 @@ myApp.run(function ($rootScope, $location, userSvc) {
         }
     });
 
-});
+}]);
