@@ -130,13 +130,15 @@
         userSvc.isUserInOneOfTheseRoles = function (rolesToCheckArray) {
             var match, userRolesArray, i, index, role;
             match = false;
-            userRolesArray = this.userRolesCsv.split(',');
-            for (i = 0; i < userRolesArray.length; i += 1) {
-                role = userRolesArray[i];
-                index = rolesToCheckArray.indexOf(role);
-                if (index >= 0) {
-                    match = true;
-                    break;
+            if (!objSvc.isUndefinedOrNull(this.userRolesCsv)) {
+                userRolesArray = this.userRolesCsv.split(',');
+                for (i = 0; i < userRolesArray.length; i += 1) {
+                    role = userRolesArray[i];
+                    index = rolesToCheckArray.indexOf(role);
+                    if (index >= 0) {
+                        match = true;
+                        break;
+                    }
                 }
             }
             return match;
