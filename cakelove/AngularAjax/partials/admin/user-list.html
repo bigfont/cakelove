@@ -1,4 +1,4 @@
-﻿<table class="table table-bordered table-striped table-hover table-responsive">
+﻿<table class="table table-bordered table-hover table-responsive">
     <tbody>
         <tr>
             <th></th>
@@ -6,8 +6,8 @@
             <th>Name</th>
             <th>Submitted</th>
         </tr>
-        <tr ng-repeat="applicant in applicants">
-            <td>{{ $index }}</td>
+        <tr ng-repeat="applicant in applicants" ng-class="{success: applicant.IsSubmitted !== null}">
+            <td>{{ $index + 1 }}</td>
             <td><a href="#/admin/user/{{ applicant.UserName }}">{{ applicant.UserName }}</a></td>
             <td>{{ applicant.Name }}</td>
             <td>{{ applicant.IsSubmitted === null ? "No" : "Yes" }}</td>
