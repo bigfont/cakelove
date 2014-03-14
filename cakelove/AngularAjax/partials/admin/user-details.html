@@ -163,7 +163,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12" ng-switch="ci.isMultiDay">
+            <div class="col-lg-12">
                 <table class="table table-bordered table-hover">
                     <caption><h4>Schedule</h4></caption>
                     <tbody>
@@ -183,22 +183,22 @@
                             <td>{{ci.extraTimeCleanup}}</td>
                             <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
                             <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ci.preferredTimeDayOne}}</td>
+                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayOne : 'N/A' }}</td>
                         </tr>
-                        <tr ng-switch-default>
-                            <th>Day Two</th>
-                            <td colspan="6">n/a</td>
-                        </tr>
-                        <tr ng-switch-when="true">
+                        <!--Day two-->
+                        <tr ng-show="ci.isMultiDay">
                             <th>Day Two</th>
                             <td>{{ci.totalTimeDayTwo}}</td>
                             <td>{{ci.extraTimeSetup}}</td>
                             <td>{{ci.extraTimeCleanup}}</td>
                             <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
                             <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ci.preferredTimeDayTwo}}</td>
+                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayTwo : 'N/A' }}</td>
                         </tr>
-
+                        <tr ng-show="!ci.isMultiDay">
+                            <th>Day Two</th>
+                            <td colspan="7">N/A</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
