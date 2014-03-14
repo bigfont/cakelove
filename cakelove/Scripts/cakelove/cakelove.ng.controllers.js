@@ -424,6 +424,14 @@
         adminSection = $routeParams.adminSection;
         adminSubsection = $routeParams.adminSubsection;
 
+        $scope.totalMinutes = function (hrs, mins) {
+            return hrs * 60 + mins;
+        };
+
+        $scope.totalHours = function (hrs, mins) {
+            return hrs + mins / 60;
+        };
+
         function listUsers() {
             var url = urlSvc.ToAbsoluteUrl('/api/applicant');
             $scope.userView = 'list';
@@ -437,11 +445,12 @@
 
         function displayUser(userName) {
             var url = urlSvc.ToAbsoluteUrl('/api/applicant/' + userName);
-            $scope.userView = 'details';
+            $scope.userView = 'details';            
+
             $http({ method: 'GET', url: url }).
                 success(function (data, status, headers, config) {
 
-                    $scope.applicant = data;
+                    $scope.applicant = data;                    
 
                 });
         }

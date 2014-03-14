@@ -149,9 +149,8 @@
                 <span ng-switch-when="true">The instructor needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
                 <span ng-switch-when="false">The instructor does NOT need special supplies.</span>
             </div>
-
             <div class="col-lg-3" ng-switch="{{ci.isSelling}}">
-                <h4>Supply Sales</h4>                
+                <h4>Supply Sales</h4>
                 <span ng-switch-default>...</span>
                 <span ng-switch-when="true">The instructor is selling these supplies: {{ci.suppliesWillSellThese}}</span>
                 <span ng-switch-when="false">is NOT selling supplies.</span>
@@ -163,38 +162,47 @@
                 <span ng-switch-when="false">would NOT like a vendor table.</span>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12" ng-switch="ci.isMultiDay">
+                <table class="table table-bordered table-hover">
+                    <caption><h4>Schedule</h4></caption>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Duration (hrs)</th>
+                            <th>Setup (mins)</th>
+                            <th>Cleaup (mins)</th>
+                            <th>Total (mins)</th>
+                            <th>Total (hrs)</th>
+                            <th>Date / Time Preference</th>
+                        </tr>
+                        <tr>
+                            <th>Day One</th>
+                            <td>{{ci.totalTimeDayOne}}</td>
+                            <td>{{ci.extraTimeSetup}}</td>
+                            <td>{{ci.extraTimeCleanup}}</td>
+                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
+                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
+                            <td>{{ci.preferredTimeDayOne}}</td>
+                        </tr>
+                        <tr ng-switch-default>
+                            <th>Day Two</th>
+                            <td colspan="6">n/a</td>
+                        </tr>
+                        <tr ng-switch-when="true">
+                            <th>Day Two</th>
+                            <td>{{ci.totalTimeDayTwo}}</td>
+                            <td>{{ci.extraTimeSetup}}</td>
+                            <td>{{ci.extraTimeCleanup}}</td>
+                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
+                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
+                            <td>{{ci.preferredTimeDayTwo}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-
-    <!--<div class="col-lg-6">
-        <h3>Class Schedule</h3>
-        <ul>
-            <li>
-                <div ng-switch="{{ci.isMultiDay === true}}">
-                    The class is
-                    <span ng-switch-when="true">two days; {{ci.totalTimeDayOne}} hours and {{ci.totalTimeDayTwo}} hours.</span>
-                    <span ng-switch-when="false">one day only and is {{ci.totalTimeDayOne}} hours</span>
-                </div>
-            </li>
-
-            <li>
-                <div ng-switch="{{ci.hasTimePreference === true}}">
-                    The instructor
-                    <div ng-switch-when="true">
-                        has a scheduling preference: <ul>
-                            <li>Day One {{ci.preferredTimeDayOne}}</li>
-                            <li>Day Two {{ci.preferredTimeDayTwo}}</li>
-                        </ul>
-                    </div>
-                    <span ng-switch-when="false">does NOT have a scheduling preference.</span>
-                </div>
-            </li>
-            <li>Needs {{ci.extraTimeCleanup}} mins extra cleanup time.</li>
-            <li>Needs {{ci.extraTimeSetup}} mins extra setup time.</li>
-        </ul>
-    </div>-->
-
 </div>
 
-</div>
-<!--End Class Info-->
