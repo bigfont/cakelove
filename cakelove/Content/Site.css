@@ -79,6 +79,11 @@ dl {
 }
 
 @media print {
+
+    /*
+        This print stylesheet is primarily for printing the user-details view.    
+    */
+
     body > div > nav,
     body > div > header,
     body > div > footer,
