@@ -1,16 +1,28 @@
 ﻿<table class="table table-bordered table-hover table-responsive">
     <tbody>
         <tr>
-            <th></th>
-            <th>UserName</th>
-            <th>Name</th>
-            <th>Submitted</th>
+            <th>Row #</th>
+            <th>
+                User Name
+                <a href="" ng-click="predicate = 'UserName'; reverse=false"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="" ng-click="predicate = '-UserName'; reverse=false"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
+            <th>
+                Name
+                <a href="" ng-click="predicate = 'Name'; reverse=false"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="" ng-click="predicate = '-Name'; reverse=false"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
+            <th>
+                Submitted
+                <a href="" ng-click="predicate = 'IsSubmitted'; reverse=true"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                <a href="" ng-click="predicate = 'IsSubmitted'; reverse=false"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            </th>
         </tr>
-        <tr ng-repeat="applicant in applicants" ng-class="{success: applicant.IsSubmitted !== null}">
+        <tr ng-repeat="applicant in applicants | orderBy:predicate:reverse" ng-class="{success: applicant.IsSubmitted }">
             <td>{{ $index + 1 }}</td>
             <td><a href="#/admin/user/{{ applicant.UserName }}">{{ applicant.UserName }}</a></td>
             <td>{{ applicant.Name }}</td>
-            <td>{{ applicant.IsSubmitted === null ? "No" : "Yes" }}</td>
+            <td>{{ applicant.IsSubmitted }}</td>
         </tr>
     </tbody>
 </table>

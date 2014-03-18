@@ -330,6 +330,7 @@
     <Content Include="Scripts\bse\bse-file-upload.html" />
     <Content Include="Scripts\bse\bse.js" />
     <Content Include="Scripts\bse\bse-inputs.html" />
+    <Content Include="Scripts\bse\bse-order-by.html" />
     <Content Include="Scripts\cakelove\cakelove.ng.controllers.js" />
     <Content Include="Scripts\cakelove\cakelove.ng.directives.js" />
     <Content Include="Scripts\angular\angular-file-upload.js" />

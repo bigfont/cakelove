@@ -432,12 +432,22 @@
             return hrs + mins / 60;
         };
 
+        function setNullToFalse(data, property) {
+            var i;
+            for (i = 0; i < data.length; i += 1) {
+                if (data[i][property] === null) {
+                    data[i][property] = false;
+                }
+            }
+        }
+
         function listUsers() {
             var url = urlSvc.ToAbsoluteUrl('/api/applicant');
             $scope.userView = 'list';
             $http({ method: 'GET', url: url }).
                 success(function (data, status, headers, config) {
 
+                    setNullToFalse(data, 'IsSubmitted');
                     $scope.applicants = data;
 
                 });
@@ -445,12 +455,12 @@
 
         function displayUser(userName) {
             var url = urlSvc.ToAbsoluteUrl('/api/applicant/' + userName);
-            $scope.userView = 'details';            
+            $scope.userView = 'details';
 
             $http({ method: 'GET', url: url }).
                 success(function (data, status, headers, config) {
 
-                    $scope.applicant = data;                    
+                    $scope.applicant = data;
 
                 });
         }
