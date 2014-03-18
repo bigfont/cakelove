@@ -4,12 +4,10 @@
     <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
-                <div class="media-object">
-                    <div class="thumbnail">
-                        <img class="img-medium" ng-src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
-                        <div class="caption">
-                            <a href="{{bio.imageRelativePath}}" class="btn btn-default" role="button">Full Size</a>
-                        </div>
+                <div class="media-object thumbnail">
+                    <img class="img-medium" ng-src="{{bio.imageRelativePath}}" err-src="holder.js/187x187" />
+                    <div class="caption">
+                        <a href="{{bio.imageRelativePath}}" class="btn btn-default" role="button">Full Size</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +85,6 @@
 </div>
 <!--End Teaching Experience-->
 <!--Class Info-->
-
 <div class="panel panel-default" ng-repeat="ci in applicant.ClassInfo">
     <div class="panel-heading">Class {{$index + 1}}: {{ci.className}}</div>
     <div class="panel-body">
