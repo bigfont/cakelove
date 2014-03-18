@@ -77,3 +77,20 @@ dl {
 .panel-group .panel.spacer {
     margin-bottom: 20px;
 }
+
+@media print {
+    body > div > nav,
+    body > div > header,
+    body > div > footer,
+    .btn {
+        display: none !important;
+    }
+
+    a::after {
+        content: '' !important;
+    }
+
+    .panel {
+        page-break-after:always !important;
+    }
+}

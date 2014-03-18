@@ -265,16 +265,6 @@
         };
     }]);
 
-    ////cakeLoveDirectives.directive('errSrc', function () {
-    ////    return {
-    ////        link: function (scope, element, attrs) {
-    ////            element.bind('error', function () {
-    ////                element.attr('src', attrs.errSrc);
-    ////            });
-    ////        }
-    ////    };
-    ////});
-
     cakeLoveDirectives.directive('holderFix', function () {
         return {
             link: function (scope, element, attrs) {
@@ -287,7 +277,7 @@
         var fallbackSrc = {
             link: function (scope, element, attrs) {
                 element.bind('error', function () {
-                    angular.element(this).replaceWith('<img class="placeholder pull-left img-thumbnail" data-src="holder.js/187x187" holder-fix />');
+                    angular.element(this).replaceWith('<img class="placeholder" data-src="holder.js/187x187" holder-fix />');
                     Holder.run({ images: '.placeholder', nocss: true });
                 });
             }
