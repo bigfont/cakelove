@@ -144,6 +144,14 @@ namespace cakelove.Controllers
             return Ok();
         }
 
+        [Route("ResetPassword")]
+        public void ResetPassword(string username, string newPassword)
+        {
+            IdentityUser user = UserManager.FindByName(username);
+            UserManager.RemovePassword(user.Id);
+            UserManager.AddPassword(user.Id, newPassword);            
+        }
+
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)

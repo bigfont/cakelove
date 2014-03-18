@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using cakelove.Providers;
+using cakelove.Models;
 
 namespace cakelove
 {
@@ -22,6 +23,8 @@ namespace cakelove
 
             CreateRolesIfNotExists(new string[] { "admin", "member", "applicant" });
 
+            ChangeUserPassword("cakecottage", "cakelove123");
+
             // hack
             AddExistingUserToExistingRole("aa403d2d-a493-4af0-bc8d-43cc8d803be3", "admin"); // jenandaussie
             AddExistingUserToExistingRole("acc327ab-b955-44fc-ab1b-9827e0e2ec36", "admin"); // shaunluttin
@@ -34,6 +37,14 @@ namespace cakelove
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };
+        }
+
+        private static void ChangeUserPassword(string username, string newPassword)
+        {
+            UserManager<IdentityUser> userManager = UserManagerFactory();
+            IdentityUser user = userManager.FindByName(username);
+            userManager.RemovePassword(user.Id);
+            userManager.AddPassword(user.Id, newPassword);
         }
 
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
