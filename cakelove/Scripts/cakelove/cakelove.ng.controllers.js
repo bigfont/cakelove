@@ -453,6 +453,17 @@
                 });
         }
 
+        function createUserDataAliases(data)
+        {
+            var aliased = {};
+            aliased.ci = data.ContactInfo[0];
+            aliased.bio = data.Biography[0];
+            aliased.te = data.TeachingExperience[0];
+            aliased.cinfo = data.ClassInfo;
+
+            return aliased;
+        }
+
         function displayUser(userName) {
             var url = urlSvc.ToAbsoluteUrl('/api/applicant/' + userName);
             $scope.userView = 'details';
@@ -460,7 +471,8 @@
             $http({ method: 'GET', url: url }).
                 success(function (data, status, headers, config) {
 
-                    $scope.applicant = data;
+                    $scope.applicant = createUserDataAliases(data);
+                    $scope.applicant.UserName = userName;
 
                 });
         }
