@@ -82,8 +82,63 @@ dl {
     body > div > nav,
     body > div > header,
     body > div > footer,
+    .media-object.thumbnail > .caption,
     .btn {
         display: none !important;
+    }
+
+    th,
+    td {
+        padding-top: 1px !important;
+        padding-bottom: 1px !important;
+    }
+
+    .well {
+        border: none;
+        padding: 0;
+    }
+
+    * {
+        font-size:12px !important;
+        font-family:serif;
+    }
+
+    h1, h2, h3, h4 {
+        font-weight:bold;
+    }
+
+    h1 {
+        font-size: 1.6em !important;
+    }
+
+    h2 {
+        font-size: 1.5em !important;
+    }
+
+    h3 {
+        font-size: 1.4em !important;
+    }
+
+    h4 {
+        font-size: 1.3em !important;
+    }
+
+    address,
+    dl,
+    h1, h2, h3, h4,
+    ul,
+    table.table,
+    .thumbnail,
+    .panel,
+    .well {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .panel-heading,
+    .panel-body {
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
     }
 
     a::after {
@@ -91,6 +146,6 @@ dl {
     }
 
     .panel {
-        page-break-after:always !important;
+        page-break-inside: avoid;
     }
 }

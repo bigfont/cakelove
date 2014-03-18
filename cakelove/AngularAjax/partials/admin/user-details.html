@@ -1,6 +1,7 @@
-﻿<!--Biography-->
+﻿<h2>{{applicant.UserName}}</h2>
+<!--Biography-->
 <div class="panel panel-default" ng-switch="applicant.Biography.length > 0">
-    <div class="panel-heading">Biography</div>
+    <div class="panel-heading"><h3>Biography</h3></div>
     <div class="panel-body" ng-switch-when="true" ng-init="bio = applicant.Biography[0]">
         <div class="media">
             <div class="pull-left" ng-switch="objSvc.isUndefinedOrNull(bio.imageRelativePath)">
@@ -21,7 +22,7 @@
 <!--End Biography-->
 <!--Contact Info-->
 <div class="panel panel-default" ng-switch="applicant.ContactInfo.length > 0">
-    <div class="panel-heading">Contact Info</div>
+    <div class="panel-heading"><h3>Contact Info</h3></div>
     <div class="panel-body" ng-switch-when="true" ng-init="ci = applicant.ContactInfo[0]">
         <div class="row">
             <div class="col-xs-6">
@@ -53,12 +54,12 @@
 <!--End Contact Info-->
 <!--Teaching Experience-->
 <div class="panel panel-default" ng-switch="applicant.TeachingExperience.length > 0">
-    <div class="panel-heading">Teaching Experience</div>
+    <div class="panel-heading"><h3>Teaching Experience</h3></div>
     <div class="panel-body" ng-switch-when="true" ng-init="te = applicant.TeachingExperience[0]">
         <div class="well" ng-switch="te.pastConferences !== null">
             <strong>Past Conferences</strong>
             <p ng-switch-when="true">{{te.pastConferences}}</p>
-            <p ng-switch-when="false">...</p>
+            <p ng-switch-when="false">N/A</p>
         </div>
         <table class="table table-bordered">
             <tbody>
@@ -86,7 +87,7 @@
 <!--End Teaching Experience-->
 <!--Class Info-->
 <div class="panel panel-default" ng-repeat="ci in applicant.ClassInfo">
-    <div class="panel-heading">Class {{$index + 1}}: {{ci.className}}</div>
+    <div class="panel-heading"><h3>Class {{$index + 1}}: {{ci.className}}</h3></div>
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6">
@@ -101,7 +102,7 @@
                     </div>
                     <div class="media-body" ng-switch="ci.classDescription !== null">
                         <p ng-switch-when="true">{{ci.classDescription}}</p>
-                        <p ng-switch-when="false">...</p>
+                        <p ng-switch-when="false">N/A</p>
                     </div>
                 </div>
             </div>
@@ -131,7 +132,7 @@
         <div class="row">
             <div class="col-lg-3" ng-switch="ci.suppliesOption">
                 <h4>Supplies Option</h4>
-                <p ng-switch-default>...</p>
+                <p ng-switch-default>N/A</p>
                 <p ng-switch-when="allInstructor">The instructor will supply all: {{ci.suppliesWillProvideThese}}</p>
                 <p ng-switch-when="allStudent">The student will supply all: {{ci.suppliesWillRequireThese}}</p>
                 <div ng-switch-when="someInstructorSomeStudent">
@@ -144,19 +145,19 @@
             </div>
             <div class="col-lg-3" ng-switch="{{ci.doSpecialSupplies}}">
                 <h4>Special Supplies</h4>
-                <span ng-switch-default>...</span>
+                <span ng-switch-default>N/A</span>
                 <span ng-switch-when="true">The instructor needs these special supplies: {{ci.willNeedThisSpecialEquip}}</span>
                 <span ng-switch-when="false">The instructor does NOT need special supplies.</span>
             </div>
             <div class="col-lg-3" ng-switch="{{ci.isSelling}}">
                 <h4>Supply Sales</h4>
-                <span ng-switch-default>...</span>
+                <span ng-switch-default>N/A</span>
                 <span ng-switch-when="true">The instructor is selling these supplies: {{ci.suppliesWillSellThese}}</span>
                 <span ng-switch-when="false">is NOT selling supplies.</span>
             </div>
             <div class="col-lg-3" ng-switch="{{ci.doVendorTable}}">
                 <h4>Vendor Table</h4>
-                <span ng-switch-default>...</span>
+                <span ng-switch-default>N/A</span>
                 <span ng-switch-when="true">The instructor would like a vendor table in the {{ci.vendorTable}}</span>
                 <span ng-switch-when="false">would NOT like a vendor table.</span>
             </div>
@@ -168,31 +169,31 @@
                     <tbody>
                         <tr>
                             <th></th>
-                            <th>Duration (hrs)</th>
-                            <th>Setup (mins)</th>
-                            <th>Cleaup (mins)</th>
-                            <th>Total (mins)</th>
-                            <th>Total (hrs)</th>
+                            <th>Duration</th>
+                            <th>Setup</th>
+                            <th>Cleaup</th>
+                            <th>Total</th>
+                            <th>Total</th>
                             <th>Date / Time Preference</th>
                         </tr>
                         <tr>
                             <th>Day One</th>
-                            <td>{{ci.totalTimeDayOne}}</td>
-                            <td>{{ci.extraTimeSetup}}</td>
-                            <td>{{ci.extraTimeCleanup}}</td>
-                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayOne : 'N/A' }}</td>
+                            <td>{{ci.totalTimeDayOne}} hrs</td>
+                            <td>{{ci.extraTimeSetup}} mins</td>
+                            <td>{{ci.extraTimeCleanup}} mins</td>
+                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }} mins</td>
+                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }} hrs</td>
+                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayOne : 'N/A' }} </td>
                         </tr>
                         <!--Day two-->
                         <tr ng-show="ci.isMultiDay">
                             <th>Day Two</th>
-                            <td>{{ci.totalTimeDayTwo}}</td>
-                            <td>{{ci.extraTimeSetup}}</td>
-                            <td>{{ci.extraTimeCleanup}}</td>
-                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }}</td>
-                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayTwo : 'N/A' }}</td>
+                            <td>{{ci.totalTimeDayTwo}} hrs</td>
+                            <td>{{ci.extraTimeSetup}} mins</td>
+                            <td>{{ci.extraTimeCleanup}} mins</td>
+                            <td>{{ totalMinutes(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }} mins</td>
+                            <td>{{ totalHours(ci.totalTimeDayOne, ci.extraTimeSetup + ci.extraTimeCleanup) }} hrs</td>
+                            <td>{{ ci.hasSchedulePreference ? ci.preferredTimeDayTwo : 'N/A' }} </td>
                         </tr>
                         <tr ng-show="!ci.isMultiDay">
                             <th>Day Two</th>
